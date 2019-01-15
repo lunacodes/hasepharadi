@@ -1,0 +1,25 @@
+.luna-afl.affiliates-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.luna-afl .affiliate-item {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 0 6px;
+}
+
+.luna-afl .affiliate-link-text {
+  color: #c93;
+  font-size: 16px;
+  line-height: 2;
+  text-align: center;
+}
+
+.luna-afl .affiliate-img {
+  margin: 0 0 4px;
+}

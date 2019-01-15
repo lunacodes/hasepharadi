@@ -1,0 +1,78 @@
+/* Media Query - Min-Width: 961px
+---------------------------------------------------------------------------------------------------- */
+
+@media only screen and (min-width: 60.0625em) {
+
+  /* Genesis Menu
+  --------------------------------------------- */
+
+  .genesis-nav-menu {
+    .menu-item {
+      display: inline-block;
+    }
+
+    .menu-item:focus,
+    .menu-item:hover {
+      position: relative;
+    }
+
+    > .menu-bold > a {
+      font-weight: 700;
+    }
+
+    > .menu-highlight {
+      > a {
+        background-color: $dark-grey;
+        border-radius: 3px;
+        color: $white;
+        font-weight: 600;
+        margin-left: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      // > a:hover,
+      // > a:focus {
+      //   background-color: #0073e5;
+      // }
+    }
+
+    .sub-menu {
+      display: block;
+      // border-top: 1px solid #eee;
+      opacity: 0;
+      padding-left: 0;
+      position: absolute;
+      transition: opacity .4s ease-in-out;
+      width: 180px;
+
+      a {
+        // border: 1px solid #eee;
+        border-top: 0;
+        // padding-bottom: 15px;
+        // padding-top: 15px;
+        width: 180px;
+      }
+
+      .sub-menu {
+        margin: -46px 0 0 179px;
+      }
+    }
+  }
+
+  /* Responsive Menu
+  --------------------------------------------- */
+
+  .genesis-responsive-menu {
+    display: block;
+    padding-top: 15px;
+    padding: 0;
+    position: static;
+  }
+
+  .menu-toggle,
+  .sub-menu-toggle {
+    display: none;
+    visibility: hidden;
+  }
+}

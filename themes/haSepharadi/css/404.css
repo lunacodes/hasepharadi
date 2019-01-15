@@ -1,0 +1,107 @@
+.entry-title {
+    font-size: 50px;
+    padding: 0 0 10px;
+}
+
+.entry-title span {
+    border-bottom: 1px solid black;
+    font-weight: 700;
+    padding: 0 0 10px;
+}
+
+blockquote {
+    /* line-height: 1; */
+    clear: both;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 17px;
+    font-style: initial;
+    height: auto;
+    line-height: 1.5em;
+    margin: 10px 0;
+    overflow: hidden;
+    padding-left: 60px;
+    padding-right: 60px;
+    position: relative;
+}
+
+blockquote:before {
+    color: #ddd;
+    content: "\201C";
+    display: block;
+    font-size: 6em;
+    left: 0;
+    line-height: 1;
+    position: absolute;
+    top: -.1em;
+}
+
+.entry-content .search-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 40px;
+    width: 500px;
+    /* width: initial; */
+}
+
+blockquote:after {
+    bottom: -45px;
+    color: #ddd;
+    content: "\201D";
+    display: block;
+    font-size: 6em;
+    line-height: 1;
+    position: absolute;
+    right: 0;
+}
+
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+    background-color: #fff;
+    border-color: #999;
+    border-radius: 4px;
+    border: 1px solid #d1d1d1;
+    box-shadow: none;
+    box-sizing: border-box;
+    color: #111;
+    font-weight: 300;
+    height: 38px;
+    margin: 0 0 2% 0;
+    padding: 6px 10px;
+    width: 280px;
+}
+
+.post-password-form input[type="submit"],
+.search-form input[type="submit"] {
+    /* Font not displaying properly - too large */
+    background: #c93;
+    border-radius: 4px;
+    border: 1px solid #c93;
+    font: 600 13px "PT Serif", "times new roman", times, serif;
+    height: 38px;
+    margin-top: 10px;
+    /* margin: 0 0 0 2%; */
+    margin: 0 0 10px 2%;
+    /* margin: 0; */
+    /* margin: initial; */
+    padding: 6px 10px;
+    text-transform: uppercase;
+    width: 112px;
+}
+
+.entry-content .search-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* margin-bottom: 40px; */
+    margin: 17px 0 20px;
+    width: 100%;
+    /* width: initial; */
+}

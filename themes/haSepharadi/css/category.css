@@ -1,0 +1,47 @@
+body.category  {
+    color: #000;
+    margin: 0;
+}
+
+.full-width-content .content, 
+#genesis-content {
+    width: 1200px;
+}
+
+.archive-description {
+    margin: 33px 0 41px;
+}
+
+.archive-title {
+    color: #000;
+    font-size: 50px;
+    font-size: 5rem;
+    font-weight: 700;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.archive-title span {
+    border-bottom: 1px solid black;
+    padding: 0 0 10px;
+}
+
+#genesis-content .post .entry-content {
+    margin: 0 auto;
+    text-align: left;
+    width: 1080px;
+}
+
+#genesis-content .post .entry-content p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 2;
+}
+
+#genesis-content .entry-tools {
+    display: flex;
+    font: 400 12px 'PT Serif', "times new roman", times, serif;
+    justify-content: space-between;
+    line-height: 1.95;
+    width: 1080px;
+}
