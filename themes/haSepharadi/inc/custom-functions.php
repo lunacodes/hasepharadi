@@ -9,11 +9,9 @@
 2. Topbar & Header
    - 2.1 Topbar Scripts
    - 2.2 Create Topbar
-   - 2.3 Menu Hack for Homepage
-   - 2.4 WP Admin Bar - Topbar Positioning Fix (Inactive)
-   - 2.5 Menu Hack for Home Page (Inactive)
-   - 2.6 Mobile Menu - Pushy (Inactive)
-   - 2.7 Mobile Menu Pretty Load
+   - 2.3 WP Admin Bar - Topbar Positioning Fix (Inactive)
+   - 2.4 Mobile Menu Pretty Load
+   - 2.5 Mobile Menu Disable Superfish
 3. Breadcrumbs
 4. Posts
    - 4.1 Posts - Featured Image
@@ -25,14 +23,12 @@
    - 4.7 Author Bios
    - 4.8 wpDiscuz Comments Hack
 5. Footer
-   - 5.1 Back to Top
+   - 5.1 Back to Top Button
    - 5.2 Custom Footer Credits
 6. Widgets
    - 6.1 Author Avatars
-7. Calendar Plugin
-8. Easy Footnotes Fix
-9. Custom User Meta
-    - 9.1 Social Media
+7. Custom User Meta
+    - 7.1 Social Media
 
 ------------------------------------------------------*/
 
@@ -47,13 +43,6 @@ add_action( 'wp_enqueue_scripts', 'enqueue_font_awesome' );
 function enqueue_font_awesome() {
     wp_enqueue_style( 'font-awesome', CHILD_URL . '/inc/font-awesome-4.6.3/css/font-awesome.min.css', array(), CHILD_THEME_VERSION );
 }
-
-// add_action( 'wp_enqueue_scripts', 'enqueue_main_fonts' );
-// function enqueue_main_fonts() {
-//     // wp_enqueue_style( 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i|Source+Sans+Pro:400,400i,600,600i,700,700i' );
-//     wp_enqueue_style( 'google-fonts', CHILD_URL . '/css/google-fonts.css', array(), CHILD_THEME_VERSION );
-//     // echo($fonts_to_enqueue);
-// }
 
 /* 1.2 - Custom Image Sizes
 ============================*/
@@ -76,12 +65,6 @@ function enqueue_topbar_scripts() {
     // wp_enqueue_style( 'topbar.css', CHILD_URL . '/css/topbar.css', array(), CHILD_THEME_VERSION );
     wp_enqueue_script( 'topbar.js', CHILD_URL . '/js/topbar.js', array('jquery'), CHILD_THEME_VERSION );
 }
-
-// add_action( 'wp_enqueue_scripts', 'enqueue_nav_scripts' );
-// function enqueue_nav_scripts() {
-//     wp_enqueue_style( 'nav.css', CHILD_URL . '/css/nav.css', array(), CHILD_THEME_VERSION );
-// }
-
 
 /* 2.2 - Create Topbar
 ============================*/
@@ -121,14 +104,6 @@ function haSepharadi_custom_header_markup_open() {
 
 function haSepharadi_custom_header() {
 
-    // global $wp_registered_sidebars;
-
-    // genesis_markup( array(
-    //     'open' => '<div %s>',
-    //     'context' => 'title-area'
-    // ) );
-
-    // do_action( 'genesis_site_title' );
     $site_url = get_site_url();
 
     $custom_header = <<<EOL
@@ -138,7 +113,6 @@ function haSepharadi_custom_header() {
 EOL;
     echo($custom_header);
 
-    // genesis_do_nav();
 }
 
 function haSepharadi_custom_header_markup_close() {
@@ -182,55 +156,6 @@ EOL;
     }
 }
 
-/* 2.4 - WP Admin Bar - Topbar Positioning Fix
-============================*/
-
-// if ( is_admin_bar_showing()) {
-//     echo("<style> .nav-shrinked { top: 30px; } </style>");
-//     // echo("Admin Bar Showing");
-// } else {
-//     echo("Admin bar not showing!!");
-// }
-
-
-/* 2.5 - Menu Hack for Home Page
-============================*/
-
-/*if ( is_home() ) {
-    // echo("we're home");
-    ?>
-    <!-- <style type="text/css" media="screen"> .menu-primary li:first-of-type a {color:#c93; }</style> -->
-    <?php
-}*/
-
-/* 2.6 - Mobile Menu - Pushy
-============================*/
-
-// Note: disabled this until I can more properly figure it out
-
-
-// Disable superfish.js
-
-// add_action( 'wp_enqueue_scripts', 'sp_disable_superfish' );
-// function sp_disable_superfish() {
-//     wp_deregister_script( 'superfish' );
-//     wp_deregister_script( 'superfish-args' );
-// }
-
-// // Enable Pushy scripts and styles
-// add_action( 'wp_enqueue_scripts', 'add_pushy_js_menu' );
-// function add_pushy_js_menu() {
-//     wp_enqueue_style( 'pushy', CHILD_URL . '/inc/pushy-master/css/pushy.css', array(), CHILD_THEME_VERSION );
-//     wp_enqueue_script( 'pushy-helper', CHILD_URL . '/inc/pushy-helper.js', array(), CHILD_THEME_VERSION, true );
-//     wp_enqueue_script( 'pushy-js', CHILD_URL . '/inc/pushy-master/js/pushy.min.js', array('jquery'), CHILD_THEME_VERSION, true );
-//     // wp_enqueue_script( 'pushy-helper', CHILD URL . '/inc/pushy-helper.js' );
-// }
-
-// Add pushy menu to header
-// function add_pushy_js_menu() {
-    // echo
-// }
-
 /* 2.7 - Mobile Menu Pretty Load
 ============================*/
 
@@ -245,17 +170,15 @@ function mobile_menu_pretty_load(){
         //<![CDATA[
         (function () {
             var c = document.body.classList;
-            // console.log(c);
             c.remove('no-js');
             c.add('js');
-            // console.log(c);
         })();
         //]]>
     </script>
     <?php
 }
 
-/* 2.7 - Mobile Menu Disable Superfish
+/* 2.5 - Mobile Menu Disable Superfish
 ============================*/
 
 //* Disable the superfish script
@@ -297,7 +220,7 @@ add_theme_support( 'post-thumbnails' );
 add_action( 'genesis_before_entry', 'display_featured_post_image', 8 );
 function display_featured_post_image() {
     if ( is_singular( 'page' ) && ( ! is_category() ) ) {
-        // echo("It's a singular page!");
+
     } elseif ( is_category() ) {
         echo("We're a category");
     } else {
@@ -316,14 +239,13 @@ function luna_remove_sidebar() {
     }
 }
 
-
 /* 4.3 - Category Pages
 ============================*/
 
 add_action('wp_enqueue_scripts', 'enqueue_category_scripts');
 function enqueue_category_scripts() {
     if ( is_category() ) {
-        // echo("We're on a category page");
+
         wp_enqueue_style('category.css', CHILD_URL . '/css/category.css', array(), CHILD_THEME_VERSION );
         remove_action( 'genesis_before_entry', 'display_featured_post_image' );
     }
@@ -336,15 +258,6 @@ add_action( 'wp_enqueue_scripts', 'enqueue_entry_meta_assets' );
 function enqueue_entry_meta_assets() {
     wp_enqueue_style( 'roboto-slab', 'https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese' );
 }
-
-// Customize entry meta header
-// add_filter( 'genesis_post_info', 'themeprefix_post_info_filter' );
-// function themeprefix_post_info_filter( $post_info ) {
-//     // $category = get_the_category();
-//     // $category_str = "<span>"
-//     $post_info = '[post_categories before=""][post_title][post_author_posts_link]';
-//     return $post_info;
-// }
 
 /* 4.5 - Entry Footer
 ============================*/
@@ -362,9 +275,6 @@ add_filter('excerpt_more', 'new_excerpt_more');
 
 /* 4.6 Next & Previous Posts Link
 ============================*/
-
-// I'd love to use the built-in option, instead of having to write a custom function
-// but for some reason, using my custom loop is causing me to have to write a function
 
 add_action( 'genesis_after_loop', 'add_next_and_prev_post_links', 12 );
 function add_next_and_prev_post_links() {
@@ -395,8 +305,6 @@ function add_next_and_prev_post_archive_links() {
 
 add_action( 'genesis_after_loop', 'display_author_bio' );
 function display_author_bio() {
-    // echo("This is a test");
-    // the_author();
     ?>
     <div class="author-box">
         <h2 class="author-box-title">About Author</h2>
@@ -421,7 +329,12 @@ function display_comments_plz() {
 /* 5. Footer
 =================================================*/
 
-//* Back to Top Button
+/* 5. Footer
+=================================================*/
+
+/* 5.1 Back to Top Button
+============================*/
+
 add_action( 'genesis_after_footer', 'add_back_to_top_btn' );
 function add_back_to_top_btn() {
     ?>
@@ -429,7 +342,9 @@ function add_back_to_top_btn() {
     <?php
 }
 
-//* Change the footer text
+/* 5.2 Custom Footer Credits
+============================*/
+
 add_filter('genesis_footer_creds_text', 'sp_footer_creds_filter');
 function sp_footer_creds_filter( $creds ) {
     $creds = 'Copyright [footer_copyright] <a href="https://hasepharadi.com">haSepharadi</a>. All rights reserved.';
@@ -478,7 +393,7 @@ function display_author_avatars() { ?>
             <?php
 
         } else {
-            // echo("Already In");
+
         }
         $i++;
 
@@ -493,71 +408,13 @@ function display_author_avatars() { ?>
     ob_end_clean();
     wp_reset_postdata();
     return $output_string;
-    // echo("This is a test");
+
 }
 
-
-/* 8. Easy Footnotes Fix
+/* 7. Custom User Meta
 =================================================*/
 
-// remove_filter('the_content', 'easy_footnote_after_content', 19);
-
-/* 9. Editor Stylesheet
-=================================================*/
-
-// add_editor_style( array|string $stylesheet = 'editor-style.css' )
-
-// ex:
-// Basic Example
-
-// Add the following to the functions.php file of your theme.
-
-// /**
-//  * Registers an editor stylesheet for the theme.
-//  */
-// function wpdocs_theme_add_editor_styles() {
-//     add_editor_style( 'custom-editor-style.css' );
-// }
-// add_action( 'admin_init', 'wpdocs_theme_add_editor_styles' );
-// Next, create a file named custom-editor-style.css in your themes root directory. Any CSS rules added to that file will be reflected within the TinyMCE visual editor. The contents of the file might look like this:
-
-// body#tinymce.wp-editor {
-//     font-family: Arial, Helvetica, sans-serif;
-//     margin: 10px;
-// }
-
-// body#tinymce.wp-editor a {
-//     color: #4CA6CF;
-// }
-
-// Add files dynamically:
-// add_filter('tiny_mce_before_init','wpdocs_theme_editor_dynamic_styles');
-// function wpdocs_theme_editor_dynamic_styles( $mceInit ) {
-//     $styles = 'body.mce-content-body { background-color: #' . get_theme_mod( 'background-color', '#FFF' ) . '}';
-//     if ( isset( $mceInit['content_style'] ) ) {
-//         $mceInit['content_style'] .= ' ' . $styles . ' ';
-//     } else {
-//         $mceInit['content_style'] = $styles . ' ';
-//     }
-//     return $mceInit;
-// }
-//
-//
-
-// Google Fonts in Editor
-/**
- * Registers an editor stylesheet for the current theme.
- */
-// function wpdocs_theme_add_editor_styles() {
-//     $font_url = str_replace( ',', '%2C', '//fonts.googleapis.com/css?family=Lato:300,400,700' );
-//     add_editor_style( $font_url );
-// }
-// add_action( 'after_setup_theme', 'wpdocs_theme_add_editor_styles' );
-
-/* 9. Custom User Meta
-=================================================*/
-
-/* 9.1 - Social Media
+/* 7.1 - Social Media
 ============================*/
 
 remove_action( 'genesis_before_loop', 'genesis_do_author_box_archive', 15 );
@@ -577,9 +434,7 @@ function luna_add_user_social_media( $fields ) {
 add_filter( 'get_the_author_genesis_author_box_single', '__return_true' );
 
 remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
-/**
- * @author    Brad Dalton
- */
+
 add_action( 'genesis_after_loop', 'genesis_do_taxonomy_title_description' );
 
 

@@ -11,9 +11,6 @@
  * @link    https://my.studiopress.com/themes/genesis/
  */
 
-
-// remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
-
 // Remove standard post content output.
 remove_action( 'genesis_before_content', 'custom_breadcrumbs', 8 );
 remove_action( 'genesis_before_loop', 'custom_breadcrumbs', 8 );
@@ -24,29 +21,9 @@ remove_action( 'genesis_archive_title_descriptions', 'genesis_do_archive_heading
 remove_action( 'genesis_post_content', 'genesis_do_post_content' );
 remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
 
-// add_action( 'genesis_entry_content', 'genesis_page_archive_content' );
-// add_action( 'genesis_post_content', 'genesis_page_archive_content' );
-
-// remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 20 );
-// remove_action( 'genesis_before_loop', 'genesis_do_author_title_description', 20 );
-// remove_action( 'genesis_before_loop', 'genesis_do_author_box_archive', 20 );
-// remove_action( 'genesis_before_loop', 'genesis_do_cpt_archive_title_description' );
-// remove_action( 'genesis_before_loop', 'genesis_do_date_archive_title' );
-// remove_action( 'genesis_before_loop', 'genesis_do_blog_template_heading' );
-// remove_action( 'genesis_before_loop', 'genesis_do_posts_page_heading' );
-// remove_action( 'genesis_archive_title_descriptions', 'genesis_do_archive_headings_open', 5, 3 );
-// remove_action( 'genesis_archive_title_descriptions', 'genesis_do_archive_headings_close', 20, 3 );
-// remove_action( 'genesis_archive_title_descriptions', 'genesis_do_archive_headings_headline', 10, 3 );
-// remove_action( 'genesis_archive_title_descriptions', 'genesis_do_archive_headings_intro_text', 12, 3 );
-// remove_filter( 'genesis_term_intro_text_output', 'wpautop' );
-// remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 20 );
-
 // Define user ID
-// Replace NULL with ID of user to be queried
 $user_id = get_the_author_meta( 'ID' );
 
-// Example: Get ID of current user
-// $user_id = get_current_user_id();
 
 // Define prefixed user ID
 $user_acf_prefix = 'user_';
@@ -65,8 +42,6 @@ function display_affiliate_links($user_id_prefixed) {
         if ( have_rows( 'affiliate_links', $user_id_prefixed ) ) :
              while ( have_rows( 'affiliate_links', $user_id_prefixed ) ) : the_row();
                 $affiliate_image = get_sub_field( 'affiliate_image' );
-                // var_dump($affiliate_image);
-                // thumbnail
                 $size = 'medium';
                 $thumb = $affiliate_image['sizes'][ $size ];
                 $width = $affiliate_image['sizes'][ $size . '-width' ];

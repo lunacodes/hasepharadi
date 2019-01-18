@@ -12,6 +12,7 @@ remove_action( 'genesis_before_content', 'custom_breadcrumbs', 9 );
 // Remove default loop.
 remove_action( 'genesis_loop', 'genesis_do_loop' );
 add_action( 'genesis_loop', 'genesis_404_cust' );
+
 /**
  * This function outputs a 404 "Not Found" error message.
  *
@@ -49,13 +50,6 @@ function genesis_404_cust() {
 
         <?php
     endif;
-
-    // if ( genesis_a11y( '404-page' ) ) {
-    //     echo '<h2>' . esc_html__( 'Sitemap', 'genesis' ) . '</h2>';
-    //     genesis_sitemap( 'h3' );
-    // } else {
-    //     genesis_sitemap( 'h4' );
-    // }
 
     echo '</div>';
 

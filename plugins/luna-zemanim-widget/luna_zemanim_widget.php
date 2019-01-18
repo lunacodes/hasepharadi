@@ -113,11 +113,6 @@ outputZemanim();
   var z_sunset = document.getElementById("zemanim_sunset");
   var zemanim = document.getElementById("zemanim_container");
 
-  // Snippet for getting user's IP - don't actually need for this
-  // jQuery.getJSON("https://api.ipify.org?format=json", function (data) {
-      // jQuery("#info").html("JS IP: " + data.ip);
-  // });
-
   function getLocation()
     {
       var options = {
@@ -129,7 +124,6 @@ outputZemanim();
       function error(err) {
         console.warn(`ERROR(${err.code}): ${err.message}`);
       zemanim.innerHtml = "Please enable location services to display the most up-to-date Zemanim";
-        // console.log("going by ip instead!");
             getAddrDetailsByIp();
       }
 
@@ -140,7 +134,6 @@ outputZemanim();
     }
 
   function getLatLngByGeo(position) {
-    console.log("navigator.geolocation is geolocating");
     var pos = position;
     var lat = pos.coords.latitude;
     var long = pos.coords.longitude;
@@ -150,15 +143,12 @@ outputZemanim();
 
   function getAddrDetailsByIp() {
     let urlStr = 'https://api.db-ip.com/v2/free/self';
-    console.log("DB-IP Url: " + urlStr);
     fetch(urlStr)
       .then(function(response) {
         return response.json();
       })
       .then(function(res) {
-        console.log(res);
         let ip = res["ipAddress"];
-        console.log("JS IP: " + ip);
         js_ip.innerHTML = ip + "<br>";
         let apiKey = 'AIzaSyDFrCM7Ao83pwu_avw-53o7cV0Ym7eLqpc';
         let city = res["city"];
@@ -169,52 +159,29 @@ outputZemanim();
         let url = urlBase + "&address=" + address + "&components=" + country + "&key=" + apiKey;
         // use regEx to replace all spaces with plus signs
         let urlStr = url.replace(/\s+/g, "+");
-        console.log("Google Maps URL: " + urlStr);
         getLatLongByAddr(urlStr);
       });
-      // .then(function(city, state, country) {
-        // body...
-      // })
   }
 
   function getLatLongByAddr(urlStr) {
     let url = urlStr;
-    console.log("Check - Google Maps URL: " + url);
     fetch(url)
       .then((response) => {
         return response.json();
       })
       .then((res) => {
-        console.log(res);
         let data = new Array(res.results[0]);
         let lat = data[0].geometry.location.lat;
         let long = data[0].geometry.location.lng;
-        console.log("First Lat Long ChecK: " + lat, long);
         getGeoDetails(lat, long);
       });
   }
 
-  // function getLatLngByIP(position) {
-  //   var pos = position;
-
-  //   console.log("pos test: ", pos[0], pos[1]);
-  //   // console.log(JSON.stringify(pos));
-  //   // console.log(pos.toString());
-  //   var lat = parseFloat(pos[0]);
-  //   var long = parseFloat(pos[1]);
-  //   console.log(lat, long);
-  //   // getGeoDetails(lat, long);
-  // }
-
   function getGeoDetails(lat_crd, long_crd) {
     let lat = lat_crd;
     let long = long_crd;
-    // console.log("getGeoDetails Lat Long Check: ", lat, long);
     var point = new google.maps.LatLng(lat, long);        new google.maps.Geocoder().geocode({'latLng': point}, function (res, status) {
 
-      // var response = res;
-      console.log(res);
-      // console.log(response);
 
       if (res[0]) {
         for (var i = 0; i < res.length; i++) {
@@ -222,30 +189,19 @@ outputZemanim();
             var city = res[i].address_components[0].short_name;
           } // end if loop 2
 
-          // if (res[i].types[0] === "neighborhood") {
-          //   var neighborhood = res[i].address_components[0].long_name;
-          // } // end if loop 2
-
           if (res[i].types[0] === "administrative_area_level_1") {
             var state = res[i].address_components[0].long_name;
-            // var state = "";
           } // end if loop 2
         } // end for loop
       } // end if loop 1
-      console.log("CNS: ", city, state);
-      console.log(res);
 
       if (state == null) {
         var cityStr = city;
-        console.log("cityStr null")
       } else {
         var cityStr =  city + ", " + state;
-        console.log("cityStr works fine");
       }
-      console.log(cityStr);
 
       generateTimes(lat, long, cityStr);
-      // return latLong = [window.lat, window.long];
     });
 }
 
@@ -262,7 +218,6 @@ function checkForDST() {
 
   var today = new Date();
   if (today.isDstObserved()) {
-    console.log("Daylight saving time!");
     return true;
   }
 }
@@ -280,7 +235,6 @@ function generateTimeStrings(timeObj) {
   var hour = formatTime(timeObj.getHours());
   var min = formatTime(timeObj.getMinutes());
   var sec = formatTime(timeObj.getSeconds());
-  console.log(year, month, day, hour, min, sec);
   var buildTimeStr = year + "-" + month + "-" + day + " " + hour + ":" + min;
   return buildTimeStr;
 }
@@ -296,26 +250,17 @@ function generateDateString(timeObj) {
 }
 
 function generateTimes(lat, long, city) {
-  console.log("gt Lat Long: ", lat, long);
-  console.log("get City: ", city);
   var cityStr = city;
   var times = SunCalc.getTimes(new Date(), lat, long);
   var sunriseObj = times.sunrise;
   var offSet = sunriseObj.getTimezoneOffset() / 60;
   var offSetSec = offSet * 3600;
-  console.log("Offset: ", offSet);
-  console.log("offSetSec: ", offSetSec);
   var dateObj = new Date();
   var dateStr = generateDateString(dateObj);
   var sunriseStr = generateTimeStrings(sunriseObj);
   var sunsetObj = times.sunset;
   var sunsetStr = generateTimeStrings(sunsetObj);
-  console.log("Times: ", times);
-  console.log("dateStr", dateStr);
-  console.log("Sunrise: ", sunriseStr);
-  console.log("Sunset: ", sunsetStr);
 
-  // console.log("/// Begin DateTime Debug: ///");
   var SunriseDateTimeInt = parseFloat((new Date(sunriseStr).getTime() / 1000) - offSetSec);
   var SunsetDateTimeInt = parseFloat((new Date(sunsetStr).getTime() / 1000) - offSetSec);
   var sunriseSec = SunriseDateTimeInt - offSet;
@@ -325,7 +270,6 @@ function generateTimes(lat, long, city) {
   var earliestMinhaStr = '<span id="zmantitle">Earliest Minḥa: </span>' + calculateEarliestMinha(sunriseSec, sunsetSec, offSetSec);
   var pelegHaMinhaStr = '<span id="zmantitle">Peleḡ HaMinḥa: </span>' + calculatePelegHaMinha(sunriseSec, sunsetSec, offSetSec);
   var displaySunsetStr = '<span id="zmantitle">Sunset: </span>' + unixTimestampToDate(SunsetDateTimeInt+offSetSec);
-  // console.log("Sunset: ", displaySunset);
 
   displayTimes(dateStr, cityStr, latestShemaStr, earliestMinhaStr, pelegHaMinhaStr, displaySunsetStr);
   // zemanim.innerHTML = "This Worked";
@@ -334,7 +278,6 @@ function generateTimes(lat, long, city) {
   // Display Sunset
 }
 
-// console.log("/// End TimeSec Debug ///");
 function unixTimestampToDate(timestamp) {
   var date = new Date(timestamp * 1000);
   var hours = date.getHours();
@@ -348,9 +291,7 @@ function unixTimestampToDate(timestamp) {
   else if (hours === 0) {
     hours = 12;
   }
-  // console.log("Date: ", date, "Hours: ", hours, "Minute: ", minutes, ampm);
   var formattedTime = hours + ':' + minutes.substr(-2);
-  // console.log("formattedTime: ", formattedTime);
   return formattedTime + " " + ampm;
 }
 
@@ -360,7 +301,6 @@ function calculateLatestShema(sunriseSec, sunsetSec, offSetSec) {
   var shemaInSeconds = sunriseSec + (halakhicHour * 3) + offSetSec;
   var latestShema = unixTimestampToDate(shemaInSeconds);
 
-  // console.log("Latest Shema: ", latestShema);
   return latestShema;
 }
 
@@ -368,9 +308,7 @@ function calculateEarliestMinha(sunriseSec, sunsetSec, offSetSec) {
   var halakhicHour = (sunsetSec - sunriseSec) / 12;
   var minhaInSeconds = sunriseSec + (halakhicHour * 6.5) + offSetSec;
   var earliestMinha = unixTimestampToDate(minhaInSeconds);
-  console.log("Halakhic Hour: ", halakhicHour);
 
-  console.log("Earliest Minḥa: ", earliestMinha);
   return earliestMinha;
 }
 
@@ -379,7 +317,6 @@ function calculatePelegHaMinha(sunriseSec, sunsetSec, offSetSec) {
   var minhaInSeconds = sunsetSec - (halakhicHour * 1.25) + offSetSec;
   var pelegHaMinha = unixTimestampToDate(minhaInSeconds);
 
-  // console.log("Peleḡ HaMinḥa: ", pelegHaMinha);
   return pelegHaMinha;
 }
 
