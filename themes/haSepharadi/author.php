@@ -24,7 +24,6 @@ remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
 // Define user ID
 $user_id = get_the_author_meta( 'ID' );
 
-
 // Define prefixed user ID
 $user_acf_prefix = 'user_';
 $user_id_prefixed = $user_acf_prefix . $user_id;
