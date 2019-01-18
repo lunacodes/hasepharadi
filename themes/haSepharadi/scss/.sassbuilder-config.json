@@ -1,0 +1,12 @@
+{
+    "project_path": "/",
+	"output_path": "../",
+	"options": {
+		"cache":         false,
+		"debug":         true,
+		"line-comments": true,
+		"line-numbers":  true,
+		"style":         "compressed",
+        // "style": "compressed"
+	}
+}

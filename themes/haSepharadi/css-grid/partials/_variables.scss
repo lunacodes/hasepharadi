@@ -1,0 +1,130 @@
+// Base Colors
+$black: #000;
+$darkest-grey: #111;
+$dark-grey: #333;
+$dark-grey-2: #444;
+$mid-grey-1: #666;
+$mid-grey: #777;
+$mid-grey-2: #999;
+$mid-grey-3: #aaa;
+$mid-grey-4: #ccc;
+$light-grey: #ddd;
+$light-grey-2: #d1d1d1;
+$lighter-grey: #eee;
+$lightest-grey: #f5f5f5;
+$lightest-grey-2: #f8f8f8;
+$orange: #c93;
+$white: #fff;
+
+// Base Fonts
+$base-font: 'PT Serif', "times new roman", times, serif;
+
+// Screen widths, Media queries - WC widths in WC variables
+$standard-screen-width: 960px;
+
+// Border styles
+$border-width: 1px;
+$border-style: solid;
+$border-color: $lighter-grey;
+$border-color-light: $light-grey;
+$border-color-lighter: $lighter-grey;
+// $border--standard-black: $border-width $border-type $black;
+// $border--standard: $border-width $border-type $border-color;
+$widget--border-color: $black;
+$input--border-color: $light-grey-2;
+
+// Box Shadow
+$box-shadow-blur-radius: 20px;
+$box-shadow-opacity: 0.05;
+
+// Font sizes
+$body--font-size: 1.6rem;
+$h1--font-size: 3rem;
+$h2--font-size: 2.7rem;
+$h3--font-size: 2.4rem;
+$h4--font-size: 2rem;
+$h5--font-size: 1.8rem;
+$h6--font-size: 1.6rem;
+$button--font-size: 1.6rem;
+$archive-author-box__entry-title--font-size: 2rem;
+$breadcrumb--font-size: 1.6rem;
+$entry-title--font-size: 3rem;
+$featured-content__entry-title--font-size: 1.6rem;
+$enews-widget__input--font-size: 1.6rem;
+$site-title--font-size: 2rem;
+$genesis-nav-menu--font-size: 1.5rem;
+$genesis-nav-menu__sub-menu__link--font-size: 1.4rem;
+$sidebar--font-size: 1.6rem;
+$entry-content__caption--font-size: 1.4rem;
+$entry-meta--font-size: 1.6rem;
+$comments--font-size: 1.8rem;
+$footer-widgets--font-size: 1.8rem;
+$site-footer--font-size: 1.5rem;
+$forms--font-size: 1.8rem;
+$widget-title--font-size: 1.8rem;
+$archive-pagination--font-size: 1.6rem;
+$blockquote__before--font-size: 3rem;
+$after-entry__breadcrumb--font-size: 1.6rem;
+
+// Font families
+$body--font-family: $base-font;
+$headings--font-family: $base-font;
+
+// Font weights
+$font-weight--regular: 400;
+$font-weight--semibold: 600;
+$font-weight--bold: 700;
+
+// Line heights
+$line-height--big: 20px;
+$line-height--largest: 2;
+$line-height--large: 1.75;
+$line-height--normal: 1.625;
+$line-height--medium: 1.5;
+$line-height--medium-small: 1.4;
+$line-height--small: 1.2;
+$line-height--smaller: 1;
+
+// Font colors
+$body--font-color: $darkest-grey;
+$link--font-color: $orange;
+$link--font-color-hover: $orange;
+$button--font-color: $white;
+$button--font-color-hover: $orange;
+$entry-title__link--font-color: $dark-grey;
+$entry-title__link--font-color-hover: $orange;
+$site-title__link--font-color: $dark-grey;
+$genesis-nav-menu--font-color: $dark-grey;
+$genesis-nav-menu--font-color-hover: $orange;
+$menu-toggle--font-color: $dark-grey;
+$menu-toggle--font-color-hover: $orange;
+$sub-menu-toggle--font-color: $dark-grey;
+$sub-menu-toggle--font-color-hover: $orange;
+$menu-highlight__link--font-color: $white;
+$sidebar__widget-title--font-color: $dark-grey;
+$forms--font-color: $dark-grey;
+$archive-pagination--font-color: $dark-grey;
+$archive-pagination--font-color-hover: $orange;
+$gs-faq__question--font-color: $dark-grey;
+$gs-faq__question--font-color-hover: $orange;
+$disabled--font-color: $mid-grey;
+
+// Background colors
+$body--background-color: $white;
+$site-header--background-color: $white;
+$mark--background-color: $light-grey;
+$button--background-color: $dark-grey;
+$button--background-color-hover: $orange;
+$genesis-nav-menu__sub-menu__link--background-color: $white;
+$footer-widgets--background-color: $white;
+$menu-highlight__link--background-color: $dark-grey;
+$menu-highlight__link--background-color-hover: $orange;
+$forms__background-color: $white;
+$sticky--background-color: $lightest-grey;
+$author-box--background-color: $lightest-grey;
+$code--background-color: $lightest-grey;
+$archive-pagination--background-color: $lightest-grey;
+$archive-pagination--background-color-hover: $dark-grey;
+$enews__sidebar--background-color: $lightest-grey;
+$disabled--background-color: $lighter-grey;
+

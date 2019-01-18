@@ -1,0 +1,47 @@
+/* Media Query - Max-Width: 980px
+---------------------------------------------------------------------------------------------------- */
+
+@media only screen and (max-width: 61.25em) {
+
+  #topbar,
+  .site-inner,
+  .footer-widgets .wrap,
+  .site-footer,
+  .site-footer .wrap {
+    max-width: 100%;
+  }
+
+  header#top {
+    max-width: 90%;
+  }
+
+  .logo {
+    max-width: 70%;
+  }
+
+  .nav-primary {
+    ul li a {
+      font-size: 13px;
+    }
+  }
+
+  .site-inner {
+    max-width: 96%;
+  }
+
+  .content-sidebar-wrap {
+    width: unset;
+  }
+
+  #genesis-content {
+    margin: 0 10px 0 0;
+    max-width: 69%;
+  }
+
+  .sidebar-primary {
+    margin: 0;
+    max-width: 27%;
+  }
+}
+
+
