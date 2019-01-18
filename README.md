@@ -11,14 +11,20 @@ Frameworks, Libraries, and APIs used:
 This project consists of the haSepharadi theme
 ## Changelog
 
-See Git commit history and previous style.css files, for present.
+### [1.1.61] - 2019-01-19
+* Fix About Author appears at bottom of homepage
+* Add Author Bios styling
 
 ## Issues
 
-### Image Loading - Homepage
-* Image loading time on Homepage (due to unnecessarily large image files)
+### Resources & Loading
 
-### Fonts Loading
+#### Image Loading - Homepage
+* Image loading time on Homepage (due to unnecessarily large image files)
+    * Compress Images & Regenerate Thumbnails
+    * Implement Upload Size Limit / Auto Compression / Scaling Reduction
+
+#### Fonts Loading
 * Clean up fonts loading - remove unnecessary fonts in fonts.scss
     * Need to experiment with this first, to find out what's impacting what
 
@@ -30,9 +36,12 @@ See Git commit history and previous style.css files, for present.
 
 ### Author Bios
 * Author bios need css styling
+* custom-functions.php - remove encapsulating `<div class="author-img>` tags
 
 ### Nav Menus
 * Desktop menu is a bit glitchy in its hover behavior (further complicated by menu depth)
+* Menu Depth 3 - Item 1 has border issue
+    * Likely having another class' style applied to it inadvertently
 
 ### Content & Styling
 * Need to make some adjustments to individual posts, in order to ditch Visual Composer, upon switching to the rewritten theme
@@ -40,6 +49,36 @@ See Git commit history and previous style.css files, for present.
 * Eliminate the Read More link that's appear at the bottom of full-length single posts
 
 ### Refactor
-* index.php - what purpose is it serving
 * custom-functions.php
     4.6 - Next & Prev Posts Link - look for a more organic code solution
+
+### Author Bios - Footer
+* Font is not rendering the same as City News Theme
+    * See "Fonts Loading" above
+
+### Code Cleanup
+
+#### SCSS
+* Improve SCSS organization
+    * Reconsider locations and naming of Author Bio classes (so as to distinguish them from the Author's Box widget)
+    * Section headings need to match and follow a consistent numbering theme.
+        * Use same headings structure as custom-functions.php for each scss partial
+
+#### PHP
+* PHP Code needs DocBlocks
+* Add in esc_url et al, where necessary
+
+#### Media Queries
+* Remove `#topbar` and any other id selectors
+
+### Header Area
+* Refine the look of header area for `max-width: 60em` and all descending screen sizes
+
+### Topbar
+* `#topbar` may have z-index issue on small mobile
+
+
+## Future
+* Rewrite with CSS Grid
+
+[1.1.7]: https://github.com/lunacodes/hasepharadi/compare/master@%7B1day%7D...master
