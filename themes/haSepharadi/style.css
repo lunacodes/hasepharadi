@@ -6,7 +6,7 @@
     Author: Luna Lunapiena
     Author URI: https://lunacodesdesign.com;
 
-    Version: 1.1.6
+    Version: 1.1.61
 
     Tags: one-column, two-columns, left-sidebar, right-sidebar, accessibility-ready, custom-colors, custom-logo, custom-menu, featured-images, footer-widgets, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
 
@@ -1732,6 +1732,9 @@ div.wpcf7 .wpcf7-submit:disabled {
    - 1.2 Search Form
    - 1.3 Site Header
 2. Site Navigation
+   - 2.1 Menus Setup
+   - 2.2 Header Menu
+   - 2.3 Nav Shrinked
 3. Breadcrumbs
 4. Widgets
    - 4.1 Widgets Setup
@@ -1739,35 +1742,27 @@ div.wpcf7 .wpcf7-submit:disabled {
 5. Posts
    - 5.1 Site Layout
    - 5.2 Posts Layout
+   - 5.3 Author Bios
 6. Archive Pages
    - 6.1 Affiliate Links
-7. backToTop
-   - 7.1 Author Avatars
-8. Media Queries
-   - 8.1 max-width: 60em
 
 ------------------------------------------------------*/
 /* 1. Top Bar & Header
 =================================================*/
 /* 1.1 Topbar
 ============================*/
-#topbar {
+.topbar {
   background: #fff;
   border-bottom: 1px solid #eee;
   box-sizing: content-box;
   font-size: 13px;
   height: 50px;
   line-height: 50px;
-  width: 100%;
   overflow: hidden;
   position: static;
-  z-index: 9999;
+  width: 100%;
   z-index: 200; }
-  #topbar a:active,
-  #topbar a:hover,
-  #topbar a:focus {
-    color: #c93; }
-  #topbar.shrinked {
+  .topbar.shrinked {
     border-bottom: 1px solid #eee;
     box-shadow: 0 1px 2px #f8f8f8;
     height: 63px;
@@ -1777,29 +1772,19 @@ div.wpcf7 .wpcf7-submit:disabled {
     padding-bottom: 0;
     width: 100%;
     z-index: 200; }
-  #topbar .social_icons {
-    max-width: 500px;
+  .topbar .social-icons {
     float: left;
-    margin-left: 20px;
-    margin-top: 0; }
-  #topbar .social-icons a {
-    color: #000;
-    margin-right: 8px; }
-  #topbar span.social_icons {
-    float: none;
-    text-align: justify; }
-  #topbar .social_icons a {
-    color: #000;
-    margin-right: 8px; }
-  #topbar .social_icons a:hover {
-    color: #333; }
-  #topbar .social_icons.big-size a {
-    font-size: 3rem;
-    margin-right: 12px; }
-  #topbar #tools {
-    max-width: 220px;
+    margin: 0 0 0 20px;
+    max-width: 500px; }
+    .topbar .social-icons a {
+      color: #000;
+      margin-right: 8px; }
+      .topbar .social-icons a:hover {
+        color: #333; }
+  .topbar .tools {
     float: right;
-    margin: 0 20px 0 0; }
+    margin: 0 20px 0 0;
+    max-width: 220px; }
 
 .topbar-fix {
   top: 0; }
@@ -1835,7 +1820,7 @@ select {
 button.search-button {
   background-color: transparent;
   border: 0;
-  color: black;
+  color: #000;
   display: inline-block;
   font-size: inherit;
   height: 27px;
@@ -1855,10 +1840,10 @@ button.search-button {
 
 input.search-text {
   border-radius: 5% !important;
+  display: inline-block;
   height: 25px !important;
   line-height: 1;
-  width: 125px;
-  display: inline-block; }
+  width: 125px; }
 
 /* 1.2 Search Form
 ============================*/
@@ -1867,11 +1852,7 @@ input.search-text {
 
 /* 1.3 Site Header
 ============================*/
-header#top {
-  -moz-transition: all .3s linear;
-  -ms-transition: all .3s linear;
-  -o-transition: all .3s linear;
-  -webkit-transition: all .3s linear;
+.site-header {
   background: #fff;
   height: auto;
   margin: 0 auto;
@@ -1879,9 +1860,19 @@ header#top {
   min-height: 120px;
   padding: 10px 0 0;
   position: relative;
+  -moz-transition: all .3s linear;
+  -ms-transition: all .3s linear;
+  -o-transition: all .3s linear;
+  -webkit-transition: all .3s linear;
   transition: all .3s linear;
   width: 100%;
-  z-index: 100; }
+  z-index: 200; }
+  .site-header .header-shrinked {
+    background: transparent;
+    height: auto;
+    left: 0;
+    margin: 0 auto 50px;
+    z-index: 400; }
 
 .logo {
   height: 126px;
@@ -1889,66 +1880,54 @@ header#top {
   text-align: center;
   width: 50%; }
   .logo a {
-    min-width: 300px;
-    width: auto;
-    max-width: 900px;
+    color: #000;
+    font: bold 6.4rem 'Voltaire',sans-serif;
     height: 80px;
     margin: -50px auto 0;
-    text-transform: uppercase;
-    font: bold 6.4rem 'Voltaire',sans-serif;
+    max-width: 900px;
+    min-width: 300px;
+    overflow: hidden;
     text-decoration: none;
-    color: #000;
-    overflow: hidden; }
+    text-transform: uppercase;
+    width: auto; }
     .logo a span {
       background: #fff;
       padding: 0 30px; }
       .logo a span img {
         height: 80px; }
-  .logo .local_info {
+  .logo .local-info {
     font-family: "Roboto Slab",sans-serif;
     height: 30px;
     margin: auto;
     max-width: 350px;
     min-width: 300px;
     text-align: center; }
-  .logo .local_date {
+  .logo .local-date {
     font-size: 12px; }
 
-.header-shrinked {
-  left: 40px;
-  position: fixed; }
-  .header-shrinked .wrap {
-    display: block; }
-  .header-shrinked .logo {
+.header-shrinked .logo {
+  height: 50px;
+  left: 68px;
+  margin: 0;
+  position: fixed;
+  width: 108px; }
+  .header-shrinked .logo a {
     height: 50px;
-    left: 68px;
-    margin: 0;
-    position: fixed;
-    width: 108px; }
-    .header-shrinked .logo a {
-      height: 50px;
-      line-height: 1;
-      overflow: hidden;
-      position: relative;
-      top: -20px; }
-      .header-shrinked .logo a span {
-        background: transparent;
-        padding: 0;
-        height: 40px; }
-        .header-shrinked .logo a span img {
-          height: 40px;
-          position: relative;
-          top: 20px; }
-  .header-shrinked img.custom-logo {
-    height: 50px;
-    width: auto; }
-
-header#top.header-shrinked {
-  background: transparent;
-  height: auto;
-  left: 0;
-  margin: 0 auto 50px;
-  z-index: 400; }
+    line-height: 1;
+    overflow: hidden;
+    position: relative;
+    top: -20px; }
+    .header-shrinked .logo a span {
+      background: transparent;
+      padding: 0;
+      height: 40px; }
+      .header-shrinked .logo a span img {
+        height: 40px;
+        position: relative;
+        top: 20px; }
+.header-shrinked img.custom-logo {
+  height: 50px;
+  width: auto; }
 
 .clearfix::before, .clearfix::after,
 .row::before,
@@ -1973,6 +1952,8 @@ img.custom-logo {
 
 /* 2. Site Navigation
 =================================================*/
+/* 2.1 Menus Setup
+============================*/
 .genesis-nav-menu .menu-item {
   display: inline-block; }
   .genesis-nav-menu .menu-item:focus, .genesis-nav-menu .menu-item:hover {
@@ -1990,10 +1971,10 @@ img.custom-logo {
   .genesis-nav-menu > .menu-highlight > a:hover, .genesis-nav-menu > .menu-highlight > a:focus {
     background-color: #c93; }
 .genesis-nav-menu .sub-menu {
-  border-top: none;
-  opacity: 0;
+  border-top: 0;
   left: 0;
   line-height: 1.8;
+  opacity: 0;
   padding-left: 0;
   position: absolute;
   top: 40px;
@@ -2019,7 +2000,8 @@ img.custom-logo {
 .genesis-responsive-menu .genesis-nav-menu .sub-menu a {
   width: 160px; }
 
-/* Header Menu */
+/* 2.2 Header Menu
+============================*/
 .nav-primary {
   border-color: #333;
   border-style: solid;
@@ -2117,28 +2099,29 @@ img.custom-logo {
   width: auto; }
   .nav-shrinked a:after {
     margin: 0 0 0 10px; }
-  .nav-shrinked ul,
-  .nav-shrinked .genesis-nav-menu .menut-item {
+  .nav-shrinked ul {
     font-size: 13px; }
-  .nav-shrinked ul li {
-    padding: 8px 5px; }
-    .nav-shrinked ul li a, .nav-shrinked ul li:last-of-type a {
-      font-size: 12px; }
-    .nav-shrinked ul li:last-of-type a {
-      background: #333;
-      border: 5px solid #000;
-      border-bottom: 2px solid black;
-      border-radius: 10%;
-      border-top: 2px solid black;
-      color: #fff;
-      font-size: 12px;
-      height: 18px;
-      padding: 0 0 3px;
-      position: relative;
-      top: 1px; }
-    .nav-shrinked ul li:last-of-type a span {
-      position: relative;
-      top: 1px; }
+    .nav-shrinked ul li {
+      padding: 8px 5px; }
+      .nav-shrinked ul li a, .nav-shrinked ul li:last-of-type a {
+        font-size: 12px; }
+      .nav-shrinked ul li:last-of-type a {
+        background: #333;
+        border: 5px solid #000;
+        border-bottom: 2px solid black;
+        border-radius: 10%;
+        border-top: 2px solid black;
+        color: #fff;
+        font-size: 12px;
+        height: 18px;
+        padding: 0 0 3px;
+        position: relative;
+        top: 1px; }
+        .nav-shrinked ul li:last-of-type a span {
+          position: relative;
+          top: 1px; }
+  .nav-shrinked .sub-menu {
+    display: none !important; }
 
 /* 3. Breadcrumbs
 =================================================*/
@@ -2251,7 +2234,7 @@ img.custom-logo {
   padding: 30px 0 0;
   max-width: 1200px; }
 
-/* 4.2 Posts Layout
+/* 5.2 Posts Layout
 ============================*/
 .post {
   border-bottom: 1px solid #eee;
@@ -2306,6 +2289,27 @@ span.category {
   font-size: 12px;
   margin: 10px auto 0; }
 
+/* 5.3 Author Bios
+============================*/
+.author-box .avatar {
+  height: 80px;
+  width: 80px; }
+
+.author-box .author-name {
+  color: #000;
+  display: block;
+  font: 700 18px 'PT Serif',"times new roman",times,serif;
+  line-height: 1.111111;
+  margin: 0 0 10px; }
+
+.author-description {
+  color: #666;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.625;
+  margin-block-end: 10px;
+  margin: 0 0 10px; }
+
 /* 6. Archive Pages
 =================================================*/
 /* 6.1 Affiliate Links
@@ -2330,7 +2334,7 @@ span.category {
 .affiliate-img {
   margin: 0 0 4px; }
 
-/* 7. backToTop
+/* 7. Media - Max-Width: 60em
 ============================*/
 #backToTop {
   background: #000;
@@ -2350,41 +2354,6 @@ span.category {
 #backToTop.btt-shrinked {
   display: block; }
 
-/* 7. backToTop
-============================*/
-@media only screen and (max-width: 60em) {
-  .genesis-responsive-menu {
-    border: none;
-    left: 0; }
-
-  .genesis-responsive-menu ul {
-    text-align: left;
-    background: #222; }
-
-  .genesis-responsive-menu ul li a::after {
-    display: none; }
-
-  .genesis-responsive-menu li a span {
-    color: #b3b3b1;
-    margin-right: 60px; }
-
-  .genesis-responsive-menu .menu-item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    width: 100%;
-    background: inherit; }
-
-  .nav-primary ul li a {
-    margin-left: 20px;
-    padding: 0 0 6px; }
-
-  .sub-menu-toggle {
-    color: #b3b3b1; }
-
-  .nav-primary ul li:last-of-type a {
-    background: initial;
-    border: initial;
-    border-radius: initial; } }
 /* Front Page
 -------------------------------------------------- */
 /* Media Query - Min-Width: 961px
@@ -2508,6 +2477,10 @@ span.category {
   header#top {
     max-width: 90%; }
 
+  .site-header {
+    min-width: initial;
+    max-width: initial; }
+
   .logo {
     max-width: 70%; }
 
@@ -2561,6 +2534,41 @@ span.category {
     font-size: 25px;
     height: 25px;
     width: 25px; }
+
+  .genesis-responsive-menu {
+    border: none;
+    left: 0; }
+
+  .genesis-responsive-menu ul {
+    background: #222;
+    text-align: left; }
+    .genesis-responsive-menu ul li a::after {
+      display: none; }
+    .genesis-responsive-menu ul li a span {
+      color: #ccc;
+      margin-right: 60px; }
+
+  .genesis-responsive-menu .menu-item {
+    background: inherit;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%; }
+
+  .nav-primary ul li a {
+    margin-left: 20px;
+    padding: 0 0 6px; }
+  .nav-primary ul li:last-of-type a {
+    background: initial;
+    border: initial;
+    border-radius: initial; }
+
+  .nav-primary ul li a {
+    margin-left: 20px;
+    padding: 0 0 6px; }
+  .nav-primary ul li:last-of-type a {
+    background: initial;
+    border: initial;
+    border-radius: initial; }
 
   .nav-primary .menu-item:focus, .nav-primary .menu-item:hover,
   .nav-primary .menu-item a span:hover {
@@ -2665,14 +2673,14 @@ span.category {
     .nav-primary.nav-shrinked .sub-menu button.sub-menu-toggle {
       visibility: hidden; }
 
+  .sub-menu-toggle {
+    color: #ccc; }
+
   .sidebar-primary {
     border: 1px #border-style #000; }
 
   .featured-content .entry-header {
-    max-width: 150px; }
-
-  .site-inner {
-    border-top: 1px solid #eee; } }
+    max-width: 150px; } }
 /* Media Query - Max-Width: 870px
 ---------------------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 54.375em) {

@@ -72,12 +72,12 @@ function enqueue_topbar_scripts() {
 add_action( 'genesis_before_header', 'add_topbar' );
 function add_topbar() {
     $topbar = <<<EOL
-<div id="topbar">
-  <div class="social_icons">
-    <div class="social-icons clearfix"> <a href="http://www.facebook.com/HaSepharadi-164068007554007" title="Facebook" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a> <a href="http://twitter.com/HaSepharadi" title="Twitter" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></div>
+<div id="topbar" class="topbar">
+  <div class="social-icons">
+    <div class="clearfix"> <a href="http://www.facebook.com/HaSepharadi-164068007554007" title="Facebook" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a> <a href="http://twitter.com/HaSepharadi" title="Twitter" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></div>
   </div>
    <!--  <button class="menu-toggle dashicons-before dashicons-menu" aria-expanded="false" aria-pressed="false" id="genesis-mobile-nav-primary">Menu</button> -->
-  <div id="tools">
+  <div id="tools" class="tools">
     <form id="top-search" action="https://hasepharadi.com/" method="get" name="searchform" class="search-form">
       <input type="text" name="s" class="search-text" placeholder="Keyword">
       <button form="top-search" type="submit" class="search-button"></button>
@@ -98,7 +98,7 @@ add_action( 'genesis_header', 'haSepharadi_custom_header' );
 add_action( 'genesis_header', 'haSepharadi_custom_header_markup_close', 15 );
 
 function haSepharadi_custom_header_markup_open() {
-    $open = '<header id="top" class="">';
+    $open = '<header id="top" class="site-header">';
     echo($open);
 }
 
@@ -108,7 +108,7 @@ function haSepharadi_custom_header() {
 
     $custom_header = <<<EOL
   <div class="logo"> <a href="$site_url" title="haSepharadi"> <span><img src="$site_url/wp-content/uploads/2018/08/cropped-logo-1.png" scale="0"></span> </a>
-    <!-- <div class="local_info"> <span class="local_date">Friday 24 August 2018 </span></div> -->
+    <!-- <div class="local-info"> <span class="local-date">Friday 24 August 2018 </span></div> -->
   </div>
 EOL;
     echo($custom_header);
@@ -305,14 +305,20 @@ function add_next_and_prev_post_archive_links() {
 
 add_action( 'genesis_after_loop', 'display_author_bio' );
 function display_author_bio() {
+
+    if ( ! is_singular( 'post' ) ) {
+        return;
+    } else {
+
     ?>
-    <div class="author-box">
-        <h2 class="author-box-title">About Author</h2>
-        <div class="author-img"><?php echo get_avatar(get_the_author_meta('user_email'), '100'); // Display the author gravatar image with the size of 100 ?></div>
-        <h3 class="author-name"><?php esc_html(the_author_meta('display_name')); // Displays the author name of the posts ?></h3>
-        <p class="author-description"><?php esc_textarea(the_author_meta('description')); // Displays the author description added in Biographical Info ?></p>
-    </div>
-<?php
+        <div class="author-box">
+            <h2 class="author-box-title">About Author</h2>
+            <div class="author-img"><a href="<?php echo( esc_url( get_author_posts_url( get_the_author_meta('ID') ) ) ) ?>" title="<?php esc_attr( get_the_author() ); ?>"><?php echo get_avatar(get_the_author_meta('user_email'), '80'); // Display the author gravatar image with the size of 80 ?></a></div>
+            <h3 class="author-name"><?php esc_html(the_author_meta('display_name')); // Displays the author name of the posts ?></h3>
+            <p class="author-description"><?php esc_textarea(the_author_meta('description')); // Displays the author description added in Biographical Info ?></p>
+        </div>
+    <?php
+    }
 }
 
 /* 4.8 wpDiscuz Comments Hack
@@ -320,14 +326,13 @@ function display_author_bio() {
 
 add_action( 'genesis_after_loop', 'display_comments_plz' );
 function display_comments_plz() {
-    if ( is_singular( 'post' ) ) {
+    if ( ! is_singular( 'post' ) ) {
+        return;
+    } else {
         comments_template();
     }
 }
 
-
-/* 5. Footer
-=================================================*/
 
 /* 5. Footer
 =================================================*/

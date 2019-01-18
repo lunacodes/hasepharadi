@@ -1,5 +1,6 @@
 // Base Colors
 $black: #000;
+$black-alpha-1: rgba(0,0,0,0.1);
 $darkest-grey: #111;
 $darker-grey: #222;
 $dark-grey: #333;
@@ -17,6 +18,7 @@ $lightest-grey: #f5f5f5;
 $lightest-grey-2: #f8f8f8;
 $orange: #c93;
 $white: #fff;
+$white-alpha-1: rgba(255,255,255,0.1);
 
 // Base Fonts
 $base-font: 'PT Serif', "times new roman", times, serif;
