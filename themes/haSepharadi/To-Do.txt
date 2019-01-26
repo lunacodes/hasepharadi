@@ -1,0 +1,59 @@
+To Do:
+
+Custom header:
+    Replace code so it gives me a full image object
+To-Do.txt:
+    Convert to Markdown document or transfer To-Do list to README.md
+
+Author Avatars:
+    Add in accessibility attributes to the html
+
+Primary Sidebar:
+    Featured Posts - get the post dates back in, where possible
+
+_custom.css:
+    Sort the "Former Media Styles" section into their proper places
+
+topbar.js - fix the stuff w/ the mobile menu
+
+Table of Contents in style.css/style.scss really needs to be redone
+
+Fonts / CSS:
+    Should google-fonts.css really be a separately enqueued file? or should I just make it a SCSS partial??
+
+SCSS:
+    Why am I still importing _fonts.scss, since I now have the separate stylesheet??
+
+Misc:
+    Rename .wtf-1 in Voices Widget to something reasonable :p
+
+Staging:
+    Get site uploaded to staging.lunacodesdesign.com
+
+Submenu:
+    Grey box is a little too fat!!
+
+Home:
+    Figure out how to get the sub-menu to move to the left again
+
+Responsive:
+    @media only screen and (max-width: 980px) and lower
+        Nav menu needs to position properly
+        Make hamburger button bigger????
+
+readme.md:
+    Update Readme with:
+        Version
+        Issues
+        Pull relevant Full Width Single Page styles out of about.css and put in styles.css
+
+Replace vc-columns shortcodes in posts w/ genesis columns
+    Do I want to use the Genesis Columns Shortcodes plugin??
+        I could just write that functionality into the theme
+
+Delete front_page.php template?
+
+Page.php
+Header:
+    Add Date/Time back to Header?
+

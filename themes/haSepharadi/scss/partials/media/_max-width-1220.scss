@@ -1,0 +1,65 @@
+/* Media Query - Max-Width: 1220px
+---------------------------------------------------------------------------------------------------- */
+
+@media only screen and (max-width: 76.25em) {
+
+  #topbar,
+  #top,
+  .site-inner,
+  .site-footer,
+  .site-footer .wrap {
+    max-width: 1020px;
+  }
+
+  #topbar.shrinked,
+  header#top.header-shrinked {
+    max-width: 100%;
+  }
+
+  #genesis-content {
+    max-width: 700px;
+  }
+
+  .sidebar-primary {
+    // max-width: 220px;
+    max-width: 260px;
+    // width: 27%;
+
+    .featured-content .widget-wrap {
+      .entry {
+        height: 60px;
+        overflow: hidden;
+      }
+  }
+
+  .featured-content .entry-header {
+    max-width: 150px;
+    padding: 0 2px 0 0;
+  }
+
+  .footer-widget .wrap {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: center;
+  }
+
+  .widget-area.footer-widget-area {
+    width: 22%;
+  }
+
+    h4 a::after {
+      content: '...';
+    }
+  }
+
+  .footer-widget-area header.entry-header {
+    max-width: 60%;
+  }
+
+  .widget-wrap p.entry-meta {
+    display: none;
+  }
+}

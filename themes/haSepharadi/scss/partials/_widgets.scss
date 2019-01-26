@@ -1,0 +1,157 @@
+/* Widgets
+---------------------------------------------------------------------------------------------------- */
+
+.sidebar .widget a,
+.sidebar .widget a:visited {
+  color: $orange;
+}
+
+.widget {
+  font: 300 13px 'PT Serif',"times new roman",times,serif;
+  height: auto;
+  line-height: 1.8em;
+  margin: 0 auto 40px;
+  overflow: hidden;
+  width: 100%;
+
+  p:last-child,
+  ul > li:last-of-type {
+    margin-bottom: 0;
+  }
+
+  ul {
+    margin-left:0;
+    padding-left:0;
+    list-style: none;
+
+    li {
+      line-height:1.5em;
+      margin-bottom:10px;
+    }
+  }
+
+  ul > li {
+    margin-bottom: 10px;
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+  }
+
+  ol > li {
+    list-style-position: inside;
+    list-style-type: decimal;
+    padding-left: 20px;
+    // text-indent: -20px;
+  }
+
+  li li {
+    border: 0;
+    margin: 0 0 0 30px;
+    padding: 0;
+  }
+}
+
+// .widget_calendar table {
+//   width: 100%;
+// }
+
+// .widget_calendar td,
+// .widget_calendar th {
+//   text-align: center;
+// }
+
+
+/* 8. Widget /.widget
+=================================================*/
+
+.widget .widgettitle,
+.widgettitle,
+.widget-title {
+  // border: $border-width $border-style $widget--border-color;
+  border-bottom: $border-width $border-style $black;
+  border-left: 0;
+  border-right: 0;
+  border-top: 2px $border-style $black;
+  // border-width: 2px 0 1px;
+  box-sizing: content-box;
+  display: block;
+  font-family: $widget-font;
+  height: 30px;
+  line-height: 30px;
+  margin: 0 auto 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.widget-title,
+.widgettitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+
+.widget.widget_recent_entries ul li,
+.widget.widget_recent_comments ul li {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.textwidget img {
+  height:auto;
+  max-width:100%;
+}
+
+.textwidget p {
+  line-height: 1.8;
+}
+
+/* Recent Posts
+--------------------------------------------- */
+
+.featured-content {
+
+  a {
+    color: $black;
+
+    &.alignnone {
+      margin: 2px 10px 0 0;
+      vertical-align: top;
+    }
+  }
+
+  .entry {
+    border: 0;
+    // border-bottom: $border-width $border-style $border-color;
+    border-bottom: 0;
+    height: 69px;
+    // margin-bottom: 20px;
+    margin: 0 0 11px;
+    padding: 0;
+
+    &:last-of-type {
+      border-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .entry-header {
+    display: inline-block;
+    max-width: 210px;
+  }
+
+  .entry-image {
+    height: 60px;
+    margin: 0;
+    width: 60px;
+  }
+
+  .entry-title {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    text-transform: none;
+  }
+}
+
+

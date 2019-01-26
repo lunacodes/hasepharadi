@@ -1,0 +1,122 @@
+/* Media Query - Max-Width: 870px
+---------------------------------------------------------------------------------------------------- */
+
+@media only screen and (max-width: 54.375em) {
+  #genesis-content,
+  .sidebar-primary,
+  .footer-widgets,
+  .widget-area.footer-widget-area,
+  .site-footer .wrap {
+    float: none;
+    margin: 0 auto;
+    max-width: initial;
+    width: 80%;
+  }
+
+  span.category {
+    font: 300 16px 'PT Serif',"times new roman",times,serif;
+  }
+
+  .footer-widgets {
+    margin: 0 auto;
+    width: 96%;
+  }
+
+  .widget-area.footer-widget-area {
+    // width: 100%;
+    // width: initial;
+
+    .widget {
+      margin: 0 auto 40px;
+      width: 100%;
+    }
+
+    .featured-content h4 {
+      width: auto;
+    }
+  }
+
+  .textwidget p {
+    font-size: 16px;
+  }
+
+  .featured-content,
+  .widget-area.footer-widget-area .featured-content {
+
+    .entry-header {
+      display: inline-block;
+      max-width: 70%;
+      padding: 2px 8px;
+      }
+
+    .entry-image {
+      height: auto;
+      width: 75px;
+    }
+
+    .widget-wrap {
+      h4,
+      h4 a {
+        font-size: 16px;
+      }
+
+      .entry {
+        height: 86px;
+      }
+
+      p.entry-meta {
+        display: block;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .author-avatars {
+    float: none;
+    justify-content: space-between;
+    // margin: 0 10%;
+    margin: 0;
+    width: 100%;
+  }
+
+  .authors-wrap {
+    // width: 33%;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-basis: 20%;
+    justify-content: center;
+    // margin: 10px 0;
+    // width: 30%;
+    margin: 10px 5%;
+    width: initial;
+  }
+
+  .author-box {
+    margin: 0 auto;
+    width: auto;
+
+    a {
+      display: -webkit-inline-flex;
+      display: -moz-inline-flex;
+      display: -ms-inline-flex;
+      display: -o-inline-flex;
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 145px;
+    }
+
+    .avatar-box {
+      width: auto;
+    }
+
+    .author-name {
+      margin: 4px 0;
+    }
+  }
+
+}
+

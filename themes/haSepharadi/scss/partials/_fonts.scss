@@ -1,0 +1,137 @@
+/* Luna Fonts
+----------------------------------------------------------------------------------------------------
+
+pt-serif-regular - cyrillic_latin-ext_cyrillic-ext_latin
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: local('PT Serif'), local('PTSerif-Regular'),
+       url('/wp-content/themes/haSepharadi/fonts/pt-serif/pt-serif-v9-cyrillic_latin-ext_cyrillic-ext_latin-regular.woff2') format('woff2'), Chrome 26+, Opera 23+, Firefox 39+
+       url('/wp-content/themes/haSepharadi/fonts/pt-serif/pt-serif-v9-cyrillic_latin-ext_cyrillic-ext_latin-regular.woff') format('woff'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+pt-serif-italic - cyrillic_latin-ext_cyrillic-ext_latin
+@font-face {
+  font-family: 'PT Serif';
+  font-style: italic;
+  font-weight: 400;
+  src: local('PT Serif Italic'), local('PTSerif-Italic'),
+       url('/wp-content/themes/haSepharadi/fonts/pt-serif/pt-serif-v9-cyrillic_latin-ext_cyrillic-ext_latin-italic.woff2') format('woff2'), Chrome 26+, Opera 23+, Firefox 39+
+       url('/wp-content/themes/haSepharadi/fonts/pt-serif/pt-serif-v9-cyrillic_latin-ext_cyrillic-ext_latin-italic.woff') format('woff'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+pt-serif-700italic - cyrillic_latin-ext_cyrillic-ext_latin
+@font-face {
+  font-family: 'PT Serif';
+  font-style: italic;
+  font-weight: 700;
+  src: local('PT Serif Bold Italic'), local('PTSerif-BoldItalic'),
+       url('/wp-content/themes/haSepharadi/fonts/pt-serif/pt-serif-v9-cyrillic_latin-ext_cyrillic-ext_latin-700italic.woff2') format('woff2'), Chrome 26+, Opera 23+, Firefox 39+
+       url('/wp-content/themes/haSepharadi/fonts/pt-serif/pt-serif-v9-cyrillic_latin-ext_cyrillic-ext_latin-700italic.woff') format('woff'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+pt-serif-700 - cyrillic_latin-ext_cyrillic-ext_latin
+@font-face {
+  font-family: 'PT Serif';
+  font-style: normal;
+  font-weight: 700;
+  src: local('PT Serif Bold'), local('PTSerif-Bold'),
+       url('/wp-content/themes/haSepharadi/fonts/pt-serif/pt-serif-v9-cyrillic_latin-ext_cyrillic-ext_latin-700.woff2') format('woff2'), Chrome 26+, Opera 23+, Firefox 39+
+       url('/wp-content/themes/haSepharadi/fonts/pt-serif/pt-serif-v9-cyrillic_latin-ext_cyrillic-ext_latin-700.woff') format('woff'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+
+
+source-sans-pro-regular - cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'),
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-regular.woff2') format('woff2'), Chrome 26+, Opera 23+, Firefox 39+
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-regular.woff') format('woff'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+source-sans-pro-italic - cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Source Sans Pro Italic'), local('SourceSansPro-Italic'),
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-italic.woff2') format('woff2'), Chrome 26+, Opera 23+, Firefox 39+
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-italic.woff') format('woff'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+source-sans-pro-600italic - cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Source Sans Pro SemiBold Italic'), local('SourceSansPro-SemiBoldItalic'),
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-600italic.woff2') format('woff2'), Chrome 26+, Opera 23+, Firefox 39+
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-600italic.woff') format('woff'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+source-sans-pro-700 - cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'),
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-700.woff2') format('woff2'), Chrome 26+, Opera 23+, Firefox 39+
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-700.woff') format('woff'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+source-sans-pro-600 - cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'),
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-600.woff2') format('woff2'), Chrome 26+, Opera 23+, Firefox 39+
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-600.woff') format('woff'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+source-sans-pro-700italic - cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldItalic'),
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-700italic.woff2') format('woff2'), Chrome 26+, Opera 23+, Firefox 39+
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/source-sans-pro-v11-cyrillic_greek-ext_latin-ext_greek_cyrillic-ext_vietnamese_latin-700italic.woff') format('woff'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+
+
+roboto-slab-regular
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Slab'), local('RobotoSlab-Regular'),
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/RobotoSlab-Regular.ttf') format('ttf'), Chrome 26+, Opera 23+, Firefox 39+
+       // url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/RobotoSlab-Regular.ttf') format('ttf'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+
+roboto-slab-italic
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Roboto Slab Italic'), local('RobotoSlab-Italic'),
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/RobotoSlab-Regular.ttf') format('ttf'), Chrome 26+, Opera 23+, Firefox 39+
+       // url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/RobotoSlab-Regular.ttf') format('ttf'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+
+roboto-slab-bold
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'),
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/RobotoSlab-Bold.ttf') format('ttf'), Chrome 26+, Opera 23+, Firefox 39+
+       // url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/RobotoSlab-Bold.ttf') format('ttf'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+
+roboto-slab-regular
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'),
+       url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/RobotoSlab-Bold.ttf') format('ttf'), Chrome 26+, Opera 23+, Firefox 39+
+       // url('/wp-content/themes/haSepharadi/fonts/source-sans-pro/RobotoSlab-Bold.ttf') format('ttf'); Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+
+}
+ */
