@@ -13,14 +13,16 @@
     left: 20px;
     position: fixed;
     // top: 20px;
-    top: 20px;
+    // top: 20px;
+    top: -10px;
   }
 
   .mobile-menu-shrinked {
     // height: 25px;
     // font-size: 25px;
     // width: 25px;
-    top: 25px;
+    // top: 25px;
+    top: -5px;
   }
 
   .nav-shrinked {
@@ -132,7 +134,8 @@
     // left: 20px;
     left: 0;
     position: fixed;
-    top: 81px;
+    // top: 81px;
+    top: 51px;
 
     .dashicons-menu::before,
     .mobile-menu::before {

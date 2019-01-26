@@ -36,8 +36,8 @@ function display_affiliate_links($user_id_prefixed) {
     ?>
 
     <div class="affiliates-container">
-        <?php
-
+    <?php
+    if ( function_exists( 'have_rows' ) ) {
         if ( have_rows( 'affiliate_links', $user_id_prefixed ) ) :
              while ( have_rows( 'affiliate_links', $user_id_prefixed ) ) : the_row();
                 $affiliate_image = get_sub_field( 'affiliate_image' );
@@ -56,7 +56,9 @@ function display_affiliate_links($user_id_prefixed) {
             endwhile;
         endif;
 
-        ?>
+    }
+
+    ?>
     </div>
     <?php
 }

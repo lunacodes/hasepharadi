@@ -60,12 +60,15 @@
 
   .social-icons {
     float: left;
-    margin: 0 0 0 20px;
+    // margin: 0 0 0 21px;
+    margin: -1.5px 0 0 21px;
     max-width: 500px;
 
     a {
       color: $black;
-      margin-right: 8px;
+      margin-right: 9px;
+      // font-size: 12.5;
+      font-size: 11.5px;
 
       &:hover {
         color: $dark-grey;
@@ -213,8 +216,10 @@ input.search-text {
 
   .local-info {
     font-family: "Roboto Slab",sans-serif;
+    // font-family: sans-serif;
     height: 30px;
-    margin: auto;
+    // margin: auto;
+    margin: 9px auto 0;
     max-width: 350px;
     min-width: 300px;
     text-align: center;
@@ -224,6 +229,7 @@ input.search-text {
     font-size: 12px;
   }
 }
+
 
 .header-shrinked {
 
@@ -288,6 +294,10 @@ img.custom-logo {
   top: -44px;
 }
 
+.date-shrinked {
+  display: none;
+}
+
 
 /* 2. Site Navigation
 =================================================*/
@@ -320,7 +330,7 @@ img.custom-logo {
 
     &:hover,
     &:focus {
-      background-color: #c93;
+      background-color: $orange;
     }
   }
 
@@ -332,8 +342,13 @@ img.custom-logo {
     padding-left: 0;
     position: absolute;
     top: 40px;
-    transition: opacity .4s ease-in-out;
+    // top: 20px;
+    transition: opacity 0.1s ease-in-out;
     z-index: 2;
+
+    .sub-menu {
+      top:20px;
+    }
 
     li {
       display: block;
@@ -411,13 +426,15 @@ img.custom-logo {
     li {
       display: inline-block;
       line-height: 1.8;
-      padding: 8px 10px;
+      // padding: 8px 10px;
+      padding: 8px 11.5px 8px 12.5px;
       position: relative;
       margin-bottom: 0;
 
       a {
         color: $black;
-        font: 600 1.4rem 'Source Sans Pro', sans-serif;
+        font: 600 14px 'Source Sans Pro', sans-serif;
+        // font: 600 14px sans-serif;
         -webkit-transition: all .1s linear;
         -moz-transition: all .1s linear;
         -o-transition: all .1s linear;
@@ -429,6 +446,11 @@ img.custom-logo {
           color: $darkest-grey;
           font-family: "PT Serif", "times new roman", times, serif;
           font-size: 13px;
+
+        }
+
+        &:focus {
+          outline: 2px solid $orange;
         }
       }
 
@@ -542,13 +564,27 @@ img.custom-logo {
 /* 3. Breadcrumbs
 =================================================*/
 
+.bc-container {
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 40px;
+}
+
+.breadcrumbs,
+.bc-container .social-buttons.share {
+  flex-basis: 50%;
+}
+
 .breadcrumbs {
-  border: 1px solid #ddd;
-  border-width: 0 0 1px;
+  // border: 1px solid #ddd;
+  // border-width: 0 0 1px;
+  border: 0;
   color: $mid-grey-2;
   float: none;
   font-size: 1.3rem;
-  margin: 0 auto 40px;
+  // margin: 0 auto 40px;
+  margin: 0;
   overflow: hidden;
 
   a {
@@ -586,11 +622,13 @@ img.custom-logo {
   h4,
   h4 a {
     /* text-align: top; */
-    font-size: 14px;
+    // font-size: 14px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 1.393;
     margin: 0 !important;
     text-align: left;
+    // font-family: sans-serif;
   }
 
   p.entry-meta {
@@ -625,7 +663,11 @@ img.custom-logo {
   -ms-flex-wrap: wrap;
   -o-flex-wrap: wrap;
   flex-wrap: wrap;
-  width: 285px;
+  justify-content: center;
+  margin: 0 auto;
+  // width: 285px;
+  width: 100%;
+
 }
 
 .widget-wrap .author-box {
@@ -635,8 +677,13 @@ img.custom-logo {
   width: 95px;
 
   a {
+    color: $black;
     display: inline-block;
     width: 95px;
+
+    &:hover {
+      color: $orange;
+    }
   }
 
   .avatar-box {
@@ -656,9 +703,45 @@ img.custom-logo {
   }
 
   .author-name {
-    font-size: 13px;
+    // font-size: 13px;
+    font: 300 13px "times new roman", times, serif;
+    margin: 7px auto 10px;
+    text-align: center;
+    line-height: 1.1875;
+
   }
 
+}
+
+/* 4.3 Tribe Events Widget
+============================*/
+.tribe-events-widget-link {
+  color: $orange;
+  // padding: 0 0 0 20px;
+  text-align: center;
+
+  &:visited {
+    color: $orange;
+  }
+}
+
+.tribe-events-list-widget .tribe-event-title {
+  margin: 0 !important;
+
+  a,
+  a:visited {
+    color: $mid-grey-1;
+  }
+
+  a:hover {
+    color: $orange;
+  }
+
+}
+
+// Attempt to fix Flash of Unstyled Content
+.tribe-events-list-widget ol > li {
+  list-style-type: none;
 }
 
 
@@ -688,6 +771,7 @@ img.custom-logo {
 .site-inner {
   margin: 0 auto;
   padding: 30px 0 0;
+  // padding: 10px 0 0;
   max-width: 1200px;
 }
 

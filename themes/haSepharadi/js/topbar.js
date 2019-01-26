@@ -20,6 +20,7 @@ jQuery(document).ready(function function_name($) {
             $('#top-search').addClass('search-shrinked');
             $('#genesis-nav-primary').addClass('nav-shrinked');
             $('#genesis-mobile-nav-primary').addClass('mobile-menu-shrinked');
+            $('#header-date').addClass('date-shrinked');
             $('#backToTop').fadeIn();
             $('#backToTop').addClass('btt-shrinked');
 
@@ -41,6 +42,7 @@ jQuery(document).ready(function function_name($) {
             $('#top-search').removeClass('search-shrinked');
             $('#genesis-nav-primary').removeClass('nav-shrinked');
             $('#genesis-mobile-nav-primary').removeClass('mobile-menu-shrinked');
+            $('#header-date').removeClass('date-shrinked');
             $('#backToTop').removeClass('btt-shrinked');
             $('#backToTop').fadeOut();
           }

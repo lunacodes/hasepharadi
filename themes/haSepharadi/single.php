@@ -11,8 +11,28 @@
  * @link    https://my.studiopress.com/themes/genesis/
  */
 
+?>
+
+<?php
+
+add_action( 'wp_enqueue_scripts', 'load_single_post_styles' );
+function load_single_post_styles() {
+    wp_enqueue_style( 'single-posts', CHILD_URL . '/css/single-post.css', array(), CHILD_THEME_VERSION );
+}
+
+// add_action('wp_enqueue_scripts', 'load_single_post_styles');
+// function load_single_post_styles() {
+//     wp_enqueue_script('single-post', CHILD_URL . '/css/single-post.css', array(), CHILD_THEME_VERSION );
+// }
+
 add_action( 'genesis_loop', 'luna_loop' );
 function luna_loop() {
+
+    $post_url = urlencode( get_permalink() );
+    // $post_url = get_permalink();
+    $post_title = htmlspecialchars( urlencode( html_entity_decode( get_the_title(), ENT_COMPAT, 'UTF-8') ), ENT_COMPAT, 'UTF-8' );
+    $post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' );
+    // $post_url = get_permalink();
 
      if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
      <style type="text/css" media="screen">.nav-primary ul li:first-of-type a {color: #c93; }</style>
@@ -35,9 +55,12 @@ function luna_loop() {
 
         <div class="entry-content" itemprop="text"> <?php the_content(); ?> </div>
 
-        <footer class="entry-tools"> <span><?php the_date('F j, Y'); ?></span> <a href="<?php the_permalink(); ?>" class="morelink">Continue to read <i class="fa fa-long-arrow-right"></i></a> </footer>
-     </article> <!-- closes the first div box -->
-
+        <footer class="entry-tools">
+        <?php
+        luna_social_sharing_buttons();
+        ?>
+        </footer>
+    </article> <!-- closes the first div box -->
 
      <?php endwhile;
      wp_reset_postdata();

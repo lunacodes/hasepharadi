@@ -7,6 +7,10 @@
   --------------------------------------------- */
 
   .genesis-nav-menu {
+    li {
+      transition-duration: 0.1s;
+    }
+
     .menu-item {
       display: inline-block;
     }
@@ -43,7 +47,8 @@
       opacity: 0;
       padding-left: 0;
       position: absolute;
-      transition: opacity .4s ease-in-out;
+      transition: opacity 0.1s ease-in-out;
+      visibility: hidden;
       width: 180px;
 
       a {
@@ -58,6 +63,14 @@
         margin: -46px 0 0 179px;
       }
     }
+
+    &:hover .sub-menu {
+      visibility: visible;
+    }
+  }
+
+  .nav-primary ul li a {
+    transition: 0.1s all linear;
   }
 
   /* Responsive Menu

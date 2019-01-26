@@ -279,10 +279,12 @@
 		}
 		if ( 'none' === _getDisplayValue( buttons ) ) {
 			$args = {
-				'delay': 100,
+				'delay': 2000,
 				'animation': {'opacity': 'show', 'height': 'show'},
 				'dropShadows': false,
-				'speed': 'fast'
+				'speed': 100,
+				'speedOut': 'slow',
+				'cssArrows': true
 			};
 		}
 		_superfish.superfish( $args );

@@ -31,6 +31,18 @@
   .featured-content .entry-image {
     vertical-align: top;
   }
+
+  .widget-wrap {
+    h4,
+    h4 a {
+      font: 400 14px 'PT Serif',"times new roman",times,serif;
+    }
+
+    p.entry-meta {
+      margin: 1px 0 0;
+      }
+  }
+
 }
 
 .footer-widget-area:last-child,
@@ -51,7 +63,7 @@
 }
 
 .widget-wrap h4.entry-title {
-  font-size: 13px;
+  font-size: 14px;
   // display: inline-block;
 }
 

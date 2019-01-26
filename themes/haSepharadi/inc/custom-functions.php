@@ -6,6 +6,7 @@
 1. Setup & Assets
    - 1.1 Font Awesome
    - 1.2 Custom Image Sizes
+   - 1.3 Google Fonts
 2. Topbar & Header
    - 2.1 Topbar Scripts
    - 2.2 Create Topbar
@@ -27,8 +28,11 @@
    - 5.2 Custom Footer Credits
 6. Widgets
    - 6.1 Author Avatars
+   - 6.2 Hide Widgets
+   - 6.3 Affiliate Links Test
 7. Custom User Meta
     - 7.1 Social Media
+8. Social Media Sharing Buttons
 
 ------------------------------------------------------*/
 
@@ -41,15 +45,25 @@
 
 add_action( 'wp_enqueue_scripts', 'enqueue_font_awesome' );
 function enqueue_font_awesome() {
-    wp_enqueue_style( 'font-awesome', CHILD_URL . '/inc/font-awesome-4.6.3/css/font-awesome.min.css', array(), CHILD_THEME_VERSION );
+    wp_enqueue_style( 'luna-font-awesome', CHILD_URL . '/fonts/fontawesome-pro-5.6.3-web/css/all.min.css', array(), CHILD_THEME_VERSION );
 }
 
 /* 1.2 - Custom Image Sizes
 ============================*/
+
 add_action( 'after_setup_theme', 'add_custom_image_sizes' );
 function add_custom_image_sizes() {
     add_image_size( 'recent-posts-thumb', 100, 100, array('left', 'top') );
 }
+
+/* 1.3 - Google Fonts
+============================*/
+
+// add_action( 'wp_enqueue_scripts', 'enqueue_google_fonts' );
+// function enqueue_google_fonts() {
+//     wp_enqueue_script( 'google-fonts', 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i|Roboto+Slab:400,700|Source+Sans+Pro:400,400i,600,600i,700,700i', array(), CHILD_THEME_VERSION );
+// }
+
 
 /* 2. Top Bar & Header
 =================================================*/
@@ -74,7 +88,7 @@ function add_topbar() {
     $topbar = <<<EOL
 <div id="topbar" class="topbar">
   <div class="social-icons">
-    <div class="clearfix"> <a href="http://www.facebook.com/HaSepharadi-164068007554007" title="Facebook" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a> <a href="http://twitter.com/HaSepharadi" title="Twitter" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a></div>
+    <div class="clearfix"> <a href="http://www.facebook.com/HaSepharadi-164068007554007" title="Facebook" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a> <a href="http://twitter.com/HaSepharadi" title="Twitter" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a></div>
   </div>
    <!--  <button class="menu-toggle dashicons-before dashicons-menu" aria-expanded="false" aria-pressed="false" id="genesis-mobile-nav-primary">Menu</button> -->
   <div id="tools" class="tools">
@@ -105,10 +119,12 @@ function haSepharadi_custom_header_markup_open() {
 function haSepharadi_custom_header() {
 
     $site_url = get_site_url();
-
+    $todays_date = date_i18n( 'l F j, Y' );
+    // the_date();
+    // echo($todays_date);
     $custom_header = <<<EOL
   <div class="logo"> <a href="$site_url" title="haSepharadi"> <span><img src="$site_url/wp-content/uploads/2018/08/cropped-logo-1.png" scale="0"></span> </a>
-    <!-- <div class="local-info"> <span class="local-date">Friday 24 August 2018 </span></div> -->
+    <div id="header-date" class="local-info"> <span class="local-date">$todays_date</span></div>
   </div>
 EOL;
     echo($custom_header);
@@ -127,27 +143,59 @@ add_action( 'genesis_header', 'genesis_do_nav', 11 );
 ============================*/
 add_action( 'genesis_after_header', 'fix_wp_admin_bar_mobile' );
 function fix_wp_admin_bar_mobile() {
+    if (! is_user_logged_in() ) {
+        return;
+    }
+
     $margin_fix = <<<EOL
     <style>
-        @media only screen and (max-width: 782px) {
-            button#genesis-mobile-nav-primary {
-                left: 20px;
-                position: fixed;
-                top: 36.5px;
-            }
+    @media only screen and (max-width: 782px) {
+      button#genesis-mobile-nav-primary {
+        left: 20px;
+        position: fixed;
+        top: 36.5px;
+      }
 
-            .nav-shrinked {
-                top: 96px !important;
-            }
+      .nav-shrinked {
+        top: 96px !important;
+      }
 
-            #topbar.shrinked {
-                top: 34px;
-            }
+      #topbar.shrinked {
+        top: 34px;
+      }
 
-            #topbar.shrinked #tools {
-                margin: 14px 20px 0 0;
-            }
-        }
+      #topbar.shrinked #tools {
+        margin: 14px 20px 0 0;
+      }
+    }
+
+
+    @media only screen and (max-width: 600px) {
+      #topbar.shrinked {
+        top: 0;
+      }
+
+      .header-shrinked .logo a {
+        top: 0;
+      }
+
+      .header-shrinked .logo a span img {
+        position: fixed;
+        top: 18px;
+        left: 80px;
+      }
+
+      button#genesis-mobile-nav-primary {
+        /*         left: 20px; */
+        position: fixed;
+        top: 0;
+      }
+
+      .nav-shrinked {
+        top: 66px !important;
+      }
+    }
+
      </style>
 EOL;
 
@@ -182,7 +230,7 @@ function mobile_menu_pretty_load(){
 ============================*/
 
 //* Disable the superfish script
-add_action( 'wp_enqueue_scripts', 'sp_disable_superfish' );
+// add_action( 'wp_enqueue_scripts', 'sp_disable_superfish' );
 function sp_disable_superfish() {
     wp_deregister_script( 'superfish' );
     wp_deregister_script( 'superfish-args' );
@@ -195,15 +243,20 @@ function sp_disable_superfish() {
 add_action( 'genesis_before_content', 'custom_breadcrumbs', 8 );
 function custom_breadcrumbs() {
     if ( ! is_singular( 'page' ) && (! is_home() ) && (! is_404() ) ) { ?>
-        <div class="breadcrumbs">
-          <div class="navi">
-            <i class="fa fa-home"></i>
-            <span class="breadcrumb-link-wrap" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-            <a href="<?php get_site_url(); ?>" itemprop="item">
-            <span itemprop="name">Home</span></a>
-            </span> <span class="sep">»</span> <?php the_title(); ?>
-          </div>
-        </div>
+        <div class="bc-container">
+            <div class="breadcrumbs">
+              <div class="navi">
+                <i class="fa fa-home"></i>
+                <span class="breadcrumb-link-wrap" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                <a href="<?php get_site_url(); ?>" itemprop="item">
+                <span itemprop="name">Home</span></a>
+                </span> <span class="sep">»</span> <?php the_title(); ?>
+              </div>
+            </div>
+        <?php
+        luna_social_sharing_buttons()
+        ?>
+    </div>
     <?php }
 
 }
@@ -367,7 +420,7 @@ add_shortcode( 'author_avatars', 'display_author_avatars' );
 function display_author_avatars() { ?>
 
     <?php
-    remove_filter('widget_text_content', 'wpautop');
+    // remove_filter('widget_text_content', 'wpautop');
     $authors = array();
     $i = 0;
     if ( have_posts() ) : ob_start(); ?><div class="author-avatars">
@@ -384,7 +437,9 @@ function display_author_avatars() { ?>
             ?>
 
 
-            <?php // the_author_posts_link(); ?>
+            <!-- Leaving wp_list_authors here b/c the widget currently limits this to 6 authors -->
+            <?php // wp_list_authors( array( 'echo' => 'false') );
+                // count_user_posts( $userid, 'post', false ); ?>
             <div class="authors-wrap">
                 <div class="author-box">
                     <a href="<?php echo($author_posts); ?>">
@@ -416,6 +471,28 @@ function display_author_avatars() { ?>
 
 }
 
+/* 6.2 - Hide Widgets
+============================*/
+
+/* Not working currently... */
+// add_filter( 'widget_display_callback', 'hide_widgets_off_home', 10, 3 );
+// function hide_widgets_off_home( $instance, $widget, $args ) {
+//     if ( $widget->id_base == 'luna_afl_widget' ) {
+//         if ( !is_page( 'home' ) ) {
+//             return $instance;
+//         }
+//     }
+// }
+
+/* 6.3 - Affiliate Links Test
+============================*/
+
+// Why is this here?!?!
+add_shortcode( 'luna_affiliates', 'affiliate_links_widget' );
+function affiliate_links_widget() {
+    return "This is a test";
+}
+
 /* 7. Custom User Meta
 =================================================*/
 
@@ -443,7 +520,41 @@ remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 1
 add_action( 'genesis_after_loop', 'genesis_do_taxonomy_title_description' );
 
 
-add_shortcode( 'luna_affiliates', 'affiliate_links_widget' );
-function affiliate_links_widget() {
-    return "This is a test";
+
+/* 8. Social Media Sharing Buttons
+=================================================*/
+
+function luna_social_sharing_buttons() {
+    global $post;
+
+    if ( is_singular() || is_home() ) {
+        $post_url = urlencode( get_permalink() );
+        $post_title = htmlspecialchars( urlencode( html_entity_decode( get_the_title(), ENT_COMPAT, 'UTF-8') ), ENT_COMPAT, 'UTF-8' );
+        $post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' );
+
+    $fb_url = 'https://www.facebook.com/sharer/sharer.php?u=' . $post_url;
+    // echo( $fb_url);
+    $twitter_url = 'https://twitter.com/intent/tweet?text='.$post_title.'&amp;url='.$post_url.'&amp;via=haSepharadi';
+    $google_plus_url = 'https://plus.google.com/share?url='.$post_url;
+    $linked_in_url = 'https://www.linkedin.com/shareArticle?mini=true&url='.$post_url.'&amp;title='.$post_title;
+    $pinterest_url = 'https://pinterest.com/pin/create/button/?url='.$post_url.'&amp;media='.$post_thumbnail[0].'&amp;description='.$post_title;
+    // var_dump($post_thumbnail);
+    $whats_app_url = 'whatsapp://send?text='.$post_title . ' ' . $post_url;
+
+    ?>
+        <!-- Remove extraneous classes here?? -->
+        <div class="social-buttons share">
+            <a href="<?php echo($fb_url) ?>" target="_blank" title="Facebook" class="social-btn facebook-circle"><i class="fab fa-fw fa-facebook-f"></i></a>
+            <a href="<?php echo($twitter_url) ?>" target="_blank" title="Twitter" class="social-btn twitter-circle"><i class="fab fa-fw fa-twitter"></i></a>
+            <a href="<?php echo($google_plus_url) ?>" target="_blank" title="Google Plus" class="social-btn google-plus-circle"><i class="fab fa-fw fa-google-plus"></i></a>
+            <a href="<?php echo($pinterest_url) ?>" target="_blank" title="Pinterest" class="social-btn pinterest-circle"><i class="fab fa-fw fa-pinterest"></i></a>
+            <a href="<?php echo($linked_in_url) ?>" target="_blank" title="LinkedIn" class="social-btn linkedin-circle"><i class="fab fa-fw fa-linkedin"></i></a>
+            <a href="<?php echo($whats_app_url) ?>" target="_blank" title="WhatsApp" class="social-btn whatsapp-circle"><i class="fab fa-fw fa-whatsapp"></i></a>
+
+        </div>
+
+    <?php
+    } else {
+        return;
+    }
 }

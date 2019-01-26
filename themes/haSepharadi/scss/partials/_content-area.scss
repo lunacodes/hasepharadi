@@ -147,6 +147,8 @@
 
 .pagination {
   clear: both;
+  display: flex;
+  justify-content: center;
   margin: 60px 0;
 }
 
@@ -172,7 +174,7 @@
   a:focus,
   a:hover,
   &.active a {
-    background-color: $dark-grey;
+    background-color: $orange;
     color: $white;
   }
 }

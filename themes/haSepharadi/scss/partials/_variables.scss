@@ -22,6 +22,7 @@ $white-alpha-1: rgba(255,255,255,0.1);
 
 // Base Fonts
 $base-font: 'PT Serif', "times new roman", times, serif;
+$widget-font: 'Arial,Helvetica,sans-serif';
 
 // Screen widths, Media queries - WC widths in WC variables
 $standard-screen-width: 960px;
@@ -114,6 +115,14 @@ $archive-pagination--font-color-hover: $orange;
 $gs-faq__question--font-color: $dark-grey;
 $gs-faq__question--font-color-hover: $orange;
 $disabled--font-color: $mid-grey;
+
+// Social Media Buttons
+$facebook--color: #3b5998;
+$twitter--color: #12b3f9;
+$google-plus--color: #a52714;
+$pinterest--color:#bd081c;
+$linkedin--color:#008cc9;
+$whatsapp--color:#00E676;
 
 // Background colors
 $body--background-color: $white;

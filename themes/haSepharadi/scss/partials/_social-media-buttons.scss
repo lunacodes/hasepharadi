@@ -1,0 +1,81 @@
+// Probably can reduce the classes used in single.php
+.social-buttons.share {
+  text-align: right;
+
+  a {
+    border-radius: 50%;
+    // border: 2px solid #3b5598;
+    border-width: 2px;
+    border-style: solid;
+    color: $facebook--color;
+    font-size: 13px;
+    line-height: 1;
+    // margin: 5px 0 0 5px;
+    margin: 5px 0 0 1px;
+    padding: 1px 3px;
+    -webkit-transition: all .3s linear;
+       -moz-transition: all .3s linear;
+        -ms-transition: all .3s linear;
+         -o-transition: all .3s linear;
+            transition: all .3s linear;
+
+    &:hover {
+      background: $black;
+      color: $orange;
+    }
+  }
+
+}
+
+// Border Colors
+.social-btn.facebook-circle {
+  border-color: $facebook--color;
+}
+
+.social-btn.twitter-circle {
+  border-color: $twitter--color;
+}
+
+.social-btn.google-plus-circle {
+  border-color: $google-plus--color;
+}
+
+.social-btn.pinterest-circle {
+  border-color: $pinterest--color;
+}
+
+.social-btn.linkedin-circle {
+  border-color: $linkedin--color;
+}
+
+.social-btn.whatsapp-circle {
+  border-color: $whatsapp--color;
+}
+
+.social-btn .fa-facebook {
+  color: $facebook--color;
+}
+
+.social-btn .fa-twitter {
+  color: $twitter--color;
+}
+
+// Icon Colors
+.social-btn .fa-googleplus {
+  color: $google-plus--color;
+}
+
+.social-btn .fa-pinterest {
+  color: $pinterest--color;
+}
+
+.social-btn .fa-linkedin {
+  color: $linkedin--color;
+}
+
+.social-btn .fa-whatsapp {
+  color: $whatsapp--color;
+  font-weight: 700;
+}
+
+

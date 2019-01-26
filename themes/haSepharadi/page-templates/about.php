@@ -11,6 +11,14 @@ function enqueue_about_styles() {
     wp_enqueue_style( 'about.css', CHILD_URL . '/css/about.css', array(), CHILD_THEME_VERSION );
 }
 
+// add_action( 'genesis_entry_header', 'genesis_do_post_title' );
+// genesis_do_post_title();
+//
+// add_action( 'genesis_after_header', 'genesis_entry_header_markup_open', 11 );
+// add_action( 'genesis_after_header', 'genesis_do_post_title', 12 );
+// add_action( 'genesis_after_header', 'genesis_entry_header_markup_close', 13 );
+
+
 add_action( 'genesis_after_entry', 'display_about_widgets' );
 function display_about_widgets() { ?>
     <div class="about-widgets">

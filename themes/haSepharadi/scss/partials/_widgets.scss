@@ -42,7 +42,7 @@
     list-style-position: inside;
     list-style-type: decimal;
     padding-left: 20px;
-    text-indent: -20px;
+    // text-indent: -20px;
   }
 
   li li {
@@ -76,7 +76,7 @@
   // border-width: 2px 0 1px;
   box-sizing: content-box;
   display: block;
-  font-family: $base-font;
+  font-family: $widget-font;
   height: 30px;
   line-height: 30px;
   margin: 0 auto 20px;

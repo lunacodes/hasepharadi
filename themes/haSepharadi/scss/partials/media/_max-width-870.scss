@@ -45,7 +45,7 @@
 
     .entry-header {
       display: inline-block;
-      max-width: initial;
+      max-width: 70%;
       padding: 2px 8px;
       }
 
@@ -86,8 +86,12 @@
     display: -ms-flex;
     display: -o-flex;
     display: flex;
-    margin: 10px 0;
-    width: 30%;
+    flex-basis: 20%;
+    justify-content: center;
+    // margin: 10px 0;
+    // width: 30%;
+    margin: 10px 5%;
+    width: initial;
   }
 
   .author-box {
