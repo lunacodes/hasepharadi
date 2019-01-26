@@ -13,6 +13,21 @@
   margin: 0 0 6px;
 }
 
+.affiliate-img-link {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  -ms-align-items: center;
+  align-items: center;
+}
+
 .luna-afl .affiliate-link-text {
   color: #c93;
   font-size: 16px;
@@ -22,4 +37,16 @@
 
 .luna-afl .affiliate-img {
   margin: 0 0 4px;
+}
+
+.disappear {
+  display: none;
+}
+
+/* max-width: 870px */
+@media only screen and (max-width: 54.375em) {
+  .luna-afl .affiliate-img {
+    margin: 0 25% 4px;
+  }
+
 }

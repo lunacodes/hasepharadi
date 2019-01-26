@@ -7,7 +7,7 @@ class Luna_AFL_Widget extends WP_Widget {
     function __construct() {
         parent::__construct(
             'Luna_AFL_Widget',  // Base ID
-            'Luna Affiliate Links'   // Name
+            'Luna Affiliates Widget'   // Name
         );
 
         // register Luna_AFL_Widget
@@ -37,11 +37,6 @@ class Luna_AFL_Widget extends WP_Widget {
         extract( $args );
         $title = apply_filters( 'widget_title', $instance['title'] );
 
-        // Only display on single posts
-        if ( ! is_singular( 'post' ) ) {
-            return;
-        }
-
         echo $before_widget;
 
         if ( ! empty ($title ) ) {
@@ -57,44 +52,34 @@ class Luna_AFL_Widget extends WP_Widget {
         ?>
         <div class="luna-afl affiliates-container">
         <?php
+        if ( have_rows( 'affiliate_links', $user_id_prefixed ) ) :
+             while ( have_rows( 'affiliate_links', $user_id_prefixed ) ) : the_row();
 
-        // Only display if the author has affiliate links
-        if (! function_exists( 'have_rows' ) ) {
-            return;
-        } else {
-            if ( ! have_rows( 'affiliate_links', $user_id_prefixed ) ) {
-                return;
-            }
+                $affiliate_image = get_sub_field( 'affiliate_image' );
 
-            if ( have_rows( 'affiliate_links', $user_id_prefixed ) ) {
-                while ( have_rows( 'affiliate_links', $user_id_prefixed ) ) {
-                    $affiliate_image = get_sub_field( 'affiliate_image' );
+                // Debugging
+                // var_dump($affiliate_image);
 
-                    // Debugging
-                    // var_dump($affiliate_image);
+                // thumbnail
+                $size = 'medium';
+                $thumb = $affiliate_image['sizes'][ $size ];
+                $width = $affiliate_image['sizes'][ $size . '-width' ];
+                $height = $affiliate_image['sizes'][ $size . '-height' ];
+                ?>
 
-                    // thumbnail
-                    $size = 'medium';
-                    $thumb = $affiliate_image['sizes'][ $size ];
-                    $width = $affiliate_image['sizes'][ $size . '-width' ];
-                    $height = $affiliate_image['sizes'][ $size . '-height' ];
-                    ?>
+                <div class="affiliate-item">
+                    <figure>
+                        <a href="<?php the_sub_field( 'affiliate_url' ); ?>" class="affiliate-img-link">
+                            <img class="affiliate-img"src="<?php echo $affiliate_image['url']; ?>" alt="<?php echo $affiliate_image['alt']; ?>" width="<?php echo($width); ?>" height="<?php echo($height); ?>" />
+                        </a>
+                            <figcaption class="affiliate-link-text"><?php the_sub_field( 'affiliate_link_text' ); ?></figcaption>
+                    </figure>
 
-                    <div class="affiliate-item">
-                        <figure>
-                            <a href="<?php the_sub_field( 'affiliate_url' ); ?>">
-                                <img class="affiliate-img"src="<?php echo $affiliate_image['url']; ?>" alt="<?php echo $affiliate_image['alt']; ?>" width="<?php echo($width); ?>" height="<?php echo($height); ?>" />
-                            </a>
-                                <figcaption class="affiliate-link-text"><?php the_sub_field( 'affiliate_link_text' ); ?></figcaption>
-                        </figure>
+                </div>
+                <?php
 
-                    </div>
-                    <?php
-                }
-            } else {
-                echo("<style> .widget_luna_afl_widget { display: none;} </style>");
-            }
-        }
+            endwhile;
+        endif;
         ?>
     </div>
     <?php
