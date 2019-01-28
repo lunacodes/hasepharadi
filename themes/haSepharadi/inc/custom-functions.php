@@ -7,6 +7,7 @@
    - 1.1 Font Awesome
    - 1.2 Custom Image Sizes
    - 1.3 Google Fonts
+   - 1.4 Genesis Thumbnail Cache Fix
 2. Topbar & Header
    - 2.1 Topbar Scripts
    - 2.2 Create Topbar
@@ -23,6 +24,8 @@
    - 4.6 Next & Previous Posts Link
    - 4.7 Author Bios
    - 4.8 wpDiscuz Comments Hack
+   - 4.9 Author Page Affiliate Linkes
+   - 4.10 Add Link Text on User Copy
 5. Footer
    - 5.1 Back to Top Button
    - 5.2 Custom Footer Credits
@@ -30,6 +33,7 @@
    - 6.1 Author Avatars
    - 6.2 Hide Widgets
    - 6.3 Affiliate Links Test
+   - 6.4 Mailchimp Subscribe
 7. Custom User Meta
     - 7.1 Social Media
 8. Social Media Sharing Buttons
@@ -64,6 +68,20 @@ function add_custom_image_sizes() {
 //     wp_enqueue_script( 'google-fonts', 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i|Roboto+Slab:400,700|Source+Sans+Pro:400,400i,600,600i,700,700i', array(), CHILD_THEME_VERSION );
 // }
 
+/* 1.4 - Genesis Thumbnail Cache Fix
+============================*/
+
+function blazersix_prime_post_thumbnails_cache( $posts, $wp_query ) {
+    // Prime the cache for the main front page and archive loops by default.
+    $is_main_archive_loop = $wp_query->is_main_query() && ! is_singular();
+    $do_prime_cache = apply_filters( 'blazersix_cache_post_thumbnails', $is_main_archive_loop );
+    if ( ! $do_prime_cache && ! $wp_query->get( 'blazersix_cache_post_thumbnails' ) ) {
+        return $posts;
+    }
+    update_post_thumbnail_cache( $wp_query );
+    return $posts;
+}
+add_action( 'the_posts', 'blazersix_prime_post_thumbnails_cache', 10, 2 );
 
 /* 2. Top Bar & Header
 =================================================*/
@@ -149,28 +167,37 @@ function fix_wp_admin_bar_mobile() {
 
     $margin_fix = <<<EOL
     <style>
-    @media only screen and (max-width: 782px) {
-      button#genesis-mobile-nav-primary {
-        left: 20px;
-        position: fixed;
-        top: 36.5px;
-      }
-
-      .nav-shrinked {
-        top: 96px !important;
-      }
-
-      #topbar.shrinked {
-        top: 34px;
-      }
-
-      #topbar.shrinked #tools {
-        margin: 14px 20px 0 0;
-      }
+    /* 960px */
+    @media only screen and (max-width: 60em) {
+        .menu-toggle {
+            top: 18.5px;
+        }
     }
 
+    /* 782px */
+    @media only screen and (max-width: 48.875em) {
+        .menu-toggle {
+            top: 18.5px;
+            left: 20px;
+            position: fixed;
+            top: 34.5px;
+        }
 
-    @media only screen and (max-width: 600px) {
+        .nav-shrinked {
+          top: 96px !important;
+        }
+
+        #topbar.shrinked {
+          top: 34px;
+        }
+
+        #topbar.shrinked #tools {
+          margin: 14px 20px 0 0;
+        }
+    }
+
+    /* 600px */
+    @media only screen and (max-width: 37.5em) {
       #topbar.shrinked {
         top: 0;
       }
@@ -185,10 +212,14 @@ function fix_wp_admin_bar_mobile() {
         left: 80px;
       }
 
+      .menu-toggle,
+      .mobile-menu-shrinked {
+        top: 22.5px;
+      }
+
       button#genesis-mobile-nav-primary {
         /*         left: 20px; */
         position: fixed;
-        top: 0;
       }
 
       .nav-shrinked {
@@ -386,6 +417,28 @@ function display_comments_plz() {
     }
 }
 
+/* 4.9 Author Page Affiliate Linkes
+============================*/
+
+//
+
+/* 4.10 Add Link Text on User Copy
+============================*/
+
+// Appens the Site Url to any copied text
+add_action('wp_enqueue_scripts', 'add_copy_link' );
+function add_copy_link() {
+  wp_enqueue_script('add-copy-link', CHILD_URL . '/js/copy-link-text.js' );
+}
+
+// add_action( 'pre_get_posts', 'post_check' );
+// function post_checks( $query ) {
+//   if ( is_post_type_archive( 'facebook-events' ) ) {
+//     // echo("yes");
+//   }
+
+// }
+
 
 /* 5. Footer
 =================================================*/
@@ -420,7 +473,7 @@ add_shortcode( 'author_avatars', 'display_author_avatars' );
 function display_author_avatars() { ?>
 
     <?php
-    // remove_filter('widget_text_content', 'wpautop');
+    remove_filter('widget_text_content', 'wpautop');
     $authors = array();
     $i = 0;
     if ( have_posts() ) : ob_start(); ?><div class="author-avatars">
@@ -493,6 +546,15 @@ function affiliate_links_widget() {
     return "This is a test";
 }
 
+/* 6.3 - Affiliate Links Test
+============================*/
+
+add_action( 'wp_enqueue_scripts', 'enqueue_mailchimp_styles' );
+function enqueue_mailchimp_styles() {
+    wp_enqueue_style( 'mc-subscribe', CHILD_URL . '/css/mc-subscribe.css' );
+}
+
+
 /* 7. Custom User Meta
 =================================================*/
 
@@ -534,10 +596,10 @@ function luna_social_sharing_buttons() {
 
     $fb_url = 'https://www.facebook.com/sharer/sharer.php?u=' . $post_url;
     // echo( $fb_url);
-    $twitter_url = 'https://twitter.com/intent/tweet?text='.$post_title.'&amp;url='.$post_url.'&amp;via=haSepharadi';
+    $twitter_url = 'https://twitter.com/share?text='.$post_title.'&url='.$post_url.'&via=haSepharadi';
     $google_plus_url = 'https://plus.google.com/share?url='.$post_url;
-    $linked_in_url = 'https://www.linkedin.com/shareArticle?mini=true&url='.$post_url.'&amp;title='.$post_title;
-    $pinterest_url = 'https://pinterest.com/pin/create/button/?url='.$post_url.'&amp;media='.$post_thumbnail[0].'&amp;description='.$post_title;
+    $linked_in_url = 'https://www.linkedin.com/shareArticle?mini=true&title='.$post_title.'&source-'.$post_url.'&url='.$post_url;
+    $pinterest_url = 'https://pinterest.com/pin/create/button/?media='.$post_url.'&media='.$post_thumbnail[0].'&description='.$post_title;
     // var_dump($post_thumbnail);
     $whats_app_url = 'whatsapp://send?text='.$post_title . ' ' . $post_url;
 

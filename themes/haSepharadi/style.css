@@ -1649,7 +1649,7 @@ div.wpcf7 .wpcf7-submit:disabled {
 3. Breadcrumbs
 4. Widgets
    - 4.1 Widgets Setup
-   - 4.2 Author Avatars
+   - 4.2 Author Avatars - Voices
 5. Posts
    - 5.1 Site Layout
    - 5.2 Posts Layout
@@ -1683,6 +1683,8 @@ div.wpcf7 .wpcf7-submit:disabled {
     padding-bottom: 0;
     width: 100%;
     z-index: 200; }
+    .topbar.shrinked .social-icons {
+      display: none; }
   .topbar .social-icons {
     float: left;
     margin: -1.5px 0 0 21px;
@@ -1819,7 +1821,7 @@ input.search-text {
 
 .header-shrinked .logo {
   height: 50px;
-  left: 68px;
+  left: 40px;
   margin: 0;
   position: fixed;
   width: 108px; }
@@ -2021,7 +2023,7 @@ img.custom-logo {
   .nav-shrinked ul {
     font-size: 13px; }
     .nav-shrinked ul li {
-      padding: 8px 5px; }
+      padding: 8px 7px; }
       .nav-shrinked ul li a, .nav-shrinked ul li:last-of-type a {
         font-size: 12px; }
       .nav-shrinked ul li:last-of-type a {
@@ -2096,7 +2098,7 @@ img.custom-logo {
 .widget-wrap a.alignleft {
   margin: 0 10px 0 0; }
 
-/* 4.2 Author Avatars
+/* 4.2 Author Avatars - Voices
 ============================*/
 .widget-wrap .author-avatars {
   display: -webkit-flex;
@@ -2122,11 +2124,11 @@ img.custom-logo {
   box-sizing: content-box;
   height: auto;
   margin: 0;
-  width: 95px; }
+  width: 93px; }
   .widget-wrap .author-box a {
     color: #000;
     display: inline-block;
-    width: 95px; }
+    width: 93px; }
     .widget-wrap .author-box a:hover {
       color: #c93; }
   .widget-wrap .author-box .avatar-box {
@@ -2424,12 +2426,15 @@ span.category {
 /* Media Query - Max-Width: 1220px
 ---------------------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 76.25em) {
-  #topbar,
   #top,
   .site-inner,
   .site-footer,
   .site-footer .wrap {
     max-width: 1020px; }
+
+  #topbar {
+    max-width: 100%;
+    width: 100%; }
 
   #topbar.shrinked,
   header#top.header-shrinked {
@@ -2505,7 +2510,7 @@ span.category {
     max-width: 70%; }
 
   .nav-primary ul li a {
-    font-size: 13px; }
+    font-size: 12.5px; }
 
   .site-inner {
     max-width: 96%; }
@@ -2533,7 +2538,7 @@ span.category {
     top: -10px; }
 
   .mobile-menu-shrinked {
-    top: -5px; }
+    top: -6px; }
 
   .nav-shrinked {
     max-width: 234px; }

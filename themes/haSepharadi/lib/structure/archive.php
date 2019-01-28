@@ -11,8 +11,8 @@
  * @link    https://my.studiopress.com/themes/genesis/
  */
 
-add_filter( 'genesis_term_intro_text_output', 'wpautop' );
-add_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
+// add_filter( 'genesis_term_intro_text_output', 'wpautop' );
+// add_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
 /**
  * Add custom heading and / or description to category / tag / taxonomy archive pages.
  *

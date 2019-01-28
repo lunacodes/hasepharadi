@@ -12,7 +12,7 @@
 3. Breadcrumbs
 4. Widgets
    - 4.1 Widgets Setup
-   - 4.2 Author Avatars
+   - 4.2 Author Avatars - Voices
 5. Posts
    - 5.1 Site Layout
    - 5.2 Posts Layout
@@ -56,6 +56,10 @@
     padding-bottom: 0;
     width: 100%;
     z-index: 200;
+
+    .social-icons {
+      display: none;
+    }
   }
 
   .social-icons {
@@ -235,7 +239,7 @@ input.search-text {
 
   .logo {
     height: 50px;
-    left: 68px;
+    left: 40px;
     margin: 0;
     position: fixed;
     width: 108px;
@@ -527,7 +531,7 @@ img.custom-logo {
     font-size: 13px;
 
     li {
-      padding: 8px 5px;
+      padding: 8px 7px;
 
       a,
       &:last-of-type a {
@@ -644,7 +648,7 @@ img.custom-logo {
   }
 }
 
-/* 4.2 Author Avatars
+/* 4.2 Author Avatars - Voices
 ============================*/
 
 .widget-wrap .author-avatars {
@@ -674,12 +678,12 @@ img.custom-logo {
   box-sizing: content-box;
   height: auto;
   margin: 0;
-  width: 95px;
+  width: 93px;
 
   a {
     color: $black;
     display: inline-block;
-    width: 95px;
+    width: 93px;
 
     &:hover {
       color: $orange;

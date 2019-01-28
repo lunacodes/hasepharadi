@@ -3,12 +3,17 @@
 
 @media only screen and (max-width: 76.25em) {
 
-  #topbar,
+  // #topbar,
   #top,
   .site-inner,
   .site-footer,
   .site-footer .wrap {
     max-width: 1020px;
+  }
+
+  #topbar {
+    max-width: 100%;
+    width: 100%;
   }
 
   #topbar.shrinked,

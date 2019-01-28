@@ -9,11 +9,11 @@
  * @link    https://lunacodesdesign.com
  */
 
-remove_action( 'genesis_before_content', 'custom_breadcrumbs', 8 );
-remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
-remove_action( 'genesis_loop', 'genesis_do_loop' );
+// remove_action( 'genesis_before_content', 'custom_breadcrumbs', 8 );
+// remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
+// remove_action( 'genesis_loop', 'genesis_do_loop' );
 
-add_action( 'genesis_before_loop', 'haSepharadi_cat_header', 15 );
+// add_action( 'genesis_before_loop', 'haSepharadi_cat_header', 15 );
 function haSepharadi_cat_header() {
     $open = '<div class="archive-description taxonomy-archive-description taxonomy-description"><h1 class="archive-title"><span>';
     $title = single_cat_title( '', false );
@@ -21,7 +21,7 @@ function haSepharadi_cat_header() {
     echo($open . $title . $close);
 }
 
-add_action( 'genesis_loop', 'luna_cat_loop' );
+// add_action( 'genesis_loop', 'luna_cat_loop' );
 function luna_cat_loop() {
     if ( have_posts() ): while ( have_posts() ) : the_post(); ?>
      <article class="post">
