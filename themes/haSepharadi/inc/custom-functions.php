@@ -188,7 +188,7 @@ function fix_wp_admin_bar_mobile() {
         }
 
         #topbar.shrinked {
-          top: 34px;
+          top: 44px;
         }
 
         #topbar.shrinked #tools {
@@ -208,22 +208,20 @@ function fix_wp_admin_bar_mobile() {
 
       .header-shrinked .logo a span img {
         position: fixed;
-        top: 18px;
-        left: 80px;
+        /* top: 18px; */
+        /* left: 80px; */
+        left: 60px;
+        top: 10px;
       }
 
-      .menu-toggle,
+      /* .menu-toggle, */
       .mobile-menu-shrinked {
-        top: 22.5px;
-      }
-
-      button#genesis-mobile-nav-primary {
-        /*         left: 20px; */
-        position: fixed;
+        /* top: 22.5px; */
+        top: -10px;
       }
 
       .nav-shrinked {
-        top: 66px !important;
+        top: -53px !important;
       }
     }
 
@@ -620,3 +618,12 @@ function luna_social_sharing_buttons() {
         return;
     }
 }
+
+
+include_once( get_stylesheet_directory() . '/luna-posts-widget.php' );
+
+add_action( 'widgets_init', 'wpsites_custom_widget_init' );
+function wpsites_custom_widget_init() {
+  register_widget('Genesis_Post');
+}
+

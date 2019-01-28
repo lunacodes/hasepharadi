@@ -7,10 +7,10 @@
   .footer-widgets,
   .widget-area.footer-widget-area,
   .site-footer .wrap {
-    float: none;
-    margin: 0 auto;
-    max-width: initial;
-    width: 80%;
+    // float: none;
+    // margin: 0 auto;
+    // max-width: initial;
+    // width: 80%;
   }
 
   span.category {
@@ -50,23 +50,34 @@
       }
 
     .entry-image {
-      height: auto;
-      width: 75px;
+      // height: auto;
+      height: 60px;
+      // width: 75px;
+      width: 60px;
     }
 
     .widget-wrap {
       h4,
       h4 a {
-        font-size: 16px;
+        font-size: 12px;
+        max-height: 48px;
+        overflow: hidden;
+        text-align: left;
+        text-overflow: ellipsis;
+        // width: 60%;
+        width: 90%;
       }
 
       .entry {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
         height: 86px;
       }
 
       p.entry-meta {
         display: block;
-        font-size: 14px;
+        font-size: 11px;
       }
     }
   }

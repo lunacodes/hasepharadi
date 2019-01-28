@@ -9,6 +9,16 @@
     display: none;
   }
 
+  .topbar.shrinked {
+    height: 53px;
+  }
+
+  .header-shrinked .logo {
+    height: 40px;
+    left: 60px;
+    // top: 12px;
+  }
+
   .menu-toggle {
     left: 20px;
     position: fixed;
@@ -24,7 +34,7 @@
     // font-size: 25px;
     // width: 25px;
     // top: 25px;
-    top: -6px;
+    // top: -6px;
   }
 
   .nav-shrinked {
@@ -48,7 +58,8 @@
 
   // Nav Menus
   .dashicons-menu::before,
-  .mobile-menu::before {
+  .mobile-menu::before,
+  .site-header .menu-toggle:before {
     font-size: 25px;
     height: 25px;
     width: 25px;
