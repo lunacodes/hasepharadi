@@ -259,7 +259,7 @@ function mobile_menu_pretty_load(){
 ============================*/
 
 //* Disable the superfish script
-// add_action( 'wp_enqueue_scripts', 'sp_disable_superfish' );
+add_action( 'wp_enqueue_scripts', 'sp_disable_superfish' );
 function sp_disable_superfish() {
     wp_deregister_script( 'superfish' );
     wp_deregister_script( 'superfish-args' );
