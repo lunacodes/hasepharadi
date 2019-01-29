@@ -2842,16 +2842,16 @@ span.category {
 
   .feature-content h4,
   .widget-area.footer-widget-area .featured-content .widget-wrap h4 {
-    font-size: 18px;
+    font-size: 16px;
     width: 100%; }
     .feature-content h4 a,
     .widget-area.footer-widget-area .featured-content .widget-wrap h4 a {
-      font-size: 18px;
+      font-size: 14px;
       width: 100%; }
 
   .featured-content .widget-wrap p.entry-meta,
   .widget-area.footer-widget-area .featured-content .widget-wrap p.entry-meta {
-    font-size: 14px; } }
+    font-size: 12px; } }
 /* Media Query - Max-Width: 690px
 ---------------------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 43.125em) {
