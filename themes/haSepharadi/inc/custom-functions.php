@@ -336,7 +336,7 @@ function enqueue_category_scripts() {
 /* 4.4 - Entry Meta
 ============================*/
 
-add_action( 'wp_enqueue_scripts', 'enqueue_entry_meta_assets' );
+// add_action( 'wp_enqueue_scripts', 'enqueue_entry_meta_assets' );
 function enqueue_entry_meta_assets() {
     wp_enqueue_style( 'roboto-slab', 'https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese' );
 }
@@ -365,15 +365,15 @@ function add_next_and_prev_post_links() {
     }
 
     echo '<div class="pagination-previous alignleft">';
-    previous_post_link('%link', 'Previous Post', FALSE);
+    previous_post_link();
     echo '</div>';
 
     echo '<div class="pagination-next alignright">';
-    next_post_link('%link', 'Next Post', FALSE);
+    next_post_link();
     echo '</div>';
 }
 
-add_action( 'genesis_after_loop', 'add_next_and_prev_post_archive_links', 12 );
+add_action( 'genesis_after_loop', 'add_next_and_prev_post_archive_links', 10 );
 function add_next_and_prev_post_archive_links() {
     if ( 'numeric' === genesis_get_option( 'posts_nav' ) ) {
         genesis_numeric_posts_nav();
