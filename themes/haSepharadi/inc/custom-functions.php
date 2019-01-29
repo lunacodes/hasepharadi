@@ -304,7 +304,7 @@ function display_featured_post_image() {
     if ( is_singular( 'page' ) && ( ! is_category() ) ) {
 
     } elseif ( is_category() ) {
-        echo("We're a category");
+        // echo("We're a category");
     } else {
         the_post_thumbnail('post-image');
     }
@@ -618,12 +618,3 @@ function luna_social_sharing_buttons() {
         return;
     }
 }
-
-
-include_once( get_stylesheet_directory() . '/luna-posts-widget.php' );
-
-add_action( 'widgets_init', 'wpsites_custom_widget_init' );
-function wpsites_custom_widget_init() {
-  register_widget('Genesis_Post');
-}
-
