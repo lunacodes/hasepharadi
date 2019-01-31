@@ -96,7 +96,6 @@ function generateHebrewDate($date) {
 function generateDates() {
   $today = date("F, j, Y");
   $todayInt = strtotime("now");
-  // echo("Today Int: $todayInt <br>");
   $dayOfWeek = date("N");
   if ($dayOfWeek == 5) {
         $friday = strtotime("now");
@@ -108,14 +107,9 @@ function generateDates() {
 
   $todayStr = $today;
   $shabbatISO = date(DATE_ISO8601, $friday);    $todayHebStr = generateHebrewDate($todayInt);
-  // echo("Today: $todayStr <br>");
-  // echo("Today Heb: $todayHebStr <br>");
   $shabbatStr = date("F, j, Y", $friday);
   $shabbatHebStr = generateHebrewDate($friday);
-  // echo("Shabbat: $shabbatStr <br>");
-  // echo("Shabbat Heb: $shabbatHebStr <br>");
   $dates = [$todayStr, $todayHebStr, $shabbatStr, $shabbatHebStr, $shabbatISO];
-  // echo("$todayStr<br>$todayHebStr<br>$shabbatStr<br>$shabbatHebStr<br>");
   return $dates;
 }
 $dates = generateDates();
@@ -151,9 +145,6 @@ function outputZemanim($dates) {
             <span id="shabbat_zemanim_city"></span>
             <span id="shabbat_zemanim_hebrew"><?php echo($shabbatHeb); ?><br>
             </span>
-            <!-- <span id="shabbat_zemanim_shema">Latest Shema: <br></span> -->
-            <!-- <span id="shabbat_zemanim_minha">Earliest Minḥa:  <br></span> -->
-            <!-- <span id="shabbat_zemanim_peleg">Peleḡ HaMinḥa:  <br></span> -->
             <span id="shabbat_zemanim_candles">Sunset: <br></span>
             <span id="shabbat_zemanim_sunset">Sunset: <br></span>
             <span id="shabbat_zemanim_habdala">Haḇdala: </span>
@@ -166,7 +157,6 @@ outputZemanim($dates);
 ?>
 
 <script type="text/javascript" defer>
-// var z_date = document.getElementById("zemanim_date");
 var zemanim = document.getElementById("zemanim_container");
 var z_city = document.getElementById("zemanim_city");
 var z_shema = document.getElementById("zemanim_shema");
@@ -176,9 +166,6 @@ var z_sunset = document.getElementById("zemanim_sunset");
 var shabbat_zemanim = document.getElementById("shabbat_zemanim_container");
 var sz_city = document.getElementById("shabbat_zemanim_city");
 var sz_candles =document.getElementById("shabbat_zemanim_candles");
-// var sz_shema = document.getElementById("shabbat_zemanim_shema");
-// var sz_minha = document.getElementById("shabbat_zemanim_minha");
-// var sz_peleg = document.getElementById("shabbat_zemanim_peleg");
 var sz_sunset = document.getElementById("shabbat_zemanim_sunset");
 var sz_habdala = document.getElementById("shabbat_zemanim_habdala");
 
@@ -461,46 +448,18 @@ function generateDateString(timeObj) {
   return buildDateStr;
 }
 
-// function getPerasha(city) {
-//   let urlBase = 'https://www.hebcal.com/shabbat/?cfg=json&';
-//   // let city = city;
-//   let urlStr = urlBase + 'geo=' + city;
-
-//   fetch(urlStr)
-//     .then((response) => {
-//       return response.json;
-//     })
-//     .then((res) => {
-//       let data = new Array(res.items[2]);
-//       let perasha = data["hebrew"];
-//       console.log(perasha);
-//       return perasha;
-//     });
-// }
-
 function timesHelper(lat, long, city) {
   var cityStr = city;
-  // can I replace the new Date() w/ the an ISO str?
   var todayTimesObj = SunCalc.getTimes(new Date(), lat, long);
-  // console.log(todayTimesObj);
   var shabbatFeed = '<?php echo("$dates[4]"); ?>';
   var shabbatHelperStr = shabbatFeed.substr(0, 19);
-  // console.log(shabbatHelperStr);
-  // console.log(typeof shabbatHelperStr);
   var shabbatHelper = new Date(shabbatHelperStr);
-  // console.log(shabbatHelper);
   var shabbatTimesObj = SunCalc.getTimes(new Date(shabbatHelperStr), lat, long);
-  // console.log(shabbatTimesObj);
   var todayTimes = calculateTimes(todayTimesObj, false);
   var shabbatTimes = calculateTimes(shabbatTimesObj, true);
-  // console.log(todayTimes);
-  // console.log(shabbatTimes);
   var todayStrSet = generateTimeStrings(todayTimes, false);
-  // console.log(todayStrSet);
   var shabbatStrSet = generateTimeStrings(shabbatTimes, true);
-  // console.log(shabbatStrSet);
 
-  // getPerasha(cityStr);
   displayTimes(todayStrSet, cityStr);
   displayShabbatTimes(shabbatStrSet, cityStr);
 }
@@ -511,7 +470,6 @@ function timesHelper(lat, long, city) {
  * @return {string}   Time String in Y-M-D-H-M
  */
 function generateTimeStrings(timeSet, shabbat) {
-  // console.log(timeSet);
   var sunrise = timeSet[0];
   var sunset = timeSet[1];
   var offSet = timeSet[2];
@@ -525,7 +483,6 @@ function generateTimeStrings(timeSet, shabbat) {
   if (shabbat) {
     var candleLighting = timeSet[4];
     var habdala = timeSet[5];
-    // var shabbatsunsetStr
     var candleLightingStr = '<span id="zemanim_habdala">Candle Lighting (18 min): </span>' + unixTimestampToDate(candleLighting + offSet);
     var habdalaStr = '<span id="zemanim_habdala">Haḇdala (20 min): </span>' + unixTimestampToDate(habdala + offSet);
     var shabbatSet = [sunsetStr, candleLightingStr, habdalaStr];
@@ -546,18 +503,10 @@ function generateTimeStrings(timeSet, shabbat) {
  * @return {array}         An array of time value integers
  */
 function calculateTimes(timeObj, shabbat) {
-  // var shabbatTest = shabbat;
-  // console.log(shabbatTest);
-  // var cityStr = city;
-  // var times = SunCalc.getTimes(new Date(), lat, long);
   var times = timeObj;
-  // console.log(times);
   var sunriseObj = times.sunrise;
-  // console.log(sunriseObj);
   var offSet = sunriseObj.getTimezoneOffset() / 60;
   var offSetSec = offSet * 3600;
-  // var dateObj = new Date();
-  // var dateStr = generateDateString(dateObj);
   var sunriseStr = generateSunStrings(sunriseObj);
   var sunsetObj = times.sunset;
   var sunsetStr = generateSunStrings(sunsetObj);
@@ -568,7 +517,6 @@ function calculateTimes(timeObj, shabbat) {
   var sunsetSec = sunsetDateTimeInt - offSet;
 
   if (shabbat) {
-    // console.log("shabbat mode");
     var candleLightingOffset = 1080;
     var habdalaOffSet = 1200;
     var candleLightingSec = sunsetDateTimeInt - candleLightingOffset;
