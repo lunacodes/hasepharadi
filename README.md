@@ -8,7 +8,7 @@
 * [Issues](#issues)
     * [Resources & Loading](#resources--loading)
         * [Image Loading - Homepage](#image-loading---homepage)
-        * [Fonts Loading](#fonts-loading)
+        * [Fonts](#fonts)
     * [Accessibility](#accessibility)
         * [FontAwesome](#fontawesome)
     * [Plugins and Widgets](#plugins-and-widgets)
@@ -16,6 +16,9 @@
             * [Visual Composer](#visual-composer)
         * [wpDiscuz](#wpdiscuz)
         * [Events Calendar](#events-calendar)
+        * [Add Site Link to Copied Text - Script](#add-site-link-to-copied-text---script)
+        * [Google Maps API/Zemannim Widget](#google-maps-apizemannim-widget)
+        * [Mailchimp - Subscribe](#mailchimp---subscribe)
     * [Header & Nav Menus](#header--nav-menus)
         * [Nav Menus](#nav-menus)
     * [Content & Styling](#content--styling)
@@ -75,10 +78,11 @@ This project consists of the haSepharadi theme
     * Compress Images & Regenerate Thumbnails
     * Implement Upload Size Limit / Auto Compression / Scaling Reduction
 
-<a id="fonts-loading"></a>
-#### Fonts Loading
-* Clean up fonts loading - remove unnecessary fonts in fonts.scss
-    * Need to experiment with this first, to find out what's impacting what
+<a id="fonts"></a>
+#### Fonts
+* ~Clean up fonts loading - remove unnecessary fonts in fonts.scss~
+    * ~Need to experiment with this first, to find out what's impacting what~
+* What's a good (and user-friendly) way to get Google Fonts into Editor?
 
 <a id="accessibility"></a>
 ### Accessibility
@@ -112,6 +116,18 @@ This project consists of the haSepharadi theme
 <a id="events-calendar"></a>
 #### Events Calendar
 * Need solution for importing facebook events and displaying on an event calendar
+
+<a id="add-site-link-to-copied-text---script"></a>
+#### Add Site Link to Copied Text - Script
+* Find a more elegant way to implement this, wrt UI/UX
+
+<a id="google-maps-apizemannim-widget"></a>
+#### Google Maps API/Zemannim Widget
+* Asks for location multiple times, on some devices
+
+<a id="mailchimp---subscribe"></a>
+#### Mailchimp - Subscribe
+* can mc-validate.js be loaded locally instead?
 
 <a id="header--nav-menus"></a>
 ### Header & Nav Menus
