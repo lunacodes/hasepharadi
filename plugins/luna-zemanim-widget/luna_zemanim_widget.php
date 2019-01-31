@@ -137,8 +137,7 @@ function outputZemanim($dates) {
             <span id="zemanim_sunset">Sunset: <br></span>
         </div>
     </div>
-    <br><br>
-    <h6 class="widget_title">Shabbat Zemannim</h6>
+    <h4 class="widgettitle widget-title shabbat-title">Shabbat Zemannim</h4>
     <div id="shabbat_zemanim_container">
         <div id="shabbat_zemanim_display">
             <span id="shabbat_zemanim_date">Shabbat Times for <?php echo($shabbat) ?><br></span>

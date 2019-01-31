@@ -13,6 +13,8 @@
 4. Widgets
    - 4.1 Widgets Setup
    - 4.2 Author Avatars - Voices
+   - 4.3 Tribe Events
+   - 4.4 Zemannim
 5. Posts
    - 5.1 Site Layout
    - 5.2 Posts Layout
@@ -746,6 +748,12 @@ img.custom-logo {
 // Attempt to fix Flash of Unstyled Content
 .tribe-events-list-widget ol > li {
   list-style-type: none;
+}
+
+/* 4.4 Zemannim Widget
+============================*/
+.widgettitle.widget-title.shabbat-title {
+  margin: 20px 0 !important;
 }
 
 
