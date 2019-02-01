@@ -32,8 +32,7 @@
 6. Widgets
    - 6.1 Author Avatars
    - 6.2 Hide Widgets
-   - 6.3 Affiliate Links Test
-   - 6.4 Mailchimp Subscribe
+   - 6.3 Mailchimp Subscribe
 7. Custom User Meta
     - 7.1 Social Media
 8. Social Media Sharing Buttons
@@ -95,7 +94,7 @@ remove_action( 'genesis_header', 'genesis_do_header' );
 add_action('wp_enqueue_scripts', 'enqueue_topbar_scripts');
 function enqueue_topbar_scripts() {
     // wp_enqueue_style( 'topbar.css', CHILD_URL . '/css/topbar.css', array(), CHILD_THEME_VERSION );
-    wp_enqueue_script( 'topbar.js', CHILD_URL . '/js/topbar.js', array('jquery'), CHILD_THEME_VERSION );
+    wp_enqueue_script( 'topbar-js', CHILD_URL . '/js/topbar.js', array('jquery'), CHILD_THEME_VERSION );
 }
 
 /* 2.2 - Create Topbar
@@ -535,16 +534,8 @@ function display_author_avatars() { ?>
 //     }
 // }
 
-/* 6.3 - Affiliate Links Test
-============================*/
 
-// Why is this here?!?!
-add_shortcode( 'luna_affiliates', 'affiliate_links_widget' );
-function affiliate_links_widget() {
-    return "This is a test";
-}
-
-/* 6.3 - Affiliate Links Test
+/* 6.3 - Mailchimp Subscribe
 ============================*/
 
 add_action( 'wp_enqueue_scripts', 'enqueue_mailchimp_styles' );
