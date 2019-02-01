@@ -8,7 +8,7 @@ jQuery(document).ready(function function_name($) {
   });
 
   $(window).on('scroll',function() {
-     if($(this).width()>450){
+     if($(this).width()>250){
 
           /*Shrinking the header*/
           // if($(document).scrollTop() > $('#genesis-content').offset().top - 200){
