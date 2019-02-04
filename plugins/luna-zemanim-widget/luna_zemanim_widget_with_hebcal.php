@@ -1,16 +1,16 @@
 <?php
 /**
-* Plugin Name: Daily Zemanim
+* Plugin Name: Daily Zemanim With Hebcal
  * Plugin URI: https://lunacodesdesign.com/
  * Description: Displays Zemannim (times) according to Sepharadic tradition.
- *   Uses the ipapi and the Google Maps APIs for geographic information.
+ *   Uses the DB-IP API and the Google Maps API for geographic information.
  *   Uses the Sun-Calc Library (https://github.com/mourner/suncalc) for sunrise/sunset information.
- * Version: 1.3.1
+ * Version: 1.3.0
  * Author: Luna Lunapiena
  * Author URI: https://lunacodesdesign.com/
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain: luna_zemanim_widget_domain
+ * Text Domain: luna_zemanim_widget_hebcal_domain
  * Change Record:
  * ***********************************
  * 2018- - initial creation
@@ -32,22 +32,24 @@
 /**
  * Issues:
  * ***********************************
- * See README.md
+ * getGeoDetails: var state needs For Loop, instead of just being set to null
+ * improve code logic with promises?
+ * MAJOR: I NEED TO ADD DATE AND TIME CALCULATIONS FOR SATURDAY!!!
 */
 
-class Luna_Zemanim_Widget extends WP_Widget {
+class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 
   /**
    * Register widget with WordPress
    */
   public function __construct() {
     parent::__construct(
-      'luna_zemanim_widget', // Base ID
-      __('Daily Zemannim', 'luna_zemanim_widget_domain'), // Name
-      array( 'description' => __( "Displays Zemannim (times) according to Sepharadic tradition", 'luna_zemanim_widget_domain' ),  ) //Args
+      'luna_zemanim_widget_hebcal', // Base ID
+      __('Luna Zemannim Hebcal', 'luna_zemanim_widget_hebcal_domain'), // Name
+      array( 'description' => __( "Hebcal Adjustments", 'luna_zemanim_widget_hebcal_domain' ),  ) //Args
     );
 
-  add_action( 'widgets_init', function() {register_widget( 'Luna_Zemanim_Widget' ); } );
+  add_action( 'widgets_init', function() {register_widget( 'Luna_Zemanim_Widget_Hebcal' ); } );
   }
 
   /**
@@ -74,7 +76,8 @@ class Luna_Zemanim_Widget extends WP_Widget {
  * @param  object $date the date
  * @return string       The Hebrew rendition of the date.
  */
-function generateHebrewDate($date) {
+
+/*function generateHebrewDate($date) {
   $month = idate("m", $date);
   $day = idate("j", $date);
   $year = idate("Y", $date);
@@ -84,14 +87,15 @@ function generateHebrewDate($date) {
   $hebDateStr = mb_convert_encoding("$jd2", "utf-8", "ISO-8859-8");
   return $hebDateStr;
 }
-
+*/
 /**
  * Generates English and Hebrew dates for current day and upcoming Shabbath
  * @since 1.2.0
  *
  * @return array Contains English and Hebrew dates the current day and upcoming Shabbath
  */
-function generateDates() {
+
+/*function generateDates() {
   $today = date("F, j, Y");
   $todayInt = strtotime("now");
   $dayOfWeek = date("N");
@@ -111,13 +115,14 @@ function generateDates() {
   return $dates;
 }
 $dates = generateDates();
+*/
 
 /**
  * Pre-generates html structure for front-end display, prior to
  * any other code being run
  * @since 1.0.0
  */
-function outputZemanim($dates) {
+/*function outputZemanim($dates) {
   $today = $dates[0];
   $todayHeb = $dates[1];
   $shabbat = $dates[2];
@@ -135,7 +140,8 @@ function outputZemanim($dates) {
             <span id="zemanim_sunset">Sunset: <br></span>
         </div>
     </div>
-    <h4 class="widgettitle widget-title shabbat-title">Shabbat Zemannim</h4>
+    <br><br>
+    <h6 class="widget_title">Shabbat Zemannim</h6>
     <div id="shabbat_zemanim_container">
         <div id="shabbat_zemanim_display">
             <span id="shabbat_zemanim_date">Shabbat Times for <?php echo($shabbat) ?><br></span>
@@ -149,8 +155,9 @@ function outputZemanim($dates) {
     </div>
 
 <?php
-}
-outputZemanim($dates);
+}*/
+
+// outputZemanim($dates);
 ?>
 
 <script type="text/javascript" defer>
@@ -237,40 +244,46 @@ function getLatLngByGeo(position) {
 
 /**
  * Parses JSON object from DB-IP API, and passes
- * lat, long, and city strings to timesHelper()
- *
- * @since  1.3.1
+ * formatted `urlStr` to getLatLongByAddr()
  * @since  1.0.0
  */
 function getAddrDetailsByIp() {
-
-  // Get the user's ip & location info
-  let urlStr = 'https://ipapi.co/json/';
+  let urlStr = 'https://api.db-ip.com/v2/free/self';
   fetch(urlStr)
     .then(function(response) {
       return response.json();
     })
     .then(function(res) {
-      let ip = res["ip"];
+      let ip = res["ipAddress"];
+      let apiKey = 'AIzaSyDFrCM7Ao83pwu_avw-53o7cV0Ym7eLqpc';
       let city = res["city"];
-      let state = res["region_code"];
-      let country = res["country_name"];
-      let lat = res["latitude"];
-      let long = res["longitude"];
-      let cityStr = city + ", " + state;
-
-      timesHelper(lat, long, cityStr);
+      let state = res["stateProv"];
+      let stateAbbr = abbrRegion(state, 'abbr');
+      // console.log(stateAbbr);
+      let country = res["countryCode"];
+      // If we have something in State Abbr
+      state = "Test" + stateAbbr;
+      // console.log(state);
+      if (stateAbbr) {
+      //   // Replace the long state name w/ the abbreviation
+        // console.log("Pre:" + state);
+        state = stateAbbr;
+        // console.log("Post: " + state);
+      }
+      let address = city + "+" + state + "&components=" + country;
+      let urlBase = 'https://maps.googleapis.com/maps/api/geocode/json?';
+      let url = urlBase + "&address=" + address + "&key=" + apiKey;
+      // use regEx to replace all spaces with plus signs
+      let urlStr = url.replace(/\s+/g, "+");
+      getLatLongByAddr(urlStr);
     });
 }
 
 /**
  * Takes a string of the user's state and returns the two letter abbreviation
- * @deprecated 1.3.1 - see getAddrDetailsByIP()
- *
- * @since  1.2.0
- * @param  string  input  The full name of the user's city
- * @param  string  to     Determines which direction the function should convert in (ie state -> abbr | abbr -> state)
- * @return string       The abbreviation or expansion of the original string
+ * @param  {[type]} input [description]
+ * @param  {[type]} to    [description]
+ * @return {[type]}       [description]
  */
 function abbrRegion(input, to) {
     var states = [
@@ -377,11 +390,8 @@ function abbrRegion(input, to) {
 /**
  * Extracts lat & long from passed urlStr, and
  * sends to Google Maps Geocoding API via getGeoDetails
- *
- * @deprecated 1.3.1 see GetAddrDetailsByIP()
- * @since  1.0.0
  * @param  {string} urlStr [formatted string to plug into Google Maps API]
- *
+ * @since  1.0.0
  */
 function getLatLongByAddr(urlStr) {
   let url = urlStr;
@@ -393,7 +403,7 @@ function getLatLongByAddr(urlStr) {
       let data = new Array(res.results[0]);
       let lat = data[0].geometry.location.lat;
       let long = data[0].geometry.location.lng;
-      // getGeoDetails(lat, long);
+      getGeoDetails(lat, long);
     });
 }
 
@@ -428,7 +438,7 @@ function getGeoDetails(lat_crd, long_crd) {
       var cityStr =  city + ", " + state;
     }
 
-    timesHelper(lat, long, cityStr);
+    // timesHelper(lat, long, cityStr);
   });
 }
 
@@ -504,7 +514,7 @@ function generateTimeStrings(timeSet, shabbat) {
 
   var latestShemaStr = '<span id="zemanim_shema">Latest Shema: </span>' + calculateLatestShema(sunrise, sunset, offSet);
   var earliestMinhaStr = '<span id="zemanim_minha">Earliest Minḥa: </span>' + calculateEarliestMinha(sunrise, sunset, offSet);
-  var pelegHaMinhaStr = '<span id="zemanim_peleg">Peleḡ haMinḥa: </span>' + calculatePelegHaMinha(sunrise, sunset, offSet);
+  var pelegHaMinhaStr = '<span id="zemanim_peleg">Peleḡ HaMinḥa: </span>' + calculatePelegHaMinha(sunrise, sunset, offSet);
   var sunsetStr = '<span id="zemanim_sunset">Sunset: </span>' + unixTimestampToDate(sunsetDateTimeInt + offSet);
 
   if (shabbat) {
@@ -708,7 +718,7 @@ function displayShabbatTimes(timeSet, city) {
       $title = $instance[ 'title' ];
     }
     else {
-      $title = __( 'New title', 'luna_zemanim_widget_domain' );
+      $title = __( 'New title', 'luna_zemanim_widget_hebcal_domain' );
     }
 
   // Widget admin form
@@ -736,6 +746,6 @@ $instance['title'] = ( !empty( $new_instance['title'] ) ) ? strip_tags( $new_ins
 return $instance;
 }
 
-} // class Luna_Zemanim_Widget
+} // class Luna_Zemanim_Widget_Hebcal
 
-$lunacodes_widget = new Luna_Zemanim_Widget();
+$lunacodes_widget = new Luna_Zemanim_Widget_Hebcal();
