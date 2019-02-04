@@ -1659,6 +1659,7 @@ div.wpcf7 .wpcf7-submit:disabled {
    - 5.3 Author Bios
 6. Archive Pages
    - 6.1 Affiliate Links
+7. Back To Top Button
 
 ------------------------------------------------------*/
 /* 1. Top Bar & Header
@@ -2299,7 +2300,7 @@ span.category {
 .affiliate-img {
   margin: 0 0 4px; }
 
-/* 7. Media - Max-Width: 60em
+/* 7. Back To Top Button
 ============================*/
 #backToTop {
   background: #000;
@@ -2707,9 +2708,6 @@ span.category {
 
   .sub-menu-toggle {
     color: #ccc; }
-
-  .sidebar-primary {
-    border: 1px #border-style #000; }
 
   .featured-content .entry-header {
     max-width: 150px; } }
