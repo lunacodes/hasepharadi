@@ -25,6 +25,13 @@
     max-width: 700px;
   }
 
+  .featured-content .widget-wrap {
+    h4.entry-title {
+      max-height: 56px;
+      overflow: hidden;
+    }
+  }
+
   .sidebar-primary {
     // max-width: 220px;
     max-width: 260px;
