@@ -996,6 +996,7 @@ img.alignright,
   box-sizing: content-box;
   display: block;
   font-family: "Arial,Helvetica,sans-serif";
+  font-weight: 700;
   height: 30px;
   line-height: 30px;
   margin: 0 auto 20px;
@@ -1650,6 +1651,8 @@ div.wpcf7 .wpcf7-submit:disabled {
 4. Widgets
    - 4.1 Widgets Setup
    - 4.2 Author Avatars - Voices
+   - 4.3 Tribe Events
+   - 4.4 Zemannim
 5. Posts
    - 5.1 Site Layout
    - 5.2 Posts Layout
@@ -2167,6 +2170,11 @@ img.custom-logo {
 
 .tribe-events-list-widget ol > li {
   list-style-type: none; }
+
+/* 4.4 Zemannim Widget
+============================*/
+.widgettitle.widget-title.shabbat-title {
+  margin: 20px 0 !important; }
 
 /* 5. Posts
 =================================================*/

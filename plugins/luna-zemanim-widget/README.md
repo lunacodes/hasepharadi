@@ -11,22 +11,34 @@ Once this is done, it checks for Daylight Saving Times, and then uses a Javascri
 * [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro)
 * [SunCalc Library](https://github.com/mourner/suncalc)
 * [jQuery](https://jquery.com/)
-* [DB-IP - IP Geolocation API](https://db-ip.com/api/)
+<<<<<<< HEAD
+* [ipapi](https://ipapi.co/)
+<!-- * [DB-IP - IP Geolocation API](https://db-ip.com/api/) -->
 
 ## Changelog
-Version 1.3
-* Add docblocks and clean up code.
 
-Version 1.2
+### [1.3.1] - 2019-02-04
+* Add docblocks and clean up code.
+* Deprecate getLatLongByAddr()
+* Deprecate abbrRegion()
+* Fix bug with getting user address via IP
+    * Switched from IP-DB to [ipapi](https://ipapi.co/)
+
+Version 1.2.0
 * Combine Shabbath and Weekday times into single widget
 
-Version 1.1
+Version 1.1.0
 * N/A
 
 ## Future
 * Write unit tests
 * Rewrite as much code as possible into PHP.
     * Utilize the updated Hebcal SSL APIs, where relevant
+<<<<<<< HEAD
 * getGeoDetails: var state - immediately precedes if (state == null) - needs for loop, instead of just being set to null.
 * Incorporate Promises more?
+=======
+* getGeoDetails: Write an additional `for loop` in order to avoid `var state` defaulting to null.
+<!-- * Incorporate Promises more? -->
+>>>>>>> master
 * Add back-end/admin options for choosing transliteration style and which times to display back in

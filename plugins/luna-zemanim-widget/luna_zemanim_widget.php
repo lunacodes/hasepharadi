@@ -3,9 +3,9 @@
 * Plugin Name: Daily Zemanim
  * Plugin URI: https://lunacodesdesign.com/
  * Description: Displays Zemannim (times) according to Sepharadic tradition.
- *   Uses the DB-IP API and the Google Maps API for geographic information.
+ *   Uses the ipapi and the Google Maps APIs for geographic information.
  *   Uses the Sun-Calc Library (https://github.com/mourner/suncalc) for sunrise/sunset information.
- * Version: 1.3.0
+ * Version: 1.3.1
  * Author: Luna Lunapiena
  * Author URI: https://lunacodesdesign.com/
  * License: GPL3+
@@ -32,9 +32,7 @@
 /**
  * Issues:
  * ***********************************
- * getGeoDetails: var state needs For Loop, instead of just being set to null
- * improve code logic with promises?
- * MAJOR: I NEED TO ADD DATE AND TIME CALCULATIONS FOR SATURDAY!!!
+ * See README.md
 */
 
 class Luna_Zemanim_Widget extends WP_Widget {
@@ -137,8 +135,7 @@ function outputZemanim($dates) {
             <span id="zemanim_sunset">Sunset: <br></span>
         </div>
     </div>
-    <br><br>
-    <h6 class="widget_title">Shabbat Zemannim</h6>
+    <h4 class="widgettitle widget-title shabbat-title">Shabbat Zemannim</h4>
     <div id="shabbat_zemanim_container">
         <div id="shabbat_zemanim_display">
             <span id="shabbat_zemanim_date">Shabbat Times for <?php echo($shabbat) ?><br></span>
@@ -207,46 +204,40 @@ function getLatLngByGeo(position) {
 
 /**
  * Parses JSON object from DB-IP API, and passes
- * formatted `urlStr` to getLatLongByAddr()
+ * lat, long, and city strings to timesHelper()
+ *
+ * @since  1.3.1
  * @since  1.0.0
  */
 function getAddrDetailsByIp() {
-  let urlStr = 'https://api.db-ip.com/v2/free/self';
+
+  // Get the user's ip & location info
+  let urlStr = 'https://ipapi.co/json/';
   fetch(urlStr)
     .then(function(response) {
       return response.json();
     })
     .then(function(res) {
-      let ip = res["ipAddress"];
-      let apiKey = 'AIzaSyDFrCM7Ao83pwu_avw-53o7cV0Ym7eLqpc';
+      let ip = res["ip"];
       let city = res["city"];
-      let state = res["stateProv"];
-      let stateAbbr = abbrRegion(state, 'abbr');
-      // console.log(stateAbbr);
-      let country = res["countryCode"];
-      // If we have something in State Abbr
-      state = "Test" + stateAbbr;
-      // console.log(state);
-      if (stateAbbr) {
-      //   // Replace the long state name w/ the abbreviation
-        // console.log("Pre:" + state);
-        state = stateAbbr;
-        // console.log("Post: " + state);
-      }
-      let address = city + "+" + state + "&components=" + country;
-      let urlBase = 'https://maps.googleapis.com/maps/api/geocode/json?';
-      let url = urlBase + "&address=" + address + "&key=" + apiKey;
-      // use regEx to replace all spaces with plus signs
-      let urlStr = url.replace(/\s+/g, "+");
-      getLatLongByAddr(urlStr);
+      let state = res["region_code"];
+      let country = res["country_name"];
+      let lat = res["latitude"];
+      let long = res["longitude"];
+      let cityStr = city + ", " + state;
+
+      timesHelper(lat, long, cityStr);
     });
 }
 
 /**
  * Takes a string of the user's state and returns the two letter abbreviation
- * @param  {[type]} input [description]
- * @param  {[type]} to    [description]
- * @return {[type]}       [description]
+ * @deprecated 1.3.1 - see getAddrDetailsByIP()
+ *
+ * @since  1.2.0
+ * @param  string  input  The full name of the user's city
+ * @param  string  to     Determines which direction the function should convert in (ie state -> abbr | abbr -> state)
+ * @return string       The abbreviation or expansion of the original string
  */
 function abbrRegion(input, to) {
     var states = [
@@ -353,8 +344,11 @@ function abbrRegion(input, to) {
 /**
  * Extracts lat & long from passed urlStr, and
  * sends to Google Maps Geocoding API via getGeoDetails
- * @param  {string} urlStr [formatted string to plug into Google Maps API]
+ *
+ * @deprecated 1.3.1 see GetAddrDetailsByIP()
  * @since  1.0.0
+ * @param  {string} urlStr [formatted string to plug into Google Maps API]
+ *
  */
 function getLatLongByAddr(urlStr) {
   let url = urlStr;
@@ -366,7 +360,7 @@ function getLatLongByAddr(urlStr) {
       let data = new Array(res.results[0]);
       let lat = data[0].geometry.location.lat;
       let long = data[0].geometry.location.lng;
-      getGeoDetails(lat, long);
+      // getGeoDetails(lat, long);
     });
 }
 
@@ -477,7 +471,7 @@ function generateTimeStrings(timeSet, shabbat) {
 
   var latestShemaStr = '<span id="zemanim_shema">Latest Shema: </span>' + calculateLatestShema(sunrise, sunset, offSet);
   var earliestMinhaStr = '<span id="zemanim_minha">Earliest Minḥa: </span>' + calculateEarliestMinha(sunrise, sunset, offSet);
-  var pelegHaMinhaStr = '<span id="zemanim_peleg">Peleḡ HaMinḥa: </span>' + calculatePelegHaMinha(sunrise, sunset, offSet);
+  var pelegHaMinhaStr = '<span id="zemanim_peleg">Peleḡ haMinḥa: </span>' + calculatePelegHaMinha(sunrise, sunset, offSet);
   var sunsetStr = '<span id="zemanim_sunset">Sunset: </span>' + unixTimestampToDate(sunsetDateTimeInt + offSet);
 
   if (shabbat) {

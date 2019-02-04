@@ -3,10 +3,11 @@
 <!-- MarkdownTOC -->
 
 * [Changelog](#changelog)
-    * [\[1.1.71\] - 2019-01-19](#1171---2019-01-19)
-    * [\[1.1.61\] - 2019-01-19](#1161---2019-01-19)
+    * [\[1.7.1\] - 2019-01-30](#171---2019-01-30)
+    * [\[1.6.0\] - 2019-01-18](#160---2019-01-18)
 * [Issues](#issues)
     * [Resources & Loading](#resources--loading)
+        * [Flash of Unstyled Content](#flash-of-unstyled-content)
         * [Image Loading - Homepage](#image-loading---homepage)
         * [Fonts](#fonts)
     * [Accessibility](#accessibility)
@@ -14,6 +15,7 @@
     * [Plugins and Widgets](#plugins-and-widgets)
         * [Remove Unnecessary Plugins](#remove-unnecessary-plugins)
             * [Visual Composer](#visual-composer)
+        * [W3TC and Autoptimize HTML Minify Conflict](#w3tc-and-autoptimize-html-minify-conflict)
         * [wpDiscuz](#wpdiscuz)
         * [Events Calendar](#events-calendar)
         * [Add Site Link to Copied Text - Script](#add-site-link-to-copied-text---script)
@@ -36,7 +38,7 @@
 
 <!-- /MarkdownTOC -->
 
-This project stores my development work on the [haSepharadi](https://hasepharadi.com) website. Currently this involves a [theme rewrite](themes/haSepharadi) (shifting from the CityNews theme to the Genesis Framework), a [Zemannim plugin](plugins/luna-zemanim-widget), and an [Affiliate Links plugin](plugins/luna-affiliates-widget).
+This project stores my development work on the [haSepharadi](https://hasepharadi.com) website. Currently this involves the [haSepharadi theme](themes/haSepharadi) (built on the Genesis Framework), a [Zemannim plugin](plugins/luna-zemanim-widget), and an [Affiliate Links plugin](plugins/luna-affiliates-widget).
 
 Frameworks, Libraries, and APIs used:
 * [Genesis Framework](https://www.studiopress.com/features/)
@@ -49,7 +51,10 @@ This project consists of the haSepharadi theme
 ## Changelog
 
 <a id="1171---2019-01-19"></a>
-### [1.1.71] - 2019-01-19
+<!-- ### [1.1.71] - 2019-01-19 -->
+
+<a id="171---2019-01-30"></a>
+### [1.7.1] - 2019-01-30
 * Added and improved responsive styles for:
     * Category Template
     * Footer Widgets
@@ -62,7 +67,9 @@ This project consists of the haSepharadi theme
 * Next and Prev Post Links now display post titles
 
 <a id="1161---2019-01-19"></a>
-### [1.1.61] - 2019-01-19
+<!-- ### [1.1.61] - 2019-01-19 -->
+<a id="160---2019-01-18"></a>
+### [1.6.0] - 2019-01-18
 * Fixed About Author appears at bottom of homepage
 * Added Author Bios styling
 
@@ -71,6 +78,18 @@ This project consists of the haSepharadi theme
 
 <a id="resources--loading"></a>
 ### Resources & Loading
+
+<a id="flash-of-unstyled-content"></a>
+#### Flash of Unstyled Content
+* FOUC appears on visiting the site, in both mobile and deksktop.~
+    * Eliminated by turning off CSS Minify in w3tc, and CSS aggregation in Autoptimize
+        * Need to figure out which css file(s) to exclude from aggregation in Autoptimize
+            * On staging site: Disable Autoptimize and use W3TC to figure out what individual files are relevant
+            * If W3TC still won't list individual files, then turn both off, get a list of what's being loaded, and see what can be done
+    * ~Likely a conflict btwn W3TC and Autoptimize. See the following:~
+    * ~[Warning: bug in W3 Total Cache impacts Autoptimize](https://blog.futtta.be/2019/01/27/warning-bug-in-w3-total-cache-impacts-autoptimize/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+futtta_autoptimize+%28Frank+Goossens%27+blog++%C2%BB+autoptimize%29)~
+    * ~[WP Plugins Support Forum - Last update destroyed HTML minify settings](https://wordpress.org/support/topic/last-update-destroyed-html-minify-settings/)
+    * ~[WP Plugins Support Forum - Breaks Visual Composer]~
 
 <a id="image-loading---homepage"></a>
 #### Image Loading - Homepage
@@ -107,6 +126,10 @@ This project consists of the haSepharadi theme
     * Option 1: add new front-end and editor.css styles
     * Option 2: Replace with Beaver Builder
 * Replace the shortcodes either with the [[div] shortcode plugin](https://wordpress.org/plugins/div-shortcode/) or with [Beaver Builder](https://wordpress.org/plugins/beaver-builder-lite-version/)
+
+<a id="w3tc-and-autoptimize-html-minify-conflict"></a>
+#### W3TC and Autoptimize HTML Minify Conflict
+* If I change the Minifier on W3TC, does it resolve this?
 
 <a id="wpdiscuz"></a>
 #### wpDiscuz
@@ -201,6 +224,6 @@ Items marked in bold are high priority
 * Add earlier version history to Changelog
 * Update the separate repo for the Zemannim plugin
 
-[1.1.7]: https://github.com/lunacodes/hasepharadi/compare/master@%7B1day%7D...master
-[1.1.61]: https://github.com/lunacodes/hasepharadi/compare/master@%7B1day%7D...master
+[1.7.1]: https://github.com/lunacodes/hasepharadi/commit/804479078b534a6a182d7cdc7d036fe0c5183b17
+[1.6.0]: https://github.com/lunacodes/hasepharadi/commit/0751be9b5b4830b117c04d0ca80109e0fd83cba5
 
