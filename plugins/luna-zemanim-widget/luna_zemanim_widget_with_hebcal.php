@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: Daily Zemanim
+* Plugin Name: Daily Zemanim With Hebcal
  * Plugin URI: https://lunacodesdesign.com/
  * Description: Displays Zemannim (times) according to Sepharadic tradition.
  *   Uses the DB-IP API and the Google Maps API for geographic information.
@@ -10,7 +10,7 @@
  * Author URI: https://lunacodesdesign.com/
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain: luna_zemanim_widget_domain
+ * Text Domain: luna_zemanim_widget_hebcal_domain
  * Change Record:
  * ***********************************
  * 2018- - initial creation
@@ -37,19 +37,19 @@
  * MAJOR: I NEED TO ADD DATE AND TIME CALCULATIONS FOR SATURDAY!!!
 */
 
-class Luna_Zemanim_Widget extends WP_Widget {
+class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 
   /**
    * Register widget with WordPress
    */
   public function __construct() {
     parent::__construct(
-      'luna_zemanim_widget', // Base ID
-      __('Daily Zemannim', 'luna_zemanim_widget_domain'), // Name
-      array( 'description' => __( "Displays Zemannim (times) according to Sepharadic tradition", 'luna_zemanim_widget_domain' ),  ) //Args
+      'luna_zemanim_widget_hebcal', // Base ID
+      __('Luna Zemannim Hebcal', 'luna_zemanim_widget_hebcal_domain'), // Name
+      array( 'description' => __( "Hebcal Adjustments", 'luna_zemanim_widget_hebcal_domain' ),  ) //Args
     );
 
-  add_action( 'widgets_init', function() {register_widget( 'Luna_Zemanim_Widget' ); } );
+  add_action( 'widgets_init', function() {register_widget( 'Luna_Zemanim_Widget_Hebcal' ); } );
   }
 
   /**
@@ -76,7 +76,8 @@ class Luna_Zemanim_Widget extends WP_Widget {
  * @param  object $date the date
  * @return string       The Hebrew rendition of the date.
  */
-function generateHebrewDate($date) {
+
+/*function generateHebrewDate($date) {
   $month = idate("m", $date);
   $day = idate("j", $date);
   $year = idate("Y", $date);
@@ -86,14 +87,15 @@ function generateHebrewDate($date) {
   $hebDateStr = mb_convert_encoding("$jd2", "utf-8", "ISO-8859-8");
   return $hebDateStr;
 }
-
+*/
 /**
  * Generates English and Hebrew dates for current day and upcoming Shabbath
  * @since 1.2.0
  *
  * @return array Contains English and Hebrew dates the current day and upcoming Shabbath
  */
-function generateDates() {
+
+/*function generateDates() {
   $today = date("F, j, Y");
   $todayInt = strtotime("now");
   $dayOfWeek = date("N");
@@ -113,13 +115,14 @@ function generateDates() {
   return $dates;
 }
 $dates = generateDates();
+*/
 
 /**
  * Pre-generates html structure for front-end display, prior to
  * any other code being run
  * @since 1.0.0
  */
-function outputZemanim($dates) {
+/*function outputZemanim($dates) {
   $today = $dates[0];
   $todayHeb = $dates[1];
   $shabbat = $dates[2];
@@ -152,8 +155,9 @@ function outputZemanim($dates) {
     </div>
 
 <?php
-}
-outputZemanim($dates);
+}*/
+
+// outputZemanim($dates);
 ?>
 
 <script type="text/javascript" defer>
@@ -434,7 +438,7 @@ function getGeoDetails(lat_crd, long_crd) {
       var cityStr =  city + ", " + state;
     }
 
-    timesHelper(lat, long, cityStr);
+    // timesHelper(lat, long, cityStr);
   });
 }
 
@@ -714,7 +718,7 @@ function displayShabbatTimes(timeSet, city) {
       $title = $instance[ 'title' ];
     }
     else {
-      $title = __( 'New title', 'luna_zemanim_widget_domain' );
+      $title = __( 'New title', 'luna_zemanim_widget_hebcal_domain' );
     }
 
   // Widget admin form
@@ -742,6 +746,6 @@ $instance['title'] = ( !empty( $new_instance['title'] ) ) ? strip_tags( $new_ins
 return $instance;
 }
 
-} // class Luna_Zemanim_Widget
+} // class Luna_Zemanim_Widget_Hebcal
 
-$lunacodes_widget = new Luna_Zemanim_Widget();
+$lunacodes_widget = new Luna_Zemanim_Widget_Hebcal();
