@@ -122,7 +122,7 @@ $dates = generateDates();
  * any other code being run
  * @since 1.0.0
  */
-/*function outputZemanim($dates) {
+function outputZemanimWithHebcal($dates) {
   $today = $dates[0];
   $todayHeb = $dates[1];
   $shabbat = $dates[2];
@@ -155,9 +155,9 @@ $dates = generateDates();
     </div>
 
 <?php
-}*/
+}
 
-// outputZemanim($dates);
+outputZemanim($dates);
 ?>
 
 <script type="text/javascript" defer>
@@ -178,7 +178,7 @@ var sz_habdala = document.getElementById("shabbat_zemanim_habdala");
     console.log("Shabbat URL: " + urlStr);
     fetch(urlStr)
       .then(function(response) {
-        console.log("Response:" + response);
+        // console.log("Response:" + response);
         // console.log(response.json());
         return response.json();
       })
@@ -194,7 +194,7 @@ var sz_habdala = document.getElementById("shabbat_zemanim_habdala");
         let perashaHeb = data["items"][3]["hebrew"];
         console.log("Perasha Heb: " + perashaHeb);
         let perashaEng = data["items"][3]["title"];
-        console.log("Perasha: Eng " + perashaEng);
+        console.log("Perasha Eng: " + perashaEng);
 
         // let ip = res["ipAddress"];
         // let apiKey = 'AIzaSyDFrCM7Ao83pwu_avw-53o7cV0Ym7eLqpc';
@@ -203,8 +203,190 @@ var sz_habdala = document.getElementById("shabbat_zemanim_habdala");
         // let stateAbbr = abbrRegion(state, 'abbr');
         // // console.log(stateAbbr);
         // let country = res["countryCode"];
+        // console.trace();
+        let a2s = ashkiToSeph('Achrei Mot', 'perasha');
+        console.log("Ashki to Seph: " + a2s);
+        let perashaStr = "Perasha " + a2s;
+        console.log(perashaStr);
   });
 }
+
+function displayZemannimHebCal() {
+
+}
+
+function ashkiToSeph(input, type) {
+  /* Consider either using a second variable for Perasha vs Holiday. Or separating them into 2 holidays... or just don't bother
+  for now type can either be `perasha` or `holiday`*/
+  // console.log(ashkiToSeph);
+  var perashaList = [
+    ["Parashat", "Perasha"],
+    ["Achrei Mot", "ʾAḥare Mot"],
+    ["Balak", "Balaq"],
+    ["Bamidbar", "Bemiḏbar"],
+    ["Bechukotai", "Beḥuqqotay"],
+    ["Beha'alotcha", "Behaʿalotekha"],
+    ["Behar", "Behar"],
+    ["Bereshit", "Bereshit"],
+    ["Beshalach", "Beshallaḥ"],
+    ["Bo", "Bo"],
+    ["Chayei Sara", "Ḥayye Sara"],
+    ["Chukat", "Ḥuqqat"],
+    ["Devarim", "Deḇarim"],
+    ["Eikev", "ʿEqeḇ"],
+    ["Emor", "ʾEmor"],
+    ["Ha'Azinu", "HaʾAzinu"],
+    ["Kedoshim", "Qeḏoshim"],
+    ["Ki Tavo", "Ki-Taḇo"],
+    ["Ki Teitzei", "Ki-Teṣe"],
+    ["Ki Tisa", "Ki Tisa"],
+    ["Korach", "Qoraḥ"],
+    ["Lech-Lecha", "Lekh-Lekha"],
+    ["Masei", "Masʿe"],
+    ["Matot", "Maṭṭot"],
+    ["Metzora", "Meṣoraʿ"],
+    ["Miketz", "Miqqeṣ"],
+    ["Mishpatim", "Mishpaṭim"],
+    ["Nasso", "Naso"],
+    ["Nitzavim", "Niṣṣaḇim"],
+    ["Noach", "Noaḥ"],
+    ["Pekudei", "Pequḏe"],
+    ["Pinchas", "Pineḥas"],
+    ["Re'eh", "Reʾe"],
+    ["Sh'lach", "Shelaḥ-Lekha"],
+    ["Shemot", "Shemot"],
+    ["Shmini", "Shemini"],
+    ["Shoftim", "Shopheṭim"],
+    ["Tazria", "Tazriaʿ"],
+    ["Terumah", "Teruma"],
+    ["Tetzaveh", "Teṣavve"],
+    ["Toldot", "Toleḏot"],
+    ["Tzav", "Ṣav"],
+    ["Vaera", "VaʾEra"],
+    ["Vaetchanan", "VaʾEtḥannan"],
+    ["Vayakhel", "VayYaqhel"],
+    ["Vayechi", "VaYeḥi"],
+    ["Vayeilech", "VayYelekh"],
+    ["Vayera", "VayYera"],
+    ["Vayeshev", "VayYesheḇ"],
+    ["Vayetzei", "VayYeṣe"],
+    ["Vayigash", "VayYiggash"],
+    ["Vayikra", "VayYiqra"],
+    ["Vayishlach", "VayYishlaḥ"],
+    ["Vezot Haberakhah", "VeZot HabBerakha"],
+    ["Yitro", "Yitro"],
+    ["Asara B'Tevet", "ʿAsara Beṭeḇet"]
+  ];
+
+  var holidays = [
+    ['Vus', 'Yitro'],
+    ['Vus', 'ʿAsara Beṭeḇet'],
+    ['Vus', 'Haḏlaqat Nerot'],
+    ['Vus', 'Ḥanukka'],
+    ['Vus', 'Ḥanukka: Ner I'],
+    ['Vus', 'Ḥanukka: Ner II'],
+    ['Vus', 'Ḥanukka: Ner III'],
+    ['Vus', 'Ḥanukka: Ner IV'],
+    ['Vus', 'Ḥanukka: Ner V'],
+    ['Vus', 'Ḥanukka: Ner VI'],
+    ['Vus', 'Ḥanukka: Ner VII'],
+    ['Vus', 'Ḥanukka: Ner VIII'],
+    ['Vus', 'Ḥanukka: Yom VIII '],
+    ['Vus', 'ʿOmer'],
+    ['Vus', 'ʿEreḇ Pesaḥ'],
+    ['Vus', 'ʿEreḇ Purim'],
+    ['Vus', 'ʿEreḇ Rosh Hashana'],
+    ['Vus', 'ʿEreḇ Shaḇuʿot'],
+    ['Vus', 'ʿEreḇ Simḥat Torah'],
+    ['Vus', 'ʿEreḇ Sukot'],
+    ['Vus', 'ʿEreḇ Tishʿa Beʾaḇ'],
+    ['Vus', 'ʿEreḇ Yom HakKippurim'],
+    ['Vus', 'Haḇḏala'],
+    ['Vus', 'Lag LaʿOmer'],
+    ['Vus', 'Seliḥot'],
+    ['Vus', 'Pesaḥ'],
+    ['Vus', 'Pesaḥ Yom I'],
+    ['Vus', 'Pesaḥ Yom II'],
+    ['Vus', 'Pesaḥ (Ḥol HaMoʿḏ) Yom II'],
+    ['Vus', 'Pesaḥ (Ḥol HaMoʿḏ) Yom III'],
+    ['Vus', 'Pesaḥ (Ḥol HaMoʿḏ) Yom IV'],
+    ['Vus', 'Pesaḥ Sheni'],
+    ['Vus', 'Pesaḥ (Ḥol HaMoʿḏ) Yom V'],
+    ['Vus', 'Pesaḥ (Ḥol HaMoʿḏ) Yom VI'],
+    ['Vus', 'Pesaḥ Yom VII'],
+    ['Vus', 'Pesaḥ Yom VIII'],
+    ['Vus', 'Purim'],
+    ['Vus', 'Purim Qaṭan'],
+    ['Vus', 'Rosh Ḥoḏesh'],
+    ['Vus', 'ʾAḏar'],
+    ['Vus', 'ʾAḏar I'],
+    ['Vus', 'ʾAḏar II'],
+    ['Vus', 'ʾAḇ'],
+    ['Vus', 'Marḥeshvan'],
+    ['Vus', 'ʾElul'],
+    ['Vus', 'ʾIyayr'],
+    ['Vus', 'Kislev'],
+    ['Vus', 'Nisan'],
+    ['Vus', 'Sheḇaṭ'],
+    ['Vus', 'Sivan'],
+    ['Vus', 'Tamuz'],
+    ['Vus', 'Ṭeḇet'],
+    ['Vus', 'Rosh Hashana'],
+    ['Vus', 'Rosh Hashana Yom I'],
+    ['Vus', 'Rosh Hashana Yom II'],
+    ['Vus', 'Shabbat Ḥazon'],
+    ['Vus', 'Shabbat HaḤoḏesh'],
+    ['Vus', 'Shabbat Haggaḏol'],
+    ['Vus', 'Shabbat Maḥar Ḥoḏesh'],
+    ['Vus', 'Shabbat Naḥamu'],
+    ['Vus', 'Shabbat Para'],
+    ['Vus', 'Shabbat Rosh Ḥoḏesh'],
+    ['Vus', 'Shabbat Sheqalim'],
+    ['Vus', 'Shabbat Shuḇa'],
+    ['Vus', 'Shabbat Zakhor'],
+    ['Vus', 'Shaḇuʿot'],
+    ['Vus', 'Shaḇuʿot Yom I'],
+    ['Vus', 'Shaḇuʿot Yom II'],
+    ['Vus', 'Shemini ʿAṣeret'],
+    ['Vus', 'Shushan Purim'],
+    ['Vus', 'Sigd'],
+    ['Vus', 'Simḥat Tora'],
+    ['Vus', 'Sukkot'],
+    ['Vus', 'Sukkot Yom I'],
+    ['Vus', 'Sukkot Yom II'],
+    ['Vus', 'Sukkot (Ḥol HaMoʿḏ) Yom II'],
+    ['Vus', 'Sukkot (Ḥol HaMoʿḏ) Yom III'],
+    ['Vus', 'Sukkot (Ḥol HaMoʿḏ) Yom IV'],
+    ['Vus', 'Sukkot (Ḥol HaMoʿḏ) Yom V'],
+    ['Vus', 'Sukkot (Ḥol HaMoʿḏ) Yom VI'],
+    ['Vus', 'Sukkot (Hoshaʿna Rabba) Yom VII'],
+    ['Vus', 'Taʿanit Bekhorot'],
+    ['Vus', 'Taʿanit ʾEster'],
+    ['Vus', 'Tishʿa Beʾaḇ'],
+    ['Vus', 'Ṭu Beʾaḇ'],
+    ['Vus', 'Ṭu Bishḇaṭ'],
+    ['Vus', 'Ṭu Bishḇaṭ'],
+    ['Vus', 'Ṣom Geḏalya'],
+    ['Vus', 'Ṣom Tamuz'],
+    ['Vus', 'Yom Haʿaṣmaʾut'],
+    ['Vus', 'Yom Hashoʾa'],
+    ['Vus', 'Yom Hazzikkaron'],
+    ['Vus', 'Yom HakKippurim'],
+    ['Vus', 'Yom Yerushalayim'],
+    ['Vus', 'Yom HaʿAliya'],
+  ];
+
+  var i; // Reusable loop variable
+    input = input.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+    for (i = 0; i < perashaList.length; i++) {
+      if (perashaList[i][0] == input) {
+        console.log("ashkiToSeph: " + perashaList[i][1]);
+        // console.trace();
+        return (perashaList[i][1]);
+      }
+    }
+}
+
 
 /**
  * Requests location permission from user for HTML5 Geolocation API,
@@ -212,6 +394,7 @@ var sz_habdala = document.getElementById("shabbat_zemanim_habdala");
  * @return {(number|Array)} [lat, long] coordinates
  */
 function getLocation() {
+  console.log("Started w/ getLocation");
   var options = {
     enableHighAccuracy: true,
     maximumAge: 0
@@ -220,11 +403,15 @@ function getLocation() {
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   zemanim.innerHtml = "Please enable location services to display the most up-to-date Zemanim";
-        getAddrDetailsByIp();
+      console.log("getLocation -> getAddrDetailsByIp");
+      // console.trace();
+      getAddrDetailsByIp();
   }
 
   if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getLatLngByGeo, error, options);
+    // console.trace();
+    // console.log("Getting addr by geolocation");
+    navigator.geolocation.getCurrentPosition(getLatLngByGeo, error, options);
     }
 }
 
@@ -235,6 +422,9 @@ function getLocation() {
  * @return {[type]}          [description]
  */
 function getLatLngByGeo(position) {
+  console.log("getLatLngByGeo");
+  // console.log("Trace Test: ");
+  // console.trace();
   var pos = position;
   var lat = pos.coords.latitude;
   var long = pos.coords.longitude;
@@ -244,148 +434,37 @@ function getLatLngByGeo(position) {
 
 /**
  * Parses JSON object from DB-IP API, and passes
- * formatted `urlStr` to getLatLongByAddr()
+ * lat, long, and city strings to timesHelper()
+ *
+ * @since  1.3.1
  * @since  1.0.0
  */
 function getAddrDetailsByIp() {
-  let urlStr = 'https://api.db-ip.com/v2/free/self';
+  // console.log("getAddrDetailsByIp");
+  // console.trace();
+  // Get the user's ip & location info
+  let urlStr = 'https://ipapi.co/json/';
   fetch(urlStr)
     .then(function(response) {
       return response.json();
     })
     .then(function(res) {
-      let ip = res["ipAddress"];
-      let apiKey = 'AIzaSyDFrCM7Ao83pwu_avw-53o7cV0Ym7eLqpc';
+      // let ip = res["ip"];
       let city = res["city"];
-      let state = res["stateProv"];
-      let stateAbbr = abbrRegion(state, 'abbr');
-      // console.log(stateAbbr);
-      let country = res["countryCode"];
-      // If we have something in State Abbr
-      state = "Test" + stateAbbr;
-      // console.log(state);
-      if (stateAbbr) {
-      //   // Replace the long state name w/ the abbreviation
-        // console.log("Pre:" + state);
-        state = stateAbbr;
-        // console.log("Post: " + state);
-      }
-      let address = city + "+" + state + "&components=" + country;
-      let urlBase = 'https://maps.googleapis.com/maps/api/geocode/json?';
-      let url = urlBase + "&address=" + address + "&key=" + apiKey;
-      // use regEx to replace all spaces with plus signs
-      let urlStr = url.replace(/\s+/g, "+");
-      getLatLongByAddr(urlStr);
+      let state = res["region_code"];
+      // let country = res["country_name"];
+      let lat = res["latitude"];
+      let long = res["longitude"];
+      let tzid = res ["timezone"];
+      let cityStr = city + ", " + state;
+
+      // console.log("getAddrDetailsByIp -> timesHelper");
+      // timesHelper(lat, long, cityStr);
+      console.log("getAddrDetailsByIp -> hebCalJS");
+      hebCalJS(lat, long, tzid);
     });
 }
 
-/**
- * Takes a string of the user's state and returns the two letter abbreviation
- * @param  {[type]} input [description]
- * @param  {[type]} to    [description]
- * @return {[type]}       [description]
- */
-function abbrRegion(input, to) {
-    var states = [
-        ['Alabama', 'AL'],
-        ['Alaska', 'AK'],
-        ['American Samoa', 'AS'],
-        ['Arizona', 'AZ'],
-        ['Arkansas', 'AR'],
-        ['Armed Forces Americas', 'AA'],
-        ['Armed Forces Europe', 'AE'],
-        ['Armed Forces Pacific', 'AP'],
-        ['California', 'CA'],
-        ['Colorado', 'CO'],
-        ['Connecticut', 'CT'],
-        ['Delaware', 'DE'],
-        ['District Of Columbia', 'DC'],
-        ['Florida', 'FL'],
-        ['Georgia', 'GA'],
-        ['Guam', 'GU'],
-        ['Hawaii', 'HI'],
-        ['Idaho', 'ID'],
-        ['Illinois', 'IL'],
-        ['Indiana', 'IN'],
-        ['Iowa', 'IA'],
-        ['Kansas', 'KS'],
-        ['Kentucky', 'KY'],
-        ['Louisiana', 'LA'],
-        ['Maine', 'ME'],
-        ['Marshall Islands', 'MH'],
-        ['Maryland', 'MD'],
-        ['Massachusetts', 'MA'],
-        ['Michigan', 'MI'],
-        ['Minnesota', 'MN'],
-        ['Mississippi', 'MS'],
-        ['Missouri', 'MO'],
-        ['Montana', 'MT'],
-        ['Nebraska', 'NE'],
-        ['Nevada', 'NV'],
-        ['New Hampshire', 'NH'],
-        ['New Jersey', 'NJ'],
-        ['New Mexico', 'NM'],
-        ['New York', 'NY'],
-        ['North Carolina', 'NC'],
-        ['North Dakota', 'ND'],
-        ['Northern Mariana Islands', 'NP'],
-        ['Ohio', 'OH'],
-        ['Oklahoma', 'OK'],
-        ['Oregon', 'OR'],
-        ['Pennsylvania', 'PA'],
-        ['Puerto Rico', 'PR'],
-        ['Rhode Island', 'RI'],
-        ['South Carolina', 'SC'],
-        ['South Dakota', 'SD'],
-        ['Tennessee', 'TN'],
-        ['Texas', 'TX'],
-        ['US Virgin Islands', 'VI'],
-        ['Utah', 'UT'],
-        ['Vermont', 'VT'],
-        ['Virginia', 'VA'],
-        ['Washington', 'WA'],
-        ['West Virginia', 'WV'],
-        ['Wisconsin', 'WI'],
-        ['Wyoming', 'WY'],
-    ];
-
-    // So happy that Canada and the US have distinct abbreviations
-    var provinces = [
-        ['Alberta', 'AB'],
-        ['British Columbia', 'BC'],
-        ['Manitoba', 'MB'],
-        ['New Brunswick', 'NB'],
-        ['Newfoundland', 'NF'],
-        ['Northwest Territory', 'NT'],
-        ['Nova Scotia', 'NS'],
-        ['Nunavut', 'NU'],
-        ['Ontario', 'ON'],
-        ['Prince Edward Island', 'PE'],
-        ['Quebec', 'QC'],
-        ['Saskatchewan', 'SK'],
-        ['Yukon', 'YT'],
-    ];
-
-    var regions = states.concat(provinces);
-
-    var i; // Reusable loop variable
-    if (to == 'abbr') {
-        input = input.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
-        for (i = 0; i < regions.length; i++) {
-            if (regions[i][0] == input) {
-                // console.log(regions[i][1])
-                return (regions[i][1]);
-            }
-        }
-    } else if (to == 'name') {
-        input = input.toUpperCase();
-        for (i = 0; i < regions.length; i++) {
-            if (regions[i][1] == input) {
-                return (regions[i][0]);
-            }
-        }
-    }
-}
 
 /**
  * Extracts lat & long from passed urlStr, and
@@ -394,6 +473,7 @@ function abbrRegion(input, to) {
  * @since  1.0.0
  */
 function getLatLongByAddr(urlStr) {
+  console.log("getLatLongByAddr");
   let url = urlStr;
   fetch(url)
     .then((response) => {
@@ -416,6 +496,7 @@ function getLatLongByAddr(urlStr) {
  * @return {[string]} cityStr [user's City, State]
  */
 function getGeoDetails(lat_crd, long_crd) {
+  console.log("getGeoDetails");
   let lat = lat_crd;
   let long = long_crd;
   var point = new google.maps.LatLng(lat, long);        new google.maps.Geocoder().geocode({'latLng': point}, function (res, status) {
@@ -438,7 +519,8 @@ function getGeoDetails(lat_crd, long_crd) {
       var cityStr =  city + ", " + state;
     }
 
-    // timesHelper(lat, long, cityStr);
+    console.log("getGeoDetails -> timesHelper");
+    timesHelper(lat, long, cityStr);
   });
 }
 
@@ -448,6 +530,7 @@ function getGeoDetails(lat_crd, long_crd) {
  * @return {int}   1-digit version of int `x` that was passed in
  */
 function formatTime(x) {
+  console.log("formatTime");
   var reformattedTime = x.toString();
   reformattedTime = ("0" + x).slice(-2);
   return reformattedTime;
@@ -459,6 +542,7 @@ function formatTime(x) {
  * @return {string}   Time String in Y-M-D-H-M
  */
 function generateSunStrings(timeObj) {
+  console.log("generateSunStrings");
   var year = timeObj.getFullYear();
   var month = formatTime(timeObj.getMonth() + 1);
   var day = formatTime(timeObj.getDate());
@@ -476,6 +560,7 @@ function generateSunStrings(timeObj) {
  * @return {string}   The Date in a string
  */
 function generateDateString(timeObj) {
+  console.log("generateDateString");
   var monthInt = timeObj.getMonth();
   var monthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var month = monthList[monthInt];
@@ -488,7 +573,7 @@ function generateDateString(timeObj) {
 function timesHelper(lat, long, city) {
   var cityStr = city;
   var todayTimesObj = SunCalc.getTimes(new Date(), lat, long);
-  var shabbatFeed = '<?php echo("$dates[4]"); ?>';
+  var shabbatFeed = '<?php // echo("$dates[4]"); ?>';
   var shabbatHelperStr = shabbatFeed.substr(0, 19);
   var shabbatHelper = new Date(shabbatHelperStr);
   var shabbatTimesObj = SunCalc.getTimes(new Date(shabbatHelperStr), lat, long);
@@ -497,7 +582,9 @@ function timesHelper(lat, long, city) {
   var todayStrSet = generateTimeStrings(todayTimes, false);
   var shabbatStrSet = generateTimeStrings(shabbatTimes, true);
 
+  console.log("timesHelper -> displayTimes");
   displayTimes(todayStrSet, cityStr);
+  console.log("timesHelper -> displayShabbatTimes");
   displayShabbatTimes(shabbatStrSet, cityStr);
 }
 
@@ -507,6 +594,7 @@ function timesHelper(lat, long, city) {
  * @return {string}   Time String in Y-M-D-H-M
  */
 function generateTimeStrings(timeSet, shabbat) {
+  console.log("generateTimeStrings");
   var sunrise = timeSet[0];
   var sunset = timeSet[1];
   var offSet = timeSet[2];
@@ -540,6 +628,7 @@ function generateTimeStrings(timeSet, shabbat) {
  * @return {array}         An array of time value integers
  */
 function calculateTimes(timeObj, shabbat) {
+  console.log("calculateTimes");
   var times = timeObj;
   var sunriseObj = times.sunrise;
   var offSet = sunriseObj.getTimezoneOffset() / 60;
@@ -600,6 +689,7 @@ function unixTimestampToDate(timestamp) {
  * @since  1.0.0
  */
 function calculateLatestShema(sunriseSec, sunsetSec, offSetSec) {
+  console.log("calculateLatestShema");
   var halakhicHour = Math.abs((sunsetSec - sunriseSec) / 12);
   var shemaInSeconds = sunriseSec + (halakhicHour * 3) + offSetSec;
   var latestShema = unixTimestampToDate(shemaInSeconds);
@@ -616,6 +706,7 @@ function calculateLatestShema(sunriseSec, sunsetSec, offSetSec) {
  * @see unixTimestampToDate
  */
 function calculateEarliestMinha(sunriseSec, sunsetSec, offSetSec) {
+  console.log("calculateEarliestMinha");
   var halakhicHour = (sunsetSec - sunriseSec) / 12;
   var minhaInSeconds = sunriseSec + (halakhicHour * 6.5) + offSetSec;
   var earliestMinha = unixTimestampToDate(minhaInSeconds);
@@ -632,6 +723,7 @@ function calculateEarliestMinha(sunriseSec, sunsetSec, offSetSec) {
  * @see unixTimestampToDate
  */
 function calculatePelegHaMinha(sunriseSec, sunsetSec, offSetSec) {
+  console.log("calculatePelegHaMinha");
   var halakhicHour = (sunsetSec - sunriseSec) / 12;
   var minhaInSeconds = sunsetSec - (halakhicHour * 1.25) + offSetSec;
   var pelegHaMinha = unixTimestampToDate(minhaInSeconds);
@@ -691,11 +783,17 @@ function displayShabbatTimes(timeSet, city) {
   // Make sure we're ready to run our script!
   jQuery(document).ready(function($) {
     getLocation();
-    var lat = 40.7446;
-    var long = -73.9345;
-    var tzid = 'America/New_York';
+    // var lat = 40.7446;
+    // var long = -73.9345;
+    // var tzid = 'America/New_York';
+    // var hebcalRun = hebCalJS(lat, long, tzid);
 
-    hebCalJS(lat, long, tzid);
+    // function stackTracer(fun) {
+    //   var stack = console.trace(fun);
+    // }
+    // stackTracer(hebcalRun);
+    // console.log(stackTrace);
+
   });
 
 </script>

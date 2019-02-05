@@ -168,15 +168,15 @@ var sz_habdala = document.getElementById("shabbat_zemanim_habdala");
 
   function hebCalJS(lat, long, tzid) {
     let urlStr = 'https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&nx=on&ss=on&mod=off&s=on&c=on&m=20&b=18&o=on&D=on&year=now&month=2&i=off&geo=pos' + '&latitude=' + lat + '&longitude=' + long + '&tzid=' + tzid;
-    console.log("Shabbat URL: " + urlStr);
+    // console.log("Shabbat URL: " + urlStr);
     fetch(urlStr)
       .then(function(response) {
-        console.log("Response:" + response);
+        // console.log("Response:" + response);
         // console.log(response.json());
         return response.json();
       })
       .then(function(res) {
-        console.log(res);
+        // console.log(res);
         let data = res;
         console.log("Data: " + data);
         let name = data["title"];
@@ -263,116 +263,6 @@ function getAddrDetailsByIp() {
     });
 }
 
-/**
- * Takes a string of the user's state and returns the two letter abbreviation
- * @deprecated 1.3.1 - see getAddrDetailsByIP()
- *
- * @since  1.2.0
- * @param  string  input  The full name of the user's city
- * @param  string  to     Determines which direction the function should convert in (ie state -> abbr | abbr -> state)
- * @return string       The abbreviation or expansion of the original string
- */
-function abbrRegion(input, to) {
-    var states = [
-        ['Alabama', 'AL'],
-        ['Alaska', 'AK'],
-        ['American Samoa', 'AS'],
-        ['Arizona', 'AZ'],
-        ['Arkansas', 'AR'],
-        ['Armed Forces Americas', 'AA'],
-        ['Armed Forces Europe', 'AE'],
-        ['Armed Forces Pacific', 'AP'],
-        ['California', 'CA'],
-        ['Colorado', 'CO'],
-        ['Connecticut', 'CT'],
-        ['Delaware', 'DE'],
-        ['District Of Columbia', 'DC'],
-        ['Florida', 'FL'],
-        ['Georgia', 'GA'],
-        ['Guam', 'GU'],
-        ['Hawaii', 'HI'],
-        ['Idaho', 'ID'],
-        ['Illinois', 'IL'],
-        ['Indiana', 'IN'],
-        ['Iowa', 'IA'],
-        ['Kansas', 'KS'],
-        ['Kentucky', 'KY'],
-        ['Louisiana', 'LA'],
-        ['Maine', 'ME'],
-        ['Marshall Islands', 'MH'],
-        ['Maryland', 'MD'],
-        ['Massachusetts', 'MA'],
-        ['Michigan', 'MI'],
-        ['Minnesota', 'MN'],
-        ['Mississippi', 'MS'],
-        ['Missouri', 'MO'],
-        ['Montana', 'MT'],
-        ['Nebraska', 'NE'],
-        ['Nevada', 'NV'],
-        ['New Hampshire', 'NH'],
-        ['New Jersey', 'NJ'],
-        ['New Mexico', 'NM'],
-        ['New York', 'NY'],
-        ['North Carolina', 'NC'],
-        ['North Dakota', 'ND'],
-        ['Northern Mariana Islands', 'NP'],
-        ['Ohio', 'OH'],
-        ['Oklahoma', 'OK'],
-        ['Oregon', 'OR'],
-        ['Pennsylvania', 'PA'],
-        ['Puerto Rico', 'PR'],
-        ['Rhode Island', 'RI'],
-        ['South Carolina', 'SC'],
-        ['South Dakota', 'SD'],
-        ['Tennessee', 'TN'],
-        ['Texas', 'TX'],
-        ['US Virgin Islands', 'VI'],
-        ['Utah', 'UT'],
-        ['Vermont', 'VT'],
-        ['Virginia', 'VA'],
-        ['Washington', 'WA'],
-        ['West Virginia', 'WV'],
-        ['Wisconsin', 'WI'],
-        ['Wyoming', 'WY'],
-    ];
-
-    // So happy that Canada and the US have distinct abbreviations
-    var provinces = [
-        ['Alberta', 'AB'],
-        ['British Columbia', 'BC'],
-        ['Manitoba', 'MB'],
-        ['New Brunswick', 'NB'],
-        ['Newfoundland', 'NF'],
-        ['Northwest Territory', 'NT'],
-        ['Nova Scotia', 'NS'],
-        ['Nunavut', 'NU'],
-        ['Ontario', 'ON'],
-        ['Prince Edward Island', 'PE'],
-        ['Quebec', 'QC'],
-        ['Saskatchewan', 'SK'],
-        ['Yukon', 'YT'],
-    ];
-
-    var regions = states.concat(provinces);
-
-    var i; // Reusable loop variable
-    if (to == 'abbr') {
-        input = input.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
-        for (i = 0; i < regions.length; i++) {
-            if (regions[i][0] == input) {
-                // console.log(regions[i][1])
-                return (regions[i][1]);
-            }
-        }
-    } else if (to == 'name') {
-        input = input.toUpperCase();
-        for (i = 0; i < regions.length; i++) {
-            if (regions[i][1] == input) {
-                return (regions[i][0]);
-            }
-        }
-    }
-}
 
 /**
  * Extracts lat & long from passed urlStr, and
@@ -685,7 +575,7 @@ function displayShabbatTimes(timeSet, city) {
     var long = -73.9345;
     var tzid = 'America/New_York';
 
-    hebCalJS(lat, long, tzid);
+    // hebCalJS(lat, long, tzid);
   });
 
 </script>
