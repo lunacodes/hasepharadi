@@ -879,13 +879,21 @@ function displayShabbatTimes(timeSet, cityStr) {
 	 * @param array $instance Previously saved values from database.
 	 */
 	public function form( $instance ) {
+
+		$defaults = array('translit' => 'Sepharadi');
+		$instance = wp_parse_args( (array) $instance, $defaults );
+		// $translit = $new_instance();
 		if ( isset( $instance['title'] ) ) {
 			$title = $instance['title'];
 		} else {
 			$title = __( 'New title', 'luna_zemanim_widget_hebcal_domain' );
 		}
 
-		$channel = ! empty( $instance['channel'] ) ? $instance['channel'] : esc_html__( 'techguyweb', 'yts_domain' );
+		if ( isset( $instance['translit'] ) ) {
+			$translit = $instance['translit'];
+		} else {
+			$translit = __( 'Sepharadi', 'luna_zemanim_widget_hebcal_domain' );
+		}
 
 		// Widget admin form.
 		// phpcs:disable
@@ -896,17 +904,11 @@ function displayShabbatTimes(timeSet, cityStr) {
 	</p>
 
 	<p>
-		<label for="<?php echo esc_attr( $this->get_field_id( 'channel' ) ); ?>">
-			<?php esc_attr_e( 'Channel:', 'yts_domain' ); ?>
-		</label>
+	  <input class="checkbox" type="checkbox" <?php if($translit) echo ' checked="checked"' ?> id="<?php echo $this->get_field_id('translit'); ?>" name="<?php echo $this->get_field_name('translit'); ?>" />
+	  <label for="<?php echo esc_attr( $this->get_field_id( 'translit' ) ); ?>"><?php esc_attr_e( 'Sepharadi', 'luna_zemanim_widget_hebcal_domain' ); ?></label>
 
-		<input
-			class="widefat"
-			id="<?php echo esc_attr( $this->get_field_id( 'channel' ) ); ?>"
-			name="<?php echo esc_attr( $this->get_field_name( 'channel' ) ); ?>"
-			type="text"
-			value="<?php echo esc_attr( $channel ); ?>">
 	</p>
+
 		<?php
 		// phpcs:enable
 	}
@@ -926,7 +928,11 @@ function displayShabbatTimes(timeSet, cityStr) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 
-		$instance['channel'] = ( ! empty( $new_instance['channel'] ) ) ? strip_tags( $new_instance['channel'] ) : '';
+		// $instance['translit'] = ( ! empty( $new_instance['translit'] ) ) ? strip_tags( $new_instance['translit'] ) : '';
+		$instance['translit'] = $new_instance['translit'];
+		// $instance['translit'] = " ";
+		var_dump($instance);
+		var_dump($new_instance);
 
 		// $instance['layout'] = ( ! empty( $new_instance['layout'] ) ) ? strip_tags( $new_instance['layout'] ) : '';
 		// $instance['count'] = ( ! empty( $new_instance['count'] ) ) ? strip_tags( $new_instance['count'] ) : '';
