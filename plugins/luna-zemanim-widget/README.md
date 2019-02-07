@@ -17,6 +17,9 @@ Once this is done, it checks for Daylight Saving Times, and then uses a Javascri
 
 ## Changelog
 
+### 1.3.2 - 2019-02-06
+* Generating zemannim by IP + hebcal API working.
+
 ### [1.3.1] - 2019-02-04
 * Add docblocks and clean up code.
 * Deprecate getLatLongByAddr()
@@ -31,6 +34,19 @@ Version 1.1.0
 * N/A
 
 ## Future
+
+### Zemannim
+* Need to rewrite the getAddrDetailsByGeo half of the code to feed into the new hebcal functionality.
+    * Change all instances of Zemanim to Zemannim (make sure to check .scss files)
+* Future Iteration: Leave SunCalc code in there, as a backup, in case Hebcal API fails
+    * Probably take out for now though?
+    * This seems possibly a bit overkill though? I like it though, b/c it's a bit more programmatically representation
+    * Perhaps split these out into separate files or something?? Not sure how that would work
+* Add in Back-End Options
+* Need to convert Habdala
+
+
+### General
 * Write unit tests
 * Rewrite as much code as possible into PHP.
     * Utilize the updated Hebcal SSL APIs, where relevant

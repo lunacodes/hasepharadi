@@ -122,28 +122,28 @@ $dates = generateDatesWithHebcal();
  * any other code being run
  * @since 1.0.0
  */
-function outputZemanimWithHebcal($dates) {
+function outputZemannimWithHebcal($dates) {
   $today = $dates[0];
   $todayHeb = $dates[1];
   $shabbat = $dates[2];
   $shabbatHeb = $dates[3];
   ?>
 
-    <div id="zemanim_container">
-        <div id="zemanim_display">
-            <span id="zemanim_date">Times for <?php echo($today) ?><br></span>
-            <span id="zemanim_city"></span>
-            <span id="zemanim_hebrew"><?php echo($todayHeb) ?><br></span>
-            <span id="zemanim_shema">Latest Shema: <br></span>
-            <span id="zemanim_minha">Earliest Minḥa:  <br></span>
-            <span id="zemanim_peleg">Peleḡ haMinḥa:  <br></span>
-            <span id="zemanim_sunset">Sunset: <br></span>
+    <div id="zemannim_container">
+        <div id="zemannim_display">
+            <span id="zemannim_date">Times for <?php echo($today) ?><br></span>
+            <span id="zemannim_city"></span>
+            <span id="zemannim_hebrew"><?php echo($todayHeb) ?><br></span>
+            <span id="zemannim_shema">Latest Shema: <br></span>
+            <span id="zemannim_minha">Earliest Minḥa:  <br></span>
+            <span id="zemannim_peleg">Peleḡ haMinḥa:  <br></span>
+            <span id="zemannim_sunset">Sunset: <br></span>
         </div>
     </div>
     <br><br>
     <h4 class="widgettitle widget-title shabbat-title">Shabbat Zemannim</h4>
-    <div id="shabbat_zemanim_container">
-        <div id="shabbat_zemanim_display">
+    <div id="shabbat_zemannim_container">
+        <div id="shabbat_zemannim_display">
             <span id="shzm_date">Shabbat Times for <?php echo($shabbat) ?><br></span>
             <span id="shzm_perasha"></span>
             <span id="shzm_date_heb"><?php echo($shabbatHeb); ?><br></span>
@@ -158,24 +158,19 @@ function outputZemanimWithHebcal($dates) {
 <?php
 }
 
-outputZemanimWithHebcal($dates);
+outputZemannimWithHebcal($dates);
 ?>
 
 <script type="text/javascript" defer>
 /*jshint esversion: 6 */
 
-var zemanim = document.getElementById("zemanim_container");
-var z_city = document.getElementById("zemanim_city");
-var z_shema = document.getElementById("zemanim_shema");
-var z_minha = document.getElementById("zemanim_minha");
-var z_peleg = document.getElementById("zemanim_peleg");
-var z_sunset = document.getElementById("zemanim_sunset");
-var shabbat_zemanim = document.getElementById("shzm_container");
-// var sz_city = document.getElementById("shabbat_zemanim_city");
-// var sz_perasha = document.getElementById("shabbat_zemanim_perasha");
-// var sz_candles =document.getElementById("shabbat_zemanim_candles");
-// var sz_sunset = document.getElementById("shabbat_zemanim_sunset");
-// var sz_habdala = document.getElementById("shabbat_zemanim_habdala");
+var zemannim = document.getElementById("zemannim_container");
+var z_city = document.getElementById("zemannim_city");
+var z_shema = document.getElementById("zemannim_shema");
+var z_minha = document.getElementById("zemannim_minha");
+var z_peleg = document.getElementById("zemannim_peleg");
+var z_sunset = document.getElementById("zemannim_sunset");
+var shabbat_zemannim = document.getElementById("shzm_container");
 var sz_date = document.getElementById("shzm_date");
 var sz_date_heb = document.getElementById("shzm_date_heb");
 var sz_perasha = document.getElementById("shzm_perasha");
@@ -190,8 +185,6 @@ function hebCalJS(cityStr, lat, long, tzid) {
   let city = cityStr;
   fetch(urlStr)
     .then(function(response) {
-      // console.log("Response:" + response);
-      // console.log(response.json());
       return response.json();
     })
     .then(function(res) {
@@ -204,39 +197,26 @@ function hebCalJS(cityStr, lat, long, tzid) {
       // console.log(date);
       let dateStr = date.toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
       engdate = "Shababt Times for " + dateStr;
-      // console.log(dateStr);
-      // const month = date
-      // let engDate = data[0]["date"];
 
-      // console.log("Global Details: " + name);
       let hebdate = data[0]["hebrew"];
-      // console.log("Date: " + hebdate);
 
       // Candles & Sunset
       let candles = data[10]["title"];
       let sunset = hebCalGetSunset(candles);
-      sunset = "Sunset: " + sunset;
       let habdala = data[4]["title"];
-      console.log("Candles: " + candles);
-      console.log("Sunset: " + sunset);
-
-      // let sunset = candles - 18;
+      let index = habdala.indexOf("(") - 1;
+      habdala = 'Haḇdala' + habdala.slice(index);
+      // indexHab
 
       // Perasha Info
       let perashaHeb = data[3]["hebrew"];
-      // console.log("Perasha Heb: " + perashaHeb);
       let perashaEng = data[3]["title"];
-      // console.log("Perasha Eng: " + perashaEng);
 
       var str = perashaEng;
       var firstSpace=str.indexOf(" ");
       var perashaShort= str.slice(firstSpace + 1);
-      // console.log("Perasha Short: " + perashaShort);
       let a2s = ashkiToSeph(perashaShort, 'perasha');
-      // console.log("Ashki to Seph: " + a2s);
-      // console.log(perashaStr);
       perashaEng = "Perasha " + a2s;
-      console.log(perashaEng);
 
       var hebCalFinal = [engdate, hebdate, perashaHeb, perashaEng, candles, sunset, habdala];
       console.log("HebCalFinal:", hebCalFinal);
@@ -472,7 +452,7 @@ function getLocation() {
 
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
-  zemanim.innerHtml = "Please enable location services to display the most up-to-date Zemanim";
+  zemannim.innerHtml = "Please enable location services to display the most up-to-date Zemannim";
       console.log("getLocation -> getAddrDetailsByIp");
       // console.trace();
       getAddrDetailsByIp();
@@ -675,16 +655,16 @@ function generateTimeStrings(timeSet, shabbat) {
   var offSet = timeSet[2];
   var sunsetDateTimeInt = timeSet[3];
 
-  var latestShemaStr = '<span id="zemanim_shema">Latest Shema: </span>' + calculateLatestShema(sunrise, sunset, offSet);
-  var earliestMinhaStr = '<span id="zemanim_minha">Earliest Minḥa: </span>' + calculateEarliestMinha(sunrise, sunset, offSet);
-  var pelegHaMinhaStr = '<span id="zemanim_peleg">Peleḡ HaMinḥa: </span>' + calculatePelegHaMinha(sunrise, sunset, offSet);
-  var sunsetStr = '<span id="zemanim_sunset">Sunset: </span>' + unixTimestampToDate(sunsetDateTimeInt + offSet);
+  var latestShemaStr = '<span id="zemannim_shema">Latest Shema: </span>' + calculateLatestShema(sunrise, sunset, offSet);
+  var earliestMinhaStr = '<span id="zemannim_minha">Earliest Minḥa: </span>' + calculateEarliestMinha(sunrise, sunset, offSet);
+  var pelegHaMinhaStr = '<span id="zemannim_peleg">Peleḡ HaMinḥa: </span>' + calculatePelegHaMinha(sunrise, sunset, offSet);
+  var sunsetStr = '<span id="zemannim_sunset">Sunset: </span>' + unixTimestampToDate(sunsetDateTimeInt + offSet);
 
   if (shabbat) {
     var candleLighting = timeSet[4];
     var habdala = timeSet[5];
-    var candleLightingStr = '<span id="zemanim_habdala">Candle Lighting (18 min): </span>' + unixTimestampToDate(candleLighting + offSet);
-    var habdalaStr = '<span id="zemanim_habdala">Haḇdala (20 min): </span>' + unixTimestampToDate(habdala + offSet);
+    var candleLightingStr = '<span id="zemannim_habdala">Candle Lighting (18 min): </span>' + unixTimestampToDate(candleLighting + offSet);
+    var habdalaStr = '<span id="zemannim_habdala">Haḇdala (20 min): </span>' + unixTimestampToDate(habdala + offSet);
     var shabbatSet = [sunsetStr, candleLightingStr, habdalaStr];
 
     return shabbatSet;
