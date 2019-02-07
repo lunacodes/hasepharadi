@@ -36,6 +36,8 @@ Version 1.1.0
 ## Future
 
 ### Zemannim
+* Do I actually need to enqueue the Google Maps API? Or can I just run it as a promise instead??
+* See if I can rewrite/get rid of some of what's in generateDatesWithHebCal()
 * Need to rewrite the getAddrDetailsByGeo half of the code to feed into the new hebcal functionality.
     * Change all instances of Zemanim to Zemannim (make sure to check .scss files)
 * Future Iteration: Leave SunCalc code in there, as a backup, in case Hebcal API fails
