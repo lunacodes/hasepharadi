@@ -2178,6 +2178,9 @@ img.custom-logo {
 .widgettitle.widget-title.shabbat-title {
   margin: 20px 0 !important; }
 
+.shabbat-text {
+  padding: 0 16px; }
+
 /* 5. Posts
 =================================================*/
 /* 5.1 Site Layout
