@@ -1659,7 +1659,6 @@ div.wpcf7 .wpcf7-submit:disabled {
    - 5.3 Author Bios
 6. Archive Pages
    - 6.1 Affiliate Links
-7. Back To Top Button
 
 ------------------------------------------------------*/
 /* 1. Top Bar & Header
@@ -2055,14 +2054,13 @@ img.custom-logo {
   display: flex;
   justify-content: space-between;
   margin: 0 0 40px; }
-
-.breadcrumbs,
-.bc-container .social-buttons.share {
-  flex-basis: 50%; }
+  .bc-container .social-buttons.share {
+    flex-basis: 30%; }
 
 .breadcrumbs {
   border: 0;
   color: #999;
+  flex-basis: 70%;
   float: none;
   font-size: 1.3rem;
   margin: 0;
@@ -2176,6 +2174,11 @@ img.custom-logo {
 ============================*/
 .widgettitle.widget-title.shabbat-title {
   margin: 20px 0 !important; }
+
+.zemannim-text {
+  padding: 0 16px; }
+  .zemannim-text div {
+    font-size: 14px; }
 
 /* 5. Posts
 =================================================*/
@@ -2300,7 +2303,7 @@ span.category {
 .affiliate-img {
   margin: 0 0 4px; }
 
-/* 7. Back To Top Button
+/* 7. Media - Max-Width: 60em
 ============================*/
 #backToTop {
   background: #000;

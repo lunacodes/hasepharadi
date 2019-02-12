@@ -21,7 +21,6 @@
    - 5.3 Author Bios
 6. Archive Pages
    - 6.1 Affiliate Links
-7. Back To Top Button
 
 ------------------------------------------------------*/
 
@@ -576,11 +575,15 @@ img.custom-logo {
   display: flex;
   justify-content: space-between;
   margin: 0 0 40px;
+
+  .social-buttons.share {
+    flex-basis: 30%;
+  }
 }
 
 .breadcrumbs,
 .bc-container .social-buttons.share {
-  flex-basis: 50%;
+  // flex-basis: 50%;
 }
 
 .breadcrumbs {
@@ -588,6 +591,7 @@ img.custom-logo {
   // border-width: 0 0 1px;
   border: 0;
   color: $mid-grey-2;
+  flex-basis: 70%;
   float: none;
   font-size: 1.3rem;
   // margin: 0 auto 40px;
@@ -753,8 +757,21 @@ img.custom-logo {
 
 /* 4.4 Zemannim Widget
 ============================*/
+
 .widgettitle.widget-title.shabbat-title {
   margin: 20px 0 !important;
+}
+
+// #zemannim_container,
+// #zemanim_container,
+// #shabbat_zemannim_container,
+// #shabbat_zemanim_container
+.zemannim-text {
+  padding: 0 16px;
+
+  div {
+    font-size: 14px;
+  }
 }
 
 
@@ -913,7 +930,7 @@ span.category {
   margin: 0 0 4px;
 }
 
-/* 7. Back To Top Button
+/* 7. Media - Max-Width: 60em
 ============================*/
 
 #backToTop {
