@@ -69,6 +69,10 @@
     &:hover > .sub-menu {
       left: auto;
       opacity: 1;
+
+      .sub-menu {
+        left: auto;
+      }
     }
   }
 }
