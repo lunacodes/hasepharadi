@@ -2054,14 +2054,13 @@ img.custom-logo {
   display: flex;
   justify-content: space-between;
   margin: 0 0 40px; }
-
-.breadcrumbs,
-.bc-container .social-buttons.share {
-  flex-basis: 50%; }
+  .bc-container .social-buttons.share {
+    flex-basis: 30%; }
 
 .breadcrumbs {
   border: 0;
   color: #999;
+  flex-basis: 70%;
   float: none;
   font-size: 1.3rem;
   margin: 0;

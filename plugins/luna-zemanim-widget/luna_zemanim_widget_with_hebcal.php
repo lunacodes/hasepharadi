@@ -74,7 +74,7 @@ class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 		$suncalc_version  = date( 'ymd-Gis', filemtime( plugin_dir_path( __FILE__ ) . 'suncalc-master/suncalc.js' ) );
 
 		wp_enqueue_script( 'suncalc-master', plugins_url( '/suncalc-master/suncalc.js', __FILE__ ), '', $suncalc_version );
-		wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyAmCeKW07UlPDH_eQarF4y9vWJ6cwHePp4', array(), true );
+		wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyDgpmHtOYqSzG9JgJf98Isjno6YwVxCrEE', array(), true );
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
@@ -181,22 +181,22 @@ class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 <script type="text/javascript" defer>
 /*jshint esversion: 6 */
 
-var zemannim = document.getElementById("zemannim_container");
-var z_city = document.getElementById("zemannim_city");
-var z_shema = document.getElementById("zemannim_shema");
-var z_minha = document.getElementById("zemannim_minha");
-var z_peleg = document.getElementById("zemannim_peleg");
-var z_sunset = document.getElementById("zemannim_sunset");
-var shabbat_zemannim = document.getElementById("shzm_container");
-var sz_date = document.getElementById("shzm_date");
-var sz_date_heb = document.getElementById("shzm_date_heb");
-var sz_perasha = document.getElementById("shzm_perasha");
-var sz_perasha_heb = document.getElementById("shzm_perasha_heb");
-var sz_candles = document.getElementById("shzm_candles");
-var sz_sunset = document.getElementById("shzm_sunset");
-var sz_habdala = document.getElementById("shzm_habdala");
+var zemannim = document.getElementById('zemannim_container');
+var z_city = document.getElementById('zemannim_city');
+var z_shema = document.getElementById('zemannim_shema');
+var z_minha = document.getElementById('zemannim_minha');
+var z_peleg = document.getElementById('zemannim_peleg');
+var z_sunset = document.getElementById('zemannim_sunset');
+var shabbat_zemannim = document.getElementById('shzm_container');
+var sz_date = document.getElementById('shzm_date');
+var sz_date_heb = document.getElementById('shzm_date_heb');
+var sz_perasha = document.getElementById('shzm_perasha');
+var sz_perasha_heb = document.getElementById('shzm_perasha_heb');
+var sz_candles = document.getElementById('shzm_candles');
+var sz_sunset = document.getElementById('shzm_sunset');
+var sz_habdala = document.getElementById('shzm_habdala');
 
-// Shabbat
+
 function hebCalShab(cityStr, lat, long, tzid) {
 	let urlStr = 'https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&nx=on&ss=on&mod=off&s=on&c=on&m=20&b=18&o=on&D=on&year=now&month=2&i=off&geo=pos' + '&latitude=' + lat + '&longitude=' + long + '&tzid=' + tzid;
 

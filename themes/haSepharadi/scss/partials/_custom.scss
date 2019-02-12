@@ -575,18 +575,23 @@ img.custom-logo {
   display: flex;
   justify-content: space-between;
   margin: 0 0 40px;
+
+  .social-buttons.share {
+    flex-basis: 30%;
+  }
 }
 
-.breadcrumbs,
-.bc-container .social-buttons.share {
-  flex-basis: 50%;
-}
+// .breadcrumbs,
+// .bc-container .social-buttons.share {
+//   // flex-basis: 50%;
+// }
 
 .breadcrumbs {
   // border: 1px solid #ddd;
   // border-width: 0 0 1px;
   border: 0;
   color: $mid-grey-2;
+  flex-basis: 70%;
   float: none;
   font-size: 1.3rem;
   // margin: 0 auto 40px;
