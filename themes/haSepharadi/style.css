@@ -1292,6 +1292,8 @@ div.wpcf7 .wpcf7-submit:disabled {
   .genesis-nav-menu .menu-item:hover > .sub-menu {
     left: auto;
     opacity: 1; }
+    .genesis-nav-menu .menu-item:hover > .sub-menu .sub-menu {
+      left: auto; }
 
 /* Responsive Menu
 --------------------------------------------- */
@@ -1891,20 +1893,21 @@ img.custom-logo {
   .genesis-nav-menu > .menu-highlight > a:hover, .genesis-nav-menu > .menu-highlight > a:focus {
     background-color: #c93; }
 .genesis-nav-menu .sub-menu {
+  background-color: transparent;
   border-top: 0;
-  left: 0;
   line-height: 1.8;
   opacity: 0;
   padding-left: 0;
   position: absolute;
-  top: 40px;
+  top: 0;
   transition: opacity 0.1s ease-in-out;
   z-index: 2; }
   .genesis-nav-menu .sub-menu .sub-menu {
     top: 20px; }
   .genesis-nav-menu .sub-menu li {
     display: block;
-    right: calc(11%); }
+    right: calc(11%);
+    top: 40px; }
     .genesis-nav-menu .sub-menu li:last-of-type a {
       background: #333;
       border: 1px solid #333;

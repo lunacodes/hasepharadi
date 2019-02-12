@@ -341,14 +341,16 @@ img.custom-logo {
   }
 
   .sub-menu {
+    background-color: transparent;
     border-top: 0;
-    left: 0;
+    // left: 0;
     line-height: 1.8;
     opacity: 0;
     padding-left: 0;
     position: absolute;
-    top: 40px;
+    // top: 40px;
     // top: 20px;
+    top: 0;
     transition: opacity 0.1s ease-in-out;
     z-index: 2;
 
@@ -359,6 +361,7 @@ img.custom-logo {
     li {
       display: block;
       right: calc(11%);
+      top: 40px;
 
       &:last-of-type a {
         background: $dark-grey;
