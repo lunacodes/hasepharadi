@@ -124,7 +124,7 @@ function outputZemanim($dates) {
   $shabbatHeb = $dates[3];
   ?>
 
-    <div id="zemanim_container">
+    <div class="zemannim-text" id="zemanim_container">
         <div id="zemanim_display">
             <span id="zemanim_date">Times for <?php echo($today) ?><br></span>
             <span id="zemanim_city"></span>
@@ -136,7 +136,7 @@ function outputZemanim($dates) {
         </div>
     </div>
     <h4 class="widgettitle widget-title shabbat-title">Shabbat Zemannim</h4>
-    <div id="shabbat_zemanim_container">
+    <div class="zemannim-text" id="shabbat_zemanim_container">
         <div id="shabbat_zemanim_display">
             <span id="shabbat_zemanim_date">Shabbat Times for <?php echo($shabbat) ?><br></span>
             <span id="shabbat_zemanim_city"></span>
