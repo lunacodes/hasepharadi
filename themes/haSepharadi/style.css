@@ -948,8 +948,20 @@ img.alignright,
   margin: 0;
   text-align: center; }
 
-/* Widgets
----------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------
+[_widgets.scss]
+
+1. Widgets
+  - 1.1 Setup
+  - 1.2 Typography
+2. Genesis Recent Posts
+
+
+------------------------------------------------------*/
+/* 1. Widgets Setup
+=================================================*/
+/* 1.1 Setup
+============================*/
 .sidebar .widget a,
 .sidebar .widget a:visited {
   color: #c93; }
@@ -984,8 +996,8 @@ img.alignright,
     margin: 0 0 0 30px;
     padding: 0; }
 
-/* 8. Widget /.widget
-=================================================*/
+/* 1.2 Typography
+============================*/
 .widget .widgettitle,
 .widgettitle,
 .widget-title {
@@ -1020,8 +1032,24 @@ img.alignright,
 .textwidget p {
   line-height: 1.8; }
 
-/* Recent Posts
---------------------------------------------- */
+.widget-wrap h4.entry-title,
+.widget-wrap h4.entry-title a {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.393;
+  margin: 0;
+  text-align: left; }
+.widget-wrap p.entry-meta {
+  color: #aaa;
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.775;
+  text-align: left; }
+.widget-wrap a.alignleft {
+  margin: 0 10px 0 0; }
+
+/* 2. Genesis Recent Posts
+=================================================*/
 .featured-content a {
   color: #000; }
   .featured-content a.alignnone {
@@ -1826,22 +1854,18 @@ div.wpcf7 .wpcf7-submit:disabled {
    - 1.1 Topbar
    - 1.2 Search Form
    - 1.3 Site Header
-2. Site Navigation
-   - 2.1 Menus Setup
-   - 2.2 Header Menu
-   - 2.3 Nav Shrinked
-3. Breadcrumbs
-4. Widgets
-   - 4.1 Widgets Setup
-   - 4.2 Author Avatars - Voices
-   - 4.3 Tribe Events
-   - 4.4 Zemannim
-5. Posts
-   - 5.1 Site Layout
-   - 5.2 Posts Layout
-   - 5.3 Author Bios
-6. Archive Pages
-   - 6.1 Affiliate Links
+2. Breadcrumbs
+3. Widgets
+   - 3.1 Widgets Setup
+   - 3.2 Author Avatars - Voices
+   - 3.3 Tribe Events
+   - 3.4 Zemannim
+4. Posts
+   - 4.1 Site Layout
+   - 4.2 Posts Layout
+   - 4.3 Author Bios
+5. Archive Pages
+   - 5.1 Affiliate Links
 
 ------------------------------------------------------*/
 /* 1. Top Bar & Header
@@ -2053,11 +2077,7 @@ img.custom-logo {
 .date-shrinked {
   display: none; }
 
-/* 2. Site Navigation
-=================================================*/
-/* 2.1 Menus Setup
-============================*/
-/* 3. Breadcrumbs
+/* 2. Breadcrumbs
 =================================================*/
 .bc-container {
   border-bottom: 1px solid #ddd;
@@ -2089,28 +2109,9 @@ img.custom-logo {
   .breadcrumbs .current {
     color: #999; }
 
-/* 4. Widgets
+/* 3. Widgets
 =================================================*/
-/* 4.1 Widgets Setup
-============================*/
-.widget-wrap h4,
-.widget-wrap h4 a {
-  /* text-align: top; */
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.393;
-  margin: 0 !important;
-  text-align: left; }
-.widget-wrap p.entry-meta {
-  color: #aaa;
-  font-size: 11px;
-  font-style: italic;
-  line-height: 1.775;
-  text-align: left; }
-.widget-wrap a.alignleft {
-  margin: 0 10px 0 0; }
-
-/* 4.2 Author Avatars - Voices
+/* 3.2 Author Avatars - Voices
 ============================*/
 .widget-wrap .author-avatars {
   display: -webkit-flex;
@@ -2161,7 +2162,7 @@ img.custom-logo {
     text-align: center;
     line-height: 1.1875; }
 
-/* 4.3 Tribe Events Widget
+/* 3.3 Tribe Events Widget
 ============================*/
 .tribe-events-widget-link {
   color: #c93;
@@ -2180,7 +2181,7 @@ img.custom-logo {
 .tribe-events-list-widget ol > li {
   list-style-type: none; }
 
-/* 4.4 Zemannim Widget
+/* 3.4 Zemannim Widget
 ============================*/
 .widgettitle.widget-title.shabbat-title {
   margin: 20px 0 !important; }
@@ -2188,9 +2189,9 @@ img.custom-logo {
 .shabbat-text {
   padding: 0 16px; }
 
-/* 5. Posts
+/* 4. Posts
 =================================================*/
-/* 5.1 Site Layout
+/* 4.1 Site Layout
 ============================*/
 .content {
   float: left;
@@ -2211,7 +2212,7 @@ img.custom-logo {
   padding: 30px 0 0;
   max-width: 1200px; }
 
-/* 5.2 Posts Layout
+/* 4.2 Posts Layout
 ============================*/
 .post {
   border-bottom: 1px solid #eee;
@@ -2266,7 +2267,7 @@ span.category {
   font-size: 12px;
   margin: 10px auto 0; }
 
-/* 5.3 Author Bios
+/* 4.3 Author Bios
 ============================*/
 .author-box .avatar {
   height: 80px;
@@ -2287,9 +2288,9 @@ span.category {
   margin-block-end: 10px;
   margin: 0 0 10px; }
 
-/* 6. Archive Pages
+/* 5. Archive Pages
 =================================================*/
-/* 6.1 Affiliate Links
+/* 5.1 Affiliate Links
 ============================*/
 .affiliates-container {
   display: flex;
