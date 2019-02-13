@@ -16,6 +16,11 @@ Once this is done, it checks for Daylight Saving Times, and then uses a Javascri
 
 ## Changelog
 
+<!-- ### 1.3.3
+* Added padding to outputted text
+* Removed Deprecated getLatLongByAddr()
+* -->
+
 ### 1.3.2 - 2019-02-06
 * Generating zemannim by IP + hebcal API working.
 

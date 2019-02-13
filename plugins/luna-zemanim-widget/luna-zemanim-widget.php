@@ -146,7 +146,7 @@ class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 
 			?>
 
-		<div id="zemannim_container">
+		<div class="zemannim-text" id="zemannim_container">
 				<div id="zemannim_display">
 						<span id="zemannim_date">Times for <?php echo( esc_attr( $today ) ); ?><br></span>
 						<span id="zemannim_city"></span>
@@ -159,7 +159,7 @@ class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 		</div>
 		<br>
 		<h4 class="widgettitle widget-title shabbat-title">Shabbat Zemannim</h4>
-		<div id="shabbat_zemannim_container">
+		<div class="zemannim-text" id="shabbat_zemannim_container">
 				<div id="shabbat_zemannim_display">
 						<span id="shzm_date">Shabbat Times for <?php echo( esc_attr( $shabbat ) ); ?><br></span>
 						<span id="shzm_perasha"></span>
@@ -556,26 +556,6 @@ function getAddrDetailsByIp() {
 		/*jshint sub:false*/
 }
 
-
-/**
- * Extracts lat & long from passed urlStr, and
- * sends to Google Maps Geocoding API via getGeoDetails
- * @param  {string} urlStr [formatted string to plug into Google Maps API]
- * @since  1.0.0
- */
-function getLatLongByAddr(urlStr) {
-	let url = urlStr;
-	fetch(url)
-		.then((response) => {
-			return response.json();
-		})
-		.then((res) => {
-			let data = new Array(res.results[0]);
-			let lat = data[0].geometry.location.lat;
-			let long = data[0].geometry.location.lng;
-			getGeoDetails(lat, long);
-		});
-}
 
 /**
  * Feeds lat & long coords into Google Maps API to obtain city and state info and
