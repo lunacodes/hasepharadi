@@ -9,6 +9,7 @@ Once this is done, it checks for Daylight Saving Times, and then uses a Javascri
 ## Requirements
 * [HTML5 Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 * [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro)
+* [Google Maps Time Zone API](https://developers.google.com/maps/documentation/timezone/intro)
 * [SunCalc Library](https://github.com/mourner/suncalc)
 * [jQuery](https://jquery.com/)
 * [ipapi](https://ipapi.co/)
