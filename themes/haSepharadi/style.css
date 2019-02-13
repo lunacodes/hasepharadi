@@ -1799,7 +1799,12 @@ div.wpcf7 .wpcf7-submit:disabled {
   .footer-widget-area .widget-wrap h4 a {
     font: 400 14px 'PT Serif',"times new roman",times,serif; }
   .footer-widget-area .widget-wrap p.entry-meta {
-    margin: 1px 0 0; }
+    color: #aaa;
+    font-size: 11px;
+    font-style: italic;
+    line-height: 1.775;
+    margin: 1px 0 0;
+    text-align: left; }
 
 .widget-area.footer-widget-area {
   width: 280px;
