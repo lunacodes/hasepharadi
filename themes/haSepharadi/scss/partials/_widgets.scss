@@ -1,20 +1,18 @@
 /* ----------------------------------------------------
 [_widgets.scss]
 
-1. Widgets
-  - 1.1 Setup
-  - 1.2 Typography
+1. Topbar & Header
+    - 1.1 Setup
+    - 1.2 Typography
 2. Genesis Recent Posts
-
 
 ------------------------------------------------------*/
 
-/* 1. Widgets Setup
+/* 1. Widgets
 =================================================*/
 
 /* 1.1 Setup
 ============================*/
-
 
 .sidebar .widget a,
 .sidebar .widget a:visited {
@@ -55,7 +53,8 @@
 
   ol > li {
     list-style-position: inside;
-    list-style-type: decimal;
+    // list-style-type: decimal;
+    list-style-type: none;
     padding-left: 20px;
     // text-indent: -20px;
   }
@@ -122,31 +121,34 @@
   line-height: 1.8;
 }
 
-// .widget-wrap {
-//   h4.entry-title,
-//   h4.entry-title a {
-//     font-size: 15px;
-//     font-weight: 400;
-//     line-height: 1.393;
-//     margin: 0;
-//     text-align: left;
-//   }
+/* This section originally from _custom.scss */
+.widget-wrap {
+  h4,
+  h4.entry-title,
+  h4.entry-title a {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.393;
+    margin: 0;
+    text-align: left;
+  }
 
-//   p.entry-meta {
-//     color: $mid-grey-3;
-//     font-size: 11px;
-//     font-style: italic;
-//     line-height: 1.775;
-//     text-align: left;
-//   }
+  p.entry-meta {
+    color: $mid-grey-3;
+    font-size: 11px;
+    font-style: italic;
+    line-height: 1.775;
+    text-align: left;
+  }
 
-//   a.alignleft {
-//     margin: 0 10px 0 0;
-//   }
-// }
+  a.alignleft {
+    margin: 0 10px 0 0;
+  }
+}
+
 
 /* 2. Genesis Recent Posts
-=================================================*/
+============================*/
 
 .featured-content {
 
