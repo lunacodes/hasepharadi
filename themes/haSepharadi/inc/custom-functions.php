@@ -4,35 +4,35 @@
 [custom-functions.php]
 
 1. Setup & Assets
-   - 1.1 Font Awesome
-   - 1.2 Custom Image Sizes
-   - 1.3 Google Fonts
-   - 1.4 Genesis Thumbnail Cache Fix
+	 - 1.1 Font Awesome
+	 - 1.2 Custom Image Sizes
+	 - 1.3 Google Fonts
+	 - 1.4 Genesis Thumbnail Cache Fix
 2. Topbar & Header
-   - 2.1 Topbar Scripts
-   - 2.2 Create Topbar
-   - 2.3 WP Admin Bar - Topbar Positioning Fix (Inactive)
-   - 2.4 Mobile Menu Pretty Load
-   - 2.5 Mobile Menu Disable Superfish
+	 - 2.1 Topbar Scripts
+	 - 2.2 Create Topbar
+	 - 2.3 WP Admin Bar - Topbar Positioning Fix (Inactive)
+	 - 2.4 Mobile Menu Pretty Load
+	 - 2.5 Mobile Menu Disable Superfish
 3. Breadcrumbs
 4. Posts
-   - 4.1 Posts - Featured Image
-   - 4.2 Single Pages
-   - 4.3 Category Pages
-   - 4.4 Entry Meta
-   - 4.5 Entry Footer
-   - 4.6 Next & Previous Posts Link
-   - 4.7 Author Bios
-   - 4.8 wpDiscuz Comments Hack
-   - 4.9 Author Page Affiliate Linkes
-   - 4.10 Add Link Text on User Copy
+	 - 4.1 Posts - Featured Image
+	 - 4.2 Single Pages
+	 - 4.3 Category Pages
+	 - 4.4 Entry Meta
+	 - 4.5 Entry Footer
+	 - 4.6 Next & Previous Posts Link
+	 - 4.7 Author Bios
+	 - 4.8 wpDiscuz Comments Hack
+	 - 4.9 Author Page Affiliate Linkes
+	 - 4.10 Add Link Text on User Copy
 5. Footer
-   - 5.1 Back to Top Button
-   - 5.2 Custom Footer Credits
+	 - 5.1 Back to Top Button
+	 - 5.2 Custom Footer Credits
 6. Widgets
-   - 6.1 Author Avatars
-   - 6.2 Hide Widgets
-   - 6.3 Mailchimp Subscribe
+	 - 6.1 Author Avatars
+	 - 6.2 Hide Widgets
+	 - 6.3 Mailchimp Subscribe
 7. Custom User Meta
 	- 7.1 Social Media
 8. Social Media Sharing Buttons
@@ -74,7 +74,7 @@ function blazersix_prime_post_thumbnails_cache( $posts, $wp_query ) {
 	$is_main_archive_loop = $wp_query->is_main_query() && ! is_singular();
 	$do_prime_cache = apply_filters( 'blazersix_cache_post_thumbnails', $is_main_archive_loop );
 	if ( ! $do_prime_cache && ! $wp_query->get( 'blazersix_cache_post_thumbnails' ) ) {
-	  return $posts;
+		return $posts;
 	}
 	update_post_thumbnail_cache( $wp_query );
 	return $posts;
@@ -92,8 +92,8 @@ remove_action( 'genesis_header', 'genesis_do_header' );
 //* Enqueue Topbar scripts
 add_action('wp_enqueue_scripts', 'enqueue_topbar_scripts');
 function enqueue_topbar_scripts() {
-  // wp_enqueue_style( 'topbar.css', CHILD_URL . '/css/topbar.css', array(), CHILD_THEME_VERSION );
-  wp_enqueue_script( 'topbar-js', CHILD_URL . '/js/topbar.js', array( 'jquery' ), CHILD_THEME_VERSION );
+	// wp_enqueue_style( 'topbar.css', CHILD_URL . '/css/topbar.css', array(), CHILD_THEME_VERSION );
+	wp_enqueue_script( 'topbar-js', CHILD_URL . '/js/topbar.js', array( 'jquery' ), CHILD_THEME_VERSION );
 }
 
 /* 2.2 - Create Topbar
@@ -103,16 +103,16 @@ add_action( 'genesis_before_header', 'add_topbar' );
 function add_topbar() {
 	$topbar = <<<EOL
 <div id="topbar" class="topbar">
-  <div class="social-icons">
+	<div class="social-icons">
 	<div class="clearfix"> <a href="http://www.facebook.com/HaSepharadi-164068007554007" title="Facebook" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a> <a href="http://twitter.com/HaSepharadi" title="Twitter" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a></div>
-  </div>
-   <!--  <button class="menu-toggle dashicons-before dashicons-menu" aria-expanded="false" aria-pressed="false" id="genesis-mobile-nav-primary">Menu</button> -->
-  <div id="tools" class="tools">
+	</div>
+	 <!--  <button class="menu-toggle dashicons-before dashicons-menu" aria-expanded="false" aria-pressed="false" id="genesis-mobile-nav-primary">Menu</button> -->
+	<div id="tools" class="tools">
 	<form id="top-search" action="https://hasepharadi.com/" method="get" name="searchform" class="search-form">
-	  <input type="text" name="s" class="search-text" placeholder="Keyword">
-	  <button form="top-search" type="submit" class="search-button"></button>
+		<input type="text" name="s" class="search-text" placeholder="Keyword">
+		<button form="top-search" type="submit" class="search-button"></button>
 	</form>
-  </div>
+	</div>
 </div>
 EOL;
 
@@ -139,9 +139,9 @@ function haSepharadi_custom_header() {
 	// the_date();
 	// echo($todays_date);
 	$custom_header = <<<EOL
-  <div class="logo"> <a href="$site_url" title="haSepharadi"> <span><img src="$site_url/wp-content/uploads/2018/08/cropped-logo-1.png" scale="0"></span> </a>
+	<div class="logo"> <a href="$site_url" title="haSepharadi"> <span><img src="$site_url/wp-content/uploads/2018/08/cropped-logo-1.png" scale="0"></span> </a>
 	<div id="header-date" class="local-info"> <span class="local-date">$todays_date</span></div>
-  </div>
+	</div>
 EOL;
 	echo($custom_header);
 
@@ -182,45 +182,45 @@ function fix_wp_admin_bar_mobile() {
 		}
 
 		.nav-shrinked {
-		  top: 96px !important;
+			top: 96px !important;
 		}
 
 		#topbar.shrinked {
-		  top: 44px;
+			top: 44px;
 		}
 
 		#topbar.shrinked #tools {
-		  margin: 14px 20px 0 0;
+			margin: 14px 20px 0 0;
 		}
 	}
 
 	/* 600px */
 	@media only screen and (max-width: 37.5em) {
-	  #topbar.shrinked {
+		#topbar.shrinked {
 		top: 0;
-	  }
+		}
 
-	  .header-shrinked .logo a {
+		.header-shrinked .logo a {
 		top: 0;
-	  }
+		}
 
-	  .header-shrinked .logo a span img {
+		.header-shrinked .logo a span img {
 		position: fixed;
 		/* top: 18px; */
 		/* left: 80px; */
 		left: 60px;
 		top: 10px;
-	  }
+		}
 
-	  /* .menu-toggle, */
-	  .mobile-menu-shrinked {
+		/* .menu-toggle, */
+		.mobile-menu-shrinked {
 		/* top: 22.5px; */
 		top: -10px;
-	  }
+		}
 
-	  .nav-shrinked {
+		.nav-shrinked {
 		top: -53px !important;
-	  }
+		}
 	}
 
 	 </style>
@@ -272,13 +272,13 @@ function custom_breadcrumbs() {
 	if ( ! is_singular( 'page' ) && (! is_home() ) && (! is_404() ) ) { ?>
 		<div class="bc-container">
 			<div class="breadcrumbs">
-			  <div class="navi">
+				<div class="navi">
 				<i class="fa fa-home"></i>
 				<span class="breadcrumb-link-wrap" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
 				<a href="<?php get_site_url(); ?>" itemprop="item">
 				<span itemprop="name">Home</span></a>
 				</span> <span class="sep">»</span> <?php the_title(); ?>
-			  </div>
+				</div>
 			</div>
 		<?php
 		luna_social_sharing_buttons()
@@ -424,7 +424,7 @@ function display_comments_plz() {
 // Appens the Site Url to any copied text
 add_action('wp_enqueue_scripts', 'add_copy_link' );
 function add_copy_link() {
-  wp_enqueue_script('add-copy-link', CHILD_URL . '/js/copy-link-text.js' );
+	wp_enqueue_script('add-copy-link', CHILD_URL . '/js/copy-link-text.js' );
 }
 
 // add_action( 'pre_get_posts', 'post_check' );
@@ -466,58 +466,55 @@ function sp_footer_creds_filter( $creds ) {
 ============================*/
 
 add_shortcode( 'author_avatars', 'display_author_avatars' );
-function display_author_avatars() { ?>
-
-	<?php
+function display_author_avatars() {
 	remove_filter('widget_text_content', 'wpautop');
-	$authors = array();
-	$i = 0;
-	if ( have_posts() ) : ob_start(); ?><div class="author-avatars">
-		<?php
-		while ( have_posts() ) : the_post(); ?>
+	$args = array(
+		'role' => 'subscriber'
+	);
 
-		<?php
-		$id = get_the_author_meta( 'ID' );
-		if (! (in_array($id, $authors) ) ) {
-			array_push( $authors, $id );
+	$author_query = new WP_User_Query($args);
+	// var_dump($author_query);
+	$authors = $author_query->get_results();
 
-			$name = get_the_author_meta( 'display_name' );
-			$author_posts = get_author_posts_url($id);
-			?>
-
-
-			<!-- Leaving wp_list_authors here b/c the widget currently limits this to 6 authors -->
-			<?php // wp_list_authors( array( 'echo' => 'false') );
-				// count_user_posts( $userid, 'post', false ); ?>
-			<div class="authors-wrap">
-				<div class="author-box">
-					<a href="<?php echo($author_posts); ?>">
-						<div class="avatar-box"><?php echo( get_avatar( get_the_author_meta( 'ID' ) ) ); ?>
-						</div>
-						<span class="author-name"><?php echo( $name ); ?>
-						</span>
-					</a>
-				</div>
-			</div>
+	if( $authors ) {
+			ob_start(); ?>
+			<div class="author-avatars">
 			<?php
 
-		} else {
+			foreach( $authors as $author ) {
 
+			 if ( count_user_posts( $author->ID ) >= 1 ) {
+				$name = $author->display_name;
+				// $author_posts = $author->url;
+				$author_posts = get_author_posts_url( $author->ID );
+
+				// var_dump($author);
+				?>
+
+				<div class="authors-wrap">
+					<div class="author-box">
+						<a href="<?php echo($author_posts); ?>">
+							<div class="avatar-box"><?php echo( get_avatar( $author->ID ) ); ?>
+							</div>
+							<span class="author-name"><?php echo( $name ); ?>
+							</span>
+						</a>
+					</div>
+				</div>
+				<?php
+			}
 		}
-		$i++;
-
-	endwhile;
-	endif;
-
-
+	} else {
+			echo "no users found";
+	}
 	?>
-	</div>
+				</div>
 	<?php
+
 	$output_string = ob_get_contents();
 	ob_end_clean();
 	wp_reset_postdata();
 	return $output_string;
-
 }
 
 /* 6.2 - Hide Widgets
