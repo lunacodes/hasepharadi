@@ -48,16 +48,11 @@ Version 1.1.0
 * Add in Back-End Options
 * Need to convert Habdala
 
-
 ### General
 * Write unit tests
 * Rewrite as much code as possible into PHP.
     * Utilize the updated Hebcal SSL APIs, where relevant
-<<<<<<< HEAD
 * getGeoDetails: var state - immediately precedes if (state == null) - needs for loop, instead of just being set to null.
 * Incorporate Promises more?
-=======
 * getGeoDetails: Write an additional `for loop` in order to avoid `var state` defaulting to null.
-<!-- * Incorporate Promises more? -->
->>>>>>> master
 * Add back-end/admin options for choosing transliteration style and which times to display back in
