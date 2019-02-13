@@ -11,6 +11,7 @@ Once this is done, it checks for Daylight Saving Times, and then uses a Javascri
 * [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro)
 * [SunCalc Library](https://github.com/mourner/suncalc)
 * [jQuery](https://jquery.com/)
+<<<<<<< HEAD
 * [ipapi](https://ipapi.co/)
 <!-- * [DB-IP - IP Geolocation API](https://db-ip.com/api/) -->
 
@@ -35,6 +36,7 @@ Version 1.1.0
 ## Future
 
 ### Zemannim
+* Combine hebCalJS and hebCalJS2 0 - that's what shabbatHol flag's for
 * Do I actually need to enqueue the Google Maps API? Or can I just run it as a promise instead??
 * See if I can rewrite/get rid of some of what's in generateDatesWithHebCal()
 * Need to rewrite the getAddrDetailsByGeo half of the code to feed into the new hebcal functionality.
@@ -46,13 +48,12 @@ Version 1.1.0
 * Add in Back-End Options
 * Need to convert Habdala
 
-
 ### General
 * Write unit tests
 * Rewrite as much code as possible into PHP.
     * Utilize the updated Hebcal SSL APIs, where relevant
 * getGeoDetails: var state - immediately precedes if (state == null) - needs for loop, instead of just being set to null.
 * Incorporate Promises more?
+=======
 * getGeoDetails: Write an additional `for loop` in order to avoid `var state` defaulting to null.
-<!-- * Incorporate Promises more? -->
 * Add back-end/admin options for choosing transliteration style and which times to display back in

@@ -43,3 +43,10 @@ See Git commit history and previous style.css files, for present.
 * index.php - what purpose is it serving
 * custom-functions.php
     4.6 - Next & Prev Posts Link - look for a more organic code solution
+=======
+# haSepharadi - Theme Rewrite
+
+This theme is a modification of the [Genesis Sample Theme](https://demo.studiopress.com/) v2.7.1.
+
+## Requirements
+* [Genesis Framework](https://www.studiopress.com/features/)

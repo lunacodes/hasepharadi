@@ -106,7 +106,7 @@ class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 		 * Generates English and Hebrew dates for current day and upcoming Shabbath.
 		 *
 		 * @since 1.2.0
-		 *gen
+		 *
 		 * @return array Contains English and Hebrew dates the current day and upcoming Shabbath
 		 */
 		function generateDatesWithHebcal() {

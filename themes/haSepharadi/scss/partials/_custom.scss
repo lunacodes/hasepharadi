@@ -5,7 +5,6 @@
    - 1.1 Topbar
    - 1.2 Search Form
    - 1.3 Site Header
-<<<<<<< HEAD
 2. Site Navigation
    - 2.1 Menus Setup
    - 2.2 Header Menu
@@ -22,20 +21,7 @@
    - 5.3 Author Bios
 6. Archive Pages
    - 6.1 Affiliate Links
-=======
-2. Breadcrumbs
-3. Widgets
-   - 3.1 Author Avatars - Voices
-   - 3.2 Tribe Events
-   - 3.3 Zemannim
-4. Posts
-   - 4.1 Site Layout
-   - 4.2 Posts Layout
-   - 4.3 Author Bios
-5. Archive Pages
-   - 5.1 Affiliate Links
-6. BackToTop Button
->>>>>>> 21f8a20218803605e52f9f05804c5aa312af378b
+7. Back To Top Button
 
 ------------------------------------------------------*/
 
@@ -320,7 +306,6 @@ img.custom-logo {
 }
 
 
-<<<<<<< HEAD
 /* 2. Site Navigation
 =================================================*/
 
@@ -357,16 +342,14 @@ img.custom-logo {
   }
 
   .sub-menu {
-    background-color: transparent;
     border-top: 0;
-    // left: 0;
+    left: 0;
     line-height: 1.8;
     opacity: 0;
     padding-left: 0;
     position: absolute;
-    // top: 40px;
+    top: 40px;
     // top: 20px;
-    top: 0;
     transition: opacity 0.1s ease-in-out;
     z-index: 2;
 
@@ -377,7 +360,6 @@ img.custom-logo {
     li {
       display: block;
       right: calc(11%);
-      top: 40px;
 
       &:last-of-type a {
         background: $dark-grey;
@@ -587,9 +569,6 @@ img.custom-logo {
 
 
 /* 3. Breadcrumbs
-=======
-/* 2. Breadcrumbs
->>>>>>> 21f8a20218803605e52f9f05804c5aa312af378b
 =================================================*/
 
 .bc-container {
@@ -597,23 +576,18 @@ img.custom-logo {
   display: flex;
   justify-content: space-between;
   margin: 0 0 40px;
-
-  .social-buttons.share {
-    flex-basis: 30%;
-  }
 }
 
-// .breadcrumbs,
-// .bc-container .social-buttons.share {
-//   // flex-basis: 50%;
-// }
+.breadcrumbs,
+.bc-container .social-buttons.share {
+  flex-basis: 50%;
+}
 
 .breadcrumbs {
   // border: 1px solid #ddd;
   // border-width: 0 0 1px;
   border: 0;
   color: $mid-grey-2;
-  flex-basis: 70%;
   float: none;
   font-size: 1.3rem;
   // margin: 0 auto 40px;
@@ -645,10 +619,39 @@ img.custom-logo {
 }
 
 
-/* 3. Widgets
+/* 4. Widgets
 =================================================*/
 
-/* 3.1 Author Avatars - Voices
+/* 4.1 Widgets Setup
+============================*/
+
+.widget-wrap {
+  h4,
+  h4 a {
+    /* text-align: top; */
+    // font-size: 14px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.393;
+    margin: 0 !important;
+    text-align: left;
+    // font-family: sans-serif;
+  }
+
+  p.entry-meta {
+    color: $mid-grey-3;
+    font-size: 11px;
+    font-style: italic;
+    line-height: 1.775;
+    text-align: left;
+  }
+
+  a.alignleft {
+    margin: 0 10px 0 0;
+  }
+}
+
+/* 4.2 Author Avatars - Voices
 ============================*/
 
 .widget-wrap .author-avatars {
@@ -717,7 +720,7 @@ img.custom-logo {
 
 }
 
-/* 3.2 Tribe Events Widget
+/* 4.3 Tribe Events Widget
 ============================*/
 .tribe-events-widget-link {
   color: $orange;
@@ -748,21 +751,17 @@ img.custom-logo {
   list-style-type: none;
 }
 
-/* 3.3 Zemannim Widget
+/* 4.4 Zemannim Widget
 ============================*/
 .widgettitle.widget-title.shabbat-title {
   margin: 20px 0 !important;
 }
 
-.shabbat-text {
-  padding: 0 16px;
-}
 
-
-/* 4. Posts
+/* 5. Posts
 =================================================*/
 
-/* 4.1 Site Layout
+/* 5.1 Site Layout
 ============================*/
 
 .content {
@@ -789,7 +788,7 @@ img.custom-logo {
   max-width: 1200px;
 }
 
-/* 4.2 Posts Layout
+/* 5.2 Posts Layout
 ============================*/
 
 .post {
@@ -858,7 +857,7 @@ span.category {
   margin: 10px auto 0;
 }
 
-/* 4.3 Author Bios
+/* 5.3 Author Bios
 ============================*/
 
 .author-box .avatar {
@@ -884,10 +883,10 @@ span.category {
 }
 
 
-/* 5. Archive Pages
+/* 6. Archive Pages
 =================================================*/
 
-/* 5.1 Affiliate Links
+/* 6.1 Affiliate Links
 ============================*/
 
 .affiliates-container {
@@ -914,11 +913,7 @@ span.category {
   margin: 0 0 4px;
 }
 
-<<<<<<< HEAD
-/* 7. Media - Max-Width: 60em
-=======
-/* 7. BackToTop Button
->>>>>>> 21f8a20218803605e52f9f05804c5aa312af378b
+/* 7. Back To Top Button
 ============================*/
 
 #backToTop {
