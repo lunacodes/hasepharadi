@@ -199,7 +199,7 @@ var sz_habdala = document.getElementById("shzm_habdala");
 
 function hebCalShab(cityStr, lat, long, tzid) {
 	let urlStr = 'https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&nx=on&ss=on&mod=off&s=on&c=on&m=20&b=18&o=on&D=on&year=now&month=2&i=off&geo=pos' + '&latitude=' + lat + '&longitude=' + long + '&tzid=' + tzid;
-
+	console.log("hebCalShab urlStr", urlStr);
 	/*jshint sub:true*/
 	let city = cityStr;
 	fetch(urlStr)
@@ -207,28 +207,33 @@ function hebCalShab(cityStr, lat, long, tzid) {
 			return response.json();
 		})
 		.then(function(res) {
+			// console.log(res);
 			let data = res["items"];
 			let name = res["title"];
 			// let dateStr = res["date"];
-			let tmpDate = data[16]["date"];
-			const date = new Date(tmpDate);
+			// let tzOff = new Date.getTimezoneOffset(tzid);
+			let tmpDate = data[22]["date"];
+			var date = new Date(tmpDate);
+			// date = new Date(date.setMinutes(300));
 			let dateStr = date.toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
 			let engdate = "Shabbat Times for " + dateStr;
+			let hebdate = data[21]["hebrew"];
 
-			let hebdate = data[16]["hebrew"];
+			console.log("hebCalShab date-time vars:", tmpDate, ",", dateStr, ",", engdate, ",", hebdate);
 
 			// Candles & Sunset
-			let candles = data[15]["title"];
+			let candles = data[22]["title"];
 			let sunset = hebCalGetSunset(candles);
 			sunset = "Sunset: " + sunset;
-			let habdala = data[18]["title"];
+			let habdala = data[25]["title"];
 			let index = habdala.indexOf("(") - 1;
 			habdala = 'Haḇdala' + habdala.slice(index);
 			// indexHab
+			console.log("hebCalShab candles-habdala vars:", candles, sunset, habdala, index, );
 
 			// Perasha Info
-			let perashaHeb = data[17]["hebrew"];
-			let perashaEng = data[17]["title"];
+			let perashaHeb = data[24]["hebrew"];
+			let perashaEng = data[24]["title"];
 
 			var str = perashaEng;
 			var firstSpace=str.indexOf(" ");
@@ -237,6 +242,7 @@ function hebCalShab(cityStr, lat, long, tzid) {
 			perashaEng = "Perasha " + a2s;
 
 			var hebCalFinal = [engdate, hebdate, perashaHeb, perashaEng, candles, sunset, habdala];
+			console.log("hebCalFinal:", hebCalFinal);
 			displayShabbatTimes(hebCalFinal, city);
 			// return hebCalFinal;
 			/*jshint sub:false*/
@@ -863,12 +869,13 @@ function displayTimes(timeSet, city) {
  * Generates HTML output for display of Shabbath Times
  * @since  1.2.0
  *
- * @param  {array} timeSet an array containing
- * sunset, candle lighting, and habdala information
+ * @param  {array} timeSet an array containing: engdate, hebdate, perashaHeb, perashaEng, candles, sunset, habdala
+ * @see hebCalShab()
  * @param  {string} city    Name of the user's city
  * @return {[type]}         [description]
  */
 function displayShabbatTimes(timeSet, cityStr) {
+	console.log("displayShabbatTimes: timeSet, cityStr", timeSet, cityStr);
 	// var city = city;
 	let date = timeSet[0];
 	// let city = cityStr;
@@ -878,6 +885,14 @@ function displayShabbatTimes(timeSet, cityStr) {
 	let candles = timeSet[4];
 	let sunset = timeSet[5];
 	let habdala = timeSet[6];
+	console.log("displayShabbatTimes: date (eng)", date);
+	console.log("displayShabbatTimes: hebDate", hebDate);
+	console.log("displayShabbatTimes: perashaHeb", perashaHeb);
+	console.log("displayShabbatTimes: perashaEng", perashaEng);
+	console.log("displayShabbatTimes: candles", candles);
+	console.log("displayShabbatTimes: sunset", sunset);
+	console.log("displayShabbatTimes: habdala", habdala);
+
 	// sz_city.innerHTML = city + "<br>";
 	sz_date.innerHTML = date + "<br>";
 	sz_date_heb.innerHTML = hebDate + "<br>";
