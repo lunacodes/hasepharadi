@@ -152,8 +152,8 @@ class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 						<span id="zemannim_city"></span>
 						<span id="zemannim_hebrew"><?php echo( esc_attr( $today_heb ) ); ?><br></span>
 						<span id="zemannim_shema">Latest Shema: <br></span>
-						<span id="zemannim_minha">Earliest Minḥa:  <br></span>
-						<span id="zemannim_peleg">Peleḡ haMinḥa:  <br></span>
+						<span id="zemannim_minha">Earliest Minḥa: <br></span>
+						<span id="zemannim_peleg">Peleḡ haMinḥa: <br></span>
 						<span id="zemannim_sunset">Sunset: <br></span>
 				</div>
 		</div>
@@ -196,10 +196,118 @@ var sz_candles = document.getElementById("shzm_candles");
 var sz_sunset = document.getElementById("shzm_sunset");
 var sz_habdala = document.getElementById("shzm_habdala");
 
+function getShabbatDate(dayNum, dayDate) {
+	// var month = today.getMonth() + 1;
+	/* Add check to make sure we haven't gone into next month
+		Need to figure out logic for how to handle that */
+
+	if (dayNum < 7) {
+		var i = 7 - dayNum;
+		var dateMod = dayDate + i;
+		var fri = new Date();
+		var sat = new Date();
+		// console.log(sat);
+		fri.setDate(dateMod - 2);
+		sat.setDate(dateMod - 1);
+		// console.log('fri, sat', fri, sat);
+		// console.log(sat);
+		return [fri, sat];
+	}
+}
+
+function getCandleTimes(data, date) {
+	// console.log('getCandleTimes data date:', data, date);
+  let candlesList = [];
+	data.forEach((item, index) => {
+		let d1 = new Date(item.date);
+		let d2 = new Date(date);
+		// console.log('d1, d2', d1, d2);
+		let same = d1.getDate() === d2.getDate();
+		// console.log(same);
+
+		if ((item.category === 'candles') && same) {
+			candlesList.push(item);
+			// console.log('candlesList', candlesList);
+			// console.log(candlesList[0]);
+			return candlesList[0];
+		}
+	});
+	return candlesList[0];
+}
+
+function getHebDate(data, date) {
+		// console.log('getCandleTimes data date:', data, date);
+	  let hebDatesList = [];
+		data.forEach((item) => {
+			let d1 = new Date(item.date);
+			let d2 = new Date(date);
+			// console.log('d1, d2', d1, d2);
+			let same = d1.getDate() === d2.getDate();
+			// console.log(same);
+
+			if ((item.category === 'hebdate') && same) {
+				hebDatesList.push(item);
+				// console.log('hebDatesList', hebDatesList);
+				// console.log(hebDatesList[0]);
+				return hebDatesList[0].hebrew;
+			}
+		});
+	return hebDatesList[0].hebrew;
+}
+
+function getPerasha(data, date) {
+	var perashaList = [];
+	data.forEach((item) =>
+	 {
+		var d1 = new Date(item.date);
+		var d2 = new Date(date);
+		var same = (d1.getDate()) === (d2.getDate() -1);
+		// console.log(item.category);
+		if ((item.category === 'parashat') && same ) {
+			console.log('success', item);
+			perashaList.push(item);
+			console.log('p2', perashaList);
+			return perashaList[0];
+		}
+	});
+	return perashaList[0];
+}
+
+function getHabdalaTimes(data, date) {
+	// console.log('getHabdalaTimes data date', data, date);
+	// console.log('getHabdalaTimes date:', date);
+  let habdalaTimes = [];
+	data.forEach((item) => {
+		// console.log(item);
+	  let d3 = new Date(item.date);
+	  let d4 = new Date(date);
+	  // console.log('d3', d3);
+	  // console.log('d4', d4);
+	  // console.log('getHabdalaTimes d1:', d1);
+	  // console.log('getHabdalaTimes d2:', d2);
+	  // console.log('d1, d2', d1, d2);
+	  let same = d3.getDate() === d4.getDate();
+	  // console.log('same', same);
+
+	  // habdalaTimes.push(item);
+	  // console.log(habdalaTimes);
+	  // console.log(item.category);
+	  if ((item.category === 'havdalah') && same) {
+	  	// console.log(item.category);
+	  	// console.log(index, item);
+	  	habdalaTimes.push(item);
+	  	// console.log(habdalaTimes);
+		  return habdalaTimes;
+	  }
+	});
+	return habdalaTimes;
+}
 
 function hebCalShab(cityStr, lat, long, tzid) {
-	let urlStr = 'https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&nx=on&ss=on&mod=off&s=on&c=on&m=20&b=18&o=on&D=on&year=now&month=2&i=off&geo=pos' + '&latitude=' + lat + '&longitude=' + long + '&tzid=' + tzid;
-	console.log("hebCalShab urlStr", urlStr);
+	let today = new Date();
+	let month = today.getMonth() + 1;
+	let urlStr = 'https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&nx=on&ss=on&mod=off&s=on&c=on&m=20&b=18&o=on&D=on&year=now&month=' + month + '&i=off&geo=pos' + '&latitude=' + lat + '&longitude=' + long + '&tzid=' + tzid;
+	// console.log("hebCalShab urlStr", urlStr);
 	/*jshint sub:true*/
 	let city = cityStr;
 	fetch(urlStr)
@@ -208,48 +316,75 @@ function hebCalShab(cityStr, lat, long, tzid) {
 		})
 		.then(function(res) {
 			// console.log(res);
-			let data = res["items"];
-			let name = res["title"];
-			// let dateStr = res["date"];
-			// let tzOff = new Date.getTimezoneOffset(tzid);
-			let tmpDate = data[22]["date"];
-			var date = new Date(tmpDate);
-			// date = new Date(date.setMinutes(300));
-			let dateStr = date.toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
-			let engdate = "Shabbat Times for " + dateStr;
-			let hebdate = data[21]["hebrew"];
+			let data = res['items'];
+			// let name = res['title'];
+			// console.log(data);
 
-			console.log("hebCalShab date-time vars:", tmpDate, ",", dateStr, ",", engdate, ",", hebdate);
+			let today = new Date(res.date);
+			// console.log('today', today);
+			let todayNum = today.getDay();
+			let todayDate = today.getDate();
+			// console.log('num, date', todayNum, todayDate);
+
+			let shabbatDate = getShabbatDate(todayNum, todayDate);
+			let fri = shabbatDate[0];
+			let sat = shabbatDate[1];
+			// console.log('fri, sat', fri, sat);
+
+			// Shabbat Strings
+			let dateStr = fri.toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
+			let engdate = 'Shabbat Times for ' + dateStr;
+			let hebdate = getHebDate(data, fri);
+			console.log('hebdate', hebdate);
+			// let hebdate = getHebDate(data, fri);
+			// console.log(fri);
+			// console.log(fri.hebrew);
+
+			// console.log('hebCalShab date-time vars:', tmpDate, ',', dateStr, ',', engdate, ',', hebdate);
 
 			// Candles & Sunset
-			let candles = data[22]["title"];
+			let candlesData = getCandleTimes(data, fri);
+			console.log('candlesData:', candlesData);
+			let candles = candlesData.title;
 			let sunset = hebCalGetSunset(candles);
-			sunset = "Sunset: " + sunset;
-			let habdala = data[25]["title"];
-			let index = habdala.indexOf("(") - 1;
+			console.log('sunset:', sunset);
+			sunset = 'Sunset: ' + sunset;
+
+			// Habdala
+			let habdalaData = getHabdalaTimes(data, sat);
+			habdala = habdalaData[0].title;
+			console.log('habdalaData', habdalaData);
+			console.log('habdala', habdala);
+			// let habdala = data[25]["title"];
+			let index = habdala.indexOf('(') - 1;
 			habdala = 'Haḇdala' + habdala.slice(index);
 			// indexHab
-			console.log("hebCalShab candles-habdala vars:", candles, sunset, habdala, index, );
+			console.log('hebCalShab candles-habdala vars:', candles, ',', sunset, ',', habdala, ',', index );
 
 			// Perasha Info
-			let perashaHeb = data[24]["hebrew"];
-			let perashaEng = data[24]["title"];
+			let perasha = getPerasha(data, sat);
+			console.log('perasha passed:', perasha);
+			let perashaHeb = perasha.hebrew;
+			let perashaEng = perasha.title;
+			console.log('perashaHeb, perashaEng', perashaHeb, perashaEng);
 
+			// Transliterations
 			var str = perashaEng;
-			var firstSpace=str.indexOf(" ");
+			var firstSpace=str.indexOf(' ');
 			var perashaShort= str.slice(firstSpace + 1);
-			let a2s = ashkiToSeph(perashaShort, 'perasha');
-			perashaEng = "Perasha " + a2s;
+			let a2s = ashkiToSeph(perashaShort, 'p');
+			let a2sTest = ashkiToSeph("Asara B'Tevet", 'p');
+			perashaEng = 'Perasha ' + a2s;
 
 			var hebCalFinal = [engdate, hebdate, perashaHeb, perashaEng, candles, sunset, habdala];
-			console.log("hebCalFinal:", hebCalFinal);
+			console.log('hebCalFinal:', hebCalFinal);
 			displayShabbatTimes(hebCalFinal, city);
 			// return hebCalFinal;
 			/*jshint sub:false*/
 	});
 }
 
-function hebCalHol(city, lat, long, tzid) {
+function hebCalWeekday(city, lat, long, tzid) {
 	let urlStr = 'https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&nx=on&ss=on&mod=off&s=on&c=on&m=20&b=18&o=on&D=on&year=now&month=2&i=off&geo=pos' + '&latitude=' + lat + '&longitude=' + long + '&tzid=' + tzid;
 
 	fetch(urlStr)
@@ -258,19 +393,19 @@ function hebCalHol(city, lat, long, tzid) {
 		})
 		.then(function(res) {
 			// console.log(res);
-			let data = res["items"];
-			let name = res["title"];
-			// let dateStr = res["date"];
-			const date = new Date(res["date"]);
+			let data = res.items;
+			// let name = res.title;
+			// let dateStr = res['date'];
+			const date = new Date(res.date);
 			// var sunsetCheck = calculateTimes(todayTimesObj, false);
 
 			// let tzOffset = date.getTimezoneOffset();
 			// tzOffsetHrs = tzOffset / 60;
 
 			let dateStr = date.toLocaleString('en-us', { month: 'long', day: 'numeric', year: 'numeric' });
-			engdate = "Shabbat Times for " + dateStr;
+			engdate = 'Shabbat Times for ' + dateStr;
 
-			let hebdate = data[9]["hebrew"];
+			let hebdate = data[9].hebrew;
 
 			// Candles & Sunset
 			// let candles = data[10]["title"];
@@ -301,7 +436,7 @@ function hebCalHol(city, lat, long, tzid) {
 
 function hebCalGetSunset(timestr) {
 		let str = timestr;
-		let index = str.indexOf(":") + 2;
+		// let index = str.indexOf(':') + 2;
 		let time = str.replace(/\D/g,'');
 		let hr = time.slice(0,1);
 		let min = time.slice(-2);
@@ -317,12 +452,12 @@ function hebCalGetSunset(timestr) {
 				hr += 1;
 		}
 
-		time = hr + ":" + min;
+		time = hr + ':' + min;
 		return time;
 
 }
 
-function ashkiToSeph(input, type) {
+function ashkiToSeph(input, sel) {
 	/* Consider either using a second variable for Perasha vs Holiday. Or separating them into 2 holidays... or just don't bother
 	for now type can either be `perasha` or `holiday`*/
 	var perashaList = [
@@ -384,113 +519,151 @@ function ashkiToSeph(input, type) {
 		["Asara B'Tevet", "ʿAsara Beṭeḇet"]
 	];
 
-	var holidays = [
-		['ashkiHol', 'Yitro'],
-		['ashkiHol', 'ʿAsara Beṭeḇet'],
-		['ashkiHol', 'Haḏlaqat Nerot'],
-		['ashkiHol', 'Ḥanukka'],
-		['ashkiHol', 'Ḥanukka: Ner I'],
-		['ashkiHol', 'Ḥanukka: Ner II'],
-		['ashkiHol', 'Ḥanukka: Ner III'],
-		['ashkiHol', 'Ḥanukka: Ner IV'],
-		['ashkiHol', 'Ḥanukka: Ner V'],
-		['ashkiHol', 'Ḥanukka: Ner VI'],
-		['ashkiHol', 'Ḥanukka: Ner VII'],
-		['ashkiHol', 'Ḥanukka: Ner VIII'],
-		['ashkiHol', 'Ḥanukka: Yom VIII '],
-		['ashkiHol', 'ʿOmer'],
-		['ashkiHol', 'ʿEreḇ Pesaḥ'],
-		['ashkiHol', 'ʿEreḇ Purim'],
-		['ashkiHol', 'ʿEreḇ Rosh Hashana'],
-		['ashkiHol', 'ʿEreḇ Shaḇuʿot'],
-		['ashkiHol', 'ʿEreḇ Simḥat Torah'],
-		['ashkiHol', 'ʿEreḇ Sukot'],
-		['ashkiHol', 'ʿEreḇ Tishʿa Beʾaḇ'],
-		['ashkiHol', 'ʿEreḇ Yom HakKippurim'],
-		['ashkiHol', 'Haḇḏala'],
-		['ashkiHol', 'Lag LaʿOmer'],
-		['ashkiHol', 'Seliḥot'],
-		['ashkiHol', 'Pesaḥ'],
-		['ashkiHol', 'Pesaḥ Yom I'],
-		['ashkiHol', 'Pesaḥ Yom II'],
-		['ashkiHol', 'Pesaḥ (Ḥol HaMoʿḏ) Yom II'],
-		['ashkiHol', 'Pesaḥ (Ḥol HaMoʿḏ) Yom III'],
-		['ashkiHol', 'Pesaḥ (Ḥol HaMoʿḏ) Yom IV'],
-		['ashkiHol', 'Pesaḥ Sheni'],
-		['ashkiHol', 'Pesaḥ (Ḥol HaMoʿḏ) Yom V'],
-		['ashkiHol', 'Pesaḥ (Ḥol HaMoʿḏ) Yom VI'],
-		['ashkiHol', 'Pesaḥ Yom VII'],
-		['ashkiHol', 'Pesaḥ Yom VIII'],
-		['ashkiHol', 'Purim'],
-		['ashkiHol', 'Purim Qaṭan'],
-		['ashkiHol', 'Rosh Ḥoḏesh'],
-		['ashkiHol', 'ʾAḏar'],
-		['ashkiHol', 'ʾAḏar I'],
-		['ashkiHol', 'ʾAḏar II'],
-		['ashkiHol', 'ʾAḇ'],
-		['ashkiHol', 'Marḥeshvan'],
-		['ashkiHol', 'ʾElul'],
-		['ashkiHol', 'ʾIyayr'],
-		['ashkiHol', 'Kislev'],
-		['ashkiHol', 'Nisan'],
-		['ashkiHol', 'Sheḇaṭ'],
-		['ashkiHol', 'Sivan'],
-		['ashkiHol', 'Tamuz'],
-		['ashkiHol', 'Ṭeḇet'],
-		['ashkiHol', 'Rosh Hashana'],
-		['ashkiHol', 'Rosh Hashana Yom I'],
-		['ashkiHol', 'Rosh Hashana Yom II'],
-		['ashkiHol', 'Shabbat Ḥazon'],
-		['ashkiHol', 'Shabbat HaḤoḏesh'],
-		['ashkiHol', 'Shabbat Haggaḏol'],
-		['ashkiHol', 'Shabbat Maḥar Ḥoḏesh'],
-		['ashkiHol', 'Shabbat Naḥamu'],
-		['ashkiHol', 'Shabbat Para'],
-		['ashkiHol', 'Shabbat Rosh Ḥoḏesh'],
-		['ashkiHol', 'Shabbat Sheqalim'],
-		['ashkiHol', 'Shabbat Shuḇa'],
-		['ashkiHol', 'Shabbat Zakhor'],
-		['ashkiHol', 'Shaḇuʿot'],
-		['ashkiHol', 'Shaḇuʿot Yom I'],
-		['ashkiHol', 'Shaḇuʿot Yom II'],
-		['ashkiHol', 'Shemini ʿAṣeret'],
-		['ashkiHol', 'Shushan Purim'],
-		['ashkiHol', 'Sigd'],
-		['ashkiHol', 'Simḥat Tora'],
-		['ashkiHol', 'Sukkot'],
-		['ashkiHol', 'Sukkot Yom I'],
-		['ashkiHol', 'Sukkot Yom II'],
-		['ashkiHol', 'Sukkot (Ḥol HaMoʿḏ) Yom II'],
-		['ashkiHol', 'Sukkot (Ḥol HaMoʿḏ) Yom III'],
-		['ashkiHol', 'Sukkot (Ḥol HaMoʿḏ) Yom IV'],
-		['ashkiHol', 'Sukkot (Ḥol HaMoʿḏ) Yom V'],
-		['ashkiHol', 'Sukkot (Ḥol HaMoʿḏ) Yom VI'],
-		['ashkiHol', 'Sukkot (Hoshaʿna Rabba) Yom VII'],
-		['ashkiHol', 'Taʿanit Bekhorot'],
-		['ashkiHol', 'Taʿanit ʾEster'],
-		['ashkiHol', 'Tishʿa Beʾaḇ'],
-		['ashkiHol', 'Ṭu Beʾaḇ'],
-		['ashkiHol', 'Ṭu Bishḇaṭ'],
-		['ashkiHol', 'Ṭu Bishḇaṭ'],
-		['ashkiHol', 'Ṣom Geḏalya'],
-		['ashkiHol', 'Ṣom Tamuz'],
-		['ashkiHol', 'Yom Haʿaṣmaʾut'],
-		['ashkiHol', 'Yom Hashoʾa'],
-		['ashkiHol', 'Yom Hazzikkaron'],
-		['ashkiHol', 'Yom HakKippurim'],
-		['ashkiHol', 'Yom Yerushalayim'],
-		['ashkiHol', 'Yom HaʿAliya'],
+	var holidayList = [
+		["Asara B'Tevet", "ʿAsara Beṭeḇet"],
+		["Candle lighting", "Haḏlaqat Nerot"],
+		["Chanukah", "Ḥanukka"],
+		["Chanukah: 1 Candle", "Ḥanukka: Ner I"],
+		["Chanukah: 2 Candles", "Ḥanukka: Ner II"],
+		["Chanukah: 3 Candles", "Ḥanukka: Ner III"],
+		["Chanukah: 4 Candles", "Ḥanukka: Ner IV"],
+		["Chanukah: 5 Candles", "Ḥanukka: Ner V"],
+		["Chanukah: 6 Candles", "Ḥanukka: Ner VI"],
+		["Chanukah: 7 Candles", "Ḥanukka: Ner VII"],
+		["Chanukah: 8 Candles", "Ḥanukka: Ner VIII"],
+		["Chanukah: 8th Day", "Ḥanukka: Yom VIII "],
+		["Days of the Omer", "ʿOmer"],
+		["Erev Pesach", "ʿEreḇ Pesaḥ"],
+		["Erev Purim", "ʿEreḇ Purim"],
+		["Erev Rosh Hashana", "ʿEreḇ Rosh Hashana"],
+		["Erev Shavuot", "ʿEreḇ Shaḇuʿot"],
+		["Erev Simchat Torah", "ʿEreḇ Simḥat Torah"],
+		["Erev Sukkot", "ʿEreḇ Sukot"],
+		["Erev Tish'a B'Av", "ʿEreḇ Tishʿa Beʾaḇ"],
+		["Erev Yom Kippur", "ʿEreḇ Yom HakKippurim"],
+		["Havdalah", "Haḇḏala"],
+		["Lag BaOmer", "Lag LaʿOmer"],
+		["Leil Selichot", "Seliḥot"],
+		["Pesach", "Pesaḥ"],
+		["Pesach I", "Pesaḥ Yom I"],
+		["Pesach II", "Pesaḥ Yom II"],
+		["Pesach II (CH''M)", "Pesaḥ (Ḥol HaMoʿḏ) Yom II"],
+		["Pesach III (CH''M)", "Pesaḥ (Ḥol HaMoʿḏ) Yom III"],
+		["Pesach IV (CH''M)", "Pesaḥ (Ḥol HaMoʿḏ) Yom IV"],
+		["Pesach Sheni", "Pesaḥ Sheni"],
+		["Pesach V (CH''M)", "Pesaḥ (Ḥol HaMoʿḏ) Yom V"],
+		["Pesach VI (CH''M)", "Pesaḥ (Ḥol HaMoʿḏ) Yom VI"],
+		["Pesach VII", "Pesaḥ Yom VII"],
+		["Pesach VIII", "Pesaḥ Yom VIII"],
+		["Purim", "Purim"],
+		["Purim Katan", "Purim Qaṭan"],
+		["Rosh Chodesh %s", "Rosh Ḥoḏesh"],
+		["Adar", "ʾAḏar"],
+		["Adar I", "ʾAḏar I"],
+		["Adar II", "ʾAḏar II"],
+		["Av", "ʾAḇ"],
+		["Cheshvan", "Marḥeshvan"],
+		["Elul", "ʾElul"],
+		["Iyyar", "ʾIyayr"],
+		["Kislev", "Kislev"],
+		["Nisan", "Nisan"],
+		["Sh'vat", "Sheḇaṭ"],
+		["Sivan", "Sivan"],
+		["Tamuz", "Tamuz"],
+		["Tevet", "Ṭeḇet"],
+		["Rosh Hashana", "Rosh Hashana"],
+		["Rosh Hashana I", "Rosh Hashana Yom I"],
+		["Rosh Hashana II", "Rosh Hashana Yom II"],
+		["Shabbat Chazon", "Shabbat Ḥazon"],
+		["Shabbat HaChodesh", "Shabbat HaḤoḏesh"],
+		["Shabbat HaGadol", "Shabbat Haggaḏol"],
+		["Shabbat Machar Chodesh", "Shabbat Maḥar Ḥoḏesh"],
+		["Shabbat Nachamu", "Shabbat Naḥamu"],
+		["Shabbat Parah", "Shabbat Para"],
+		["Shabbat Rosh Chodesh", "Shabbat Rosh Ḥoḏesh"],
+		["Shabbat Shekalim", "Shabbat Sheqalim"],
+		["Shabbat Shuva", "Shabbat Shuḇa"],
+		["Shabbat Zachor", "Shabbat Zakhor"],
+		["Shavuot", "Shaḇuʿot"],
+		["Shavuot I", "Shaḇuʿot Yom I"],
+		["Shavuot II", "Shaḇuʿot Yom II"],
+		["Shmini Atzeret", "Shemini ʿAṣeret"],
+		["Shushan Purim", "Shushan Purim"],
+		["Sigd", "Sigd"],
+		["Simchat Torah", "Simḥat Tora"],
+		["Sukkot", "Sukkot"],
+		["Sukkot I", "Sukkot Yom I"],
+		["Sukkot II", "Sukkot Yom II"],
+		["Sukkot II (CH''M)", "Sukkot (Ḥol HaMoʿḏ) Yom II"],
+		["Sukkot III (CH''M)", "Sukkot (Ḥol HaMoʿḏ) Yom III"],
+		["Sukkot IV (CH''M)", "Sukkot (Ḥol HaMoʿḏ) Yom IV"],
+		["Sukkot V (CH''M)", "Sukkot (Ḥol HaMoʿḏ) Yom V"],
+		["Sukkot VI (CH''M)", "Sukkot (Ḥol HaMoʿḏ) Yom VI"],
+		["Sukkot VII (Hoshana Raba)", "Sukkot (Hoshaʿna Rabba) Yom VII"],
+		["Ta'anit Bechorot", "Taʿanit Bekhorot"],
+		["Ta'anit Esther", "Taʿanit ʾEster"],
+		["Tish'a B'Av", "Tishʿa Beʾaḇ"],
+		["Tu B'Av", "Ṭu Beʾaḇ"],
+		["Tu BiShvat", "Ṭu Bishḇaṭ"],
+		["Tu B'Shvat", "Ṭu Bishḇaṭ"],
+		["Tzom Gedaliah", "Ṣom Geḏalya"],
+		["Tzom Tammuz", "Ṣom Tamuz"],
+		["Yom HaAtzma'ut", "Yom Haʿaṣmaʾut"],
+		["Yom HaShoah", "Yom Hashoʾa"],
+		["Yom HaZikaron", "Yom Hazzikkaron"],
+		["Yom Kippur", "Yom HakKippurim"],
+		["Yom Yerushalayim", "Yom Yerushalayim"],
+		["Yom HaAliyah", "Yom HaʿAliya"]
 	];
 
+	console.log('input, sel: ', input, sel);
 	var i; // Reusable loop variable
+	// if (sel === 'perasha') {
+	// 	perashaList.forEach((item) => {
+	// 		// console.log(item[0]);
+	// 		var same = (input == item[0]);
+	// 		// console.log(same);
+
+	// 	  // if (input == item[0]) {
+	// 	  // 	console.log('yes');
+	// 	  // } else {
+	// 	  // 	console.log('nope');
+	// 	  // }
+	// 	})
+	// }
+	//
 		input = input.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 		input = input.replace("'", "");
-		for (i = 0; i < perashaList.length; i++) {
-			// note: for whatever reason, this continues to loop, even past getting the match
-			if (perashaList[i][0] == input) {
-				return (perashaList[i][1]);
-			}
+		console.log('input trim:', input);
+
+		let res = [];
+		if (sel === 'p') {
+			perashaList.forEach((item) => {
+				// console.log(item[0]);
+				let same = (input == item[0]);
+				// console.log(same);
+				if (same) {
+
+					res.push[item[1]];
+					console.log('p res', res);
+					// return res;
+				}
+			});
+		} else if (sel === 'h') {
+			holidayList.forEach((item) => {
+				// console.log(item[0]);
+				let same = (input == item[0]);
+				// console.log(same);
+				if (same) {
+					res.push[item[1]];
+					console.log('h res', res);
+					// return res;
+				}
+			});
 		}
+
+		let a2s = res;
+		return a2s;
 }
 
 
@@ -631,7 +804,7 @@ function getTimeZoneID(city, lat,long, utc) {
 			let tzid = res['timeZoneId'];
 			// return tzid;
 			// trace();
-			hebCalHol(city, lat, long, tzid);
+			hebCalWeekday(city, lat, long, tzid);
 			hebCalShab(city, lat, long, tzid);
 	}
 );
