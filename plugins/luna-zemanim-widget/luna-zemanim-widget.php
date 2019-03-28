@@ -171,7 +171,6 @@ class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 		?>
 
 <script type="text/javascript" defer>
-debugger;
 /* jshint esversion: 6 */
 /* jshint node: true */
 /* jshint strict: global */
@@ -305,7 +304,6 @@ function hebCalGetSunset(timestr) {
 }
 
 function hebCalShab(cityStr, lat, long, tzid) {
-	debugger;
 	const now = new Date();
 	let month = now.getMonth() + 1;
 
@@ -365,11 +363,9 @@ function hebCalShab(cityStr, lat, long, tzid) {
 			// let a2sTest = ashkiToSeph("Asara B'Tevet", 'p');
 			perashaEng = 'Perasha ' + a2s;
 
-			debugger;
 			let shabbatSet = [engdate, perashaEng, hebdate, perashaHeb, candles, sunset, habdala];
 			let todaySet = timesHelper(lat, long);
 
-			debugger;
 			displayTimes(todaySet, shabbatSet, cityStr, todayStr);
 	});
 }
@@ -570,7 +566,6 @@ function ashkiToSeph(input, sel) {
  * @return {(number|Array)} [lat, long] coordinates
  */
 function getLocation() {
-	debugger;
 	var options = {
 		enableHighAccuracy: true,
 		maximumAge: 0
@@ -899,7 +894,6 @@ function displayTimes(todaySet, shabbatSet, city, date) {
 	let sh_sunset = shabbatSet[5];
 	let sh_habdala = shabbatSet[6];
 
-	debugger;
 	// sz_city.innerHTML = city + '<br>';
 	sz_date.innerHTML = sh_engdate + '<br>';
 	sz_perasha.innerHTML = sh_perasha_en + '<br>';
