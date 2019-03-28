@@ -5,11 +5,11 @@ body.category  {
 
 .site-inner {
     max-width: initial;
+    padding: 0;
 }
 
 .full-width-content .content,
 #genesis-content {
-    width: 90%;
     max-width: initial;
     width: 1020px;
 }

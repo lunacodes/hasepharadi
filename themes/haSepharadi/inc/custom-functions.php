@@ -26,11 +26,12 @@
 	 - 4.8 wpDiscuz Comments Hack
 	 - 4.9 Author Page Affiliate Linkes
 	 - 4.10 Add Link Text on User Copy
+	 - 4.11 Add wpDevArt Facebook Comments
 5. Footer
 	 - 5.1 Back to Top Button
 	 - 5.2 Custom Footer Credits
 6. Widgets
-	 - 6.1 Author Avatars
+	 - 6.1 Author Avatars (Voices)
 	 - 6.2 Hide Widgets
 	 - 6.3 Mailchimp Subscribe
 7. Custom User Meta
@@ -64,7 +65,8 @@ function add_custom_image_sizes() {
 
 // add_action( 'wp_enqueue_scripts', 'enqueue_google_fonts' );
 // function enqueue_google_fonts() {
-//     wp_enqueue_script( 'google-fonts', 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i|Roboto+Slab:400,700|Source+Sans+Pro:400,400i,600,600i,700,700i', array(), CHILD_THEME_VERSION );
+//     wp_enqueue_script( 'google-fonts', 'https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700i|Roboto+Slab:400,700|Source+Sans+Pro:400,400i,600,600i,700,700i' );
+// }
 
 /* 1.4 - Genesis Thumbnail Cache Fix
 ============================*/
@@ -92,7 +94,6 @@ remove_action( 'genesis_header', 'genesis_do_header' );
 //* Enqueue Topbar scripts
 add_action('wp_enqueue_scripts', 'enqueue_topbar_scripts');
 function enqueue_topbar_scripts() {
-	// wp_enqueue_style( 'topbar.css', CHILD_URL . '/css/topbar.css', array(), CHILD_THEME_VERSION );
 	wp_enqueue_script( 'topbar-js', CHILD_URL . '/js/topbar.js', array( 'jquery' ), CHILD_THEME_VERSION );
 }
 
@@ -108,7 +109,7 @@ function add_topbar() {
 	</div>
 	 <!--  <button class="menu-toggle dashicons-before dashicons-menu" aria-expanded="false" aria-pressed="false" id="genesis-mobile-nav-primary">Menu</button> -->
 	<div id="tools" class="tools">
-	<form id="top-search" action="https://hasepharadi.com/" method="get" name="searchform" class="search-form">
+	<form id="top-search" role="search" action="https://hasepharadi.com/" method="get" name="searchform" class="search-form">
 		<input type="text" name="s" class="search-text" placeholder="Keyword">
 		<button form="top-search" type="submit" class="search-button"></button>
 	</form>
@@ -322,14 +323,14 @@ function luna_remove_sidebar() {
 /* 4.3 - Category Pages
 ============================*/
 
-add_action('wp_enqueue_scripts', 'enqueue_category_scripts');
-function enqueue_category_scripts() {
-	if ( is_category() ) {
-
-		wp_enqueue_style('category.css', CHILD_URL . '/css/category.css', array(), CHILD_THEME_VERSION );
-		remove_action( 'genesis_before_entry', 'display_featured_post_image' );
-	}
-}
+// Moved this to the actual category.php file...
+// add_action('wp_enqueue_scripts', 'enqueue_category_scripts');
+// function enqueue_category_scripts() {
+// 	if ( is_category() ) {
+// 		wp_enqueue_style('category.css', CHILD_URL . '/css/category.css', array(), CHILD_THEME_VERSION );
+// 		remove_action( 'genesis_before_entry', 'display_featured_post_image' );
+// 	}
+// }
 
 /* 4.4 - Entry Meta
 ============================*/
@@ -337,6 +338,7 @@ function enqueue_category_scripts() {
 // add_action( 'wp_enqueue_scripts', 'enqueue_entry_meta_assets' );
 function enqueue_entry_meta_assets() {
 	wp_enqueue_style( 'roboto-slab', 'https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese' );
+	add_action( 'genesis_entry_footer', 'genesis_post_meta' );
 }
 
 /* 4.5 - Entry Footer
@@ -377,17 +379,21 @@ function add_next_and_prev_post_archive_links() {
 		genesis_numeric_posts_nav();
 	} else {
 		genesis_prev_next_posts_nav();
-	}
-}
+	} }
 
 /* 4.7 Author Bios
 ============================*/
 
 add_action( 'genesis_after_loop', 'display_author_bio' );
+// add_action( 'genesis_loop', 'display_author_bio', 11, 1 );
+// add_action( 'wp_content', 'display_author_bio' );
 function display_author_bio() {
 
+	// most of the if statements below are pointless.
 	if ( ! is_singular( 'post' ) ) {
 		return;
+	} else if ( is_singular( 'tribe_events' ) ) {
+		// echo( 'Tribe Events' );
 	} else {
 
 	?>
@@ -404,7 +410,7 @@ function display_author_bio() {
 /* 4.8 wpDiscuz Comments Hack
 ============================*/
 
-add_action( 'genesis_after_loop', 'display_comments_plz' );
+// add_action( 'genesis_after_loop', 'display_comments_plz' );
 function display_comments_plz() {
 	if ( ! is_singular( 'post' ) ) {
 		return;
@@ -421,19 +427,33 @@ function display_comments_plz() {
 /* 4.10 Add Link Text on User Copy
 ============================*/
 
-// Appens the Site Url to any copied text
+// Append the Site Url to any copied text.
 add_action('wp_enqueue_scripts', 'add_copy_link' );
 function add_copy_link() {
 	wp_enqueue_script('add-copy-link', CHILD_URL . '/js/copy-link-text.js' );
 }
 
-// add_action( 'pre_get_posts', 'post_check' );
-// function post_checks( $query ) {
-//   if ( is_post_type_archive( 'facebook-events' ) ) {
-//     // echo("yes");
-//   }
+/* 4.11 Add wpDevArt Facebook Comments
+============================*/
 
-// }
+add_action( 'genesis_after_loop', 'display_fb_comments', 10 );
+function display_fb_comments() {
+	// if ( is_singular( 'event' ) ) {
+	// 	echo( "Event!!!!" );
+	// } else if ( is_category( 'events' ) ) {
+	// 	echo( "Category Events" );
+	// } else
+	if ( is_singular() ) {
+		$url = get_the_permalink();
+		// echo($url);
+		$shortcode_str = '[wpdevart_facebook_comment curent_url="' . $url . '" order_type="social" title_text="Facebook Comment" title_text_color="#000000" title_text_font_size="22" title_text_font_famely="monospace" title_text_position="left" width="100%" bg_color="#d4d4d4" animation_effect="random" ]';
+		// echo( "<br />");
+		echo($shortcode_str);
+		// echo( '[wpdevart_facebook_comment curent_url="https://haseph.test/2018/12/02/two-shamoshim-the-spanish-personalization-of-%e1%b8%a5anukka-in-post-expulsion-aleppo/". Read more at: https://haseph.test/2018/12/02/two-shamoshim-the-spanish-personalization-of-%e1%b8%a5anukka-in-post-expulsion-aleppo/" order_type="social" title_text="Facebook Comment" title_text_color="#000000" title_text_font_size="22" title_text_font_famely="monospace" title_text_position="left" width="100%" bg_color="#d4d4d4" animation_effect="random" ]');
+
+		echo do_shortcode( $shortcode_str );
+	}
+}
 
 
 /* 5. Footer
@@ -462,13 +482,22 @@ function sp_footer_creds_filter( $creds ) {
 /* 6. Widgets
 =================================================*/
 
-/* 6.1 - Author Avatars
+/* 6.1 Author Avatars (Voices)
 ============================*/
+
 
 add_shortcode( 'author_avatars', 'display_author_avatars' );
 function display_author_avatars() {
 	remove_filter('widget_text_content', 'wpautop');
+	add_action( "pre_user_query", function( $query ) {
+	    if( "rand" == $query->query_vars["orderby"] ) {
+	        $query->query_orderby = str_replace( "user_login", "RAND()", $query->query_orderby );
+	    }
+	});
+
 	$args = array(
+		'number' => 7,
+		// 'orderby' => 'rand',
 		'role' => 'subscriber'
 	);
 
@@ -549,6 +578,9 @@ function enqueue_mailchimp_styles() {
 remove_action( 'genesis_before_loop', 'genesis_do_author_box_archive', 15 );
 add_action( 'genesis_after_loop', 'genesis_do_author_box_archive' );
 
+remove_action( 'genesis_before_loop', 'genesis_do_author_box_archive', 15 );
+add_action( 'genesis_after_loop', 'genesis_do_author_box_archive' );
+
 add_filter( 'user_contactmethods', 'luna_add_user_social_media' );
 function luna_add_user_social_media( $fields ) {
 	$fields['academia'] = 'Academia';
@@ -560,7 +592,12 @@ function luna_add_user_social_media( $fields ) {
 	return $fields;
 }
 
-add_filter( 'get_the_author_genesis_author_box_single', '__return_true' );
+// I don't know if this is even achieving anything
+// Technically, it should be causing it to appear...
+if ( is_singular( 'event' ) ) {
+	add_filter( 'get_the_author_genesis_author_box_single', '__return_true' );
+}
+// add_filter( 'get_the_author_genesis_author_box_single', '__return_true' );
 
 remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
 
@@ -580,23 +617,14 @@ function luna_social_sharing_buttons() {
 		$post_thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'full' );
 
 		$fb_url = 'https://www.facebook.com/sharer/sharer.php?u=' . $post_url;
-		// echo( $fb_url);
 		$twitter_url = 'https://twitter.com/share?text=' . $post_title . '&url=' . $post_url . '&via=haSepharadi';
-		// $google_plus_url = 'https://plus.google.com/share?url='.$post_url;
-		// $linked_in_url = 'https://www.linkedin.com/shareArticle?mini=true&title='.$post_title.'&source-'.$post_url.'&url='.$post_url;
-		// $pinterest_url = 'https://pinterest.com/pin/create/button/?media='.$post_url.'&media='.$post_thumbnail[0].'&description='.$post_title;
-		// var_dump($post_thumbnail);
 		$whats_app_url = 'whatsapp://send?text=' . $post_title . ' ' . $post_url;
-
 		?>
 
 		<!-- Remove extraneous classes here?? -->
 		<div class="social-buttons share">
 			<a href="<?php echo( $fb_url ); ?>" target="_blank" title="Facebook" class="social-btn facebook-circle"><i class="fab fa-fw fa-facebook-f"></i></a>
 			<a href="<?php echo( $twitter_url ); ?>" target="_blank" title="Twitter" class="social-btn twitter-circle"><i class="fab fa-fw fa-twitter"></i></a>
-			<!-- <a href="<?php // echo($google_plus_url) ?>" target="_blank" title="Google Plus" class="social-btn google-plus-circle"><i class="fab fa-fw fa-google-plus"></i></a> -->
-			<!-- <a href="<?php // echo($pinterest_url) ?>" target="_blank" title="Pinterest" class="social-btn pinterest-circle"><i class="fab fa-fw fa-pinterest"></i></a> -->
-			<!-- <a href="<?php // echo($linked_in_url) ?>" target="_blank" title="LinkedIn" class="social-btn linkedin-circle"><i class="fab fa-fw fa-linkedin"></i></a> -->
 			<a href="<?php echo( $whats_app_url ); ?>" target="_blank" title="WhatsApp" class="social-btn whatsapp-circle"><i class="fab fa-fw fa-whatsapp"></i></a>
 
 		</div>

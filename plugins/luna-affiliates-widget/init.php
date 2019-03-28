@@ -17,6 +17,6 @@ function luna_afl_load_plugin_css() {
     $plugin_url = plugin_dir_url( __FILE__ );
 
     wp_enqueue_style( 'style', $plugin_url . 'assets/css/afl-style.css' );
-    wp_enqueue_script( 'afl-script', $plugin_url . 'assets/js/afl-script.js', array('jquery') );
+    // wp_enqueue_script( 'afl-script', $plugin_url . 'assets/js/afl-script.js', array('jquery') );
     // wp_enqueue_style( 'icons', $plugin_url . 'assets/css/fontello.css' );
 }

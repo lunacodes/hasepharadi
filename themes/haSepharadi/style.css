@@ -1797,7 +1797,10 @@ div.wpcf7 .wpcf7-submit:disabled {
     vertical-align: top; }
   .footer-widget-area .widget-wrap h4,
   .footer-widget-area .widget-wrap h4 a {
-    font: 400 14px 'PT Serif',"times new roman",times,serif; }
+    font: 400 14px 'PT Serif',"times new roman",times,serif;
+    max-height: 36px;
+    overflow: hidden;
+    overflow-y: hidden; }
   .footer-widget-area .widget-wrap p.entry-meta {
     color: #aaa;
     font-size: 11px;
@@ -2530,10 +2533,10 @@ span.category {
     max-width: 96%; }
 
   .content-sidebar-wrap {
-    width: unset; }
+    width: 96%; }
 
   #genesis-content {
-    margin: 0 10px 0 0;
+    margin: 0 10px 0;
     max-width: 69%; }
 
   .sidebar-primary {
@@ -2755,7 +2758,7 @@ span.category {
   .widget-area.footer-widget-area .featured-content .widget-wrap h4,
   .widget-area.footer-widget-area .featured-content .widget-wrap h4 a {
     font-size: 12px;
-    max-height: 48px;
+    max-height: 46px;
     overflow: hidden;
     text-align: left;
     text-overflow: ellipsis;
@@ -2825,7 +2828,7 @@ span.category {
     width: 100%; }
 
   #genesis-content {
-    margin: 0 10px 0 0; }
+    margin: 0 10px 0; }
 
   .footer-widgets {
     margin: 0 auto;
@@ -2868,13 +2871,22 @@ span.category {
 
   .featured-content .widget-wrap p.entry-meta,
   .widget-area.footer-widget-area .featured-content .widget-wrap p.entry-meta {
-    font-size: 14px; } }
+    font-size: 14px; }
+
+  .featured-content .entry-header, .widget-area.footer-widget-area .featured-content .entry-header {
+    max-width: 80%; }
+
+  .feature-content h4, .widget-area.footer-widget-area .featured-content .widget-wrap h4 {
+    width: 98%; } }
 /* Media Query - Max-Width: 690px
 ---------------------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 43.125em) {
   .featured-content .entry-header,
   .widget-area.footer-widget-area .featured-content .entry-header {
-    max-width: 70%; }
+    max-width: 100%; }
+
+  #topbar, #top, .site-inner, .footer-widgets .wrap, .site-footer, .site-footer .wrap {
+    max-width: 100%; }
 
   .logo {
     max-width: 100%;

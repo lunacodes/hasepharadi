@@ -23,7 +23,7 @@
   }
   #genesis-content {
     // float: none;
-    margin: 0 10px 0 0;
+    margin: 0 10px 0;
     // max-width: 100%;
     // width: 100%;
   }
@@ -95,6 +95,14 @@
     // }
   }
 
+  .featured-content .entry-header, .widget-area.footer-widget-area .featured-content .entry-header {
+    max-width: 80%;
+
+  }
+
+  .feature-content h4, .widget-area.footer-widget-area .featured-content .widget-wrap h4 {
+    width: 98%;
+  }
   // .featured-content .widget-wrap h4,
   // .featured-content .widget-wrap h4 a,
   // .widget-area.footer-widget-area .featured-content .widget-wrap h4,
