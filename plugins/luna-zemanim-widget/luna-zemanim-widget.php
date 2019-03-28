@@ -154,7 +154,7 @@ class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 		<div class="zemannim-text" id="shabbat_zemannim_container">
 				<div id="shabbat_zemannim_display">
 						<span id="shzm_date">Shabbat Times for <?php echo( esc_attr( $shabbat ) ); ?><br></span>
-						<span id="shzm_perasha"></span>
+						<span id="shzm_perasha">Perasha <br></span>
 						<span id="shzm_date_heb"><?php echo( esc_attr( $shabbat_heb ) ); ?><br></span>
 						<!-- <span id="shzm_city"></span> -->
 						<span id="shzm_perasha_heb"></span>
@@ -171,26 +171,27 @@ class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 		?>
 
 <script type="text/javascript" defer>
+debugger;
 /* jshint esversion: 6 */
 /* jshint node: true */
 /* jshint strict: global */
 'use strict';
 
-const zemannim = document.getElementById('zemannim_container');
-const z_date = document.getElementById('zemannim_date');
-const z_city = document.getElementById('zemannim_city');
-const z_shema = document.getElementById('zemannim_shema');
-const z_minha = document.getElementById('zemannim_minha');
-const z_peleg = document.getElementById('zemannim_peleg');
-const z_sunset = document.getElementById('zemannim_sunset');
-const shabbat_zemannim = document.getElementById('shzm_container');
-const sz_date = document.getElementById('shzm_date');
-const sz_date_heb = document.getElementById('shzm_date_heb');
-const sz_perasha = document.getElementById('shzm_perasha');
-const sz_perasha_heb = document.getElementById('shzm_perasha_heb');
-const sz_candles = document.getElementById('shzm_candles');
-const sz_sunset = document.getElementById('shzm_sunset');
-const sz_habdala = document.getElementById('shzm_habdala');
+var zemannim = document.getElementById('zemannim_container');
+var z_date = document.getElementById('zemannim_date');
+var z_city = document.getElementById('zemannim_city');
+var z_shema = document.getElementById('zemannim_shema');
+var z_minha = document.getElementById('zemannim_minha');
+var z_peleg = document.getElementById('zemannim_peleg');
+var z_sunset = document.getElementById('zemannim_sunset');
+var shabbat_zemannim = document.getElementById('shzm_container');
+var sz_date = document.getElementById('shzm_date');
+var sz_date_heb = document.getElementById('shzm_date_heb');
+var sz_perasha = document.getElementById('shzm_perasha');
+var sz_perasha_heb = document.getElementById('shzm_perasha_heb');
+var sz_candles = document.getElementById('shzm_candles');
+var sz_sunset = document.getElementById('shzm_sunset');
+var sz_habdala = document.getElementById('shzm_habdala');
 
 function getShabbatDate(dayNum, dayDate) {
 	if (dayNum < 7) {
@@ -304,6 +305,7 @@ function hebCalGetSunset(timestr) {
 }
 
 function hebCalShab(cityStr, lat, long, tzid) {
+	debugger;
 	const now = new Date();
 	let month = now.getMonth() + 1;
 
@@ -363,9 +365,11 @@ function hebCalShab(cityStr, lat, long, tzid) {
 			// let a2sTest = ashkiToSeph("Asara B'Tevet", 'p');
 			perashaEng = 'Perasha ' + a2s;
 
-			let shabbatSet = [engdate, hebdate, perashaHeb, perashaEng, candles, sunset, habdala];
+			debugger;
+			let shabbatSet = [engdate, perashaEng, hebdate, perashaHeb, candles, sunset, habdala];
 			let todaySet = timesHelper(lat, long);
 
+			debugger;
 			displayTimes(todaySet, shabbatSet, cityStr, todayStr);
 	});
 }
@@ -566,6 +570,7 @@ function ashkiToSeph(input, sel) {
  * @return {(number|Array)} [lat, long] coordinates
  */
 function getLocation() {
+	debugger;
 	var options = {
 		enableHighAccuracy: true,
 		maximumAge: 0
@@ -886,18 +891,19 @@ function displayTimes(todaySet, shabbatSet, city, date) {
 
 	/* Shabbath */
 	let sh_engdate = shabbatSet[0];
+	let sh_perasha_en = shabbatSet[1];
 	// let city = cityStr;
-	let sh_hebdate = shabbatSet[1];
-	let sh_perasha_en = shabbatSet[2];
+	let sh_hebdate = shabbatSet[2];
 	let sh_perasha_he = shabbatSet[3];
 	let sh_candles = shabbatSet[4];
 	let sh_sunset = shabbatSet[5];
 	let sh_habdala = shabbatSet[6];
 
+	debugger;
 	// sz_city.innerHTML = city + '<br>';
 	sz_date.innerHTML = sh_engdate + '<br>';
-	sz_date_heb.innerHTML = sh_hebdate + '<br>';
 	sz_perasha.innerHTML = sh_perasha_en + '<br>';
+	sz_date_heb.innerHTML = sh_hebdate + '<br>';
 	sz_perasha_heb.innerHTML = sh_perasha_he + '<br>';
 	sz_candles.innerHTML = sh_candles + '<br>';
 	sz_sunset.innerHTML = sh_sunset + '<br>';
