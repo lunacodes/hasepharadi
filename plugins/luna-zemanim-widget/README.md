@@ -17,10 +17,44 @@ Once this is done, it checks for Daylight Saving Times, and then uses a Javascri
 
 ## Changelog
 
-<!-- ### 1.3.3
+### [1.3.4] - 2019-03-28
+Consolidates and removes redundant functions. Improves code logic.
+
+**Removed Functions:**
+* `hebCalWeekday()` was consolidated into `hebCalShabbat`
+* `generateDateStrings()`
+* `displayShabbatTimes()` consolidated into displayTimes()
+
+**Renamed Functions:**
+* `generateDatesWithHebcal()` is now `generatePreDates()`
+* `calculateTimes` is now `calculateSunTimes()`
+
+**Modified Functions:**
+* `timesHelper()` - moved the `displayTimes()` call to parent function
+* calculateTimes() - deprecated the Shabbat-specific calculations (which are now handled via Hebcal API).
+
+**Other:**
+* `perashaHeb` now outputs `פרשה` instead of `פרשת`
+* Cleaned up unnecessary comments and `console.log` statements
+* Replaced additional double quotes surrounding strings, with single quotes
+
+
+### [1.3.3] - 2019-03-27
+* Rewrote the Hebcal parsing logic to be more intelligent
+* New functions:
+    * getShabbatDate()
+    * getCandleTimes()
+    * getHebDate()
+    * getPerasha()
+    * getHabdalaTimes()
+* ashkiToSeph() - added holiday list, and updated parsing logic to reflect Hebcal's API.
+* Renamed hecalHol to hebCalWeekday
 * Added padding to outputted text
 * Removed Deprecated getLatLongByAddr()
-* -->
+* Code Quality:
+    * Replace double quotes surrounding strings, with single quotes
+    * Use dot notation, instead of bracket for js arrays
+    * Utilize obj.forEach for better parsing of js arrays.
 
 ### 1.3.2 - 2019-02-06
 * Generating zemannim by IP + hebcal API working.
@@ -39,6 +73,10 @@ Version 1.1.0
 * N/A
 
 ## Future
+* Increase wp-admin options for customization
+* Merge redundant logic in the hebcal getter functions
+* Display Holidays, in addition to Shabbath
+
 
 ### Zemannim
 * Do I actually need to enqueue the Google Maps API? Or can I just run it as a promise instead??
