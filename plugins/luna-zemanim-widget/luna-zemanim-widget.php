@@ -66,7 +66,7 @@ class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 		$suncalc_version  = date( 'ymd-Gis', filemtime( plugin_dir_path( __FILE__ ) . 'suncalc-master/suncalc.js' ) );
 
 		wp_enqueue_script( 'suncalc-master', plugins_url( '/suncalc-master/suncalc.js', __FILE__ ), '', $suncalc_version );
-		wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyDgpmHtOYqSzG9JgJf98Isjno6YwVxCrEE', array(), true );
+		wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDgpmHtOYqSzG9JgJf98Isjno6YwVxCrEE', array(), true );
 
 		$title = apply_filters( 'widget_title', $instance['title'] );
 
@@ -173,6 +173,8 @@ class Luna_Zemanim_Widget_Hebcal extends WP_Widget {
 <script type="text/javascript" defer>
 /* jshint esversion: 6 */
 /* jshint node: true */
+/* jshint strict: global */
+'use strict';
 
 const zemannim = document.getElementById('zemannim_container');
 const z_date = document.getElementById('zemannim_date');
@@ -243,12 +245,12 @@ function getHebDate(data, date) {
 }
 
 function getPerasha(data, date) {
-	var perashaList = [];
+	let perashaList = [];
 	const d1 = new Date(date);
 
 	data.forEach((item) => {
-		var d2 = new Date(item.date);
-		var same = (d1.getDate() -1) === (d2.getDate());
+		let d2 = new Date(item.date);
+		let same = (d1.getDate() -1) === (d2.getDate());
 
 		// console.log(item.category);
 		if ((item.category === 'parashat') && same ) {
@@ -370,7 +372,7 @@ function hebCalShab(cityStr, lat, long, tzid) {
 
 function ashkiToSeph(input, sel) {
 	/* jshint quotmark: double */
-	var perashaList = [
+	let perashaList = [
 		["Parashat", "Perasha"],
 		["Achrei Mot", "ʾAḥare Mot"],
 		["Balak", "Balaq"],
@@ -429,7 +431,7 @@ function ashkiToSeph(input, sel) {
 		["Asara B'Tevet", "ʿAsara Beṭeḇet"]
 	];
 
-	var holidayList = [
+	let holidayList = [
 		["Asara B'Tevet", "ʿAsara Beṭeḇet"],
 		["Candle lighting", "Haḏlaqat Nerot"],
 		["Chanukah", "Ḥanukka"],
@@ -634,25 +636,26 @@ function getAddrDetailsByIp() {
 function getGeoDetails(lat_crd, long_crd) {
 	let lat = lat_crd;
 	let long = long_crd;
+	let {cityStr, city, state} = '';
 
 	var point = new google.maps.LatLng(lat, long);        new google.maps.Geocoder().geocode({'latLng': point}, function (res, status) {
 
 		if (res[0]) {
-			for (var i = 0; i < res.length; i++) {
-				if (res[i].types[0] === "locality") {
-					var city = res[i].address_components[0].short_name;
+			for (let i = 0; i < res.length; i++) {
+				if (res[i].types[0] === 'locality') {
+					city = res[i].address_components[0].short_name;
 				} // end if loop 2
 
-				if (res[i].types[0] === "administrative_area_level_1") {
-					var state = res[i].address_components[0].short_name;
+				if (res[i].types[0] === 'administrative_area_level_1') {
+					state = res[i].address_components[0].short_name;
 				} // end if loop 2
 			} // end for loop
 		} // end if loop 1
 
 		if (null == state ) {
-			let cityStr = city;
+			cityStr = city;
 		} else {
-			let cityStr = city + ", " + state;
+			cityStr = city + ', ' + state;
 		}
 
 		let rightNow = new Date();
@@ -707,13 +710,13 @@ function formatTime(x) {
  * @return {string}   Time String in Y-M-D-H-M
  */
 function generateSunStrings(timeObj) {
-	var year = timeObj.getFullYear();
-	var month = formatTime(timeObj.getMonth() + 1);
-	var day = formatTime(timeObj.getDate());
-	var hour = formatTime(timeObj.getHours());
-	var min = formatTime(timeObj.getMinutes());
-	// var sec = formatTime(timeObj.getSeconds());
-	var buildTimeStr = year + '-' + month + '-' + day + ' ' + hour + ':' + min;
+	let year = timeObj.getFullYear();
+	let month = formatTime(timeObj.getMonth() + 1);
+	let day = formatTime(timeObj.getDate());
+	let hour = formatTime(timeObj.getHours());
+	let min = formatTime(timeObj.getMinutes());
+	// let sec = formatTime(timeObj.getSeconds());
+	let buildTimeStr = year + '-' + month + '-' + day + ' ' + hour + ':' + min;
 	return buildTimeStr;
 }
 
@@ -754,7 +757,7 @@ function generateTimeStrings(timeSet, shabbat) {
 
 		return shabbatSet;
 	} else {
-		var todaySet = [latestShemaStr, earliestMinhaStr, pelegHaMinhaStr, sunsetStr];
+		let todaySet = [latestShemaStr, earliestMinhaStr, pelegHaMinhaStr, sunsetStr];
 
 		return todaySet;
 	}
@@ -768,19 +771,19 @@ function generateTimeStrings(timeSet, shabbat) {
  * @return {array}         An array of time value integers
  */
 function calculateSunTimes(timeObj, shabbat) {
-	var times = timeObj;
-	var sunriseObj = times.sunrise;
-	var offSet = sunriseObj.getTimezoneOffset() / 60;
-	var offSetSec = offSet * 3600;
-	var sunriseStr = generateSunStrings(sunriseObj);
-	var sunsetObj = times.sunset;
-	var sunsetStr = generateSunStrings(sunsetObj);
-	var SunriseDateTimeInt = parseFloat((new Date(sunriseStr).getTime() / 1000) - offSetSec);
-	var sunsetDateTimeInt = parseFloat((new Date(sunsetStr).getTime() / 1000) - offSetSec);
-	var sunriseSec = SunriseDateTimeInt - offSet;
-	var sunsetSec = sunsetDateTimeInt - offSet;
+	let times = timeObj;
+	let sunriseObj = times.sunrise;
+	let offSet = sunriseObj.getTimezoneOffset() / 60;
+	let offSetSec = offSet * 3600;
+	let sunriseStr = generateSunStrings(sunriseObj);
+	let sunsetObj = times.sunset;
+	let sunsetStr = generateSunStrings(sunsetObj);
+	let SunriseDateTimeInt = parseFloat((new Date(sunriseStr).getTime() / 1000) - offSetSec);
+	let sunsetDateTimeInt = parseFloat((new Date(sunsetStr).getTime() / 1000) - offSetSec);
+	let sunriseSec = SunriseDateTimeInt - offSet;
+	let sunsetSec = sunsetDateTimeInt - offSet;
 
-	var timeSet = [sunriseSec, sunsetSec, offSetSec, sunsetDateTimeInt];
+	let timeSet = [sunriseSec, sunsetSec, offSetSec, sunsetDateTimeInt];
 	return timeSet;
 }
 
