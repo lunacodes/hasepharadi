@@ -1,0 +1,21 @@
+.content {
+    margin-top: -33px;
+}
+.archive-description {
+    margin: 33px 0 41px;
+    /* margin: 33px 0 31px; */
+}
+
+.archive-title {
+    color: #000;
+    font-size: 50px;
+    font-weight: 700;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.archive-title span {
+    border-bottom: 1px solid black;
+    padding: 0 0 10px;
+}
+

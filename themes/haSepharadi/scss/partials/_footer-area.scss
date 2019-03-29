@@ -36,10 +36,19 @@
     h4,
     h4 a {
       font: 400 14px 'PT Serif',"times new roman",times,serif;
+      max-height: 36px;
+      overflow: hidden;
+      overflow-y: hidden;
     }
 
     p.entry-meta {
+      color: #aaa;
+      font-size: 11px;
+      font-style: italic;
+      line-height: 1.775;
       margin: 1px 0 0;
+      // position: absolute;
+      text-align: left;
       }
   }
 

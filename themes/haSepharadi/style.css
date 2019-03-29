@@ -950,6 +950,19 @@ img.alignright,
 
 /* Widgets
 ---------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------
+[_widgets.scss]
+
+1. Topbar & Header
+    - 1.1 Setup
+    - 1.2 Typography
+2. Genesis Recent Posts
+
+------------------------------------------------------*/
+/* 1. Widgets
+=================================================*/
+/* 1.1 Setup
+============================*/
 .sidebar .widget a,
 .sidebar .widget a:visited {
   color: #c93; }
@@ -977,7 +990,7 @@ img.alignright,
       padding-bottom: 0; }
   .widget ol > li {
     list-style-position: inside;
-    list-style-type: decimal;
+    list-style-type: none;
     padding-left: 20px; }
   .widget li li {
     border: 0;
@@ -1022,6 +1035,26 @@ img.alignright,
 
 /* Recent Posts
 --------------------------------------------- */
+/* This section originally from _custom.scss */
+.widget-wrap h4,
+.widget-wrap h4.entry-title,
+.widget-wrap h4.entry-title a {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.393;
+  margin: 0;
+  text-align: left; }
+.widget-wrap p.entry-meta {
+  color: #aaa;
+  font-size: 11px;
+  font-style: italic;
+  line-height: 1.775;
+  text-align: left; }
+.widget-wrap a.alignleft {
+  margin: 0 10px 0 0; }
+
+/* 2. Genesis Recent Posts
+============================*/
 .featured-content a {
   color: #000; }
   .featured-content a.alignnone {
@@ -1585,9 +1618,17 @@ div.wpcf7 .wpcf7-submit:disabled {
     vertical-align: top; }
   .footer-widget-area .widget-wrap h4,
   .footer-widget-area .widget-wrap h4 a {
-    font: 400 14px 'PT Serif',"times new roman",times,serif; }
+    font: 400 14px 'PT Serif',"times new roman",times,serif;
+    max-height: 36px;
+    overflow: hidden;
+    overflow-y: hidden; }
   .footer-widget-area .widget-wrap p.entry-meta {
-    margin: 1px 0 0; }
+    color: #aaa;
+    font-size: 11px;
+    font-style: italic;
+    line-height: 1.775;
+    margin: 1px 0 0;
+    text-align: left; }
 
 .widget-area.footer-widget-area {
   width: 280px;
@@ -1643,6 +1684,7 @@ div.wpcf7 .wpcf7-submit:disabled {
    - 1.1 Topbar
    - 1.2 Search Form
    - 1.3 Site Header
+<<<<<<< HEAD
 2. Site Navigation
    - 2.1 Menus Setup
    - 2.2 Header Menu
@@ -1660,6 +1702,20 @@ div.wpcf7 .wpcf7-submit:disabled {
 6. Archive Pages
    - 6.1 Affiliate Links
 7. Back To Top Button
+=======
+2. Breadcrumbs
+3. Widgets
+   - 3.1 Author Avatars - Voices
+   - 3.2 Tribe Events
+   - 3.3 Zemannim
+4. Posts
+   - 4.1 Site Layout
+   - 4.2 Posts Layout
+   - 4.3 Author Bios
+5. Archive Pages
+   - 5.1 Affiliate Links
+6. BackToTop Button
+>>>>>>> bbf221a0894225424541119912d41c976cc31052
 
 ------------------------------------------------------*/
 /* 1. Top Bar & Header
@@ -2161,15 +2217,19 @@ img.custom-logo {
   .tribe-events-widget-link:visited {
     color: #c93; }
 
-.tribe-events-list-widget .tribe-event-title {
+.tribe-events-list-widget-events .tribe-event-title {
   margin: 0 !important; }
-  .tribe-events-list-widget .tribe-event-title a,
-  .tribe-events-list-widget .tribe-event-title a:visited {
+  .tribe-events-list-widget-events .tribe-event-title a,
+  .tribe-events-list-widget-events .tribe-event-title a:visited {
     color: #666; }
-  .tribe-events-list-widget .tribe-event-title a:hover {
+  .tribe-events-list-widget-events .tribe-event-title a:hover {
     color: #c93; }
 
-.tribe-events-list-widget ol > li {
+.tribe-list-widget .tribe-events-list-widget-events {
+  padding: 0 1.5rem;
+  margin: 0 0 1.25rem; }
+
+.tribe-list-widget.ol > li {
   list-style-type: none; }
 
 /* 4.4 Zemannim Widget
@@ -2178,6 +2238,10 @@ img.custom-logo {
   margin: 20px 0 !important; }
 
 /* 5. Posts
+.zemannim-text {
+  padding: 0 16px; }
+
+/* 4. Posts
 =================================================*/
 /* 5.1 Site Layout
 ============================*/
@@ -2300,7 +2364,11 @@ span.category {
 .affiliate-img {
   margin: 0 0 4px; }
 
+<<<<<<< HEAD
 /* 7. Back To Top Button
+=======
+/* 7. BackToTop Button
+>>>>>>> bbf221a0894225424541119912d41c976cc31052
 ============================*/
 #backToTop {
   background: #000;
@@ -2523,10 +2591,10 @@ span.category {
     max-width: 96%; }
 
   .content-sidebar-wrap {
-    width: unset; }
+    width: 96%; }
 
   #genesis-content {
-    margin: 0 10px 0 0;
+    margin: 0 10px 0;
     max-width: 69%; }
 
   .sidebar-primary {
@@ -2748,7 +2816,7 @@ span.category {
   .widget-area.footer-widget-area .featured-content .widget-wrap h4,
   .widget-area.footer-widget-area .featured-content .widget-wrap h4 a {
     font-size: 12px;
-    max-height: 48px;
+    max-height: 46px;
     overflow: hidden;
     text-align: left;
     text-overflow: ellipsis;
@@ -2818,7 +2886,7 @@ span.category {
     width: 100%; }
 
   #genesis-content {
-    margin: 0 10px 0 0; }
+    margin: 0 10px 0; }
 
   .footer-widgets {
     margin: 0 auto;
@@ -2861,13 +2929,22 @@ span.category {
 
   .featured-content .widget-wrap p.entry-meta,
   .widget-area.footer-widget-area .featured-content .widget-wrap p.entry-meta {
-    font-size: 14px; } }
+    font-size: 14px; }
+
+  .featured-content .entry-header, .widget-area.footer-widget-area .featured-content .entry-header {
+    max-width: 80%; }
+
+  .feature-content h4, .widget-area.footer-widget-area .featured-content .widget-wrap h4 {
+    width: 98%; } }
 /* Media Query - Max-Width: 690px
 ---------------------------------------------------------------------------------------------------- */
 @media only screen and (max-width: 43.125em) {
   .featured-content .entry-header,
   .widget-area.footer-widget-area .featured-content .entry-header {
-    max-width: 70%; }
+    max-width: 100%; }
+
+  #topbar, #top, .site-inner, .footer-widgets .wrap, .site-footer, .site-footer .wrap {
+    max-width: 100%; }
 
   .logo {
     max-width: 100%;

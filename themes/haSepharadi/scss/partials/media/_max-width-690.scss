@@ -4,7 +4,11 @@
 @media only screen and (max-width: 43.125em) {
   .featured-content .entry-header,
   .widget-area.footer-widget-area .featured-content .entry-header {
-    max-width: 70%;
+    max-width: 100%;
+  }
+
+  #topbar,#top,.site-inner,.footer-widgets .wrap,.site-footer,.site-footer .wrap {
+    max-width: 100%;
   }
 
   .logo {
@@ -13,5 +17,14 @@
   }
   #topbar #tools {
     display: none;
+  }
+
+  .featured-content .entry-header, .widget-area.footer-widget-area .featured-content .entry-header {
+    // max-width: 80%;
+
+  }
+
+  .featured-content h4, .widget-area.footer-widget-area .featured-content .widget-wrap h4 {
+    // width: 98%;
   }
 }

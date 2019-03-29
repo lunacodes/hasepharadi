@@ -11,11 +11,49 @@ Once this is done, it checks for Daylight Saving Times, and then uses a Javascri
 * [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro)
 * [SunCalc Library](https://github.com/mourner/suncalc)
 * [jQuery](https://jquery.com/)
-<<<<<<< HEAD
 * [ipapi](https://ipapi.co/)
 <!-- * [DB-IP - IP Geolocation API](https://db-ip.com/api/) -->
 
 ## Changelog
+
+### [1.3.4] - 2019-03-28
+Consolidates and removes redundant functions. Improves code logic.
+
+**Removed Functions:**
+* `hebCalWeekday()` was consolidated into `hebCalShabbat`
+* `generateDateStrings()`
+* `displayShabbatTimes()` consolidated into displayTimes()
+
+**Renamed Functions:**
+* `generateDatesWithHebcal()` is now `generatePreDates()`
+* `calculateTimes` is now `calculateSunTimes()`
+
+**Modified Functions:**
+* `timesHelper()` - moved the `displayTimes()` call to parent function
+* calculateTimes() - deprecated the Shabbat-specific calculations (which are now handled via Hebcal API).
+
+**Other:**
+* `perashaHeb` now outputs `פרשה` instead of `פרשת`
+* Cleaned up unnecessary comments and `console.log` statements
+* Replaced additional double quotes surrounding strings, with single quotes
+
+
+### [1.3.3] - 2019-03-27
+* Rewrote the Hebcal parsing logic to be more intelligent
+* New functions:
+    * getShabbatDate()
+    * getCandleTimes()
+    * getHebDate()
+    * getPerasha()
+    * getHabdalaTimes()
+* ashkiToSeph() - added holiday list, and updated parsing logic to reflect Hebcal's API.
+* Renamed hecalHol to hebCalWeekday
+* Added padding to outputted text
+* Removed Deprecated getLatLongByAddr()
+* Code Quality:
+    * Replace double quotes surrounding strings, with single quotes
+    * Use dot notation, instead of bracket for js arrays
+    * Utilize obj.forEach for better parsing of js arrays.
 
 ### 1.3.2 - 2019-02-06
 * Generating zemannim by IP + hebcal API working.
@@ -27,28 +65,16 @@ Once this is done, it checks for Daylight Saving Times, and then uses a Javascri
 * Fix bug with getting user address via IP
     * Switched from IP-DB to [ipapi](https://ipapi.co/)
 
-Version 1.2.0
+###[1.2.0]
 * Combine Shabbath and Weekday times into single widget
 
-Version 1.1.0
+###[1.1.0]
 * N/A
 
 ## Future
-
-### Zemannim
-* Combine hebCalJS and hebCalJS2 0 - that's what shabbatHol flag's for
-* Do I actually need to enqueue the Google Maps API? Or can I just run it as a promise instead??
-* See if I can rewrite/get rid of some of what's in generateDatesWithHebCal()
-* Need to rewrite the getAddrDetailsByGeo half of the code to feed into the new hebcal functionality.
-    * Change all instances of Zemanim to Zemannim (make sure to check .scss files)
-* Future Iteration: Leave SunCalc code in there, as a backup, in case Hebcal API fails
-    * Probably take out for now though?
-    * This seems possibly a bit overkill though? I like it though, b/c it's a bit more programmatically representation
-    * Perhaps split these out into separate files or something?? Not sure how that would work
-* Add in Back-End Options
-* Need to convert Habdala
-
-### General
+* Increase wp-admin options for customization
+* Merge redundant logic in the hebcal getter functions
+* Display Holidays, in addition to Shabbath
 * Write unit tests
 * Rewrite as much code as possible into PHP.
     * Utilize the updated Hebcal SSL APIs, where relevant
@@ -57,3 +83,7 @@ Version 1.1.0
 =======
 * getGeoDetails: Write an additional `for loop` in order to avoid `var state` defaulting to null.
 * Add back-end/admin options for choosing transliteration style and which times to display back in
+=======
+### Known Issues
+* getGeoDetails: Needs an additional `for loop` in order to avoid `var state` defaulting to null.
+>>>>>>> bbf221a0894225424541119912d41c976cc31052

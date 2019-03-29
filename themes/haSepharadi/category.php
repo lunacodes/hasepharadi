@@ -9,24 +9,26 @@
  * @link    https://lunacodesdesign.com
  */
 
-remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
-
 remove_action( 'genesis_before_content', 'custom_breadcrumbs', 8 );
 remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
+remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
+
 remove_action( 'genesis_loop', 'genesis_do_loop' );
-
-/* I haven't figured out which of these is actually responsible for removing the archive title yet*/
-
 remove_action( 'genesis_before_loop', 'genesis_do_date_archive_title' );
 remove_action( 'genesis_before_loop', 'genesis_do_author_title_description', 15 );
 
-
 remove_action( 'genesis_archive_title_descriptions', 'genesis_do_archive_headings_open', 5, 3 );
-
 remove_action( 'genesis_archive_title_descriptions', 'genesis_do_archive_headings_close', 15, 3 );
-
 remove_action( 'genesis_archive_title_descriptions', 'genesis_do_archive_headings_headline', 10, 3 );
 
+
+add_action('wp_enqueue_scripts', 'enqueue_category_scripts');
+function enqueue_category_scripts() {
+    if ( is_category() ) {
+        wp_enqueue_style('category.css', CHILD_URL . '/css/category.css', array(), CHILD_THEME_VERSION );
+        remove_action( 'genesis_before_entry', 'display_featured_post_image' );
+    }
+}
 
 add_action( 'genesis_before_loop', 'haSepharadi_cat_header', 15 );
 function haSepharadi_cat_header() {
@@ -47,7 +49,7 @@ function luna_cat_loop() {
         <span class="category"><a rel="category-tag"><?php the_category( ', ' ); ?></a></span>
 
          <!-- Display the Title as a link to the Post's permalink. -->
-         <header class="entry-header"><h2 class="entry-title" itemprop="headline""><a href="<?php the_permalink() ?>" class="entry-title-link" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2></header>
+         <header class="entry-header"><h2 class="entry-title" itemprop="headline"><a href="<?php the_permalink() ?>" class="entry-title-link" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2></header>
          <span class="title-divider"> </span>
 
         <div class="entry-content" itemprop="text"> <?php the_excerpt(); ?> </div>
