@@ -438,18 +438,10 @@ function add_copy_link() {
 
 add_action( 'genesis_after_loop', 'display_fb_comments', 10 );
 function display_fb_comments() {
-	// if ( is_singular( 'event' ) ) {
-	// 	echo( "Event!!!!" );
-	// } else if ( is_category( 'events' ) ) {
-	// 	echo( "Category Events" );
-	// } else
 	if ( is_singular() ) {
 		$url = get_the_permalink();
 		// echo($url);
 		$shortcode_str = '[wpdevart_facebook_comment curent_url="' . $url . '" order_type="social" title_text="Facebook Comment" title_text_color="#000000" title_text_font_size="22" title_text_font_famely="monospace" title_text_position="left" width="100%" bg_color="#d4d4d4" animation_effect="random" ]';
-		// echo( "<br />");
-		echo($shortcode_str);
-		// echo( '[wpdevart_facebook_comment curent_url="https://haseph.test/2018/12/02/two-shamoshim-the-spanish-personalization-of-%e1%b8%a5anukka-in-post-expulsion-aleppo/". Read more at: https://haseph.test/2018/12/02/two-shamoshim-the-spanish-personalization-of-%e1%b8%a5anukka-in-post-expulsion-aleppo/" order_type="social" title_text="Facebook Comment" title_text_color="#000000" title_text_font_size="22" title_text_font_famely="monospace" title_text_position="left" width="100%" bg_color="#d4d4d4" animation_effect="random" ]');
 
 		echo do_shortcode( $shortcode_str );
 	}
