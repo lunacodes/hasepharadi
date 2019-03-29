@@ -5,7 +5,7 @@
  * Description: Displays Zemannim (times) according to Sepharadic tradition.
  *   Uses the DB-IP API and the Google Maps API for geographic information.
  *   Uses the Sun-Calc Library (https://github.com/mourner/suncalc) for sunrise/sunset information.
- * Version: 1.3.3
+ * Version: 1.3.4
  *
  * @author Luna Lunapiena
  * @link: https://lunacodesdesign.com/
