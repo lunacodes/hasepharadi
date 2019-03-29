@@ -43,16 +43,5 @@ This project consists of the haSepharadi theme
 * Fixed About Author appears at bottom of homepage
 * Added Author Bios styling
 
-### Refactor
-* index.php - what purpose is it serving
-* custom-functions.php
-    4.6 - Next & Prev Posts Link - look for a more organic code solution
-# haSepharadi - Theme Rewrite
-
-This theme is a modification of the [Genesis Sample Theme](https://demo.studiopress.com/) v2.7.1.
-
-## Requirements
-* [Genesis Framework](https://www.studiopress.com/features/)
-=======
 [1.7.1]: https://github.com/lunacodes/hasepharadi/commit/804479078b534a6a182d7cdc7d036fe0c5183b17
 [1.6.0]: https://github.com/lunacodes/hasepharadi/commit/0751be9b5b4830b117c04d0ca80109e0fd83cba5

@@ -35,7 +35,7 @@
 	 - 6.2 Hide Widgets
 	 - 6.3 Mailchimp Subscribe
 7. Custom User Meta
-    - 7.1 Social Media
+	- 7.1 Social Media
 8. Social Media Sharing Buttons
 
 ------------------------------------------------------*/
@@ -49,7 +49,7 @@
 
 add_action( 'wp_enqueue_scripts', 'enqueue_font_awesome' );
 function enqueue_font_awesome() {
-    wp_enqueue_style( 'luna-font-awesome', CHILD_URL . '/fonts/fontawesome-pro-5.6.3-web/css/all.min.css', array(), CHILD_THEME_VERSION );
+	wp_enqueue_style( 'luna-font-awesome', CHILD_URL . '/fonts/fontawesome-pro-5.6.3-web/css/all.min.css', array(), CHILD_THEME_VERSION );
 }
 
 /* 1.2 - Custom Image Sizes
@@ -57,7 +57,7 @@ function enqueue_font_awesome() {
 
 add_action( 'after_setup_theme', 'add_custom_image_sizes' );
 function add_custom_image_sizes() {
-    add_image_size( 'recent-posts-thumb', 100, 100, array('left', 'top') );
+	add_image_size( 'recent-posts-thumb', 100, 100, array( 'left', 'top' ) );
 }
 
 /* 1.3 - Google Fonts
@@ -72,14 +72,14 @@ function add_custom_image_sizes() {
 ============================*/
 
 function blazersix_prime_post_thumbnails_cache( $posts, $wp_query ) {
-    // Prime the cache for the main front page and archive loops by default.
-    $is_main_archive_loop = $wp_query->is_main_query() && ! is_singular();
-    $do_prime_cache = apply_filters( 'blazersix_cache_post_thumbnails', $is_main_archive_loop );
-    if ( ! $do_prime_cache && ! $wp_query->get( 'blazersix_cache_post_thumbnails' ) ) {
-        return $posts;
-    }
-    update_post_thumbnail_cache( $wp_query );
-    return $posts;
+	// Prime the cache for the main front page and archive loops by default.
+	$is_main_archive_loop = $wp_query->is_main_query() && ! is_singular();
+	$do_prime_cache = apply_filters( 'blazersix_cache_post_thumbnails', $is_main_archive_loop );
+	if ( ! $do_prime_cache && ! $wp_query->get( 'blazersix_cache_post_thumbnails' ) ) {
+		return $posts;
+	}
+	update_post_thumbnail_cache( $wp_query );
+	return $posts;
 }
 add_action( 'the_posts', 'blazersix_prime_post_thumbnails_cache', 10, 2 );
 
@@ -102,7 +102,7 @@ function enqueue_topbar_scripts() {
 
 add_action( 'genesis_before_header', 'add_topbar' );
 function add_topbar() {
-    $topbar = <<<EOL
+	$topbar = <<<EOL
 <div id="topbar" class="topbar">
 	<div class="social-icons">
 	<div class="clearfix"> <a href="http://www.facebook.com/HaSepharadi-164068007554007" title="Facebook" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a> <a href="http://twitter.com/HaSepharadi" title="Twitter" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a></div>
@@ -117,7 +117,7 @@ function add_topbar() {
 </div>
 EOL;
 
-    echo($topbar);
+	echo($topbar);
 }
 
 remove_action( 'genesis_header', 'genesis_header_markup_open', 5 );
@@ -129,8 +129,8 @@ add_action( 'genesis_header', 'haSepharadi_custom_header' );
 add_action( 'genesis_header', 'haSepharadi_custom_header_markup_close', 15 );
 
 function haSepharadi_custom_header_markup_open() {
-    $open = '<header id="top" class="site-header">';
-    echo($open);
+	$open = '<header id="top" class="site-header">';
+	echo($open);
 }
 
 function haSepharadi_custom_header() {
@@ -144,13 +144,13 @@ function haSepharadi_custom_header() {
 	<div id="header-date" class="local-info"> <span class="local-date">$todays_date</span></div>
 	</div>
 EOL;
-    echo($custom_header);
+	echo($custom_header);
 
 }
 
 function haSepharadi_custom_header_markup_close() {
-    $close = '</header>';
-    echo($close);
+	$close = '</header>';
+	echo($close);
 }
 remove_action( 'genesis_after_header', 'genesis_do_nav' );
 add_action( 'genesis_header', 'genesis_do_nav', 11 );
@@ -227,31 +227,31 @@ function fix_wp_admin_bar_mobile() {
 	 </style>
 EOL;
 
-    if ( is_user_logged_in() && ( ! is_admin() ) ) {
-        echo($margin_fix);
-    }
+	if ( is_user_logged_in() && ( ! is_admin() ) ) {
+		echo($margin_fix);
+	}
 }
 
 /* 2.7 - Mobile Menu Pretty Load
 ============================*/
 
 add_filter( 'body_class', function ( $classes ) {
-    $classes[] = 'no-js';
-    return $classes;
+	$classes[] = 'no-js';
+	return $classes;
 } );
 add_action( 'genesis_before', 'mobile_menu_pretty_load', 1 );
 function mobile_menu_pretty_load(){
-    ?>
-    <script>
-        //<![CDATA[
-        (function () {
-            var c = document.body.classList;
-            c.remove('no-js');
-            c.add('js');
-        })();
-        //]]>
-    </script>
-    <?php
+	?>
+	<script>
+		//<![CDATA[
+		(function () {
+			var c = document.body.classList;
+			c.remove('no-js');
+			c.add('js');
+		})();
+		//]]>
+	</script>
+	<?php
 }
 
 /* 2.5 - Mobile Menu Disable Superfish
@@ -260,8 +260,8 @@ function mobile_menu_pretty_load(){
 //* Disable the superfish script
 add_action( 'wp_enqueue_scripts', 'sp_disable_superfish' );
 function sp_disable_superfish() {
-    wp_deregister_script( 'superfish' );
-    wp_deregister_script( 'superfish-args' );
+	wp_deregister_script( 'superfish' );
+	wp_deregister_script( 'superfish-args' );
 }
 
 /* 3. Breadcrumbs
@@ -300,13 +300,13 @@ function custom_breadcrumbs() {
 add_theme_support( 'post-thumbnails' );
 add_action( 'genesis_before_entry', 'display_featured_post_image', 8 );
 function display_featured_post_image() {
-    if ( is_singular( 'page' ) && ( ! is_category() ) ) {
+	if ( is_singular( 'page' ) && ( ! is_category() ) ) {
 
-    } elseif ( is_category() ) {
-        // echo("We're a category");
-    } else {
-        the_post_thumbnail('post-image');
-    }
+	} elseif ( is_category() ) {
+		// echo("We're a category");
+	} else {
+		the_post_thumbnail('post-image');
+	}
 }
 
 /* 4.2 - Single Pages
@@ -314,10 +314,10 @@ function display_featured_post_image() {
 
 add_action( 'genesis_pre_get_option_site_layout', 'luna_remove_sidebar' );
 function luna_remove_sidebar() {
-    if ( is_singular( 'page' ) || is_category() ) {
-        $opt = 'full-width-content';
-        return $opt;
-    }
+	if ( is_singular( 'page' ) || is_category() ) {
+		$opt = 'full-width-content';
+		return $opt;
+	}
 }
 
 /* 4.3 - Category Pages
@@ -346,12 +346,12 @@ function enqueue_entry_meta_assets() {
 
 // add_action( 'genesis_entry_content', 'haSepharadi_disclaimer' );
 function haSepharadi_disclaimer() {
-    echo("Due to the variable nature of our posts and the wide spectrum of ideas exchanged, we feel it is important to clarify that the thoughts and opinions shared in posts and articles reflect the opinions of the author and are not representative of our contributors as a whole.");
+	echo("Due to the variable nature of our posts and the wide spectrum of ideas exchanged, we feel it is important to clarify that the thoughts and opinions shared in posts and articles reflect the opinions of the author and are not representative of our contributors as a whole.");
 }
 
 // Excerpt Ellipsis
 function new_excerpt_more($more) {
-    return '...';
+	return '...';
 }
 add_filter('excerpt_more', 'new_excerpt_more');
 
@@ -360,17 +360,17 @@ add_filter('excerpt_more', 'new_excerpt_more');
 
 add_action( 'genesis_after_loop', 'add_next_and_prev_post_links', 12 );
 function add_next_and_prev_post_links() {
-    if ( ! is_singular( 'post' ) ) {
-        return;
-    }
+	if ( ! is_singular( 'post' ) ) {
+		return;
+	}
 
-    echo '<div class="pagination-previous alignleft">';
-    previous_post_link();
-    echo '</div>';
+	echo '<div class="pagination-previous alignleft">';
+	previous_post_link();
+	echo '</div>';
 
-    echo '<div class="pagination-next alignright">';
-    next_post_link();
-    echo '</div>';
+	echo '<div class="pagination-next alignright">';
+	next_post_link();
+	echo '</div>';
 }
 
 add_action( 'genesis_after_loop', 'add_next_and_prev_post_archive_links', 10 );
@@ -412,11 +412,11 @@ function display_author_bio() {
 
 // add_action( 'genesis_after_loop', 'display_comments_plz' );
 function display_comments_plz() {
-    if ( ! is_singular( 'post' ) ) {
-        return;
-    } else {
-        comments_template();
-    }
+	if ( ! is_singular( 'post' ) ) {
+		return;
+	} else {
+		comments_template();
+	}
 }
 
 /* 4.9 Author Page Affiliate Linkes
@@ -464,9 +464,9 @@ function display_fb_comments() {
 
 add_action( 'genesis_after_footer', 'add_back_to_top_btn' );
 function add_back_to_top_btn() {
-    ?>
-    <a href="javascript:void(0);" class="up_btn" id="backToTop"><i class="fa fa-arrow-up"></i></a>
-    <?php
+	?>
+	<a href="javascript:void(0);" class="up_btn" id="backToTop"><i class="fa fa-arrow-up"></i></a>
+	<?php
 }
 
 /* 5.2 Custom Footer Credits
@@ -474,8 +474,8 @@ function add_back_to_top_btn() {
 
 add_filter('genesis_footer_creds_text', 'sp_footer_creds_filter');
 function sp_footer_creds_filter( $creds ) {
-    $creds = 'Copyright [footer_copyright] <a href="https://hasepharadi.com">haSepharadi</a>. All rights reserved.';
-    return $creds;
+	$creds = 'Copyright [footer_copyright] <a href="https://hasepharadi.com">haSepharadi</a>. All rights reserved.';
+	return $creds;
 }
 
 
@@ -565,7 +565,7 @@ function display_author_avatars() {
 
 add_action( 'wp_enqueue_scripts', 'enqueue_mailchimp_styles' );
 function enqueue_mailchimp_styles() {
-    wp_enqueue_style( 'mc-subscribe', CHILD_URL . '/css/mc-subscribe.css' );
+	wp_enqueue_style( 'mc-subscribe', CHILD_URL . '/css/mc-subscribe.css' );
 }
 
 
@@ -583,13 +583,13 @@ add_action( 'genesis_after_loop', 'genesis_do_author_box_archive' );
 
 add_filter( 'user_contactmethods', 'luna_add_user_social_media' );
 function luna_add_user_social_media( $fields ) {
-    $fields['academia'] = 'Academia';
-    $fields['facebook'] = 'Facebook';
-    $fields['twitter'] = 'Twitter';
-    $fields['instagram'] = 'Instagram';
-    $fields['fake'] = 'Fake';
+	$fields['academia'] = 'Academia';
+	$fields['facebook'] = 'Facebook';
+	$fields['twitter'] = 'Twitter';
+	$fields['instagram'] = 'Instagram';
+	$fields['fake'] = 'Fake';
 
-    return $fields;
+	return $fields;
 }
 
 // I don't know if this is even achieving anything

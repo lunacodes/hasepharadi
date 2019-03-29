@@ -948,8 +948,6 @@ img.alignright,
   margin: 0;
   text-align: center; }
 
-/* Widgets
----------------------------------------------------------------------------------------------------- */
 /* ----------------------------------------------------
 [_widgets.scss]
 
@@ -997,8 +995,8 @@ img.alignright,
     margin: 0 0 0 30px;
     padding: 0; }
 
-/* 8. Widget /.widget
-=================================================*/
+/* 1.2 Typography
+============================*/
 .widget .widgettitle,
 .widgettitle,
 .widget-title {
@@ -1033,8 +1031,6 @@ img.alignright,
 .textwidget p {
   line-height: 1.8; }
 
-/* Recent Posts
---------------------------------------------- */
 /* This section originally from _custom.scss */
 .widget-wrap h4,
 .widget-wrap h4.entry-title,
@@ -1273,16 +1269,69 @@ div.wpcf7 .wpcf7-submit:disabled {
   width: 1px;
   word-wrap: normal !important; }
 
-/* Site Navigation
----------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------
+[custom-functions.php]
+
+1. Site Navigation
+  - 1.1 Menus Setup
+  - 1.2 Responsive Menu
+2. Header Navigation
+  - 2.1 Header Menu
+  - 2.2 Header Menu Shrinked
+3. Footer Menu Navigation
+
+------------------------------------------------------*/
+/* 1. Site Navigation
+=================================================*/
+/* 1.1 Menus Setup
+============================*/
 .genesis-nav-menu {
   clear: both;
   line-height: 1;
   width: 100%; }
   .genesis-nav-menu .menu-item {
-    display: block;
+    display: inline-block;
     float: none;
     position: relative; }
+    .genesis-nav-menu .menu-item:focus, .genesis-nav-menu .menu-item:hover {
+      position: relative; }
+  .genesis-nav-menu > .menu-bold > a {
+    font-weight: 700; }
+  .genesis-nav-menu > .menu-highlight > a {
+    background-color: #333;
+    border-radius: 3px;
+    color: #fff;
+    font-weight: 600;
+    margin-left: 15px;
+    padding-left: 20px;
+    padding-right: 20px; }
+    .genesis-nav-menu > .menu-highlight > a:hover, .genesis-nav-menu > .menu-highlight > a:focus {
+      background-color: #c93; }
+  .genesis-nav-menu .sub-menu {
+    background-color: transparent;
+    line-height: 1.8;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 0.1s ease-in-out; }
+    .genesis-nav-menu .sub-menu .sub-menu {
+      top: 20px; }
+    .genesis-nav-menu .sub-menu li {
+      display: block;
+      right: calc(11%);
+      top: 40px; }
+      .genesis-nav-menu .sub-menu li:last-of-type a {
+        background: #333;
+        border: 1px solid #333;
+        box-sizing: content-box;
+        height: 20px;
+        padding: 5px 0 0; }
+    .genesis-nav-menu .sub-menu a {
+      border-top: 0; }
+      .genesis-nav-menu .sub-menu a:last-of-type {
+        background: #000; }
+    .genesis-nav-menu .sub-menu .sub-menu {
+      margin: -46px 0 0 179px; }
   .genesis-nav-menu a {
     color: #333;
     display: block;
@@ -1300,7 +1349,7 @@ div.wpcf7 .wpcf7-submit:disabled {
       color: #0073e5;
       text-decoration: none; }
   .genesis-nav-menu .sub-menu {
-    background: #000;
+    background-color: transparent;
     color: #eee;
     clear: both;
     display: none;
@@ -1319,15 +1368,17 @@ div.wpcf7 .wpcf7-submit:disabled {
       width: 100%;
       word-wrap: break-word; }
       .genesis-nav-menu .sub-menu a:last-of-type {
-        background: #333; }
+        background: transparent; }
   .genesis-nav-menu .menu-item:focus, .genesis-nav-menu .menu-item:hover {
     position: relative; }
   .genesis-nav-menu .menu-item:hover > .sub-menu {
     left: auto;
     opacity: 1; }
+    .genesis-nav-menu .menu-item:hover > .sub-menu .sub-menu {
+      left: auto; }
 
-/* Responsive Menu
---------------------------------------------- */
+/* 1.2 Responsive Menu
+============================*/
 .menu .menu-item:focus {
   position: static; }
 .menu .menu-item > a:focus + ul.sub-menu, .menu .menu-item.sfHover > ul.sub-menu {
@@ -1338,6 +1389,9 @@ div.wpcf7 .wpcf7-submit:disabled {
   display: none;
   padding-bottom: 15px;
   position: relative; }
+  .genesis-responsive-menu .genesis-nav-menu .sub-menu,
+  .genesis-responsive-menu .genesis-nav-menu .sub-menu a {
+    width: 160px; }
 
 .menu-toggle {
   background-color: transparent;
@@ -1402,14 +1456,139 @@ div.wpcf7 .wpcf7-submit:disabled {
 .sub-menu .sub-menu-toggle {
   padding: 12px 10px; }
 
-/* Header Menu
---------------------------------------------- */
+/* 2. Header Navigation
+=================================================*/
+/* 2.1 Header Menu
+============================*/
 .nav-primary {
   clear: left;
-  width: 100%; }
+  width: 100%;
+  border-color: #333;
+  border-style: solid;
+  border-width: 2px 0 1px;
+  box-sizing: content-box;
+  clear: both;
+  height: 45px;
+  line-height: 1.8;
+  margin: 1px auto 0;
+  max-width: 1200px;
+  padding: 0;
+  position: static;
+  width: auto; }
+  .nav-primary a {
+    padding: 0; }
+    .nav-primary a:after {
+      content: '|';
+      margin-left: 20px; }
+  .nav-primary ul {
+    align-items: center;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.4625;
+    margin: 0; }
+    .nav-primary ul li {
+      display: inline-block;
+      line-height: 1.8;
+      padding: 8px 11.5px 8px 12.5px;
+      position: relative;
+      margin-bottom: 0; }
+      .nav-primary ul li a {
+        color: #000;
+        font: 600 14px 'Source Sans Pro', sans-serif;
+        -webkit-transition: all .1s linear;
+        -moz-transition: all .1s linear;
+        -o-transition: all .1s linear;
+        -ms-transition: all .1s linear;
+        transition: all .1s linear;
+        text-transform: uppercase; }
+        .nav-primary ul li a::after {
+          color: #111;
+          font-family: "PT Serif", "times new roman", times, serif;
+          font-size: 13px; }
+        .nav-primary ul li a:focus {
+          outline: 2px solid #c93; }
+      .nav-primary ul li.current-menu-item a,
+      .nav-primary ul li a:hover,
+      .nav-primary ul li a:active,
+      .nav-primary ul li a:focus {
+        color: #c93;
+        text-decoration: none; }
+      .nav-primary ul li:last-of-type a {
+        background: #333;
+        border: 5px solid #000;
+        border-radius: 10%;
+        color: #fff;
+        font-size: 14px; }
+    .nav-primary ul .sub-menu li {
+      background: #000;
+      border-bottom: 1px solid #000;
+      padding: 10px 31px;
+      width: 100%; }
+  .nav-primary li > ul a::after,
+  .nav-primary ul li:last-of-type a::after {
+    border-bottom: 0;
+    content: "" !important;
+    margin-left: 0 !important;
+    width: 100%; }
+  .nav-primary .sub-menu a::after {
+    border-bottom: 1px solid #333;
+    display: block;
+    position: relative;
+    top: 10.8px; }
+  .nav-primary ul.sub-menu li a,
+  .nav-primary ul.sub-menu li:first-of-type a {
+    background: #000;
+    color: #eee;
+    font-size: 1.2rem; }
 
-/* Footer Menu
---------------------------------------------- */
+.genesis-nav-menu .sub-menu a,
+.nav-primary .sub-menu a {
+  background: #000; }
+
+/* 2.2 Header Menu Shrinked
+============================*/
+.nav-shrinked {
+  border: none;
+  display: block;
+  margin: 1px 0 0;
+  min-width: 200px;
+  padding: 0;
+  position: fixed !important;
+  right: 20px;
+  width: auto; }
+  .nav-shrinked a:after {
+    margin: 0 0 0 10px; }
+  .nav-shrinked ul {
+    font-size: 13px; }
+    .nav-shrinked ul li {
+      padding: 8px 7px; }
+      .nav-shrinked ul li a, .nav-shrinked ul li:last-of-type a {
+        font-size: 12px; }
+      .nav-shrinked ul li:last-of-type a {
+        background: #333;
+        border: 5px solid #000;
+        border-bottom: 2px solid black;
+        border-radius: 10%;
+        border-top: 2px solid black;
+        color: #fff;
+        font-size: 12px;
+        height: 18px;
+        padding: 0 0 3px;
+        position: relative;
+        top: 1px; }
+        .nav-shrinked ul li:last-of-type a span {
+          position: relative;
+          top: 1px; }
+  .nav-shrinked .sub-menu {
+    display: none !important; }
+
+/* 3. Footer Menu Navigation
+=================================================*/
 .nav-secondary {
   margin-top: 10px; }
   .nav-secondary .genesis-nav-menu {
@@ -1684,25 +1863,6 @@ div.wpcf7 .wpcf7-submit:disabled {
    - 1.1 Topbar
    - 1.2 Search Form
    - 1.3 Site Header
-<<<<<<< HEAD
-2. Site Navigation
-   - 2.1 Menus Setup
-   - 2.2 Header Menu
-   - 2.3 Nav Shrinked
-3. Breadcrumbs
-4. Widgets
-   - 4.1 Widgets Setup
-   - 4.2 Author Avatars - Voices
-   - 4.3 Tribe Events
-   - 4.4 Zemannim
-5. Posts
-   - 5.1 Site Layout
-   - 5.2 Posts Layout
-   - 5.3 Author Bios
-6. Archive Pages
-   - 6.1 Affiliate Links
-7. Back To Top Button
-=======
 2. Breadcrumbs
 3. Widgets
    - 3.1 Author Avatars - Voices
@@ -1715,7 +1875,6 @@ div.wpcf7 .wpcf7-submit:disabled {
 5. Archive Pages
    - 5.1 Affiliate Links
 6. BackToTop Button
->>>>>>> bbf221a0894225424541119912d41c976cc31052
 
 ------------------------------------------------------*/
 /* 1. Top Bar & Header
@@ -1927,198 +2086,20 @@ img.custom-logo {
 .date-shrinked {
   display: none; }
 
-/* 2. Site Navigation
-=================================================*/
-/* 2.1 Menus Setup
-============================*/
-.genesis-nav-menu .menu-item {
-  display: inline-block; }
-  .genesis-nav-menu .menu-item:focus, .genesis-nav-menu .menu-item:hover {
-    position: relative; }
-.genesis-nav-menu > .menu-bold > a {
-  font-weight: 700; }
-.genesis-nav-menu > .menu-highlight > a {
-  background-color: #333;
-  border-radius: 3px;
-  color: #fff;
-  font-weight: 600;
-  margin-left: 15px;
-  padding-left: 20px;
-  padding-right: 20px; }
-  .genesis-nav-menu > .menu-highlight > a:hover, .genesis-nav-menu > .menu-highlight > a:focus {
-    background-color: #c93; }
-.genesis-nav-menu .sub-menu {
-  border-top: 0;
-  left: 0;
-  line-height: 1.8;
-  opacity: 0;
-  padding-left: 0;
-  position: absolute;
-  top: 40px;
-  transition: opacity 0.1s ease-in-out;
-  z-index: 2; }
-  .genesis-nav-menu .sub-menu .sub-menu {
-    top: 20px; }
-  .genesis-nav-menu .sub-menu li {
-    display: block;
-    right: calc(11%); }
-    .genesis-nav-menu .sub-menu li:last-of-type a {
-      background: #333;
-      border: 1px solid #333;
-      box-sizing: content-box;
-      height: 20px;
-      padding: 5px 0 0; }
-  .genesis-nav-menu .sub-menu a {
-    border-top: 0; }
-    .genesis-nav-menu .sub-menu a:last-of-type {
-      background: #000; }
-  .genesis-nav-menu .sub-menu .sub-menu {
-    margin: -46px 0 0 179px; }
-
-.genesis-responsive-menu .genesis-nav-menu .sub-menu,
-.genesis-responsive-menu .genesis-nav-menu .sub-menu a {
-  width: 160px; }
-
-/* 2.2 Header Menu
-============================*/
-.nav-primary {
-  border-color: #333;
-  border-style: solid;
-  border-width: 2px 0 1px;
-  box-sizing: content-box;
-  clear: both;
-  height: 45px;
-  line-height: 1.8;
-  margin: 1px auto 0;
-  max-width: 1200px;
-  padding: 0;
-  position: static;
-  width: auto; }
-  .nav-primary a {
-    padding: 0; }
-    .nav-primary a:after {
-      content: '|';
-      margin-left: 20px; }
-  .nav-primary ul {
-    align-items: center;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    line-height: 1.4625;
-    margin: 0; }
-    .nav-primary ul li {
-      display: inline-block;
-      line-height: 1.8;
-      padding: 8px 11.5px 8px 12.5px;
-      position: relative;
-      margin-bottom: 0; }
-      .nav-primary ul li a {
-        color: #000;
-        font: 600 14px 'Source Sans Pro', sans-serif;
-        -webkit-transition: all .1s linear;
-        -moz-transition: all .1s linear;
-        -o-transition: all .1s linear;
-        -ms-transition: all .1s linear;
-        transition: all .1s linear;
-        text-transform: uppercase; }
-        .nav-primary ul li a::after {
-          color: #111;
-          font-family: "PT Serif", "times new roman", times, serif;
-          font-size: 13px; }
-        .nav-primary ul li a:focus {
-          outline: 2px solid #c93; }
-      .nav-primary ul li.current-menu-item a,
-      .nav-primary ul li a:hover,
-      .nav-primary ul li a:active,
-      .nav-primary ul li a:focus {
-        color: #c93;
-        text-decoration: none; }
-      .nav-primary ul li:last-of-type a {
-        background: #333;
-        border: 5px solid #000;
-        border-radius: 10%;
-        color: #fff;
-        font-size: 14px; }
-    .nav-primary ul .sub-menu li {
-      background: #000;
-      border-bottom: 1px solid #000;
-      padding: 10px 31px;
-      width: 100%; }
-  .nav-primary li > ul a::after,
-  .nav-primary ul li:last-of-type a::after {
-    border-bottom: 0;
-    content: "" !important;
-    margin-left: 0 !important;
-    width: 100%; }
-  .nav-primary .sub-menu a::after {
-    border-bottom: 1px solid #333;
-    display: block;
-    position: relative;
-    top: 10.8px; }
-  .nav-primary ul.sub-menu li a,
-  .nav-primary ul.sub-menu li:first-of-type a {
-    background: #000;
-    color: #eee;
-    font-size: 1.2rem; }
-
-.genesis-nav-menu .sub-menu a,
-.nav-primary .sub-menu a {
-  background: #000; }
-
-.nav-shrinked {
-  border: none;
-  display: block;
-  margin: 1px 0 0;
-  min-width: 200px;
-  padding: 0;
-  position: fixed !important;
-  right: 20px;
-  width: auto; }
-  .nav-shrinked a:after {
-    margin: 0 0 0 10px; }
-  .nav-shrinked ul {
-    font-size: 13px; }
-    .nav-shrinked ul li {
-      padding: 8px 7px; }
-      .nav-shrinked ul li a, .nav-shrinked ul li:last-of-type a {
-        font-size: 12px; }
-      .nav-shrinked ul li:last-of-type a {
-        background: #333;
-        border: 5px solid #000;
-        border-bottom: 2px solid black;
-        border-radius: 10%;
-        border-top: 2px solid black;
-        color: #fff;
-        font-size: 12px;
-        height: 18px;
-        padding: 0 0 3px;
-        position: relative;
-        top: 1px; }
-        .nav-shrinked ul li:last-of-type a span {
-          position: relative;
-          top: 1px; }
-  .nav-shrinked .sub-menu {
-    display: none !important; }
-
-/* 3. Breadcrumbs
+/* 2. Breadcrumbs
 =================================================*/
 .bc-container {
   border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
   margin: 0 0 40px; }
-
-.breadcrumbs,
-.bc-container .social-buttons.share {
-  flex-basis: 50%; }
+  .bc-container .social-buttons.share {
+    flex-basis: 30%; }
 
 .breadcrumbs {
   border: 0;
   color: #999;
+  flex-basis: 70%;
   float: none;
   font-size: 1.3rem;
   margin: 0;
@@ -2137,28 +2118,9 @@ img.custom-logo {
   .breadcrumbs .current {
     color: #999; }
 
-/* 4. Widgets
+/* 3. Widgets
 =================================================*/
-/* 4.1 Widgets Setup
-============================*/
-.widget-wrap h4,
-.widget-wrap h4 a {
-  /* text-align: top; */
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1.393;
-  margin: 0 !important;
-  text-align: left; }
-.widget-wrap p.entry-meta {
-  color: #aaa;
-  font-size: 11px;
-  font-style: italic;
-  line-height: 1.775;
-  text-align: left; }
-.widget-wrap a.alignleft {
-  margin: 0 10px 0 0; }
-
-/* 4.2 Author Avatars - Voices
+/* 3.1 Author Avatars - Voices
 ============================*/
 .widget-wrap .author-avatars {
   display: -webkit-flex;
@@ -2209,7 +2171,7 @@ img.custom-logo {
     text-align: center;
     line-height: 1.1875; }
 
-/* 4.3 Tribe Events Widget
+/* 3.2 Tribe Events Widget
 ============================*/
 .tribe-events-widget-link {
   color: #c93;
@@ -2232,18 +2194,17 @@ img.custom-logo {
 .tribe-list-widget.ol > li {
   list-style-type: none; }
 
-/* 4.4 Zemannim Widget
+/* 3.3 Zemannim Widget
 ============================*/
 .widgettitle.widget-title.shabbat-title {
   margin: 20px 0 !important; }
 
-/* 5. Posts
 .zemannim-text {
   padding: 0 16px; }
 
 /* 4. Posts
 =================================================*/
-/* 5.1 Site Layout
+/* 4.1 Site Layout
 ============================*/
 .content {
   float: left;
@@ -2264,7 +2225,7 @@ img.custom-logo {
   padding: 30px 0 0;
   max-width: 1200px; }
 
-/* 5.2 Posts Layout
+/* 4.2 Posts Layout
 ============================*/
 .post {
   border-bottom: 1px solid #eee;
@@ -2319,7 +2280,7 @@ span.category {
   font-size: 12px;
   margin: 10px auto 0; }
 
-/* 5.3 Author Bios
+/* 4.3 Author Bios
 ============================*/
 .author-box .avatar {
   height: 80px;
@@ -2340,9 +2301,9 @@ span.category {
   margin-block-end: 10px;
   margin: 0 0 10px; }
 
-/* 6. Archive Pages
+/* 5. Archive Pages
 =================================================*/
-/* 6.1 Affiliate Links
+/* 5.1 Affiliate Links
 ============================*/
 .affiliates-container {
   display: flex;
@@ -2364,11 +2325,7 @@ span.category {
 .affiliate-img {
   margin: 0 0 4px; }
 
-<<<<<<< HEAD
-/* 7. Back To Top Button
-=======
 /* 7. BackToTop Button
->>>>>>> bbf221a0894225424541119912d41c976cc31052
 ============================*/
 #backToTop {
   background: #000;
@@ -2388,8 +2345,6 @@ span.category {
 #backToTop.btt-shrinked {
   display: block; }
 
-/* Front Page
--------------------------------------------------- */
 .social-buttons.share {
   text-align: right; }
   .social-buttons.share a {
@@ -2410,39 +2365,26 @@ span.category {
       background: #000;
       color: #c93; }
 
-.social-btn.facebook-circle {
-  border-color: #3b5998; }
-
 .social-btn.twitter-circle {
   border-color: #12b3f9; }
-
 .social-btn.google-plus-circle {
   border-color: #a52714; }
-
 .social-btn.pinterest-circle {
   border-color: #bd081c; }
-
 .social-btn.linkedin-circle {
   border-color: #008cc9; }
-
 .social-btn.whatsapp-circle {
   border-color: #00E676; }
-
 .social-btn .fa-facebook {
   color: #3b5998; }
-
 .social-btn .fa-twitter {
   color: #12b3f9; }
-
 .social-btn .fa-googleplus {
   color: #a52714; }
-
 .social-btn .fa-pinterest {
   color: #bd081c; }
-
 .social-btn .fa-linkedin {
   color: #008cc9; }
-
 .social-btn .fa-whatsapp {
   color: #00E676;
   font-weight: 700; }

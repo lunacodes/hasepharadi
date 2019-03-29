@@ -9,6 +9,7 @@ Once this is done, it checks for Daylight Saving Times, and then uses a Javascri
 ## Requirements
 * [HTML5 Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
 * [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/intro)
+* [Google Maps Time Zone API](https://developers.google.com/maps/documentation/timezone/intro)
 * [SunCalc Library](https://github.com/mourner/suncalc)
 * [jQuery](https://jquery.com/)
 * [ipapi](https://ipapi.co/)
@@ -75,15 +76,6 @@ Consolidates and removes redundant functions. Improves code logic.
 * Increase wp-admin options for customization
 * Merge redundant logic in the hebcal getter functions
 * Display Holidays, in addition to Shabbath
-* Write unit tests
-* Rewrite as much code as possible into PHP.
-    * Utilize the updated Hebcal SSL APIs, where relevant
-* getGeoDetails: var state - immediately precedes if (state == null) - needs for loop, instead of just being set to null.
-* Incorporate Promises more?
-=======
-* getGeoDetails: Write an additional `for loop` in order to avoid `var state` defaulting to null.
-* Add back-end/admin options for choosing transliteration style and which times to display back in
-=======
+
 ### Known Issues
 * getGeoDetails: Needs an additional `for loop` in order to avoid `var state` defaulting to null.
->>>>>>> bbf221a0894225424541119912d41c976cc31052

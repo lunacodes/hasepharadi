@@ -5,23 +5,18 @@
    - 1.1 Topbar
    - 1.2 Search Form
    - 1.3 Site Header
-2. Site Navigation
-   - 2.1 Menus Setup
-   - 2.2 Header Menu
-   - 2.3 Nav Shrinked
-3. Breadcrumbs
-4. Widgets
-   - 4.1 Widgets Setup
-   - 4.2 Author Avatars - Voices
-   - 4.3 Tribe Events
-   - 4.4 Zemannim
-5. Posts
-   - 5.1 Site Layout
-   - 5.2 Posts Layout
-   - 5.3 Author Bios
-6. Archive Pages
-   - 6.1 Affiliate Links
-7. Back To Top Button
+2. Breadcrumbs
+3. Widgets
+   - 3.1 Author Avatars - Voices
+   - 3.2 Tribe Events
+   - 3.3 Zemannim
+4. Posts
+   - 4.1 Site Layout
+   - 4.2 Posts Layout
+   - 4.3 Author Bios
+5. Archive Pages
+   - 5.1 Affiliate Links
+6. BackToTop Button
 
 ------------------------------------------------------*/
 
@@ -306,269 +301,7 @@ img.custom-logo {
 }
 
 
-/* 2. Site Navigation
-=================================================*/
-
-/* 2.1 Menus Setup
-============================*/
-
-.genesis-nav-menu {
-  .menu-item {
-    display: inline-block;
-
-    &:focus,
-    &:hover {
-      position: relative;
-    }
-  }
-
-  > .menu-bold > a {
-    font-weight: 700;
-  }
-
-  > .menu-highlight > a {
-    background-color: $dark-grey;
-    border-radius: 3px;
-    color: $white;
-    font-weight: 600;
-    margin-left: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
-
-    &:hover,
-    &:focus {
-      background-color: $orange;
-    }
-  }
-
-  .sub-menu {
-    border-top: 0;
-    left: 0;
-    line-height: 1.8;
-    opacity: 0;
-    padding-left: 0;
-    position: absolute;
-    top: 40px;
-    // top: 20px;
-    transition: opacity 0.1s ease-in-out;
-    z-index: 2;
-
-    .sub-menu {
-      top:20px;
-    }
-
-    li {
-      display: block;
-      right: calc(11%);
-
-      &:last-of-type a {
-        background: $dark-grey;
-        border: 1px solid $dark-grey;
-        box-sizing: content-box;
-        height: 20px;
-        padding: 5px 0 0;
-      }
-    }
-
-    a {
-      border-top: 0;
-      &:last-of-type {
-        background: $black;
-      }
-    }
-
-    .sub-menu {
-      margin: -46px 0 0 179px;
-    }
-  }
-}
-
-.genesis-responsive-menu {
-  .genesis-nav-menu {
-    .sub-menu,
-    .sub-menu a {
-      width: 160px;
-    }
-  }
-}
-
-/* 2.2 Header Menu
-============================*/
-
-.nav-primary {
-  border-color: $dark-grey;
-  border-style: solid;
-  border-width: 2px 0 1px;
-  box-sizing: content-box;
-  clear: both;
-  height: 45px;
-  line-height: 1.8;
-  margin: 1px auto 0;
-  max-width: 1200px;
-  padding: 0;
-  position: static;
-  width: auto;
-
-  a {
-    padding: 0;
-
-    &:after {
-      content: '|';
-      margin-left: 20px;
-    }
-  }
-
-  ul {
-    align-items: center;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    line-height: 1.4625;
-    margin: 0;
-
-    li {
-      display: inline-block;
-      line-height: 1.8;
-      // padding: 8px 10px;
-      padding: 8px 11.5px 8px 12.5px;
-      position: relative;
-      margin-bottom: 0;
-
-      a {
-        color: $black;
-        font: 600 14px 'Source Sans Pro', sans-serif;
-        // font: 600 14px sans-serif;
-        -webkit-transition: all .1s linear;
-        -moz-transition: all .1s linear;
-        -o-transition: all .1s linear;
-        -ms-transition: all .1s linear;
-        transition: all .1s linear;
-        text-transform: uppercase;
-
-        &::after {
-          color: $darkest-grey;
-          font-family: "PT Serif", "times new roman", times, serif;
-          font-size: 13px;
-
-        }
-
-        &:focus {
-          outline: 2px solid $orange;
-        }
-      }
-
-      &.current-menu-item a,
-      a:hover,
-      a:active,
-      a:focus {
-        color: $orange;
-        text-decoration: none;
-      }
-
-      &:last-of-type a {
-        background: $dark-grey;
-        border: 5px solid $black;
-        border-radius: 10%;
-        color: $white;
-        font-size: 14px;
-      }
-    }
-
-    .sub-menu li {
-      background: $black;
-      border-bottom: 1px solid $black;
-      padding: 10px 31px;
-      width: 100%;
-    }
-  }
-
-  li > ul a::after,
-  ul li:last-of-type a::after {
-    border-bottom: 0;
-    content: "" !important;
-    margin-left: 0 !important;
-    width: 100%;
-  }
-
-  .sub-menu a::after {
-    border-bottom: 1px solid $dark-grey;
-    display: block;
-    position: relative;
-    top: 10.8px;
-  }
-
-  ul.sub-menu {
-    li a,
-    li:first-of-type a {
-      background: $black;
-      color: $lighter-grey;
-      font-size: 1.2rem;
-    }
-  }
-}
-
-.genesis-nav-menu .sub-menu a,
-.nav-primary .sub-menu a {
-  background: $black;
-}
-
-.nav-shrinked {
-  border: none;
-  display: block;
-  margin: 1px 0 0;
-  min-width: 200px;
-  padding: 0;
-  position: fixed !important;
-  right: 20px;
-  width: auto;
-
-  a:after {
-    margin: 0 0 0 10px;
-  }
-
-  ul {
-    font-size: 13px;
-
-    li {
-      padding: 8px 7px;
-
-      a,
-      &:last-of-type a {
-        font-size: 12px;
-      }
-
-      &:last-of-type a {
-        background: $dark-grey;
-        border: 5px solid #000;
-        border-bottom: 2px solid black;
-        border-radius: 10%;
-        border-top: 2px solid black;
-        color: $white;
-        font-size: 12px;
-        height: 18px;
-        padding: 0 0 3px;
-        position: relative;
-        top: 1px;
-
-        span {
-          position: relative;
-          top: 1px;
-        }
-      }
-    }
-  }
-
-  .sub-menu {
-    display: none !important;
-  }
-}
-
-
-/* 3. Breadcrumbs
+/* 2. Breadcrumbs
 =================================================*/
 
 .bc-container {
@@ -576,18 +309,23 @@ img.custom-logo {
   display: flex;
   justify-content: space-between;
   margin: 0 0 40px;
+
+  .social-buttons.share {
+    flex-basis: 30%;
+  }
 }
 
-.breadcrumbs,
-.bc-container .social-buttons.share {
-  flex-basis: 50%;
-}
+// .breadcrumbs,
+// .bc-container .social-buttons.share {
+//   // flex-basis: 50%;
+// }
 
 .breadcrumbs {
   // border: 1px solid #ddd;
   // border-width: 0 0 1px;
   border: 0;
   color: $mid-grey-2;
+  flex-basis: 70%;
   float: none;
   font-size: 1.3rem;
   // margin: 0 auto 40px;
@@ -619,9 +357,34 @@ img.custom-logo {
 }
 
 
-/* 4. Widgets
+/* 3. Widgets
 =================================================*/
 
+// .widget-wrap {
+//   h4,
+//   h4.entry-title,
+//   h4.entry-title a {
+//     font-size: 15px;
+//     font-weight: 400;
+//     line-height: 1.393;
+//     margin: 0;
+//     text-align: left;
+//   }
+
+//   p.entry-meta {
+//     color: $mid-grey-3;
+//     font-size: 11px;
+//     font-style: italic;
+//     line-height: 1.775;
+//     text-align: left;
+//   }
+
+//   a.alignleft {
+//     margin: 0 10px 0 0;
+//   }
+// }
+
+/* 3.1 Author Avatars - Voices
 ============================*/
 
 .widget-wrap .author-avatars {
@@ -690,7 +453,7 @@ img.custom-logo {
 
 }
 
-/* 4.3 Tribe Events Widget
+/* 3.2 Tribe Events Widget
 ============================*/
 .tribe-events-widget-link {
   color: $orange;
@@ -725,7 +488,7 @@ img.custom-logo {
   list-style-type: none;
 }
 
-/* 4.4 Zemannim Widget
+/* 3.3 Zemannim Widget
 ============================*/
 .widgettitle.widget-title.shabbat-title {
   margin: 20px 0 !important;
@@ -736,10 +499,10 @@ img.custom-logo {
 }
 
 
-/* 5. Posts
+/* 4. Posts
 =================================================*/
 
-/* 5.1 Site Layout
+/* 4.1 Site Layout
 ============================*/
 
 .content {
@@ -766,7 +529,7 @@ img.custom-logo {
   max-width: 1200px;
 }
 
-/* 5.2 Posts Layout
+/* 4.2 Posts Layout
 ============================*/
 
 .post {
@@ -835,7 +598,7 @@ span.category {
   margin: 10px auto 0;
 }
 
-/* 5.3 Author Bios
+/* 4.3 Author Bios
 ============================*/
 
 .author-box .avatar {
@@ -861,10 +624,10 @@ span.category {
 }
 
 
-/* 6. Archive Pages
+/* 5. Archive Pages
 =================================================*/
 
-/* 6.1 Affiliate Links
+/* 5.1 Affiliate Links
 ============================*/
 
 .affiliates-container {
@@ -891,7 +654,7 @@ span.category {
   margin: 0 0 4px;
 }
 
-/* 7. Back To Top Button
+/* 7. BackToTop Button
 ============================*/
 
 #backToTop {
