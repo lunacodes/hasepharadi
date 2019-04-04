@@ -5,7 +5,7 @@
  * Description: Displays Zemannim (times) according to Sepharadic tradition.
  *   Uses the DB-IP API and the Google Maps API for geographic information.
  *   Uses the Sun-Calc Library (https://github.com/mourner/suncalc) for sunrise/sunset information.
- * Version: 1.3.4
+ * Version: 1.3.3
  *
  * @author Luna Lunapiena
  * @link: https://lunacodesdesign.com/
@@ -303,9 +303,22 @@ function hebCalGetSunset(timestr) {
 		return time;
 }
 
+function getDaysInMonth(month, year) {
+	return new Date(year, month, 0).getDate();
+}
+
 function hebCalShab(cityStr, lat, long, tzid) {
 	const now = new Date();
 	let month = now.getMonth() + 1;
+	let year = now.getYear();
+	let daysInMonth = getDaysInMonth(month, year);
+	// tmpDayNum may be redundant w/ todayNum - doublecheck later
+	let tmpDayNum = now.getDate();
+	if ( daysInMonth === tmpDayNum ) {
+		month = month + 1;
+	}
+	// console.log(now);
+	// console.log("m, y, dim, tdn", month, year, daysInMonth, tmpDayNum);
 
 	let urlStr = 'https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&nx=on&ss=on&mod=off&s=on&c=on&m=20&b=18&o=on&D=on&year=now&month=' + month + '&i=off&geo=pos' + '&latitude=' + lat + '&longitude=' + long + '&tzid=' + tzid;
 	// console.log("hebCalShab urlStr", urlStr);
