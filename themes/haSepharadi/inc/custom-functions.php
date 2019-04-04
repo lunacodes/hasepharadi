@@ -481,11 +481,11 @@ function sp_footer_creds_filter( $creds ) {
 add_shortcode( 'author_avatars', 'display_author_avatars' );
 function display_author_avatars() {
 	remove_filter('widget_text_content', 'wpautop');
-	add_action( "pre_user_query", function( $query ) {
-	    if( "rand" == $query->query_vars["orderby"] ) {
-	        $query->query_orderby = str_replace( "user_login", "RAND()", $query->query_orderby );
-	    }
-	});
+	// add_action( "pre_user_query", function( $query ) {
+	//     if( "rand" == $query->query_vars["orderby"] ) {
+	//         $query->query_orderby = str_replace( "user_login", "RAND()", $query->query_orderby );
+	//     }
+	// });
 
 	$args = array(
 		'number' => 7,
@@ -508,14 +508,18 @@ function display_author_avatars() {
 				$name = $author->display_name;
 				// $author_posts = $author->url;
 				$author_posts = get_author_posts_url( $author->ID );
-
+				$args = array(
+					'size' => 96,
+					'width' => 96,
+					'class' => 'avatar-img'
+				);
 				// var_dump($author);
 				?>
 
 				<div class="authors-wrap">
 					<div class="author-box">
 						<a href="<?php echo($author_posts); ?>">
-							<div class="avatar-box"><?php echo( get_avatar( $author->ID ) ); ?>
+							<div class="avatar-box"><?php echo( apply_filters( 'the_content', get_avatar( $author->ID, $args ) ) ); ?>
 							</div>
 							<span class="author-name"><?php echo( $name ); ?>
 							</span>
@@ -526,7 +530,7 @@ function display_author_avatars() {
 			}
 		}
 	} else {
-			echo "no users found";
+			// echo "no users found";
 	}
 	?>
 				</div>
@@ -558,6 +562,7 @@ function display_author_avatars() {
 add_action( 'wp_enqueue_scripts', 'enqueue_mailchimp_styles' );
 function enqueue_mailchimp_styles() {
 	wp_enqueue_style( 'mc-subscribe', CHILD_URL . '/css/mc-subscribe.css' );
+	// wp_enqueue_script( 'mc-validate', CHILD_URL . '/js/mc-validate.js', array(''), CHILD_THEME_VERSION, 'true ');
 }
 
 
