@@ -59,7 +59,7 @@ function luna_cat_loop() {
 	 $user_acf_prefix = 'user_';
 	 $user_id_prefixed = $user_acf_prefix . $user_id;
 
-	 	display_affiliate_links($user_id_prefixed);
+		display_affiliate_links($user_id_prefixed);
 		endwhile;
 
 	 wp_reset_postdata($user_id_prefixed);
@@ -76,14 +76,26 @@ function display_affiliate_links($user_id_prefixed) {
 	<?php
 	if ( function_exists( 'have_rows' ) ) {
 		if ( have_rows( 'affiliate_links', $user_id_prefixed ) ) :
-			 while ( have_rows( 'affiliate_links', $user_id_prefixed ) ) : the_row();
+			while ( have_rows( 'affiliate_links', $user_id_prefixed ) ) : the_row();
+				$count = count( have_rows( 'affiliate_links', $user_id_prefixed ) );
+				echo( $count );
+				if ( 0 == ($count % 3) ) {
+					if ($count <= 3) {
+						$affiliate_class - 'affiliate-item'
+					} elseif ( $count > 3 ) {
+						$affiliate_class = 'affiliate-item row-fix';
+					}
+				} else {
+					$affiliate_class = 'affiliate-item';
+				}
+
 				$affiliate_image = get_sub_field( 'affiliate_image' );
 				$size = 'medium';
 				$thumb = $affiliate_image['sizes'][ $size ];
 				$width = $affiliate_image['sizes'][ $size . '-width' ];
 				$height = $affiliate_image['sizes'][ $size . '-height' ];
 				?>
-			<div class="affiliate-item">
+			<div class="<?php echo $affiliate_class; ?>">
 				<img class="affiliate-img"src="<?php echo $affiliate_image['url']; ?>" alt="<?php echo $affiliate_image['alt']; ?>" width="<?php echo($width); ?>" height="<?php echo($height); ?>" />
 				<a class="affiliate-link-text" href="<?php the_sub_field( 'affiliate_url' ); ?>"><?php
 				the_sub_field( 'affiliate_link_text' ); ?></a>
@@ -106,7 +118,7 @@ function display_author_bio_2() {
 
 	?>
 		<div class="author-box">
- 			<!-- <h2 class="author-box-title">About Author</h2> -->
+			<!-- <h2 class="author-box-title">About Author</h2> -->
 			<div class="author-img"><a href="<?php echo( esc_url( get_author_posts_url( get_the_author_meta('ID') ) ) ) ?>" title="<?php esc_attr( get_the_author() ); ?>"><?php echo get_avatar(get_the_author_meta('user_email'), '80'); // Display the author gravatar image with the size of 80 ?></a></div>
 			<h3 class="author-name"><?php esc_html(the_author_meta('display_name')); // Displays the author name of the posts ?></h3>
 			<p class="author-description"><?php esc_textarea(the_author_meta('description')); // Displays the author description added in Biographical Info ?></p>
