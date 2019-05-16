@@ -283,25 +283,26 @@
 ============================*/
 
 .nav-primary {
-  clear: left;
-  width: 100%;
   border-color: $dark-grey;
   border-style: solid;
   border-width: 2px 0 1px;
   box-sizing: content-box;
   clear: both;
+  // clear: left;
+  display: none;
   height: 45px;
   line-height: 1.8;
   margin: 1px auto 0;
   max-width: 1200px;
   padding: 0;
   position: static;
+  // width: 100%;
   width: auto;
 
   a {
     padding: 0;
 
-    &:after {
+    &::after {
       content: '|';
       margin-left: 20px;
     }
@@ -315,28 +316,28 @@
     display: -o-flex;
     display: flex;
     justify-content: center;
-    text-align: center;
     line-height: 1.4625;
     margin: 0;
+    text-align: center;
 
     li {
       display: inline-block;
       line-height: 1.8;
+      margin-bottom: 0;
       // padding: 8px 10px;
       padding: 8px 11.5px 8px 12.5px;
       position: relative;
-      margin-bottom: 0;
 
       a {
         color: $black;
         font: 600 14px 'Source Sans Pro', sans-serif;
         // font: 600 14px sans-serif;
+        text-transform: uppercase;
         -webkit-transition: all .1s linear;
         -moz-transition: all .1s linear;
         -o-transition: all .1s linear;
         -ms-transition: all .1s linear;
         transition: all .1s linear;
-        text-transform: uppercase;
 
         &::after {
           color: $darkest-grey;
@@ -378,7 +379,7 @@
   li > ul a::after,
   ul li:last-of-type a::after {
     border-bottom: 0;
-    content: "" !important;
+    content: '' !important;
     margin-left: 0 !important;
     width: 100%;
   }
