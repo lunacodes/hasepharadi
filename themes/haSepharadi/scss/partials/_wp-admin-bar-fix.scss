@@ -1,54 +1,57 @@
 /* WP Admin Bar Fix
 ---------------------------------------------------------------------------------------------------- */
 
-/* Media Query - Min-Width: 782px */
-@media screen and (min-width: 48.875em) {
-  // Prevent wrapping of admin bar that has more items than admin bar area
-  #wpadminbar .quicklinks {
-    justify-content: space-between;
-  }
+// Media Query - Min-Width: 782px
+@media only screen and (min-width: 48.875em) {
+  #wpadminbar {
+    .quicklinks {
+      justify-content: space-between;
 
-  #wpadminbar .quicklinks,
-  #wpadminbar .quicklinks > ul {
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
-    display: flex;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    min-width: 0 !important;
-  }
+      &,
+      & > ul {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        min-width: 0 !important;
+      }
 
-  #wpadminbar #wp-admin-bar-top-secondary {
-    -ms-flex-direction: row-reverse;
-    flex-direction: row-reverse;
-  }
+      & > ul > li {
+        float: none !important;
+      }
 
-  #wpadminbar .quicklinks > ul > li {
-    float: none !important;
-  }
+      & > ul > li,
+      .ab-item {
+        max-width: 100px;
+        min-width: 0 !important;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
 
-  #wpadminbar .quicklinks > ul > li,
-  #wpadminbar .quicklinks .ab-item {
-    max-width: 100px;
-    min-width: 0 !important;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+      .ab-item {
+        overflow: hidden;
 
-  #wpadminbar .quicklinks .ab-item {
-    overflow: hidden;
-  }
+        .ab-label,
+        .display-name {
+          display: inline;
+          float: none;
+        }
+      }
+    } // end .quicklinks
 
-  #wpadminbar .quicklinks .ab-item .ab-label,
-  #wpadminbar .quicklinks .ab-item .display-name {
-    display: inline;
-    float: none;
-  }
+    #wp-admin-bar-top-secondary {
+      -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse;
+    }
+  } // end #wpadminbar
+
 }
 
-/* Media Query - Min-Width: 1061px */
+
+// #WP Admin Bar min-width: 1061px
 @media only screen and (min-width: 66.3125em) {
   #wpadminbar .quicklinks > ul > li,
   #wpadminbar .quicklinks .ab-item {
