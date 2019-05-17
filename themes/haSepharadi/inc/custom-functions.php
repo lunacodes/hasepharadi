@@ -34,6 +34,7 @@
 7. Custom User Meta
 		- 7.1 Social Media
 8. Social Media Sharing Buttons
+9. Maintenance
 
 ------------------------------------------------------*/
 
@@ -58,7 +59,6 @@ add_action( 'after_setup_theme', 'add_custom_image_sizes' );
 function add_custom_image_sizes() {
 		add_image_size( 'recent-posts-thumb', 100, 100, array('left', 'top') );
 }
-
 
 /* 1.3 - Genesis Thumbnail Cache Fix
 ============================*/
@@ -131,16 +131,15 @@ function haSepharadi_custom_header() {
 	$todays_date = date_i18n( 'l F j, Y' );
 	// the_date();
 	// echo($todays_date);
-// 	$custom_header = <<<EOL
-// 	<div class="logo"> <a href="$site_url" title="haSepharadi"> <span><img src="$site_url/wp-content/uploads/2018/08/cropped-logo-1.png" scale="0"></span> </a>
-// 	<div id="header-date" class="local-info"> <span class="local-date">$todays_date</span></div>
-// 	</div>
-// EOL;
 	$custom_header = <<<EOL
-	<div class="logo"> <a href="$site_url" title="haSepharadi"> <span><img src="$site_url/wp-content/uploads/2019/05/Full-Logo.svg" scale="0"></span> </a>
+	<div class="logo"> <a href="$site_url" title="haSepharadi"> <span><img src="$site_url/wp-content/uploads/2018/08/cropped-logo-1.png" scale="0"></span> </a>
 	<div id="header-date" class="local-info"> <span class="local-date">$todays_date</span></div>
 	</div>
 EOL;
+
+// 	$custom_header = <<<EOL
+// <div class="logo" href="https://hasepharadi.com"><a href="https://hasepharadi.com" title="haSepharadi"> <span><img href="https://hasepharadi.com" src="https://hasepharadi.com/wp-content/themes/haSepharadi/images/logo.svg" width="216" height="80" style="width: 100%; height: 80px; visibility: visible;"  type="image"></span></a><div id="header-date" class="local-info"> <span class="local-date">$todays_date</span></div></div>
+// EOL;
 
 	echo($custom_header);
 
@@ -158,7 +157,7 @@ add_action( 'genesis_header', 'genesis_do_nav', 11 );
 ============================*/
 add_action( 'genesis_after_header', 'fix_wp_admin_bar_mobile' );
 function fix_wp_admin_bar_mobile() {
-	if (! is_user_logged_in() ) {
+	if ( ! is_user_logged_in() ) {
 		return;
 	}
 
@@ -168,6 +167,10 @@ function fix_wp_admin_bar_mobile() {
 	@media only screen and (max-width: 60em) {
 		.menu-toggle {
 			top: 18.5px;
+		}
+
+		.nav-primary, .nav-primary.nav-shrinked {
+			top: 71px;
 		}
 	}
 
@@ -182,6 +185,10 @@ function fix_wp_admin_bar_mobile() {
 
 		.nav-shrinked {
 			top: 96px !important;
+		}
+
+		.nav-primary, .nav-primary.nav-shrinked {
+			top: 91px;
 		}
 
 		#topbar.shrinked {
@@ -634,5 +641,27 @@ function luna_social_sharing_buttons() {
 		<?php
 	} else {
 		return;
+	}
+}
+
+
+/* 9. Maintenance
+=================================================*/
+
+$cron_args = array( false );
+if ( ! wp_next_scheduled( 'luna_debug_hook', $cron_args ) ) {
+	wp_schedule_event( time(), 'daily', 'luna_debug_hook' );
+}
+add_action( 'luna_debug_hook', 'luna_cleanup_debug_log' );
+
+/**
+ * GZip and Delete wp-content/debug.log anytime file size is greater than 100MB.
+ * Email Admin debug file
+ *
+ */
+add_action( 'genesis_loop', 'luna_cleanup_debug_log' );
+function luna_cleanup_debug_log() {
+	if ( file_exists('/public_html/wp-content/debug.log' ) ) {
+		echo( 'debug log exists' );
 	}
 }

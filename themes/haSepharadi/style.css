@@ -1461,13 +1461,12 @@ div.wpcf7 .wpcf7-submit:disabled {
 /* 2.1 Header Menu
 ============================*/
 .nav-primary {
-  clear: left;
-  width: 100%;
   border-color: #333;
   border-style: solid;
   border-width: 2px 0 1px;
   box-sizing: content-box;
   clear: both;
+  display: none;
   height: 45px;
   line-height: 1.8;
   margin: 1px auto 0;
@@ -1477,7 +1476,7 @@ div.wpcf7 .wpcf7-submit:disabled {
   width: auto; }
   .nav-primary a {
     padding: 0; }
-    .nav-primary a:after {
+    .nav-primary a::after {
       content: '|';
       margin-left: 20px; }
   .nav-primary ul {
@@ -1488,24 +1487,24 @@ div.wpcf7 .wpcf7-submit:disabled {
     display: -o-flex;
     display: flex;
     justify-content: center;
-    text-align: center;
     line-height: 1.4625;
-    margin: 0; }
+    margin: 0;
+    text-align: center; }
     .nav-primary ul li {
       display: inline-block;
       line-height: 1.8;
+      margin-bottom: 0;
       padding: 8px 11.5px 8px 12.5px;
-      position: relative;
-      margin-bottom: 0; }
+      position: relative; }
       .nav-primary ul li a {
         color: #000;
         font: 600 14px 'Source Sans Pro', sans-serif;
+        text-transform: uppercase;
         -webkit-transition: all .1s linear;
         -moz-transition: all .1s linear;
         -o-transition: all .1s linear;
         -ms-transition: all .1s linear;
-        transition: all .1s linear;
-        text-transform: uppercase; }
+        transition: all .1s linear; }
         .nav-primary ul li a::after {
           color: #111;
           font-family: "PT Serif", "times new roman", times, serif;
@@ -1532,7 +1531,7 @@ div.wpcf7 .wpcf7-submit:disabled {
   .nav-primary li > ul a::after,
   .nav-primary ul li:last-of-type a::after {
     border-bottom: 0;
-    content: "" !important;
+    content: '' !important;
     margin-left: 0 !important;
     width: 100%; }
   .nav-primary .sub-menu a::after {
@@ -2472,6 +2471,51 @@ span.category {
   color: #00E676;
   font-weight: 700; }
 
+/* WP Admin Bar Fix
+---------------------------------------------------------------------------------------------------- */
+/* Media Query - Min-Width: 782px */
+@media screen and (min-width: 48.875em) {
+  #wpadminbar .quicklinks {
+    justify-content: space-between; }
+
+  #wpadminbar .quicklinks,
+  #wpadminbar .quicklinks > ul {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    min-width: 0 !important; }
+
+  #wpadminbar #wp-admin-bar-top-secondary {
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse; }
+
+  #wpadminbar .quicklinks > ul > li {
+    float: none !important; }
+
+  #wpadminbar .quicklinks > ul > li,
+  #wpadminbar .quicklinks .ab-item {
+    max-width: 100px;
+    min-width: 0 !important;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+
+  #wpadminbar .quicklinks .ab-item {
+    overflow: hidden; }
+
+  #wpadminbar .quicklinks .ab-item .ab-label,
+  #wpadminbar .quicklinks .ab-item .display-name {
+    display: inline;
+    float: none; } }
+/* Media Query - Min-Width: 1061px */
+@media only screen and (min-width: 66.3125em) {
+  #wpadminbar .quicklinks > ul > li,
+  #wpadminbar .quicklinks .ab-item {
+    max-width: initial;
+    text-overflow: clip; } }
 /* Media Query - Min-Width: 961px
 ---------------------------------------------------------------------------------------------------- */
 @media only screen and (min-width: 60.0625em) {
@@ -2750,7 +2794,8 @@ span.category {
         border-radius: initial; }
     .nav-primary .sub-menu-toggle,
     .nav-primary.nav-shrinked .sub-menu-toggle {
-      color: #ccc; }
+      color: #ccc;
+      display: none; }
     .nav-primary .sub-menu,
     .nav-primary.nav-shrinked .sub-menu {
       border-top: 1px solid #333; }
@@ -2802,9 +2847,6 @@ span.category {
     .nav-primary .sub-menu button.sub-menu-toggle,
     .nav-primary.nav-shrinked .sub-menu button.sub-menu-toggle {
       visibility: hidden; }
-
-  .sub-menu-toggle {
-    color: #ccc; }
 
   .featured-content .entry-header {
     max-width: 150px; } }

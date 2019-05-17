@@ -199,6 +199,7 @@
     // Sub Menu
     .sub-menu-toggle {
       color: $mid-grey-4;
+      display: none;
     }
 
     .sub-menu {
@@ -267,9 +268,9 @@
     }
   }
 
-  .sub-menu-toggle {
-    color: $mid-grey-4;
-  }
+  // .sub-menu-toggle {
+  //   color: $mid-grey-4;
+  // }
 
   // Sidebar
   .sidebar-primary {
