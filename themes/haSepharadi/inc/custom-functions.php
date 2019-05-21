@@ -7,6 +7,7 @@
 	 - 1.1 Font Awesome
 	 - 1.2 Custom Image Sizes
 	 - 1.3 Genesis Thumbnail Cache Fix
+	 - 1.4 Custom Login Logo
 2. Topbar & Header
 	 - 2.1 Topbar Scripts
 	 - 2.2 Create Topbar
@@ -74,6 +75,47 @@ function blazersix_prime_post_thumbnails_cache( $posts, $wp_query ) {
 		return $posts;
 }
 add_action( 'the_posts', 'blazersix_prime_post_thumbnails_cache', 10, 2 );
+
+/* 1.4 - Custom Login Logo
+============================*/
+
+add_action( 'login_enqueue_scripts', 'haSeph_custom_login_logo' );
+function haSeph_custom_login_logo() { ?>
+	<style type="text/css">
+		#login h1 a, .login h1 a {
+			background-image: url(https://hasepharadi.com/wp-content/themes/haSepharadi/images/logo.png);
+			background-image: none, url(https://hasepharadi.com/wp-content/themes/haSepharadi/images/logo.png);
+			background-position: left top;
+			background-repeat: no-repeat;
+			background-size: 320px;
+			color: #444;
+			display: block;
+			font-size: 20px;
+			font-weight: 400;
+			height: 120px;
+			line-height: 1.3em;
+			margin: 0 auto 25px;
+			outline: 0;
+			overflow: hidden;
+			padding: 0;
+			text-decoration: none;
+			text-indent: -9999px;
+			width: 320px;
+		}
+	</style>
+
+	<?php
+}
+
+add_filter( 'login_headerurl', 'haSeph_login_logo_url' );
+function haSeph_login_logo_url() {
+	return home_url();
+}
+
+add_filter( 'login_headertext', 'haSeph_login_url_title' );
+function haSeph_login_url_title() {
+	return 'haSepharadi';
+}
 
 /* 2. Top Bar & Header
 =================================================*/
