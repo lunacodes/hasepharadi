@@ -1,0 +1,11 @@
+/* Authors Page CSS */
+
+.content {
+	padding: 0 30px;
+	width: 1200px;
+}
+
+.author-box .avatar {
+	height: initial;
+	width: initial;
+}
