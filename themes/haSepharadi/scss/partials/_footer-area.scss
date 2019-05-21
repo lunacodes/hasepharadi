@@ -24,6 +24,10 @@
   width: 33.33%; // fallback for older browsers
   width: calc(100% / 3);
 
+  p {
+    font: 300 16px $base-font;
+  }
+
   .widget {
     margin: 0 auto 12px;
   }
@@ -35,7 +39,7 @@
   .widget-wrap {
     h4,
     h4 a {
-      font: 400 14px 'PT Serif',"times new roman",times,serif;
+      font: 400 14px $base-font;
       max-height: 36px;
       overflow: hidden;
       overflow-y: hidden;
