@@ -29,25 +29,6 @@
     }
   }
 
-  // ol,
-  // ul {
-  //   margin-bottom: 30px;
-  //   margin-left: 40px;
-  // }
-
-  // ol > li {
-  //   list-style-type: decimal;
-  // }
-
-  // ul > li {
-  //   list-style-type: disc;
-  // }
-
-  // ol ol,
-  // ul ul {
-  //   margin-bottom: 0;
-  // }
-
   code {
     background-color: $lightest-grey;
   }
@@ -122,16 +103,15 @@
     text-align: center;
 
     a {
-      color: #444;
+      color: $dark-grey-2;
+      display: block;
       font-family: 'Roboto Slab', Arial;
       font-size: 3rem;
       font-weight: 700;
-      line-height: 1.35;
       letter-spacing: 0;
+      line-height: 1.35;
       margin: 0.5rem auto 1rem;
-      display: block;
     }
-
   }
 
   .entry-title {
@@ -139,7 +119,6 @@
   }
 
 }
-
 
 
 /* Pagination
@@ -200,8 +179,6 @@
     padding-left: 0;
   }
 
-  // .bypostauthor {
-  // }
 }
 
 .comment-header {
@@ -220,9 +197,9 @@
   }
 }
 
-.comment-respond input[type="email"],
-.comment-respond input[type="text"],
-.comment-respond input[type="url"] {
+.comment-respond input[type='email'],
+.comment-respond input[type='text'],
+.comment-respond input[type='url'] {
   width: 50%;
 }
 
