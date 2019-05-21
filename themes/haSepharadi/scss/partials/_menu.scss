@@ -92,12 +92,12 @@
     a {
       border-top: 0;
       &:last-of-type {
-        background: $black;
+        // background: $black;
       }
     }
 
     .sub-menu {
-      margin: -46px 0 0 179px;
+      // margin: -46px 0 0 179px;
     }
   }
 
@@ -357,7 +357,7 @@
     }
 
     .sub-menu li {
-      background: $black;
+      // background: $black;
       border-bottom: 1px solid $black;
       padding: 10px 31px;
       width: 100%;
@@ -382,7 +382,7 @@
   ul.sub-menu {
     li a,
     li:first-of-type a {
-      background: $black;
+      // background: $black;
       color: $lighter-grey;
       font-size: 12px;
       // font-size: 1.2rem;
@@ -393,7 +393,7 @@
 
 .genesis-nav-menu .sub-menu a,
 .nav-primary .sub-menu a {
-  background: $black;
+  // background: $black;
 }
 
 /* 2.2 Header Menu Shrinked
