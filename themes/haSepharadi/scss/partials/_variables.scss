@@ -1,6 +1,7 @@
 // Base Colors
 $black: #000;
-$black-alpha-1: rgba(0,0,0,0.1);
+$black-alpha-1: rgba(0, 0, 0, 0.1);
+$blue: #0073e5;
 $darkest-grey: #111;
 $darker-grey: #222;
 $dark-grey: #333;
@@ -21,7 +22,7 @@ $white: #fff;
 $white-alpha-1: rgba(255,255,255,0.1);
 
 // Base Fonts
-$base-font: 'PT Serif', "times new roman", times, serif;
+$base-font: 'PT Serif', 'times new roman', times, serif;
 $widget-font: 'Arial,Helvetica,sans-serif';
 
 // Screen widths, Media queries - WC widths in WC variables
@@ -82,6 +83,9 @@ $font-weight--regular: 400;
 $font-weight--semibold: 600;
 $font-weight--bold: 700;
 
+// Font Colors
+$link-blue: $blue;
+
 // Line heights
 $line-height--big: 20px;
 $line-height--largest: 2;
@@ -120,9 +124,9 @@ $disabled--font-color: $mid-grey;
 $facebook--color: #3b5998;
 $twitter--color: #12b3f9;
 $google-plus--color: #a52714;
-$pinterest--color:#bd081c;
-$linkedin--color:#008cc9;
-$whatsapp--color:#00E676;
+$pinterest--color: #bd081c;
+$linkedin--color: #008cc9;
+$whatsapp--color: #00e676;
 
 // Background colors
 $body--background-color: $white;

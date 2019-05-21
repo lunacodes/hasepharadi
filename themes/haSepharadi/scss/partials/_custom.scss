@@ -50,9 +50,9 @@
     box-shadow: 0 1px 2px $lightest-grey-2;
     height: 63px;
     min-height: inherit;
-    position: fixed;
     overflow: visible;
     padding-bottom: 0;
+    position: fixed;
     width: 100%;
     z-index: 200;
 
@@ -69,9 +69,9 @@
 
     a {
       color: $black;
-      margin-right: 9px;
       // font-size: 12.5;
       font-size: 11.5px;
+      margin-right: 9px;
 
       &:hover {
         color: $dark-grey;
@@ -102,13 +102,13 @@ textarea {
   font-size: 13px;
 }
 
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="text"],
-input[type="tel"],
-input[type="url"],
-input[type="password"],
+input[type='email'],
+input[type='number'],
+input[type='search'],
+input[type='text'],
+input[type='tel'],
+input[type='url'],
+input[type='password'],
 textarea,
 select {
   background-color: $white;
@@ -146,9 +146,9 @@ button.search-button {
 }
 
 input.search-text {
-  border-radius: 5%!important;
+  border-radius: 5% !important;
   display: inline-block;
-  height: 25px!important;
+  height: 25px !important;
   line-height: 1;
   width: 125px;
 }
@@ -171,10 +171,6 @@ input.search-text {
   min-height: 120px;
   padding: 10px 0 0;
   position: relative;
-  -moz-transition: all .3s linear;
-  -ms-transition: all .3s linear;
-  -o-transition: all .3s linear;
-  -webkit-transition: all .3s linear;
   transition: all .3s linear;
   width: 100%;
   z-index: 200;
@@ -197,7 +193,7 @@ input.search-text {
 
   a {
     color: $black;
-    font: bold 6.4rem 'Voltaire',sans-serif;
+    font: bold 6.4rem 'Voltaire', sans-serif;
     height: 80px;
     margin: -50px auto 0;
     max-width: 900px;
@@ -218,7 +214,7 @@ input.search-text {
   }
 
   .local-info {
-    font-family: "Roboto Slab",sans-serif;
+    font-family: 'Roboto Slab', sans-serif;
     // font-family: sans-serif;
     height: 30px;
     // margin: auto;
@@ -252,8 +248,8 @@ input.search-text {
 
       span {
         background: transparent;
-        padding: 0;
         height: 40px;
+        padding: 0;
 
         img {
           height: 40px;
@@ -304,10 +300,10 @@ img.custom-logo {
 /* 1.4 Menu Items - Unclickable
 ============================*/
 
-<<<<<<< Updated upstream
 .unclickable > a:hover {
   cursor: default;
-=======
+}
+
 .genesis-nav-menu {
   .menu-item {
     display: inline-block;
@@ -351,34 +347,33 @@ img.custom-logo {
     z-index: 2;
 
     .sub-menu {
-      top:20px;
-    }
-
-    li {
-      display: block;
-      right: calc(11%);
-      top: 40px;
-
-      &:last-of-type a {
-        background: $dark-grey;
-        border: 1px solid $dark-grey;
-        box-sizing: content-box;
-        height: 20px;
-        padding: 5px 0 0;
-      }
-    }
-
-    a {
-      border-top: 0;
-      &:last-of-type {
-        background: $black;
-      }
-    }
-
-    .sub-menu {
       margin: -46px 0 0 179px;
+      top: 20px;
     }
   }
+
+  li {
+    display: block;
+    right: calc(11%);
+    top: 40px;
+
+    &:last-of-type a {
+      background: $dark-grey;
+      border: 1px solid $dark-grey;
+      box-sizing: content-box;
+      height: 20px;
+      padding: 5px 0 0;
+    }
+  }
+
+  a {
+    border-top: 0;
+
+    &:last-of-type {
+      background: $black;
+    }
+  }
+
 }
 
 .genesis-responsive-menu {
@@ -410,7 +405,7 @@ img.custom-logo {
   a {
     padding: 0;
 
-    &:after {
+    &::after {
       content: '|';
       margin-left: 20px;
     }
@@ -418,15 +413,11 @@ img.custom-logo {
 
   ul {
     align-items: center;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
     display: flex;
     justify-content: center;
-    text-align: center;
     line-height: 1.4625;
     margin: 0;
+    text-align: center;
 
     li {
       display: inline-block;
@@ -440,16 +431,12 @@ img.custom-logo {
         color: $black;
         font: 600 14px 'Source Sans Pro', sans-serif;
         // font: 600 14px sans-serif;
-        -webkit-transition: all .1s linear;
-        -moz-transition: all .1s linear;
-        -o-transition: all .1s linear;
-        -ms-transition: all .1s linear;
-        transition: all .1s linear;
         text-transform: uppercase;
+        transition: all .1s linear;
 
         &::after {
           color: $darkest-grey;
-          font-family: "PT Serif", "times new roman", times, serif;
+          font-family: 'PT Serif', 'times new roman', times, serif;
           font-size: 13px;
 
         }
@@ -487,7 +474,7 @@ img.custom-logo {
   li > ul a::after,
   ul li:last-of-type a::after {
     border-bottom: 0;
-    content: "" !important;
+    content: '' !important;
     margin-left: 0 !important;
     width: 100%;
   }
@@ -512,7 +499,6 @@ img.custom-logo {
 .genesis-nav-menu .sub-menu a,
 .nav-primary .sub-menu a {
   background: $black;
->>>>>>> Stashed changes
 }
 
 
@@ -520,7 +506,7 @@ img.custom-logo {
 =================================================*/
 
 .bc-container {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid $light-grey;
   display: flex;
   justify-content: space-between;
   margin: 0 0 40px;
@@ -536,7 +522,7 @@ img.custom-logo {
 // }
 
 .breadcrumbs {
-  // border: 1px solid #ddd;
+  // border: 1px solid $light-grey;
   // border-width: 0 0 1px;
   border: 0;
   color: $mid-grey-2;
@@ -603,20 +589,8 @@ img.custom-logo {
 ============================*/
 
 .widget-wrap .author-avatars {
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
   display: flex;
-  -webkit-flex-direction: row;
-  -moz-flex-direction: row;
-  -ms-flex-direction: row;
-  -o-flex-direction: row;
   flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -moz-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  -o-flex-wrap: wrap;
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
@@ -649,8 +623,8 @@ img.custom-logo {
 
     .avatar {
       border-radius: 0;
-      height: auto;
       float: none;
+      height: auto;
       margin: 0;
       max-width: initial;
       width: 95px;
@@ -659,10 +633,10 @@ img.custom-logo {
 
   .author-name {
     // font-size: 13px;
-    font: 300 13px "times new roman", times, serif;
+    font: 300 13px 'times new roman', times, serif;
     margin: 7px auto 10px;
-    text-align: center;
     line-height: 1.1875;
+    text-align: center;
 
   }
 
@@ -687,28 +661,42 @@ img.custom-logo {
   }
 }
 
-.tribe-events-list-widget-events .tribe-event-title {
-  margin: 0 !important;
+.tribe-events-list-widget-events {
+  .tribe-event-title {
+    margin: 0 !important;
 
-  a,
-  a:visited {
-    color: $mid-grey-1;
+    a,
+    a:visited {
+      color: $mid-grey-1;
+    }
+
+    a:hover {
+      color: $orange;
+    }
+  }
+}
+
+.tribe-list-widget {
+  .tribe-events-list-widget-events {
+    margin: 0 0 1.25rem;
+    padding: 0 1.5rem;
   }
 
-  a:hover {
-    color: $orange;
+  &.ol > li {
+    list-style-type: none;
   }
-
 }
 
-.tribe-list-widget .tribe-events-list-widget-events {
-  padding: 0 1.5rem;
-  margin: 0 0 1.25rem;
-}
-// Attempt to fix Flash of Unstyled Content
-.tribe-list-widget.ol > li {
-  list-style-type: none;
-}
+// Make sure I didn't mess this up w/ the above code
+// .tribe-list-widget .tribe-events-list-widget-events {
+//   margin: 0 0 1.25rem;
+//   padding: 0 1.5rem;
+// }
+
+// // Attempt to fix Flash of Unstyled Content
+// .tribe-list-widget.ol > li {
+//   list-style-type: none;
+// }
 
 /* 3.3 Zemannim Widget
 ============================*/
@@ -746,9 +734,9 @@ img.custom-logo {
 
 .site-inner {
   margin: 0 auto;
-  padding: 30px 0 0;
-  // padding: 10px 0 0;
   max-width: 1200px;
+  // padding: 10px 0 0;
+  padding: 30px 0 0;
 }
 
 /* 4.2 Posts Layout
@@ -787,7 +775,7 @@ img.custom-logo {
 span.category {
   color: $mid-grey-2;
   display: block;
-  font: 300 13px 'PT Serif',"times new roman",times,serif;
+  font: 300 13px $base-font;
   line-height: 1.8em;
   margin: 20px auto -15px;
   text-align: center;
@@ -795,10 +783,10 @@ span.category {
 }
 
 .title-divider {
-  display: block;
-  max-width: 90px;
   border-top: 2px dotted;
+  display: block;
   margin: 0 auto 15px;
+  max-width: 90px;
 }
 
 .entry-tools span,
@@ -823,26 +811,28 @@ span.category {
 /* 4.3 Author Bios
 ============================*/
 
-.author-box .avatar {
-  height: 80px;
-  width: 80px;
-}
+.author-box {
+  .avatar {
+    height: 80px;
+    width: 80px;
+  }
 
-.author-box .author-name {
-  color: $black;
-  display: block;
-  font: 700 18px 'PT Serif',"times new roman",times,serif;
-  line-height: 1.111111;
-  margin: 0 0 10px;
+  .author-name {
+    color: $black;
+    display: block;
+    font: 700 18px $base-font;
+    line-height: 1.111111;
+    margin: 0 0 10px;
+  }
 }
 
 .author-description {
-  color: #666;
+  color: $mid-grey-1;
   font-size: 13px;
   font-weight: 300;
   line-height: 1.625;
-  margin-block-end: 10px;
   margin: 0 0 10px;
+  margin-block-end: 10px;
 }
 
 
@@ -884,8 +874,8 @@ span.category {
   bottom: 30px;
   color: $white;
   display: none;
-  font-size: 13px;
   float: right;
+  font-size: 13px;
   height: auto;
   line-height: 1.8;
   padding: 5px 10px;

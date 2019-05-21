@@ -105,7 +105,7 @@
     color: $dark-grey;
     display: block;
     font-size: 15px;
-    font-size: 1.5rem;
+    // font-size: 1.5rem;
     font-weight: 400;
     outline-offset: -1px;
     padding-bottom: 12px;
@@ -117,16 +117,16 @@
     .current-menu-item > a,
     .sub-menu .current-menu-item > a:focus,
     .sub-menu .current-menu-item > a:hover {
-      color: #0073e5;
+      color: $link-blue;
       text-decoration: none;
     }
   }
 
   .sub-menu {
-    // background: #000;
+    // background: $black;
     background-color: transparent;
-    color: #eee;
     clear: both;
+    color: $lighter-grey;
     display: none;
     left: -9999px;
     margin: 0;
@@ -137,9 +137,9 @@
     z-index: 99;
 
     a {
-      background-color: #000;
+      background-color: $black;
       font-size: 14px;
-      font-size: 1.4rem;
+      // font-size: 1.4rem;
       position: relative;
       width: 100%;
       word-wrap: break-word;
@@ -220,7 +220,7 @@
   }
 
   &.activated::before {
-    content: "\f335";
+    content: '\f335';
   }
 }
 
@@ -250,16 +250,12 @@
   &::before {
     display: inline-block;
     text-rendering: auto;
-    -webkit-transform: rotate( 0 );
-    -ms-transform:     rotate( 0 );
-    transform:         rotate( 0 );
+    transform: rotate(0);
     transition: transform .25s ease-in-out;
   }
 
   &.activated::before {
-    -webkit-transform: rotate( 180deg );
-    -ms-transform:     rotate( 180deg );
-    transform:         rotate( 180deg );
+    transform: rotate(180deg);
   }
 }
 
@@ -310,10 +306,6 @@
 
   ul {
     align-items: center;
-    display: -webkit-flex;
-    display: -moz-flex;
-    display: -ms-flex;
-    display: -o-flex;
     display: flex;
     justify-content: center;
     line-height: 1.4625;
@@ -333,15 +325,11 @@
         font: 600 14px 'Source Sans Pro', sans-serif;
         // font: 600 14px sans-serif;
         text-transform: uppercase;
-        -webkit-transition: all .1s linear;
-        -moz-transition: all .1s linear;
-        -o-transition: all .1s linear;
-        -ms-transition: all .1s linear;
         transition: all .1s linear;
 
         &::after {
           color: $darkest-grey;
-          font-family: "PT Serif", "times new roman", times, serif;
+          font-family: $base-font;
           font-size: 13px;
 
         }
@@ -396,7 +384,8 @@
     li:first-of-type a {
       background: $black;
       color: $lighter-grey;
-      font-size: 1.2rem;
+      font-size: 12px;
+      // font-size: 1.2rem;
     }
   }
 
@@ -411,7 +400,7 @@
 ============================*/
 
 .nav-shrinked {
-  border: none;
+  border: 0;
   display: block;
   margin: 1px 0 0;
   min-width: 200px;
@@ -437,10 +426,10 @@
 
       &:last-of-type a {
         background: $dark-grey;
-        border: 5px solid #000;
-        border-bottom: 2px solid black;
+        border: 5px solid $black;
+        border-bottom: 2px solid $black;
         border-radius: 10%;
-        border-top: 2px solid black;
+        border-top: 2px solid $black;
         color: $white;
         font-size: 12px;
         height: 18px;
