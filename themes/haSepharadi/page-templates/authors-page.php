@@ -8,10 +8,10 @@
 
 add_action( 'wp_enqueue_scripts', 'enqueue_authors_page_styles' );
 function enqueue_authors_page_styles() {
-    wp_enqueue_style( 'authors-page.css', CHILD_URL . '/css/authors-page.css', array(), CHILD_THEME_VERSION );
+		wp_enqueue_style( 'authors-page.css', CHILD_URL . '/css/authors-page.css', array(), CHILD_THEME_VERSION );
 }
 
-add_action( 'genesis_loop', 'display_site_authors' );
+add_action( 'genesis_entry_content', 'display_site_authors' );
 function display_site_authors() {
 	$args = array(
 		'role' => 'author',
@@ -27,22 +27,23 @@ function display_site_authors() {
 			$author_thumb = get_avatar( $author_id, 200 );
 			$author_bio = get_the_author_meta( $author_id, 'description' );
 			$author_posts = get_author_posts_url( $author->ID );
-	?>
+			?>
 			<div class="authors-wrap">
 				<div class="author-box">
 					<a href="<?php echo( $author_posts ); ?>">
 						<div class="avatar-box">
 							<?php echo( $author_thumb ) ?>
 						</div>
-						<span class="author-name"><?php echo( $name ); ?></span>
-						<div class="author-bio"><?php echo( the_author_meta( 'description', $author_id ) ) ?></div>
 					</a>
+				<div class="author-info">
+					<a href="<?php echo( $author_posts ); ?>" class="author-name"><?php echo( $name ); ?></a>
+					<p><?php echo( the_author_meta( 'description', $author_id ) ) ?></p>
+				</div>
 				</div>
 			</div>
-<?php
+			<?php
 		}
 	}
 }
 
 genesis();
-
