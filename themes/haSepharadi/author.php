@@ -81,7 +81,7 @@ function display_affiliate_links($user_id_prefixed) {
 				echo( $count );
 				if ( 0 == ($count % 3) ) {
 					if ($count <= 3) {
-						$affiliate_class - 'affiliate-item'
+						$affiliate_class - 'affiliate-item';
 					} elseif ( $count > 3 ) {
 						$affiliate_class = 'affiliate-item row-fix';
 					}
