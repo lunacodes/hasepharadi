@@ -8,6 +8,7 @@
 	 - 1.2 Genesis Thumbnail Cache Fix
 	 - 1.3 Custom Login Logo
 	 - 1.4 WP Admin - Get Widget ID
+	 - 1.5 Widget Titles - Allow HTML
 2. Topbar & Header
 	 - 2.1 Topbar Scripts
 	 - 2.2 Create Topbar
@@ -118,6 +119,22 @@ function luna_get_widget_id( $widget_instance ) {
 	}
 }
 
+/* 1.5 - Widget Titles - Allow HTML
+============================*/
+
+/**
+ * Replaces widget title: [link href=/contact/]Contact Us[/link]
+ * with <a href="/contact/">Contact Us</a>
+ */
+add_filter( 'widget_title', 'accept_html_widget_title' );
+function accept_html_widget_title( $mytitle ) {
+  // The sequence of String Replacement is important!!
+	$mytitle = str_replace( '[link', '<a', $mytitle );
+	$mytitle = str_replace( '[/link]', '</a>', $mytitle );
+  $mytitle = str_replace( ']', '>', $mytitle );
+
+	return $mytitle;
+}
 
 /* 2. Top Bar & Header
 =================================================*/
