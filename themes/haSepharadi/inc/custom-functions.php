@@ -1,5 +1,8 @@
 <?php
 
+<?php
+/* 4.4 Excerpt Ellipsis */
+
 /* ----------------------------------------------------
 [custom-functions.php]
 
@@ -11,18 +14,18 @@
 2. Topbar & Header
 	 - 2.1 Topbar Scripts
 	 - 2.2 Create Topbar
-	 - 2.3 WP Admin Bar - Topbar Positioning Fix (Inactive)
+	 - 2.3 Create Custom Header
 	 - 2.4 Mobile Menu Pretty Load
 	 - 2.5 Mobile Menu Disable Superfish
 3. Breadcrumbs
 4. Posts
 	 - 4.1 Posts - Featured Image
 	 - 4.2 Single Pages
-	 - 4.3 Entry Meta
-	 - 4.4 Entry Footer
+	 - 4.3 Entry Footer - haSeph Disclaimer
+	 - 4.4 Excerpt Ellipsis
 	 - 4.5 Next & Previous Posts Link
 	 - 4.6 Jetpack - Reated Posts
-	 - 4.7 Author Page Affiliate Linkes
+	 - 4.7 Author Bios
 	 - 4.8 Add Link Text on User Copy
 	 - 4.9 Add wpDevArt Facebook Comments
 5. Footer
@@ -30,8 +33,7 @@
 	 - 5.2 Custom Footer Credits
 6. Widgets
 	 - 6.1 Author Avatars (Voices)
-	 - 6.2 Hide Widgets
-	 - 6.3 Mailchimp Subscribe
+	 - 6.2 Mailchimp Subscribe
 7. Custom User Meta
 		- 7.1 Social Media
 8. Social Media Sharing Buttons
@@ -157,6 +159,9 @@ EOL;
 		echo($topbar);
 }
 
+/* 2.3 Create Custom Header
+============================*/
+
 remove_action( 'genesis_header', 'genesis_header_markup_open', 5 );
 remove_action( 'genesis_header', 'genesis_do_header' );
 remove_action( 'genesis_header', 'genesis_header_markup_close', 15 );
@@ -198,7 +203,7 @@ remove_action( 'genesis_after_header', 'genesis_do_nav' );
 add_action( 'genesis_header', 'genesis_do_nav', 11 );
 
 
-/* 2.7 - Mobile Menu Pretty Load
+/* 2.4 - Mobile Menu Pretty Load
 ============================*/
 
 add_filter( 'body_class', function ( $classes ) {
@@ -230,9 +235,9 @@ function sp_disable_superfish() {
 		wp_deregister_script( 'superfish-args' );
 }
 
+
 /* 3. Breadcrumbs
 =================================================*/
-
 
 add_action( 'genesis_before_content', 'custom_breadcrumbs', 8 );
 function custom_breadcrumbs() {
@@ -286,16 +291,7 @@ function luna_remove_sidebar() {
 		}
 }
 
-/* 4.3 - Entry Meta
-============================*/
-
-// add_action( 'wp_enqueue_scripts', 'enqueue_entry_meta_assets' );
-// function enqueue_entry_meta_assets() {
-// 	wp_enqueue_style( 'roboto-slab', 'https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese' );
-// 	add_action( 'genesis_entry_footer', 'genesis_post_meta' );
-// }
-
-/* 4.4 - Entry Footer
+/* 4.3 - Entry Footer - haSeph Disclaimer
 ============================*/
 
 // add_action( 'genesis_entry_content', 'haSepharadi_disclaimer' );
@@ -303,7 +299,7 @@ function haSepharadi_disclaimer() {
 		echo("Due to the variable nature of our posts and the wide spectrum of ideas exchanged, we feel it is important to clarify that the thoughts and opinions shared in posts and articles reflect the opinions of the author and are not representative of our contributors as a whole.");
 }
 
-// Excerpt Ellipsis
+/* 4.4 Excerpt Ellipsis */
 function new_excerpt_more($more) {
 		return '...';
 }
@@ -372,8 +368,6 @@ add_filter( 'jetpack_relatedposts_filter_date_range', 'jetpackme_related_posts_p
 ============================*/
 
 add_action( 'genesis_after_loop', 'display_author_bio' );
-// add_action( 'genesis_loop', 'display_author_bio', 11, 1 );
-// add_action( 'wp_content', 'display_author_bio' );
 function display_author_bio() {
 
 	// most of the if statements below are pointless.
@@ -399,7 +393,7 @@ function display_author_bio() {
 ============================*/
 
 // Append the Site Url to any copied text.
-add_action('wp_enqueue_scripts', 'add_copy_link' );
+// add_action('wp_enqueue_scripts', 'add_copy_link' );
 function add_copy_link() {
 	wp_enqueue_script('add-copy-link', CHILD_URL . '/js/copy-link-text.js' );
 }
@@ -448,18 +442,17 @@ function sp_footer_creds_filter( $creds ) {
 /* 6.1 Author Avatars (Voices)
 ============================*/
 
-
 add_shortcode( 'author_avatars', 'display_author_avatars' );
 function display_author_avatars() {
-	remove_filter('widget_text_content', 'wpautop');
+	remove_filter( 'widget_text_content', 'wpautop' );
 
 	$args = array(
 		'number' => 6,
 		// 'orderby' => 'rand',
-		'role' => 'author'
+		'role' => 'author',
 	);
 
-	$author_query = new WP_User_Query($args);
+	$author_query = new WP_User_Query( $args );
 	// var_dump($author_query);
 	$authors = $author_query->get_results();
 
@@ -481,7 +474,7 @@ function display_author_avatars() {
 						'size' => 100,
 					);
 					$alt_txt = $name + ' - Author Picture';
-				?>
+					?>
 
 				<div class="authors-wrap">
 					<div class="author-box">
@@ -510,28 +503,13 @@ function display_author_avatars() {
 	return $output_string;
 }
 
-/* 6.2 - Hide Widgets
-============================*/
-
-/* Not working currently... */
-// add_filter( 'widget_display_callback', 'hide_widgets_off_home', 10, 3 );
-// function hide_widgets_off_home( $instance, $widget, $args ) {
-//     if ( $widget->id_base == 'luna_afl_widget' ) {
-//         if ( !is_page( 'home' ) ) {
-//             return $instance;
-//         }
-//     }
-// }
-
-
-/* 6.3 - Mailchimp Subscribe
+/* 6.2 - Mailchimp Subscribe
 ============================*/
 
 add_action( 'wp_enqueue_scripts', 'enqueue_mailchimp_styles' );
 function enqueue_mailchimp_styles() {
 		wp_enqueue_style( 'mc-subscribe', CHILD_URL . '/css/mc-subscribe.css' );
 }
-
 
 /* 7. Custom User Meta
 =================================================*/
@@ -561,7 +539,6 @@ function luna_add_user_social_media( $fields ) {
 if ( is_singular( 'event' ) ) {
 	add_filter( 'get_the_author_genesis_author_box_single', '__return_true' );
 }
-// add_filter( 'get_the_author_genesis_author_box_single', '__return_true' );
 
 remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
 
