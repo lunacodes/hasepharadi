@@ -29,53 +29,55 @@
 .author-box .avatar {
 	height: 175px;
 	width: 175px;
+	min-width: 175px;
+	min-height: 175px;
 }
 
 .author-info {
-	margin: 0 0 0 20px;
+	padding: 0 0 0 30px;
 	max-width: 950px;
 }
 
 .author-box .author-name {
-    color: #000;
-    display: block;
-    font: 700 22px 'pt serif',times new roman,times,serif;
-    line-height: 1.111111;
-    margin: 0 0 10px
+	color: #000;
+	display: block;
+	font: 700 22px 'pt serif',times new roman,times,serif;
+	line-height: 1.111111;
+	margin: 0 0 10px
 }
 
 @media only screen and (max-width: 76.25em) {
-    #genesis-content {
-        max-width: 100%;
-    }
+	#genesis-content {
+		max-width: 98%;
+	}
 
-    .author-info {
-        max-width: 80%;
-    }
+	.author-info {
+		max-width: initial;
+	}
 }
 
 /* Authors Media Query - Max-Width: 870px
 ---------------------------------------------------------------------------------------------------- */
 
 @media only screen and (max-width: 54.375em) {
-    #genesis-content {
-        padding: 0;
+	#genesis-content {
+		padding: 0;
 /*         width: 1200px; */
-    }
+	}
 
-    .authors-wrap {
-        margin: 30px 2%;
-    }
+	.authors-wrap {
+		margin: 30px 2%;
+	}
 
-    .author-box .avatar {
-        min-height: 150px;
-        min-width: 150px;
-        margin: 0 30px 0 0;
-    }
+	.author-box .avatar {
+		min-height: 150px;
+		min-width: 150px;
+		margin: 0 30px 0 0;
+	}
 
-    .author-box a {
-        width: initial;
-    }
+	.author-box a {
+		width: initial;
+	}
 }
 
 
@@ -83,28 +85,28 @@
 ---------------------------------------------------------------------------------------------------- */
 
 @media only screen and (max-width: 47.5em) {
-    .authors-wrap {
-        margin: 30px 0;
-    }
+	.authors-wrap {
+		margin: 30px 0;
+	}
 
-    .author-box {
-        flex-direction: column;
-        align-items: center;
-    }
+	.author-box {
+		flex-direction: column;
+		align-items: center;
+	}
 
-    .author-box .avatar {
-        margin: 0 auto;
+	.author-box .avatar {
+		margin: 0 auto;
 /*         margin: intiial; */
-    }
+	}
 
-    .author-info {
-        margin: 0;
-        max-width: 100%;
-    }
+	.author-info {
+		margin: 0;
+		max-width: 100%;
+	}
 
-    .author-box .author-name {
-        font-size: 24px;
-        margin: 20px 0 10px;
-        text-align: center;
-    }
+	.author-box .author-name {
+		font-size: 24px;
+		margin: 20px 0 10px;
+		text-align: center;
+	}
 }
