@@ -1,0 +1,131 @@
+/* WP Admin Bar Fix
+---------------------------------------------------------------------------------------------------- */
+
+// Media Query - Min-Width: 782px
+@media only screen and (min-width: 48.875em) {
+  #wpadminbar {
+    .quicklinks {
+      justify-content: space-between;
+
+      &,
+      & > ul {
+        display: -webkit-flex;
+        display: -moz-flex;
+        display: -ms-flex;
+        display: -o-flex;
+        display: flex;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        min-width: 0 !important;
+      }
+
+      & > ul > li {
+        float: none !important;
+      }
+
+      & > ul > li,
+      .ab-item {
+        max-width: 100px;
+        min-width: 0 !important;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .ab-item {
+        overflow: hidden;
+
+        .ab-label,
+        .display-name {
+          display: inline;
+          float: none;
+        }
+      }
+    } // end .quicklinks
+
+    #wp-admin-bar-top-secondary {
+      -ms-flex-direction: row-reverse;
+      flex-direction: row-reverse;
+    }
+  } // end #wpadminbar
+
+}
+
+// #WP Admin Bar min-width: 1061px
+@media only screen and (min-width: 66.3125em) {
+  #wpadminbar .quicklinks > ul > li,
+  #wpadminbar .quicklinks .ab-item {
+    max-width: initial;
+    text-overflow: clip;
+  }
+}
+
+// Media Query: 60em
+@media only screen and (max-width: $max-960) {
+  .logged-in.admin-bar .menu-toggle {
+    top: 18.5px;
+  }
+
+  .logged-in.admin-bar .nav-primary,
+  .logged-in.admin-bar .nav-primary.nav-shrinked {
+    top: 71px;
+  }
+}
+
+// Media Query: 48.875em
+@media only screen and (max-width: $max-782) {
+
+  .logged-in.admin-bar {
+    .menu-toggle {
+      // top: 18.5px;
+      left: 20px;
+      position: fixed;
+      top: 34.5px;
+    }
+
+    .nav-shrinked {
+      top: 96px !important;
+    }
+
+    .nav-primary,
+    .nav-primary.nav-shrinked {
+      top: 91px;
+    }
+
+    #topbar.shrinked {
+      top: 44px;
+    }
+
+    #topbar.shrinked #tools {
+      margin: 14px 20px 0 0;
+    }
+  }
+}
+
+
+// Media Query: 37.5em
+@media only screen and (max-width: $max-600) {
+  .logged-in.admin-bar {
+    #topbar.shrinked {
+      top: 0;
+    }
+
+    .header-shrinked .logo a {
+      top: 0;
+    }
+
+    .header-shrinked .logo a span img {
+      position: fixed;
+      left: 60px;
+      top: 10px;
+    }
+
+    .mobile-menu-shrinked {
+      top: -10px;
+    }
+
+    .nav-shrinked {
+      top: -53px !important;
+    }
+  }
+}
+
