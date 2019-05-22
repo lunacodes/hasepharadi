@@ -32,7 +32,7 @@
 }
 
 .after-entry {
-  box-shadow: 0 0 20px rgba(0,0,0,0.05);
+  box-shadow: 0 0 20px $black-alpha-2;
   padding: 20px 30px;
 
   .widget:last-of-type {
@@ -77,12 +77,12 @@
   }
 }
 
-.post-password-form input[type="submit"],
-.search-form input[type="submit"] {
+.post-password-form input[type='submit'],
+.search-form input[type='submit'] {
   margin-top: 10px;
 }
 
-.widget_search input[type="submit"] {
+.widget_search input[type='submit'] {
   border: 0;
   clip: rect(0, 0, 0, 0);
   height: 1px;
@@ -91,6 +91,9 @@
   position: absolute;
   width: 1px;
 }
+
+// Some more changes y'all
+
 
 /* Titles
 --------------------------------------------- */
@@ -119,12 +122,6 @@
 .entry-title a:hover {
   color: $orange;
 }
-
-// .widget-title {
-//   font-size: 1.8rem;
-//   font-weight: 600;
-//   margin-bottom: 20px;
-// }
 
 /* WordPress
 --------------------------------------------- */

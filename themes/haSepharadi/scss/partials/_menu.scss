@@ -1,5 +1,22 @@
-/* Site Navigation
----------------------------------------------------------------------------------------------------- */
+/* ----------------------------------------------------
+[menu.scss]
+
+1. Site Navigation
+  - 1.1 Menus Setup
+  - 1.2 Responsive Menu
+2. Header Navigation
+  - 2.1 Header Menu
+  - 2.2 Header Menu Shrinked
+3. Footer Menu Navigation
+
+------------------------------------------------------*/
+
+
+/* 1. Site Navigation
+=================================================*/
+
+/* 1.1 Menus Setup
+============================*/
 
 .genesis-nav-menu {
   clear: both;
@@ -7,16 +24,88 @@
   width: 100%;
 
   .menu-item {
-    display: block;
+    // display: block;
+    display: inline-block;
     float: none;
     position: relative;
+
+    &:focus,
+    &:hover {
+      position: relative;
+    }
+  }
+
+  > .menu-bold > a {
+    font-weight: 700;
+  }
+
+  > .menu-highlight > a {
+    background-color: $dark-grey;
+    border-radius: 3px;
+    color: $white;
+    font-weight: 600;
+    margin-left: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    &:hover,
+    &:focus {
+      background-color: $orange;
+    }
+  }
+
+  .sub-menu {
+    background-color: transparent;
+    // border-top: 0;
+    // left: 0;
+    line-height: 1.8;
+    opacity: 0;
+    // padding-left: 0;
+    position: absolute;
+    // top: 40px;
+    // top: 20px;
+    top: 0;
+    transition: opacity 0.1s ease-in-out;
+    // z-index: 2;
+
+    // Nat Bar Nat (Sub Bar Nat)
+    .sub-menu {
+      top: 20px;
+    }
+
+    li {
+      display: block;
+      right: calc(11%);
+      top: 40px;
+
+      &:last-of-type {
+        a {
+          background: $dark-grey;
+          border: 1px solid $dark-grey;
+          box-sizing: content-box;
+          height: 20px;
+          padding: 5px 0 0;
+        }
+      }
+    }
+
+    a {
+      border-top: 0;
+      &:last-of-type {
+        // background: $black;
+      }
+    }
+
+    .sub-menu {
+      // margin: -46px 0 0 179px;
+    }
   }
 
   a {
     color: $dark-grey;
     display: block;
     font-size: 15px;
-    font-size: 1.5rem;
+    // font-size: 1.5rem;
     font-weight: 400;
     outline-offset: -1px;
     padding-bottom: 12px;
@@ -28,15 +117,16 @@
     .current-menu-item > a,
     .sub-menu .current-menu-item > a:focus,
     .sub-menu .current-menu-item > a:hover {
-      color: #0073e5;
+      color: $link-blue;
       text-decoration: none;
     }
   }
 
   .sub-menu {
-    background: #000;
-    color: #eee;
+    // background: $black;
+    background-color: transparent;
     clear: both;
+    color: $lighter-grey;
     display: none;
     left: -9999px;
     margin: 0;
@@ -47,15 +137,15 @@
     z-index: 99;
 
     a {
-      background-color: #000;
+      background-color: $black;
       font-size: 14px;
-      font-size: 1.4rem;
+      // font-size: 1.4rem;
       position: relative;
       width: 100%;
       word-wrap: break-word;
 
       &:last-of-type {
-        background: $dark-grey;
+        background: transparent;
       }
     }
   }
@@ -69,14 +159,16 @@
     &:hover > .sub-menu {
       left: auto;
       opacity: 1;
+
+      .sub-menu {
+        left: auto;
+      }
     }
   }
 }
 
-
-
-/* Responsive Menu
---------------------------------------------- */
+/* 1.2 Responsive Menu
+============================*/
 
 .menu .menu-item {
   &:focus {
@@ -94,6 +186,13 @@
   display: none;
   padding-bottom: 15px;
   position: relative;
+
+  .genesis-nav-menu {
+    .sub-menu,
+    .sub-menu a {
+      width: 160px;
+    }
+  }
 }
 
 .menu-toggle {
@@ -121,7 +220,7 @@
   }
 
   &.activated::before {
-    content: "\f335";
+    content: '\f335';
   }
 }
 
@@ -151,16 +250,12 @@
   &::before {
     display: inline-block;
     text-rendering: auto;
-    -webkit-transform: rotate( 0 );
-    -ms-transform:     rotate( 0 );
-    transform:         rotate( 0 );
+    transform: rotate(0);
     transition: transform .25s ease-in-out;
   }
 
   &.activated::before {
-    -webkit-transform: rotate( 180deg );
-    -ms-transform:     rotate( 180deg );
-    transform:         rotate( 180deg );
+    transform: rotate(180deg);
   }
 }
 
@@ -177,16 +272,186 @@
 }
 
 
-/* Header Menu
---------------------------------------------- */
+/* 2. Header Navigation
+=================================================*/
+
+/* 2.1 Header Menu
+============================*/
 
 .nav-primary {
-  clear: left;
-  width: 100%;
+  border-color: $dark-grey;
+  border-style: solid;
+  border-width: 2px 0 1px;
+  box-sizing: content-box;
+  clear: both;
+  // clear: left;
+  display: none;
+  height: 45px;
+  line-height: 1.8;
+  margin: 1px auto 0;
+  max-width: 1200px;
+  padding: 0;
+  position: static;
+  // width: 100%;
+  width: auto;
+
+  a {
+    padding: 0;
+
+    &::after {
+      content: '|';
+      margin-left: 20px;
+    }
+  }
+
+  ul {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    line-height: 1.4625;
+    margin: 0;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      line-height: 1.8;
+      margin-bottom: 0;
+      // padding: 8px 10px;
+      padding: 8px 11.5px 8px 12.5px;
+      position: relative;
+
+      a {
+        color: $black;
+        font: 600 14px 'Source Sans Pro', sans-serif;
+        // font: 600 14px sans-serif;
+        text-transform: uppercase;
+        transition: all .1s linear;
+
+        &::after {
+          color: $darkest-grey;
+          font-family: $base-font;
+          font-size: 13px;
+
+        }
+
+        &:focus {
+          outline: 2px solid $orange;
+        }
+      }
+
+      &.current-menu-item a,
+      a:hover,
+      a:active,
+      a:focus {
+        color: $orange;
+        text-decoration: none;
+      }
+
+      &:last-of-type a {
+        background: $dark-grey;
+        border: 5px solid $black;
+        border-radius: 10%;
+        color: $white;
+        font-size: 14px;
+      }
+    }
+
+    .sub-menu li {
+      background: $black;
+      border-bottom: 1px solid $black;
+      padding: 10px 31px;
+      width: 100%;
+    }
+  }
+
+  li > ul a::after,
+  ul li:last-of-type a::after {
+    border-bottom: 0;
+    content: '' !important;
+    margin-left: 0 !important;
+    width: 100%;
+  }
+
+  .sub-menu a::after {
+    border-bottom: 1px solid $dark-grey;
+    display: block;
+    position: relative;
+    top: 10.8px;
+  }
+
+  ul.sub-menu {
+    li a,
+    li:first-of-type a {
+      // background: $black;
+      color: $lighter-grey;
+      font-size: 12px;
+      // font-size: 1.2rem;
+    }
+  }
+
 }
 
-/* Footer Menu
---------------------------------------------- */
+.genesis-nav-menu .sub-menu a,
+.nav-primary .sub-menu a {
+  // background: $black;
+}
+
+/* 2.2 Header Menu Shrinked
+============================*/
+
+.nav-shrinked {
+  border: 0;
+  display: block;
+  margin: 1px 0 0;
+  min-width: 200px;
+  padding: 0;
+  position: fixed !important;
+  right: 20px;
+  width: auto;
+
+  a:after {
+    margin: 0 0 0 10px;
+  }
+
+  ul {
+    font-size: 13px;
+
+    li {
+      padding: 8px 7px;
+
+      a,
+      &:last-of-type a {
+        font-size: 12px;
+      }
+
+      &:last-of-type a {
+        background: $dark-grey;
+        border: 5px solid $black;
+        border-bottom: 2px solid $black;
+        border-radius: 10%;
+        border-top: 2px solid $black;
+        color: $white;
+        font-size: 12px;
+        height: 18px;
+        padding: 0 0 3px;
+        position: relative;
+        top: 1px;
+
+        span {
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+  }
+
+  .sub-menu {
+    display: none !important;
+  }
+}
+
+/* 3. Footer Menu Navigation
+=================================================*/
 
 .nav-secondary {
   margin-top: 10px;

@@ -5,9 +5,8 @@
 * [Changelog](#changelog)
     * [\[1.7.1\] - 2019-01-30](#171---2019-01-30)
     * [\[1.6.0\] - 2019-01-18](#160---2019-01-18)
-* [Issues](#issues)
+* [Known Issues](#known-issues)
     * [Resources & Loading](#resources--loading)
-        * [Flash of Unstyled Content](#flash-of-unstyled-content)
         * [Image Loading - Homepage](#image-loading---homepage)
         * [Fonts](#fonts)
     * [Accessibility](#accessibility)
@@ -15,24 +14,19 @@
     * [Plugins and Widgets](#plugins-and-widgets)
         * [Remove Unnecessary Plugins](#remove-unnecessary-plugins)
             * [Visual Composer](#visual-composer)
-        * [W3TC and Autoptimize HTML Minify Conflict](#w3tc-and-autoptimize-html-minify-conflict)
         * [wpDiscuz](#wpdiscuz)
         * [Events Calendar](#events-calendar)
-        * [Add Site Link to Copied Text - Script](#add-site-link-to-copied-text---script)
-        * [Google Maps API/Zemannim Widget](#google-maps-apizemannim-widget)
+        * [Add Site Link to Copied Text](#add-site-link-to-copied-text)
         * [Mailchimp - Subscribe](#mailchimp---subscribe)
     * [Header & Nav Menus](#header--nav-menus)
         * [Nav Menus](#nav-menus)
     * [Content & Styling](#content--styling)
         * [Author Page](#author-page)
         * [Category Pages](#category-pages)
-        * [Post Meta](#post-meta)
     * [Code Cleanup](#code-cleanup)
         * [SCSS](#scss)
             * [Improve SCSS organization](#improve-scss-organization)
-            * [FontAwesome](#fontawesome-1)
-        * [PHP](#php)
-        * [Media Queries](#media-queries)
+        * [PHP & JS](#php--js)
         * [CSS Grid](#css-grid)
 * [Other](#other)
 
@@ -73,23 +67,11 @@ This project consists of the haSepharadi theme
 * Fixed About Author appears at bottom of homepage
 * Added Author Bios styling
 
-<a id="issues"></a>
-## Issues
+<a id="known-issues"></a>
+## Known Issues
 
 <a id="resources--loading"></a>
 ### Resources & Loading
-
-<a id="flash-of-unstyled-content"></a>
-#### Flash of Unstyled Content
-* FOUC appears on visiting the site, in both mobile and deksktop.~
-    * Eliminated by turning off CSS Minify in w3tc, and CSS aggregation in Autoptimize
-        * Need to figure out which css file(s) to exclude from aggregation in Autoptimize
-            * On staging site: Disable Autoptimize and use W3TC to figure out what individual files are relevant
-            * If W3TC still won't list individual files, then turn both off, get a list of what's being loaded, and see what can be done
-    * ~Likely a conflict btwn W3TC and Autoptimize. See the following:~
-    * ~[Warning: bug in W3 Total Cache impacts Autoptimize](https://blog.futtta.be/2019/01/27/warning-bug-in-w3-total-cache-impacts-autoptimize/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+futtta_autoptimize+%28Frank+Goossens%27+blog++%C2%BB+autoptimize%29)~
-    * ~[WP Plugins Support Forum - Last update destroyed HTML minify settings](https://wordpress.org/support/topic/last-update-destroyed-html-minify-settings/)
-    * ~[WP Plugins Support Forum - Breaks Visual Composer]~
 
 <a id="image-loading---homepage"></a>
 #### Image Loading - Homepage
@@ -102,6 +84,13 @@ This project consists of the haSepharadi theme
 * ~Clean up fonts loading - remove unnecessary fonts in fonts.scss~
     * ~Need to experiment with this first, to find out what's impacting what~
 * What's a good (and user-friendly) way to get Google Fonts into Editor?
+* Font Awesome
+    * Font Awesome flagging false 404s - likely due to minification:
+        * https://hasepharadi.com/wp-content/themes/haseph/fonts/fontawesome-pro-5.6.3-web/webfonts/fa-brands-400.ttf
+        * https://hasepharadi.com/wp-content/themes/haseph/fonts/fontawesome-pro-5.6.3-web/webfonts/fa-brands-400.woff
+        * https://hasepharadi.com/wp-content/themes/haseph/fonts/fontawesome-pro-5.6.3-web/webfonts/fa-brands-400.woff2
+    * Extract specifically needed FA styles, instead of loading the whole stylesheet
+
 
 <a id="accessibility"></a>
 ### Accessibility
@@ -118,35 +107,21 @@ This project consists of the haSepharadi theme
 
 <a id="visual-composer"></a>
 ##### Visual Composer
-* The followings posts currently rely on VC shortcode:
-    * About
-    * Lebanon
-    * Others?
-* **Adjust code in individual posts, in order to ditch Visual Composer**
-    * Option 1: add new front-end and editor.css styles
-    * Option 2: Replace with Beaver Builder
-* Replace the shortcodes either with the [[div] shortcode plugin](https://wordpress.org/plugins/div-shortcode/) or with [Beaver Builder](https://wordpress.org/plugins/beaver-builder-lite-version/)
-
-<a id="w3tc-and-autoptimize-html-minify-conflict"></a>
-#### W3TC and Autoptimize HTML Minify Conflict
-* If I change the Minifier on W3TC, does it resolve this?
+* Finish recoding Lebanon page, so I can remove Visual Composer
 
 <a id="wpdiscuz"></a>
 #### wpDiscuz
-* wpDiscuz needs further styling and social media integration
-* Are there better options?
+* ~wpDiscuz needs further styling and social media integration~
+* ~Are there better options?~
 
 <a id="events-calendar"></a>
 #### Events Calendar
-* Need solution for importing facebook events and displaying on an event calendar
+* Working on a fully automated way to import events from fb pages
 
-<a id="add-site-link-to-copied-text---script"></a>
-#### Add Site Link to Copied Text - Script
+<a id="add-site-link-to-copied-text"></a>
+#### Add Site Link to Copied Text
 * Find a more elegant way to implement this, wrt UI/UX
-
-<a id="google-maps-apizemannim-widget"></a>
-#### Google Maps API/Zemannim Widget
-* Asks for location multiple times, on some devices
+    * How does the Forward's script work??
 
 <a id="mailchimp---subscribe"></a>
 #### Mailchimp - Subscribe
@@ -177,10 +152,6 @@ This project consists of the haSepharadi theme
 * Does `full-width` template actually make sense here?
 * Page Title is appearing at the bottom of the page, after The Loop has finished
 
-<a id="post-meta"></a>
-#### Post Meta
-* Post Meta on Home and Archive pages should probably be bigger by 1-2px
-
 <a id="code-cleanup"></a>
 ### Code Cleanup
 
@@ -190,30 +161,15 @@ Items marked in bold are high priority
 
 <a id="improve-scss-organization"></a>
 ##### Improve SCSS organization
-* Use more specific partials and separate out concerns:
-    * Author Bios (Footer) vs Author's (Box Widget)
-    * Separate individualcustom widgets out from `_custom.scss`
-    * Consider doing away with `custom.scss`, or at the very least exporting most of the code in it
-        * Be clear on what its purpose is in the overall structure
 * Section headings need to match and follow a consistent numbering theme.
     * Use same headings structure as custom-functions.php for each scss partial
 * Improve Variables Usage by incorporating broader variables, ex: `category--color`
     * Replace `$orange variables` et al with `$link--font-color-hover: $orange` et al
 
-<a id="fontawesome-1"></a>
-##### FontAwesome
-* Extract specifically needed FA styles, instead of loading the whole stylesheet?
-
-
-<a id="php"></a>
-#### PHP
-* **PHP Code needs DocBlocks**
-* **Add in esc_url et al, where necessary**
-* Social sharing buttons - extract social btns from single.php and move to custom-functions.php
-
-<a id="media-queries"></a>
-#### Media Queries
-* Replace `#topbar` and other id selectors wherever possible
+<a id="php--js"></a>
+#### PHP & JS
+* Many functions still need DocBlocks
+* Add in esc_url et al, where necessary
 
 <a id="css-grid"></a>
 #### CSS Grid
@@ -222,7 +178,6 @@ Items marked in bold are high priority
 <a id="other"></a>
 ## Other
 * Add earlier version history to Changelog
-* Update the separate repo for the Zemannim plugin
 
 [1.7.1]: https://github.com/lunacodes/hasepharadi/commit/804479078b534a6a182d7cdc7d036fe0c5183b17
 [1.6.0]: https://github.com/lunacodes/hasepharadi/commit/0751be9b5b4830b117c04d0ca80109e0fd83cba5

@@ -16,8 +16,8 @@
   }
 
   .site-header {
-    min-width: initial;
     max-width: initial;
+    min-width: initial;
   }
 
   .logo {
@@ -26,7 +26,6 @@
 
   .nav-primary {
     ul li a {
-      // font-size: 13px;
       font-size: 12.5px;
     }
   }
@@ -40,7 +39,7 @@
   }
 
   #genesis-content {
-    margin: 0 10px 0;
+    margin: 0 10px;
     max-width: 69%;
   }
 

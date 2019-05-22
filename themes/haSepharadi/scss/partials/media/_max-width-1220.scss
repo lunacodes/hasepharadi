@@ -33,9 +33,7 @@
   }
 
   .sidebar-primary {
-    // max-width: 220px;
     max-width: 260px;
-    // width: 27%;
 
     .featured-content .widget-wrap {
       .entry {
@@ -48,19 +46,6 @@
       max-width: 150px;
       padding: 0 2px 0 0;
     }
-
-    // .footer-widget .wrap {
-    //   display: -webkit-flex;
-    //   display: -moz-flex;
-    //   display: -ms-flex;
-    //   display: -o-flex;
-    //   display: flex;
-    //   justify-content: center;
-    // }
-
-    // .widget-area.footer-widget-area {
-    //   width: 22%;
-    // }
 
     h4 a::after {
       content: '...';
