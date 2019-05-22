@@ -15,28 +15,29 @@
     width: 100%;
   }
 
-  #genesis-content {
-    margin: 0 10px;
-
-    &,
-    .sidebar-primary {
-      float: none;
-      max-width: 100%;
-      width: 100%;
-    }
+  #genesis-content,
+  .sidebar-primary {
+    float: none;
+    max-width: 100%;
+    width: 100%;
   }
 
-  // Saved in case the above lines messed things up
-  // #genesis-content,
-  // .sidebar-primary {
-  //   float: none;
-  //   max-width: 100%;
-  //   width: 100%;
-  // }
+  #genesis-content {
+    margin: 0 10px;
+  }
 
-  // #genesis-content {
-  //   margin: 0 10px;
-  // }
+  .widget {
+    font: 300 16px 'PT Serif',"times new roman",times,serif;
+  }
+
+  .sidebar-primary {
+    text-align: center;
+  }
+
+  .tribe-events-list-widget .tribe-event-title {
+    /*   margin: initial !important; */
+    text-align: center;
+  }
 
   // Change these so they apply to the sidebar widgets as well!!
   .footer-widgets {
