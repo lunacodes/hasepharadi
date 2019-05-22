@@ -2806,6 +2806,7 @@ img.custom-logo {
   text-align: center;
 }
 
+/* Custom - Media Query: max-width: 870px */
 @media only screen and (max-width: 54.375em) {
   section#text-18 {
     margin: 0 0 10px;
@@ -3158,6 +3159,54 @@ span.category {
   #wpadminbar .quicklinks .ab-item {
     max-width: initial;
     text-overflow: clip;
+  }
+}
+
+@media only screen and (max-width: 60em) {
+  .logged-in.admin-bar .nav-primary,
+  .logged-in.admin-bar .nav-primary.nav-shrinked {
+    top: 71px;
+  }
+}
+
+@media only screen and (max-width: 48.875em) {
+  .logged-in.admin-bar .menu-toggle {
+    left: 20px;
+    position: fixed;
+    top: 34.5px;
+  }
+  .logged-in.admin-bar .nav-shrinked {
+    top: 96px !important;
+  }
+  .logged-in.admin-bar .nav-primary,
+  .logged-in.admin-bar .nav-primary.nav-shrinked {
+    top: 91px;
+  }
+  .logged-in.admin-bar #topbar.shrinked {
+    top: 44px;
+  }
+  .logged-in.admin-bar #topbar.shrinked #tools {
+    margin: 14px 20px 0 0;
+  }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .logged-in.admin-bar #topbar.shrinked {
+    top: 0;
+  }
+  .logged-in.admin-bar .header-shrinked .logo a {
+    top: 0;
+  }
+  .logged-in.admin-bar .header-shrinked .logo a span img {
+    position: fixed;
+    left: 60px;
+    top: 10px;
+  }
+  .logged-in.admin-bar .mobile-menu-shrinked {
+    top: -10px;
+  }
+  .logged-in.admin-bar .nav-shrinked {
+    top: -53px !important;
   }
 }
 

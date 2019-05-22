@@ -50,13 +50,82 @@
 
 }
 
-
 // #WP Admin Bar min-width: 1061px
 @media only screen and (min-width: 66.3125em) {
   #wpadminbar .quicklinks > ul > li,
   #wpadminbar .quicklinks .ab-item {
     max-width: initial;
     text-overflow: clip;
+  }
+}
+
+// Media Query: 60em
+@media only screen and (max-width: $mw-960px) {
+  .logged-in.admin-bar .menu-toggle {
+    // top: 18.5px;
+  }
+
+  .logged-in.admin-bar .nav-primary,
+  .logged-in.admin-bar .nav-primary.nav-shrinked {
+    top: 71px;
+  }
+}
+
+// Media Query: 48.875em
+@media only screen and (max-width: $mw-782px) {
+
+  .logged-in.admin-bar {
+    .menu-toggle {
+      // top: 18.5px;
+      left: 20px;
+      position: fixed;
+      top: 34.5px;
+    }
+
+    .nav-shrinked {
+      top: 96px !important;
+    }
+
+    .nav-primary,
+    .nav-primary.nav-shrinked {
+      top: 91px;
+    }
+
+    #topbar.shrinked {
+      top: 44px;
+    }
+
+    #topbar.shrinked #tools {
+      margin: 14px 20px 0 0;
+    }
+  }
+}
+
+
+// Media Query: 37.5em
+@media only screen and (max-width: $mw-600px) {
+  .logged-in.admin-bar {
+    #topbar.shrinked {
+      top: 0;
+    }
+
+    .header-shrinked .logo a {
+      top: 0;
+    }
+
+    .header-shrinked .logo a span img {
+      position: fixed;
+      left: 60px;
+      top: 10px;
+    }
+
+    .mobile-menu-shrinked {
+      top: -10px;
+    }
+
+    .nav-shrinked {
+      top: -53px !important;
+    }
   }
 }
 

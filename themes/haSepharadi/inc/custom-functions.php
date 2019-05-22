@@ -4,10 +4,10 @@
 [custom-functions.php]
 
 1. Setup & Assets
-	 - 1.1 Font Awesome
-	 - 1.2 Custom Image Sizes
-	 - 1.3 Genesis Thumbnail Cache Fix
-	 - 1.4 Custom Login Logo
+	 - 1.1 Custom Image Sizes
+	 - 1.2 Genesis Thumbnail Cache Fix
+	 - 1.3 Custom Login Logo
+	 - 1.4 WP Admin - Get Widget ID
 2. Topbar & Header
 	 - 2.1 Topbar Scripts
 	 - 2.2 Create Topbar
@@ -43,17 +43,7 @@
 /* 1. Setup & Assets
 =================================================*/
 
-/* 1.1 - Font Awesome
-============================*/
-
-// Currently pulling these in through the main style.scss files
-// add_action( 'wp_enqueue_scripts', 'enqueue_font_awesome' );
-function enqueue_font_awesome() {
-		// wp_enqueue_style( 'luna-font-awesome', CHILD_URL . '/fonts/fontawesome-pro-5.6.3-web/css/all.min.css', array(), CHILD_THEME_VERSION );
-		wp_enqueue_style( 'luna-font-awesome', CHILD_URL . '/scss/partials/fonts/fa-styles.css', array(), CHILD_THEME_VERSION );
-}
-
-/* 1.2 - Custom Image Sizes
+/* 1.1 - Custom Image Sizes
 ============================*/
 
 add_action( 'after_setup_theme', 'add_custom_image_sizes' );
@@ -61,22 +51,22 @@ function add_custom_image_sizes() {
 		add_image_size( 'recent-posts-thumb', 100, 100, array('left', 'top') );
 }
 
-/* 1.3 - Genesis Thumbnail Cache Fix
+/* 1.2 - Genesis Thumbnail Cache Fix
 ============================*/
 
 function blazersix_prime_post_thumbnails_cache( $posts, $wp_query ) {
-		// Prime the cache for the main front page and archive loops by default.
-		$is_main_archive_loop = $wp_query->is_main_query() && ! is_singular();
-		$do_prime_cache = apply_filters( 'blazersix_cache_post_thumbnails', $is_main_archive_loop );
-		if ( ! $do_prime_cache && ! $wp_query->get( 'blazersix_cache_post_thumbnails' ) ) {
-				return $posts;
-		}
-		update_post_thumbnail_cache( $wp_query );
-		return $posts;
+	// Prime the cache for the main front page and archive loops by default.
+	$is_main_archive_loop = $wp_query->is_main_query() && ! is_singular();
+	$do_prime_cache = apply_filters( 'blazersix_cache_post_thumbnails', $is_main_archive_loop );
+	if ( ! $do_prime_cache && ! $wp_query->get( 'blazersix_cache_post_thumbnails' ) ) {
+			return $posts;
+	}
+	update_post_thumbnail_cache( $wp_query );
+	return $posts;
 }
 add_action( 'the_posts', 'blazersix_prime_post_thumbnails_cache', 10, 2 );
 
-/* 1.4 - Custom Login Logo
+/* 1.3 - Custom Login Logo
 ============================*/
 
 add_action( 'login_enqueue_scripts', 'haSeph_custom_login_logo' );
@@ -116,6 +106,19 @@ add_filter( 'login_headertext', 'haSeph_login_url_title' );
 function haSeph_login_url_title() {
 	return 'haSepharadi';
 }
+
+/* 1.4 - WP Admin - Get Widget ID
+============================*/
+
+add_action( 'in_widget_form', 'luna_get_widget_id' );
+function luna_get_widget_id( $widget_instance ) {
+	if ( $widget_instance->number=="__i__" ) {
+		echo( "<p><strong>Widget ID:</strong> Please save the widget first!</p>");
+	} else {
+		echo( "<p><strong>Widget ID: </strong>" . $widget_instance->id . "</p>");
+	}
+}
+
 
 /* 2. Top Bar & Header
 =================================================*/
@@ -194,90 +197,6 @@ function haSepharadi_custom_header_markup_close() {
 remove_action( 'genesis_after_header', 'genesis_do_nav' );
 add_action( 'genesis_header', 'genesis_do_nav', 11 );
 
-
-/* 2.3 - WP Admin Bar - Tablet & Mobile Fix
-============================*/
-add_action( 'genesis_after_header', 'fix_wp_admin_bar_mobile' );
-function fix_wp_admin_bar_mobile() {
-	if ( ! is_user_logged_in() ) {
-		return;
-	}
-
-	$margin_fix = <<<EOL
-	<style>
-	/* 960px */
-	@media only screen and (max-width: 60em) {
-		.menu-toggle {
-			top: 18.5px;
-		}
-
-		.nav-primary, .nav-primary.nav-shrinked {
-			top: 71px;
-		}
-	}
-
-	/* 782px */
-	@media only screen and (max-width: 48.875em) {
-		.menu-toggle {
-			top: 18.5px;
-			left: 20px;
-			position: fixed;
-			top: 34.5px;
-		}
-
-		.nav-shrinked {
-			top: 96px !important;
-		}
-
-		.nav-primary, .nav-primary.nav-shrinked {
-			top: 91px;
-		}
-
-		#topbar.shrinked {
-			top: 44px;
-		}
-
-		#topbar.shrinked #tools {
-			margin: 14px 20px 0 0;
-		}
-	}
-
-	/* 600px */
-	@media only screen and (max-width: 37.5em) {
-		#topbar.shrinked {
-		top: 0;
-		}
-
-		.header-shrinked .logo a {
-		top: 0;
-		}
-
-		.header-shrinked .logo a span img {
-		position: fixed;
-		/* top: 18px; */
-		/* left: 80px; */
-		left: 60px;
-		top: 10px;
-		}
-
-		/* .menu-toggle, */
-		.mobile-menu-shrinked {
-		/* top: 22.5px; */
-		top: -10px;
-		}
-
-		.nav-shrinked {
-		top: -53px !important;
-		}
-	}
-
-	 </style>
-EOL;
-
-		if ( is_user_logged_in() && ( ! is_admin() ) ) {
-				echo($margin_fix);
-		}
-}
 
 /* 2.7 - Mobile Menu Pretty Load
 ============================*/
@@ -533,11 +452,6 @@ function sp_footer_creds_filter( $creds ) {
 add_shortcode( 'author_avatars', 'display_author_avatars' );
 function display_author_avatars() {
 	remove_filter('widget_text_content', 'wpautop');
-	// add_action( "pre_user_query", function( $query ) {
-	// 		if( "rand" == $query->query_vars["orderby"] ) {
-	// 				$query->query_orderby = str_replace( "user_login", "RAND()", $query->query_orderby );
-	// 		}
-	// });
 
 	$args = array(
 		'number' => 6,
@@ -549,25 +463,24 @@ function display_author_avatars() {
 	// var_dump($author_query);
 	$authors = $author_query->get_results();
 
-	if( $authors ) {
-			ob_start(); ?>
+	if ( $authors ) {
+			ob_start();
+		?>
 			<div class="author-avatars">
 			<?php
 
-			foreach( $authors as $author ) {
-
-			 if ( count_user_posts( $author->ID ) >= 1 ) {
-				$name = $author->display_name;
-				$author_id = $author->ID;
-				$avatar_url = get_avatar_url( $author_id );
-				// $voices_thumb =
-				// $author_posts = $author->url;
-				$author_posts = get_author_posts_url( $author->ID );
-				$args = array(
-					'size' => 100,
-				);
-				$alt_txt = $name + ' - Author Picture';
-				// var_dump($author);
+			foreach ( $authors as $author ) {
+				if ( count_user_posts( $author->ID ) >= 1 ) {
+					$name = $author->display_name;
+					$author_id = $author->ID;
+					$avatar_url = get_avatar_url( $author_id );
+					// $voices_thumb =
+					// $author_posts = $author->url;
+					$author_posts = get_author_posts_url( $author->ID );
+					$args = array(
+						'size' => 100,
+					);
+					$alt_txt = $name + ' - Author Picture';
 				?>
 
 				<div class="authors-wrap">
