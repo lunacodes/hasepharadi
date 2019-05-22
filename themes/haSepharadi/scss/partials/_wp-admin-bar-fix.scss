@@ -60,7 +60,7 @@
 }
 
 // Media Query: 60em
-@media only screen and (max-width: $mw-960px) {
+@media only screen and (max-width: $max-960) {
   .logged-in.admin-bar .menu-toggle {
     top: 18.5px;
   }
@@ -72,7 +72,7 @@
 }
 
 // Media Query: 48.875em
-@media only screen and (max-width: $mw-782px) {
+@media only screen and (max-width: $max-782) {
 
   .logged-in.admin-bar {
     .menu-toggle {
@@ -103,7 +103,7 @@
 
 
 // Media Query: 37.5em
-@media only screen and (max-width: $mw-600px) {
+@media only screen and (max-width: $max-600) {
   .logged-in.admin-bar {
     #topbar.shrinked {
       top: 0;

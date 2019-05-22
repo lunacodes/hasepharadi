@@ -28,9 +28,16 @@ $widget-font: 'Arial,Helvetica,sans-serif';
 
 // Screen widths, Media queries - WC widths in WC variables
 $standard-screen-width: 960px;
-$mw-960px: 60em;
-$mw-782px: 48.875em;
-$mw-600px: 37.5em;
+$min-961: 60.0625em;
+$max-1220: 76.25em;
+$max-1060: 66.25em;
+$max-980: 61.25em;
+$max-960: 60em;
+$max-870: 54.375;
+$max-782: 48.875em;
+$max-760: 47.5em;
+$max-690: 43.125em;
+$max-600: 37.5em;
 
 // Border styles
 $border-width: 1px;
