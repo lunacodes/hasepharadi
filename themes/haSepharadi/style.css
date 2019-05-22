@@ -3163,6 +3163,9 @@ span.category {
 }
 
 @media only screen and (max-width: 60em) {
+  .logged-in.admin-bar .menu-toggle {
+    top: 18.5px;
+  }
   .logged-in.admin-bar .nav-primary,
   .logged-in.admin-bar .nav-primary.nav-shrinked {
     top: 71px;
