@@ -1482,6 +1482,9 @@ div.wpcf7 .wpcf7-submit:disabled {
   cursor: not-allowed;
 }
 
+/* ----------------------------------------------------
+[header.scss]
+
 /* Site Header
 ---------------------------------------------------------------------------------------------------- */
 .site-header {
@@ -1489,8 +1492,8 @@ div.wpcf7 .wpcf7-submit:disabled {
   padding: 0 30px;
 }
 
-/* Title Area
---------------------------------------------- */
+/* 1. Title Area
+=================================================*/
 .title-area {
   float: left;
   padding-bottom: 25px;
@@ -1535,7 +1538,7 @@ div.wpcf7 .wpcf7-submit:disabled {
 }
 
 /* ----------------------------------------------------
-[custom-functions.php]
+[menu.scss]
 
 1. Site Navigation
   - 1.1 Menus Setup
@@ -2747,6 +2750,10 @@ img.custom-logo {
 =================================================*/
 /* 3.1 Author Avatars - Voices
 ============================*/
+.sidebar .widget-title a {
+  color: #000;
+}
+
 .widget-wrap .author-avatars {
   display: -webkit-box;
   display: -webkit-flex;

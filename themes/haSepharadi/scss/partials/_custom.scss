@@ -358,6 +358,10 @@ img.custom-logo {
 /* 3.1 Author Avatars - Voices
 ============================*/
 
+.sidebar .widget-title a {
+  color: $black;
+}
+
 .widget-wrap .author-avatars {
   display: flex;
   flex-direction: row;
