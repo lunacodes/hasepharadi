@@ -1,8 +1,5 @@
 <?php
 
-<?php
-/* 4.4 Excerpt Ellipsis */
-
 /* ----------------------------------------------------
 [custom-functions.php]
 
