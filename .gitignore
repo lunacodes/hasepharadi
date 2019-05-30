@@ -1,0 +1,9 @@
+mu-plugins/*
+plugins/*
+themes/genesis/*
+themes/twentynineteen/*
+uploads/*
+*scratch*
+*.log
+*.sass-cache*
+*.lnk

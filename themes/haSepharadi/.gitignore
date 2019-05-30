@@ -1,0 +1,27 @@
+.phpcs.xml.dist
+*.swo
+*.swp
+*.travis.yml
+# author.php
+backup/
+bin/
+gulpfile.js
+haseph-copy/
+luna-posts-widget.php
+node_modules/
+package-lock.json
+package.json
+phpunit.xml.dist
+tests/
+wpcs/
+above-the-fold-2-4-19.css
+*.orig
+FB Eventify/
+Joseph-Mosseri.jpeg
+calendar/
+fb-scrape/
+page-templates/luna-tribe.php
+# scss/partials/fonts/
+sepharadi_levant.po
+style - Copy.css
+tribe-events/
