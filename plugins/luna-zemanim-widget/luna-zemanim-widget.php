@@ -363,7 +363,9 @@ function hebCalShab(cityStr, lat, long, tzid) {
 
 			// Perasha Info
 			let perasha = getPerasha(data, sat);
+			// console.log('getPerasha returned:', perasha)
 			let perashaHeb = perasha.hebrew;
+			// console.log('perasha.title:', perasha.title)
 			let perashaEng = perasha.title;
 			let phIndex = perashaHeb.indexOf('ת') + 1;
 			perashaHeb = 'פרשה' + perashaHeb.slice(phIndex);
@@ -543,7 +545,9 @@ function ashkiToSeph(input, sel) {
 	/*jshint quotmark: single*/
 
 	input = input.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
-	input = input.replace("'", "");
+	// Why is this second replace here?!?!?!
+	// It causes trouble for Beha'alotch et al.
+	// input = input.replace("'", "");
 
 	let res = [];
 	if (sel === 'p') {
