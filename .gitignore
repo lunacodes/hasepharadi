@@ -1,0 +1,36 @@
+# .gitignore
+*cache*
+*backup*
+db.php
+*log
+index.php
+.htaccess
+*.swp
+
+plugins/*
+!plugins/luna-affiliates-widget
+!plugins/luna-zemanim-widget
+
+*uploads/*
+
+# themes*
+!haSepharadi
+# !themes/haSepharadi
+sass-cache*
+themes/twentynineteen
+themes/genesis
+
+*w3tc*
+*wflogs*
+mu-plugins
+
+# *fonts*
+To-Do.txt
+
+*woocommerce*
+
+plugins/luna-affiliates-widget/assets/js/
+plugins/luna-zemanim-widget/luna-zemanim-widget
+
+
+
