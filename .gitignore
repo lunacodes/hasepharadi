@@ -1,35 +1,26 @@
-# .gitignore
+ckup*
 *cache*
-*backup*
 db.php
-*log
-index.php
 .htaccess
-
-plugins/*
-!plugins/luna-affiliates-widget
-!plugins/luna-zemanim-widget
-
-*uploads/*
-
-# themes*
-!haSepharadi
-# !themes/haSepharadi
-sass-cache*
-themes/twentynineteen
-themes/genesis
-
+index.php
+*.lnk
+*.log
+*.sass-cache*
+*.swp
+*log
+*scratch*
 *w3tc*
 *wflogs*
-mu-plugins
 
-# *fonts*
-To-Do.txt
-
-*woocommerce*
-
-plugins/luna-affiliates-widget/assets/js/
-plugins/luna-zemanim-widget/luna-zemanim-widget
-
-
-
+# Plugins
+# mu-plugins/*
+# plugins/*
+# !plugins/luna-affiliates-widget
+# !plugins/luna-zemanim-widget
+#
+# # Themes
+# sass-cache*
+# themes/genesis
+# *woocommerce*
+# themes/twentynineteen
+#
