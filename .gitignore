@@ -1,4 +1,5 @@
-ckup*
+# .gitignore
+*backup*
 *cache*
 db.php
 .htaccess
@@ -13,14 +14,13 @@ index.php
 *wflogs*
 
 # Plugins
-# mu-plugins/*
-# plugins/*
-# !plugins/luna-affiliates-widget
-# !plugins/luna-zemanim-widget
-#
-# # Themes
-# sass-cache*
-# themes/genesis
-# *woocommerce*
-# themes/twentynineteen
-#
+mu-plugins/*
+plugins/*
+!plugins/luna-affiliates-widget
+!plugins/luna-zemanim-widget
+
+# Themes
+sass-cache*
+themes/genesis
+*woocommerce*
+themes/twentynineteen

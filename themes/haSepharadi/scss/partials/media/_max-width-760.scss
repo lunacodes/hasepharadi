@@ -6,12 +6,25 @@
     padding: 0 5%;
   }
 
+  #topbar,
+  .site-inner,
+  .content-sidebar-wrap,
+  .footer-widgets .wrap,
+  .site-footer,
+  .site-footer .wrap {
+    width: 100%;
+  }
+
+  .site-inner,
+  .footer-widgets .wrap {
+    padding: 0 4%;
+  }
+
   .site-inner {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     max-width: 100%;
-    padding: 0 4%;
     width: 100%;
   }
 
@@ -27,16 +40,32 @@
   }
 
   .widget {
-    font: 300 16px 'PT Serif',"times new roman",times,serif;
+    font: $font-weight--regular-1 $body--font-size $body--font-family;
+  }
+
+  .widget-title,
+  .widgettitle.widget-title a {
+    color: $darkest-grey;
   }
 
   .sidebar-primary {
     text-align: center;
   }
 
-  .tribe-events-list-widget .tribe-event-title {
-    /*   margin: initial !important; */
-    text-align: center;
+  .tribe-events-list-widget {
+    color: $dark-grey;
+
+    .tribe-event-title {
+      text-align: center;
+    }
+  }
+
+  .tribe-events-list-widget {
+    .tribe-event-title a,
+    .tribe-event-title a:visited {
+      color: $orange;
+      font-weight: 600;
+    }
   }
 
   // Change these so they apply to the sidebar widgets as well!!

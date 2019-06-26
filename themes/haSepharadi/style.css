@@ -2910,12 +2910,23 @@ span.category {
   .site-container {
     padding: 0 5%; }
 
+  #topbar,
+  .site-inner,
+  .content-sidebar-wrap,
+  .footer-widgets .wrap,
+  .site-footer,
+  .site-footer .wrap {
+    width: 100%; }
+
+  .site-inner,
+  .footer-widgets .wrap {
+    padding: 0 4%; }
+
   .site-inner {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     max-width: 100%;
-    padding: 0 4%;
     width: 100%; }
 
   #genesis-content,
@@ -2928,14 +2939,24 @@ span.category {
     margin: 0 10px; }
 
   .widget {
-    font: 300 16px 'PT Serif',"times new roman",times,serif; }
+    font: 300 1.6rem "PT Serif", "times new roman", times, serif; }
+
+  .widget-title,
+  .widgettitle.widget-title a {
+    color: #111; }
 
   .sidebar-primary {
     text-align: center; }
 
-  .tribe-events-list-widget .tribe-event-title {
-    /*   margin: initial !important; */
-    text-align: center; }
+  .tribe-events-list-widget {
+    color: #333; }
+    .tribe-events-list-widget .tribe-event-title {
+      text-align: center; }
+
+  .tribe-events-list-widget .tribe-event-title a,
+  .tribe-events-list-widget .tribe-event-title a:visited {
+    color: #c93;
+    font-weight: 600; }
 
   .footer-widgets {
     margin: 0 auto;

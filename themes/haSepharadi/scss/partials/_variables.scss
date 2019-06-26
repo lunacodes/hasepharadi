@@ -90,12 +90,10 @@ $body--font-family: $base-font;
 $headings--font-family: $base-font;
 
 // Font weights
+$font-weight--regular-1: 300;
 $font-weight--regular: 400;
 $font-weight--semibold: 600;
 $font-weight--bold: 700;
-
-// Font Colors
-$link-blue: $blue;
 
 // Line heights
 $line-height--big: 20px;
@@ -109,6 +107,7 @@ $line-height--smaller: 1;
 
 // Font colors
 $body--font-color: $darkest-grey;
+$link-blue: $blue;
 $link--font-color: $orange;
 $link--font-color-hover: $orange;
 $button--font-color: $white;
