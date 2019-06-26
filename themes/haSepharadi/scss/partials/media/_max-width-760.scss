@@ -6,12 +6,26 @@
     padding: 0 5%;
   }
 
+  #topbar,
+  .site-inner,
+  .content-sidebar-wrap,
+  .footer-widgets,
+  .footer-widgets .wrap,
+  .site-footer,
+  .site-footer .wrap {
+    width: 100%;
+  }
+
+  .site-inner,
+  .footer-widgets .wrap {
+    padding: 0 4%;
+  }
+
   .site-inner {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     max-width: 100%;
-    padding: 0 4%;
     width: 100%;
   }
 
@@ -53,12 +67,6 @@
       color: $orange;
       font-weight: 600;
     }
-  }
-
-  // Change these so they apply to the sidebar widgets as well!!
-  .footer-widgets {
-    margin: 0 auto;
-    width: 90%;
   }
 
   .widget-area.footer-widget-area {
