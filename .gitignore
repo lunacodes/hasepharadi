@@ -14,10 +14,10 @@ index.php
 *wflogs*
 
 # Plugins
-# mu-plugins/*
-# plugins/*
-# !plugins/luna-affiliates-widget
-# !plugins/luna-zemanim-widget
+mu-plugins/*
+plugins/*
+!plugins/luna-affiliates-widget
+!plugins/luna-zemanim-widget
 
 # Themes
 sass-cache*
