@@ -614,6 +614,10 @@ function luna_cleanup_debug_log() {
 
 add_filter( 'genesis_attr_content', 'genesis_main_content_class' );
 function genesis_main_content_class( $attributes ) {
+<<<<<<< HEAD
 	$attributes['class'] = 'genesis-content';
+=======
+	$attributes['class'] = '.genesis-content';
+>>>>>>> ee05130c8546f00ee78a4b6083fa1cad16a85880
 	return $attributes;
 }
