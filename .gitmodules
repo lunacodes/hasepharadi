@@ -1,0 +1,3 @@
+[submodule "plugins/luna-zemanim-widget"]
+	path = plugins/luna-zemanim-widget
+	url = https://github.com/lunacodes/zemanim-mod.git
