@@ -2579,7 +2579,7 @@ span.category {
   header#top.header-shrinked {
     max-width: 100%; }
 
-  #genesis-content {
+  .genesis-content {
     max-width: 700px; }
 
   .featured-content .widget-wrap h4.entry-title {
@@ -2616,7 +2616,7 @@ span.category {
   .site-footer .wrap {
     max-width: 960px; }
 
-  #genesis-content {
+  .genesis-content {
     max-width: 69%; }
 
   .sidebar-primary {
@@ -2655,7 +2655,7 @@ span.category {
   .content-sidebar-wrap {
     width: 96%; }
 
-  #genesis-content {
+  .genesis-content {
     margin: 0 10px;
     max-width: 69%; }
 
@@ -2930,13 +2930,13 @@ span.category {
     max-width: 100%;
     width: 100%; }
 
-  #genesis-content,
+  .genesis-content,
   .sidebar-primary {
     float: none;
     max-width: 100%;
     width: 100%; }
 
-  #genesis-content {
+  .genesis-content {
     margin: 0 10px; }
 
   .widget {
