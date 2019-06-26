@@ -2579,7 +2579,7 @@ span.category {
   header#top.header-shrinked {
     max-width: 100%; }
 
-  #genesis-content {
+  .genesis-content {
     max-width: 700px; }
 
   .featured-content .widget-wrap h4.entry-title {
@@ -2616,7 +2616,7 @@ span.category {
   .site-footer .wrap {
     max-width: 960px; }
 
-  #genesis-content {
+  .genesis-content {
     max-width: 69%; }
 
   .sidebar-primary {
@@ -2655,7 +2655,7 @@ span.category {
   .content-sidebar-wrap {
     width: 96%; }
 
-  #genesis-content {
+  .genesis-content {
     margin: 0 10px;
     max-width: 69%; }
 
@@ -2913,6 +2913,10 @@ span.category {
   #topbar,
   .site-inner,
   .content-sidebar-wrap,
+<<<<<<< HEAD
+=======
+  .footer-widgets,
+>>>>>>> ca065d876c37899aba0a1cdb33d0fc9205dcf066
   .footer-widgets .wrap,
   .site-footer,
   .site-footer .wrap {
@@ -2929,13 +2933,13 @@ span.category {
     max-width: 100%;
     width: 100%; }
 
-  #genesis-content,
+  .genesis-content,
   .sidebar-primary {
     float: none;
     max-width: 100%;
     width: 100%; }
 
-  #genesis-content {
+  .genesis-content {
     margin: 0 10px; }
 
   .widget {
@@ -2957,10 +2961,6 @@ span.category {
   .tribe-events-list-widget .tribe-event-title a:visited {
     color: #c93;
     font-weight: 600; }
-
-  .footer-widgets {
-    margin: 0 auto;
-    width: 90%; }
 
   .widget-area.footer-widget-area {
     margin: 0 auto;

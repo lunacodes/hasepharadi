@@ -9,6 +9,10 @@
   #topbar,
   .site-inner,
   .content-sidebar-wrap,
+<<<<<<< HEAD
+=======
+  .footer-widgets,
+>>>>>>> ca065d876c37899aba0a1cdb33d0fc9205dcf066
   .footer-widgets .wrap,
   .site-footer,
   .site-footer .wrap {
@@ -28,14 +32,14 @@
     width: 100%;
   }
 
-  #genesis-content,
+  .genesis-content,
   .sidebar-primary {
     float: none;
     max-width: 100%;
     width: 100%;
   }
 
-  #genesis-content {
+  .genesis-content {
     margin: 0 10px;
   }
 
@@ -66,12 +70,6 @@
       color: $orange;
       font-weight: 600;
     }
-  }
-
-  // Change these so they apply to the sidebar widgets as well!!
-  .footer-widgets {
-    margin: 0 auto;
-    width: 90%;
   }
 
   .widget-area.footer-widget-area {

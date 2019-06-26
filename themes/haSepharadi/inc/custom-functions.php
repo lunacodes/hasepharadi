@@ -611,3 +611,9 @@ function luna_cleanup_debug_log() {
 		echo( 'debug log exists' );
 	}
 }
+
+add_filter( 'genesis_attr_content', 'genesis_main_content_class' );
+function genesis_main_content_class( $attributes ) {
+	$attributes['class'] = 'genesis-content';
+	return $attributes;
+}
