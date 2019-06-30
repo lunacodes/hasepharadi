@@ -51,7 +51,7 @@
 --------------------------------------------- */
 
 .single p.entry-meta {
-  font-size: 1.6rem;
+  font-size: $body--font-size;
   margin-bottom: 0;
   text-align: center;
 }
@@ -71,7 +71,7 @@
     display: block;
     font-family: 'Roboto Slab', Arial;
     font-size: 3rem;
-    font-weight: 700;
+    font-weight: $font-weight--bold;
     line-height: 1.35;
     letter-spacing: 0;
     margin: 0.5rem 0 1rem;
@@ -107,7 +107,7 @@
       display: block;
       font-family: 'Roboto Slab', Arial;
       font-size: 3rem;
-      font-weight: 700;
+      font-weight: $font-weight--bold;
       letter-spacing: 0;
       line-height: 1.35;
       margin: 0.5rem auto 1rem;
@@ -143,7 +143,7 @@
     color: $dark-grey;
     cursor: pointer;
     display: inline-block;
-    font-size: 1.6rem;
+    font-size: $body--font-size;
     font-weight: 600;
     margin-bottom: 4px;
     padding: 8px 12px;

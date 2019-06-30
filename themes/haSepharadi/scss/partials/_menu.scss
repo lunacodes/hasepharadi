@@ -36,7 +36,7 @@
   }
 
   > .menu-bold > a {
-    font-weight: 700;
+    font-weight: $font-weight--bold;
   }
 
   > .menu-highlight > a {
@@ -322,8 +322,8 @@
 
       a {
         color: $black;
-        font: 600 14px 'Source Sans Pro', sans-serif;
-        // font: 600 14px sans-serif;
+        font:$font-weight--semibold 14px 'Source Sans Pro', sans-serif;
+        // font:$font-weight--semibold14px sans-serif;
         text-transform: uppercase;
         transition: all .1s linear;
 

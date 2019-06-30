@@ -136,6 +136,20 @@ function accept_html_widget_title( $mytitle ) {
 	return $mytitle;
 }
 
+/* 1.6 - Fonts - Local Dev
+============================*/
+
+// if ( site_url() === 'https://hasepharadi.com') {
+// 	// echo("Remote");
+// } else {
+// 	add_action( 'wp_enqueue_scripts', 'enqueue_local_dev_fonts' );
+// }
+
+// function enqueue_local_dev_fonts() {
+// 	wp_enqueue_style( 'local-fonts', CHILD_URL . '/fonts/local-fonts.css', array(), CHILD_THEME_VERSION );
+// }
+
+
 /* 2. Top Bar & Header
 =================================================*/
 
@@ -487,7 +501,7 @@ function display_author_avatars() {
 					$args = array(
 						'size' => 100,
 					);
-					$alt_txt = $name + ' - Author Picture';
+					$alt_txt = "$name - Author Picture";
 					?>
 
 				<div class="authors-wrap">

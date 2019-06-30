@@ -405,9 +405,9 @@ img.custom-logo {
   }
 
   .author-name {
-    font: 300 13px 'times new roman', times, serif;
-    margin: 7px auto 10px;
+    font: $font-weight--regular-1 13px 'times new roman', times, serif;
     line-height: 1.1875;
+    margin: 7px auto 10px;
     text-align: center;
   }
 }
@@ -533,7 +533,7 @@ img.custom-logo {
 span.category {
   color: $mid-grey-2;
   display: block;
-  font: 300 13px $base-font;
+  font: $font-weight--regular-1 13px $base-font;
   line-height: 1.8em;
   margin: 20px auto -15px;
   text-align: center;
@@ -578,7 +578,7 @@ span.category {
   .author-name {
     color: $black;
     display: block;
-    font: 700 18px $base-font;
+    font: $font-weight--bold 18px $base-font;
     line-height: 1.111111;
     margin: 0 0 10px;
   }
