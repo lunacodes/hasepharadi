@@ -9,14 +9,9 @@
 
       &,
       & > ul {
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flex;
-        display: -o-flex;
         display: flex;
-        -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
         min-width: 0 !important;
+        flex-wrap: nowrap;
       }
 
       & > ul > li {
@@ -25,8 +20,8 @@
 
       & > ul > li,
       .ab-item {
-        max-width: 100px;
         min-width: 0 !important;
+        max-width: 100px;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
@@ -43,7 +38,6 @@
     } // end .quicklinks
 
     #wp-admin-bar-top-secondary {
-      -ms-flex-direction: row-reverse;
       flex-direction: row-reverse;
     }
   } // end #wpadminbar
@@ -76,7 +70,6 @@
 
   .logged-in.admin-bar {
     .menu-toggle {
-      // top: 18.5px;
       left: 20px;
       position: fixed;
       top: 34.5px;
@@ -114,8 +107,8 @@
     }
 
     .header-shrinked .logo a span img {
-      position: fixed;
       left: 60px;
+      position: fixed;
       top: 10px;
     }
 

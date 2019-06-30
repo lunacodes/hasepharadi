@@ -3,7 +3,7 @@
 
 @media only screen and (max-width: 60em) {
 
-  // Topbar
+  /* Topbar*/
   #topbar .social-icons,
   .social-icons {
     display: none;
@@ -37,11 +37,15 @@
     visibility: visible;
   }
 
+  .nav-primary ul li {
+    padding: 8px 11.5px 8px 12.5px;
+  }
+
   body.js .nav-primary {
     display: none;
   }
 
-  // Nav Menus
+  /* Nav Menus*/
   .dashicons-menu,
   .mobile-menu,
   .site-header .menu-toggle {
@@ -101,7 +105,7 @@
     }
   }
 
-  // Primary Nav Menu
+  /* Primary Nav Menu*/
   .nav-primary,
   .nav-primary.nav-shrinked {
     background: $dark-grey;
@@ -151,7 +155,7 @@
       }
     }
 
-    // Sub Menu
+    /* Sub Menu*/
     .sub-menu-toggle {
       color: $mid-grey-4;
       display: none;
@@ -208,7 +212,7 @@
       margin: 0 0 0 40px;
     }
 
-    // Submenu - Layer 2
+    /* Submenu - Layer 2*/
     .sub-menu .sub-menu {
       border: 0;
       display: block !important;
@@ -220,7 +224,7 @@
     }
   }
 
-  // Content
+  /* Content*/
   .featured-content {
     .entry-header {
       max-width: 150px;

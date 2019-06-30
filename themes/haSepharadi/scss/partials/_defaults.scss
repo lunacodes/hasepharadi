@@ -12,17 +12,17 @@ html {
 
 /* Chrome fix */
 body {
-  margin: 0;
-  color: $body--font-color;
   background-color: $body--background-color;
+  color: $body--font-color;
   font-family: $body--font-family;
   font-size: $body--font-size;
   font-weight: $font-weight--regular;
   line-height: $line-height--largest;
+  margin: 0;
 
   > div {
     font-size: 16px;
-    font-size: 1.6rem;
+    font-size: $body--font-size;
   }
 }
 
@@ -111,7 +111,7 @@ blockquote {
   margin: 30px;
 
   &::before {
-    content: "\201C";
+    content: '\201C';
     display: block;
     font-size: 30px;
     font-size: 3rem;
@@ -176,8 +176,8 @@ h6 {
 .entry-content h4,
 .entry-content h5,
 .entry-content h6 {
-  margin-bottom: 1.5rem;
   font-weight: bold;
+  margin-bottom: 1.5rem;
 }
 
 .entry-content h1,
@@ -207,7 +207,7 @@ h6 {
 
 .entry-content h6,
 .comment-list li h6 {
-  font-size: 1.6rem;
+  font-size: $body--font-size;
 }
 
 .entry-content pre,
@@ -220,12 +220,12 @@ h6 {
 }
 
 .single .post .entry-content {
-  font-size:1.6rem;
+  font-size: $body--font-size;
 }
 
 .post .entry-content blockquote,
 .comment-list li blockquote {
-  color: #000;
+  color: $black;
   font: normal 2rem "Roboto Slab",Arial;
   margin: 40px 0;
   padding: 0 40px;
@@ -238,15 +238,15 @@ h6 {
 
 .post .entry-content blockquote:before,
 .comment-list li blockquote:before {
-  display: block;
-  content: "\201C";
-  line-height: 1;
-  font-size: 6rem;
-  position: absolute;
-  left: 0;
-  top: -0.1em;
   color: $light-grey;
+  content: "\201C";
+  display: block;
   font-family: "Roboto Slab",Georgia, "Times New Roman", Times, serif;
+  font-size: 6rem;
+  left: 0;
+  line-height: 1;
+  position: absolute;
+  top: -0.1em;
 }
 
 .post .entry-content blockquote::after,
@@ -302,7 +302,7 @@ figure {
 
   img:focus,
   img:hover {
-    border: 1px solid #999;
+    border: 1px solid $mid-grey-2;
     outline: none;
   }
 }
@@ -519,9 +519,9 @@ table {
   border-collapse: separate;
   border-spacing: 0;
   -webkit-box-sizing: content-box;
-     -moz-box-sizing: content-box;
-          box-sizing: content-box;
-  font: 300 13px 'PT Serif',"times new roman",times,serif;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  font: $font-weight--regular-1 13px 'PT Serif',"times new roman",times,serif;
   line-height: 1.8;
   // margin-bottom: 40px;
   margin: 0 0 2rem;
@@ -535,34 +535,34 @@ th,
 td {
     // border: 1px solid #eaeaea;
     border: 1px solid rgba(51,51,51,.1)
-}
-
-tbody {
-  border-bottom: $border-width $border-style $border-color;
-}
-
-td,
-th {
-  text-align: left;
-
-  &:first-child,
-  &:first-child {
-    padding-left: 0;
-    -webkit-box-sizing: content-box;
-       -moz-box-sizing: content-box;
-            box-sizing: content-box;
   }
-}
 
-td {
-  border-top: $border-width $border-style $border-color;
-  padding: 6px;
-}
+  tbody {
+    border-bottom: $border-width $border-style $border-color;
+  }
 
-th {
-  font-weight: 400;
-  padding: 0 6px;
-}
+  td,
+  th {
+    text-align: left;
+
+    &:first-child,
+    &:first-child {
+      padding-left: 0;
+      -webkit-box-sizing: content-box;
+      -moz-box-sizing: content-box;
+      box-sizing: content-box;
+    }
+  }
+
+  td {
+    border-top: $border-width $border-style $border-color;
+    padding: 6px;
+  }
+
+  th {
+    font-weight: 400;
+    padding: 0 6px;
+  }
 
 // This is here in case ln 547-552 doesn't work
 // td:first-child,
@@ -631,5 +631,5 @@ th {
 /* Display outline on focus */
 :focus {
   color: $dark-grey;
-  outline: #ccc solid 1px;
+  outline: $mid-grey-4 solid 1px;
 }

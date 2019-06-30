@@ -10,6 +10,8 @@ index.php
 *.swp
 *log
 *scratch*
+*.sql*
+*.txt*
 *w3tc*
 *wflogs*
 
@@ -18,6 +20,7 @@ mu-plugins/*
 plugins/*
 !plugins/luna-affiliates-widget
 !plugins/luna-zemanim-widget
+uploads/
 
 # Themes
 sass-cache*

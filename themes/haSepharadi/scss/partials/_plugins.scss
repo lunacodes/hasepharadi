@@ -16,7 +16,7 @@
 
 .enews-widget input {
     font-size: 16px;
-    font-size: 1.6rem;
+    font-size: $body--font-size;
     margin-bottom: 10px;
 }
 
@@ -89,23 +89,23 @@ div.wpcf7 .screen-reader-response {
 div.wpcf7-response-output {
     margin: 2em 0.5em 1em;
     padding: 0.2em 1em;
-    border: 2px solid #f00
+    border: 2px solid #f00;
 }
 
 div.wpcf7-mail-sent-ok {
-    border: 2px solid #398f14
+    border: 2px solid #398f14;
 }
 
 div.wpcf7-mail-sent-ng,div.wpcf7-aborted {
-    border: 2px solid #f00
+    border: 2px solid #f00;
 }
 
 div.wpcf7-spam-blocked {
-    border: 2px solid #ffa500
+    border: 2px solid #ffa500;
 }
 
 div.wpcf7-validation-errors,div.wpcf7-acceptance-missing {
-    border: 2px solid #f7e700
+    border: 2px solid #f7e$font-weight--bold;
 }
 
 .wpcf7-form-control-wrap {
@@ -139,7 +139,7 @@ span.wpcf7-list-item-label::before,span.wpcf7-list-item-label::after {
 }
 
 .wpcf7-display-none {
-    display: none
+    display: none;
 }
 
 div.wpcf7 .ajax-loader {
@@ -155,29 +155,29 @@ div.wpcf7 .ajax-loader {
 }
 
 div.wpcf7 .ajax-loader.is-active {
-    visibility: visible
+    visibility: visible;
 }
 
 div.wpcf7 div.ajax-error {
-    display: none
+    display: none;
 }
 
 div.wpcf7 .placeheld {
-    color: #888
+    color: #888;
 }
 
 div.wpcf7 .wpcf7-recaptcha iframe {
-    margin-bottom: 0
+    margin-bottom: 0;
 }
 
 div.wpcf7 input[type="file"] {
-    cursor: pointer
+    cursor: pointer;
 }
 
 div.wpcf7 input[type="file"]:disabled {
-    cursor: default
+    cursor: default;
 }
 
 div.wpcf7 .wpcf7-submit:disabled {
-    cursor: not-allowed
+    cursor: not-allowed;
 }
