@@ -172,7 +172,7 @@ function add_topbar() {
 		$topbar = <<<EOL
 <div id="topbar" class="topbar">
 	<div class="social-icons">
-	<div class="clearfix"> <a href="http://www.facebook.com/HaSepharadi-164068007554007" title="Facebook" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a> <a href="http://twitter.com/HaSepharadi" title="Twitter" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a></div>
+	<div class="clearfix"> <a href="http://www.facebook.com/HaSepharadi-164068007554007" title="Facebook" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a> <a href="http://twitter.com/HaSepharadi" title="Twitter" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a><a href="http://instagram.com/HaSepharadi" title="Instagram" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a></div>
 	</div>
 	 <!--  <button class="menu-toggle dashicons-before dashicons-menu" aria-expanded="false" aria-pressed="false" id="genesis-mobile-nav-primary">Menu</button> -->
 	<div id="tools" class="tools">

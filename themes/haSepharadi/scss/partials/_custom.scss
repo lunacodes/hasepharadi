@@ -76,6 +76,15 @@
       &:hover {
         color: $dark-grey;
       }
+
+      &.instagram {
+        font-size: 15.4px;
+        font-weight: bold;
+      }
+    }
+
+    i.fab.fa-instagram {
+      color: $black;
     }
   }
 
