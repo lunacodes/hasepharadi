@@ -1,0 +1,21 @@
+{
+  "name": "haseph",
+  "version": "1.0.0",
+  "description": "haSepharadi SCSS",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "*",
+    "run-sequence": "^2.2.1",
+    "sassdoc": "^2.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
