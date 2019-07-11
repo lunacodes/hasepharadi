@@ -397,20 +397,19 @@ add_filter( 'jetpack_relatedposts_filter_date_range', 'jetpackme_related_posts_p
 
 add_action( 'genesis_after_loop', 'display_author_bio' );
 function display_author_bio() {
-
 	// most of the if statements below are pointless.
-	if ( ! is_singular( 'post' ) ) {
+	if ( ! is_singular( 'post' ) && ! is_author() ) {
+		// echo "Neither singular nor author";
 		return;
-	} else if ( is_singular( 'tribe_events' ) ) {
-		// echo( 'Tribe Events' );
 	} else {
 
 	?>
 		<div class="author-box">
 			<h2 class="author-box-title">About Author</h2>
-			<div class="author-img"><a href="<?php echo( esc_url( get_author_posts_url( get_the_author_meta('ID') ) ) ) ?>" title="<?php esc_attr( get_the_author() ); ?>"><?php echo get_avatar(get_the_author_meta('user_email'), '80'); // Display the author gravatar image with the size of 80 ?></a></div>
-			<h3 class="author-name"><?php esc_html(the_author_meta('display_name')); // Displays the author name of the posts ?></h3>
-			<p class="author-description"><?php esc_textarea(the_author_meta('description')); // Displays the author description added in Biographical Info ?></p>
+			<div class="author-img">
+				<a href="<?php echo( esc_url( get_author_posts_url( get_the_author_meta( 'ID') ) ) ); ?>" title="<?php esc_attr( get_the_author() ); ?>"><?php echo get_avatar( get_the_author_meta( 'user_email' ), '80' ); // Display the author gravatar image with the size of 80 ?></a></div>
+			<h3 class="author-name"><?php esc_html( the_author_meta( 'display_name' ) ); // Displays the author name of the posts ?></h3>
+			<p class="author-description"><?php esc_textarea( the_author_meta( 'description' ) ); // Displays the author description added in Biographical Info ?></p>
 		</div>
 	<?php
 	}
@@ -438,6 +437,21 @@ function display_fb_comments() {
 
 		echo do_shortcode( $shortcode_str );
 	}
+}
+
+/* 4.9 Author and Category Headers
+============================*/
+
+function haSepharadi_cat_header() {
+	$open = '<div class="archive-description taxonomy-archive-description taxonomy-description"><h1 class="archive-title"><span>';
+	if ( is_author() ) {
+		$title = get_the_author();
+	} elseif ( is_category() ) {
+		$title = single_cat_title( '', false );
+	}
+
+	$close = '</span></h1></div>';
+	echo( $open . $title . $close );
 }
 
 

@@ -79,13 +79,15 @@
       }
 
       &.instagram {
-        font-size: 15.4px;
+        font-size: 15.5px;
         font-weight: bold;
       }
     }
 
     i.fab.fa-instagram {
       color: $black;
+      // font-size: 1.25em;
+      // vertical-align: -15%;
     }
   }
 
