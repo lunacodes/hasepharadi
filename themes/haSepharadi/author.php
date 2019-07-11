@@ -77,11 +77,11 @@ function display_affiliate_links( $user_id_prefixed ) {
 
 	echo( '<div class="affiliates-container">' );
 	if ( function_exists( 'have_rows' ) ) {
-		echo( "have rows" );
+		// echo( "have rows" );
 		if ( have_rows( 'affiliate_links' ) ) {
-			echo( "have rows" );
+			// echo( "have rows" );
 			while ( have_rows( 'affiliate_links' ) ) {
-				echo( "have rows" );
+				// echo( "have rows" );
 				the_row();
 				$count = count( hav_rows( 'affiliate_links', $user_id_prefixed ) );
 				echo( $count );
