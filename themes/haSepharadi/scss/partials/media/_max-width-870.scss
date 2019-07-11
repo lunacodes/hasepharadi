@@ -3,7 +3,7 @@
 
 @media only screen and (max-width: 54.375em) {
   span.category {
-    font: 300 16px $base-font;
+    font:$font-weight--regular-1 16px $base-font;
   }
 
   .footer-widgets {

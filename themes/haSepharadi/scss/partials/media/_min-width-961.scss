@@ -21,7 +21,7 @@
     }
 
     > .menu-bold > a {
-      font-weight: 700;
+      font-weight: $font-weight--bold	;
     }
 
     > .menu-highlight {
@@ -79,4 +79,9 @@
     display: none;
     visibility: hidden;
   }
+}
+
+#genesis-content {
+  float: left;
+  max-width: 880px;
 }

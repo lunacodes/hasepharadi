@@ -136,6 +136,20 @@ function accept_html_widget_title( $mytitle ) {
 	return $mytitle;
 }
 
+/* 1.6 - Fonts - Local Dev
+============================*/
+
+// if ( site_url() === 'https://hasepharadi.com') {
+// 	// echo("Remote");
+// } else {
+// 	add_action( 'wp_enqueue_scripts', 'enqueue_local_dev_fonts' );
+// }
+
+// function enqueue_local_dev_fonts() {
+// 	wp_enqueue_style( 'local-fonts', CHILD_URL . '/fonts/local-fonts.css', array(), CHILD_THEME_VERSION );
+// }
+
+
 /* 2. Top Bar & Header
 =================================================*/
 
@@ -158,7 +172,7 @@ function add_topbar() {
 		$topbar = <<<EOL
 <div id="topbar" class="topbar">
 	<div class="social-icons">
-	<div class="clearfix"> <a href="http://www.facebook.com/HaSepharadi-164068007554007" title="Facebook" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a> <a href="http://twitter.com/HaSepharadi" title="Twitter" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a></div>
+	<div class="clearfix"> <a href="http://www.facebook.com/HaSepharadi-164068007554007" title="Facebook" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a> <a href="http://twitter.com/HaSepharadi" title="Twitter" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a><a href="http://instagram.com/HaSepharadi" title="Instagram" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a></div>
 	</div>
 	 <!--  <button class="menu-toggle dashicons-before dashicons-menu" aria-expanded="false" aria-pressed="false" id="genesis-mobile-nav-primary">Menu</button> -->
 	<div id="tools" class="tools">
@@ -383,20 +397,19 @@ add_filter( 'jetpack_relatedposts_filter_date_range', 'jetpackme_related_posts_p
 
 add_action( 'genesis_after_loop', 'display_author_bio' );
 function display_author_bio() {
-
 	// most of the if statements below are pointless.
-	if ( ! is_singular( 'post' ) ) {
+	if ( ! is_singular( 'post' ) && ! is_author() ) {
+		// echo "Neither singular nor author";
 		return;
-	} else if ( is_singular( 'tribe_events' ) ) {
-		// echo( 'Tribe Events' );
 	} else {
 
 	?>
 		<div class="author-box">
 			<h2 class="author-box-title">About Author</h2>
-			<div class="author-img"><a href="<?php echo( esc_url( get_author_posts_url( get_the_author_meta('ID') ) ) ) ?>" title="<?php esc_attr( get_the_author() ); ?>"><?php echo get_avatar(get_the_author_meta('user_email'), '80'); // Display the author gravatar image with the size of 80 ?></a></div>
-			<h3 class="author-name"><?php esc_html(the_author_meta('display_name')); // Displays the author name of the posts ?></h3>
-			<p class="author-description"><?php esc_textarea(the_author_meta('description')); // Displays the author description added in Biographical Info ?></p>
+			<div class="author-img">
+				<a href="<?php echo( esc_url( get_author_posts_url( get_the_author_meta( 'ID') ) ) ); ?>" title="<?php esc_attr( get_the_author() ); ?>"><?php echo get_avatar( get_the_author_meta( 'user_email' ), '80' ); // Display the author gravatar image with the size of 80 ?></a></div>
+			<h3 class="author-name"><?php esc_html( the_author_meta( 'display_name' ) ); // Displays the author name of the posts ?></h3>
+			<p class="author-description"><?php esc_textarea( the_author_meta( 'description' ) ); // Displays the author description added in Biographical Info ?></p>
 		</div>
 	<?php
 	}
@@ -424,6 +437,21 @@ function display_fb_comments() {
 
 		echo do_shortcode( $shortcode_str );
 	}
+}
+
+/* 4.9 Author and Category Headers
+============================*/
+
+function haSepharadi_cat_header() {
+	$open = '<div class="archive-description taxonomy-archive-description taxonomy-description"><h1 class="archive-title"><span>';
+	if ( is_author() ) {
+		$title = get_the_author();
+	} elseif ( is_category() ) {
+		$title = single_cat_title( '', false );
+	}
+
+	$close = '</span></h1></div>';
+	echo( $open . $title . $close );
 }
 
 
@@ -487,7 +515,7 @@ function display_author_avatars() {
 					$args = array(
 						'size' => 100,
 					);
-					$alt_txt = $name + ' - Author Picture';
+					$alt_txt = "$name - Author Picture";
 					?>
 
 				<div class="authors-wrap">
