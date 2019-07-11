@@ -10,6 +10,8 @@ body.category  {
 
 .full-width-content .content,
 #genesis-content {
+    float: none;
+    margin:  0 auto;
     max-width: initial;
     width: 1020px;
 }
