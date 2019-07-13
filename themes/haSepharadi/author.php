@@ -9,20 +9,26 @@
  * @link    https://lunacodesdesign.com
  */
 
-// hasepharadi_cat_header() and display_author_bio
-// defined in custom-functions.php
+// remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 remove_action( 'genesis_before_content', 'custom_breadcrumbs', 8 );
 remove_action( 'genesis_loop', 'genesis_do_loop' );
 remove_action( 'genesis_archive_title_descriptions', 'genesis_do_archive_headings_headline', 10, 3 );
 add_action( 'wp_enqueue_scripts', 'enqueue_author_styles' );
 add_action( 'genesis_before_loop', 'haSepharadi_cat_header' );
 add_action( 'genesis_loop', 'luna_cat_loop' );
-add_action( 'genesis_after_loop', 'display_affiliate_links' );
-add_action( 'genesis_after_loop', 'display_author_bio' );
+// add_action( 'genesis_after_loop', 'display_author_bio_2' );
 
 
 function enqueue_author_styles() {
 		wp_enqueue_style( 'author.css', CHILD_URL . '/css/author.css', array(), CHILD_THEME_VERSION );
+}
+
+function haSepharadi_cat_header() {
+	$open  = '<div class="archive-description taxonomy-archive-description taxonomy-description"><h1 class="archive-title"><span>';
+	$title = get_the_author();
+	// echo($title);
+	$close = '</span></h1></div>';
+	echo($open . $title . $close);
 }
 
 function luna_cat_loop() {
@@ -77,15 +83,12 @@ function display_affiliate_links( $user_id_prefixed ) {
 
 	echo( '<div class="affiliates-container">' );
 	if ( function_exists( 'have_rows' ) ) {
-		// echo( "have rows" );
 		if ( have_rows( 'affiliate_links' ) ) {
-			// echo( "have rows" );
 			while ( have_rows( 'affiliate_links' ) ) {
-				// echo( "have rows" );
 				the_row();
 				$count = count( hav_rows( 'affiliate_links', $user_id_prefixed ) );
 				echo( $count );
-				if ( 0 === ( $count % 3 ) ) {
+				if ( 0 == ( $count % 3 ) ) {
 					$affiliate_class - 'affiliate-item';
 				} elseif ($counte > 3 ) {
 					$affiliate_class = 'affiliate-item-row-fix';
@@ -93,24 +96,15 @@ function display_affiliate_links( $user_id_prefixed ) {
 					$affiliate_class = 'affiliate-item';
 				}
 
-				$affiliate_image = get_sub_field( 'affiliate_image' );
-				$size            = 'medium';
-				$thumb           = $affiliate_image['sizes'][ $size ];
-				$width           = $affiliate_image['sizes'][ $size . '-width' ];
-				$height          = $affiliate_image['sizes'][ $size . '-height' ];
-				$url             = $affiliate_image['url'];
-				$alt             = $affiliate_image['alt'];
-				?>
-
-				<div class="<?php echo $affiliate_class; ?>">
-					<img src="<?php echo $url; ?>" alt="<?php echo $alt; ?>" class="affilate-image" width="<?php echo $width; ?>" height="<?php echo $height; ?>">
-					<a href="<?php the_sub_field( '$url' ); ?>" class="affiliate-link-text"><?php the_sub_field( 'affiliate_link_text' ); ?></a>
-				</div>
-				<?php
+				// $affiliate_image = get_sub_field( 'affiliate_image' );
+				// $size   = 'medium';
+				// $thumb  = $affiliate_image['sizes'][ $size ];
+				// $width  = $affiliate_image['sizes'][ $size . '-width' ];
+				// $height = $affiliate_image['sizes'][ $size . '-height' ];
 			}
 		}
 	}
 	echo( '</div>' );
 }
 
-genesis();
+	genesis();
