@@ -20,6 +20,9 @@ add_action( 'genesis_loop', 'luna_cat_loop' );
 add_action( 'genesis_after_loop', 'display_affiliate_links' );
 add_action( 'genesis_after_loop', 'display_author_bio' );
 
+//* Full-Width Layout
+add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
+
 
 function enqueue_author_styles() {
 		wp_enqueue_style( 'author.css', CHILD_URL . '/css/author.css', array(), CHILD_THEME_VERSION );
@@ -83,11 +86,11 @@ function display_affiliate_links( $user_id_prefixed ) {
 			while ( have_rows( 'affiliate_links' ) ) {
 				// echo( "have rows" );
 				the_row();
-				$count = count( hav_rows( 'affiliate_links', $user_id_prefixed ) );
+				$count = count( have_rows( 'affiliate_links', $user_id_prefixed ) );
 				echo( $count );
 				if ( 0 === ( $count % 3 ) ) {
 					$affiliate_class - 'affiliate-item';
-				} elseif ($counte > 3 ) {
+				} elseif ($count > 3 ) {
 					$affiliate_class = 'affiliate-item-row-fix';
 				} else {
 					$affiliate_class = 'affiliate-item';

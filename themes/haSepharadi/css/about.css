@@ -22,8 +22,10 @@
 }
 
 .site-inner #genesis-content {
+    float: none;
     /* margin: 0 2%; */
     margin: 0 auto;
+    max-width: initial;
     /* padding: 0 40px; */
     /* width: 100%; */
     width: 100%;
