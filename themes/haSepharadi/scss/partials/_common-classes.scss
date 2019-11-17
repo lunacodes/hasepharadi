@@ -186,3 +186,18 @@ img.alignright,
   text-align: center;
 }
 
+@media only screen and (max-width: 600px) {
+  .alignleft,
+  .alignright,
+  .single-post.content-max-width .wp-block-image.alignleft,
+  .single-post.content-max-width .wp-block-image.alignright,
+  wp-catpion.alignleft,
+  wp-caption.alignright {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    float: none;
+    margin: 0 auto 20px !important;
+    width: 100% !important;
+  }
+}
