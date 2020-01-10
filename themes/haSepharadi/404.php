@@ -5,7 +5,7 @@ function enqueue_404_styles() {
     wp_enqueue_style( '404.css', CHILD_URL . '/css/404.css', array(), CHILD_THEME_VERSION );
 }
 
-add_filter( 'genesis_site_layout', '__genesis_return_full_width_content' );
+add_filter( 'genesis_pre_get_option_site_layout', '__genesis_return_full_width_content' );
 
 remove_action( 'genesis_before_content', 'custom_breadcrumbs', 9 );
 
