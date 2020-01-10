@@ -9,6 +9,8 @@
 	 - 1.3 Custom Login Logo
 	 - 1.4 WP Admin - Get Widget ID
 	 - 1.5 Widget Titles - Allow HTML
+   -  1.6 - Tiny MCE - Custom Editor Styles
+   - 1.7 - WP Admin - Remove Dashboard Widgets
 2. Topbar & Header
 	 - 2.1 Topbar Scripts
 	 - 2.2 Create Topbar
@@ -136,19 +138,43 @@ function accept_html_widget_title( $mytitle ) {
 	return $mytitle;
 }
 
-/* 1.6 - Fonts - Local Dev
+/* 1.6 - Tiny MCE - Custom Editor Styles
 ============================*/
 
-// if ( site_url() === 'https://hasepharadi.com') {
-// 	// echo("Remote");
-// } else {
-// 	add_action( 'wp_enqueue_scripts', 'enqueue_local_dev_fonts' );
-// }
+/**
+ * Registers an editor stylesheet for the theme.
+ */
+add_action( 'admin_init', 'wpdocs_theme_add_editor_styles' );
+function wpdocs_theme_add_editor_styles() {
+  add_editor_style( 'editor-style.css' );
+}
 
-// function enqueue_local_dev_fonts() {
-// 	wp_enqueue_style( 'local-fonts', CHILD_URL . '/fonts/local-fonts.css', array(), CHILD_THEME_VERSION );
-// }
+/* 1.7 - WP Admin - Remove Dashboard Widgets
+============================*/
 
+add_action('wp_dashboard_setup', 'wpdocs_remove_dashboard_widgets');
+/**
+ * Remove default dashboard widgets
+ */
+function wpdocs_remove_dashboard_widgets(){
+    // remove_meta_box('dashboard_right_now', 'dashboard', 'normal');   // Right Now
+    // remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); // Recent Comments
+    // remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal');  // Incoming Links
+    remove_meta_box('dashboard_plugins', 'dashboard', 'normal');   // Plugins
+    remove_meta_box('dashboard_quick_press', 'dashboard', 'side');  // Quick Press
+    remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side');  // Recent Drafts
+    remove_meta_box('dashboard_primary', 'dashboard', 'side');   // WordPress blog
+    remove_meta_box('dashboard_secondary', 'dashboard', 'side');   // Other WordPress News
+    // use 'dashboard-network' as the second parameter to remove widgets from a network dashboard.
+}
+
+add_action('wp_dashboard_setup', 'remove_tribe_dashboard_widget' );
+/**
+ * Remove Modern Events Calendar Dashboard Widget
+ */
+function remove_tribe_dashboard_widget() {
+    remove_meta_box( 'tribe_dashboard_widget', 'dashboard', 'normal' );
+}
 
 /* 2. Top Bar & Header
 =================================================*/
