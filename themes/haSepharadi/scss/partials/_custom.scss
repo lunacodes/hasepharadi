@@ -18,7 +18,7 @@
 5. Archive Pages
    - 5.1 Affiliate Links
 6. BackToTop Button
-
+7. 404 Page
 ------------------------------------------------------*/
 
 
@@ -659,3 +659,11 @@ span.category {
   display: block;
 }
 
+/* 7. 404 Page
+=================================================*/
+
+.error404 #genesis-content {
+  float: none;
+  margin: 0 auto;
+  max-width: 880px;
+}

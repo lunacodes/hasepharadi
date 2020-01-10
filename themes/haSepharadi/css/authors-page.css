@@ -2,6 +2,7 @@
 
 #genesis-content {
 	padding: 0 30px;
+	max-width: initial;
 	width: 1200px;
 }
 
