@@ -2755,6 +2755,9 @@ img.custom-logo {
   float: right;
   margin-right: 0;
 }
+.post p {
+  font-family: "Book Antiqua", Palatino, times, serif;
+}
 
 .single .post .thumbnail {
   margin: 0 0 24px;
