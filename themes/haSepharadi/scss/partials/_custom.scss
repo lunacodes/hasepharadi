@@ -578,6 +578,10 @@ span.category {
   margin: 10px auto 0;
 }
 
+.single .post .entry-content {
+  font-family: $content-font;
+}
+
 /* 4.3 Author Bios
 ============================*/
 
@@ -603,6 +607,13 @@ span.category {
   line-height: 1.625;
   margin: 0 0 10px;
   margin-block-end: 10px;
+}
+
+/* 4.3 Easy Footnotes
+============================*/
+
+.easy-footnote-single {
+  font-family: $base-font;
 }
 
 

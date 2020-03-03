@@ -2312,7 +2312,7 @@ readers do not read off random characters that represent icons */
 5. Archive Pages
    - 5.1 Affiliate Links
 6. BackToTop Button
-
+7. 404 Page
 ------------------------------------------------------*/
 /* 1. Top Bar & Header
 =================================================*/
@@ -2796,6 +2796,10 @@ span.category {
   margin: 10px auto 0;
 }
 
+.single .post .entry-content {
+  font-family: "Book Antiqua", Palatino, times, serif;
+}
+
 /* 4.3 Author Bios
 ============================*/
 .author-box .avatar {
@@ -2817,6 +2821,12 @@ span.category {
   line-height: 1.625;
   margin: 0 0 10px;
   margin-block-end: 10px;
+}
+
+/* 4.3 Easy Footnotes
+============================*/
+.easy-footnote-single {
+  font-family: "PT Serif", "times new roman", times, serif;
 }
 
 /* 5. Archive Pages
@@ -2867,6 +2877,14 @@ span.category {
 
 #backToTop.btt-shrinked {
   display: block;
+}
+
+/* 7. 404 Page
+=================================================*/
+.error404 #genesis-content {
+  float: none;
+  margin: 0 auto;
+  max-width: 880px;
 }
 
 .social-buttons.share {
