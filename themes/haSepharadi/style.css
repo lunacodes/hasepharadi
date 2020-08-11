@@ -2377,6 +2377,7 @@ readers do not read off random characters that represent icons */
    - 4.1 Site Layout
    - 4.2 Posts Layout
    - 4.3 Author Bios
+   - 4.4 Easy Footnotes
 5. Archive Pages
    - 5.1 Affiliate Links
 6. BackToTop Button
@@ -2893,7 +2894,7 @@ span.category {
   margin-block-end: 10px;
 }
 
-/* 4.3 Easy Footnotes
+/* 4.4 Easy Footnotes
 ============================*/
 .easy-footnote-single {
   font-family: "PT Serif", "times new roman", times, serif;
@@ -2902,6 +2903,7 @@ span.category {
 
 .easy-footnote-title h4 {
   display: inline-block;
+  margin: 0 0 1.5rem;
 }
 
 .footnotes-arrow {
