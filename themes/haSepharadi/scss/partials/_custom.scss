@@ -621,6 +621,19 @@ span.category {
   font-size: $footnotes--font-size;
 }
 
+.easy-footnote-title h4 {
+  display: inline-block;
+}
+
+.footnotes-arrow {
+  font-weight: 700;
+  margin: 0 0 0 8px;
+}
+
+.easy-footnotes-wrapper {
+  display: none;
+}
+
 
 /* 5. Archive Pages
 =================================================*/

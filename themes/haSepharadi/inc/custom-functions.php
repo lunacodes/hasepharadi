@@ -486,9 +486,14 @@ function haSepharadi_cat_header() {
 ============================*/
 
 // add_filter( 'efn_footnote_label', 'efn_change_label_markup', 10, 2 );
-function efn_change_label_markup( $output, $label ) {
+// function efn_change_label_markup( $output, $label ) {
 	// echo($output, $label);
-	return '<div class="easy-footnote-title"><h4>' . $label . '</h4></div><i class="fa-arrow-right"></i>';
+	// return '<div class="easy-footnote-title"><h4>' . $label . '</h4></div><i class="fa-arrow-right"></i>';
+// }
+
+add_action( 'wp_enqueue_scripts', 'enqueue_collapsible_footnotes' );
+function enqueue_collapsible_footnotes() {
+	wp_enqueue_script('collapsible-footnotes.js', CHILD_URL . 'js/collapsible-footnotes.js', array(), CHILD_THEME_VERSION, true);
 }
 
 
