@@ -4,38 +4,40 @@
 [custom-functions.php]
 
 1. Setup & Assets
-	 - 1.1 Custom Image Sizes
-	 - 1.2 Genesis Thumbnail Cache Fix
-	 - 1.3 Custom Login Logo
-	 - 1.4 WP Admin - Get Widget ID
-	 - 1.5 Widget Titles - Allow HTML
-   -  1.6 - Tiny MCE - Custom Editor Styles
-   - 1.7 - WP Admin - Remove Dashboard Widgets
+	 - 1.1  Custom Image Sizes
+	 - 1.2  Genesis Thumbnail Cache Fix
+	 - 1.3  Custom Login Logo
+	 - 1.4  WP Admin - Get Widget ID
+	 - 1.5  Widget Titles - Allow HTML
+   - 1.6  Tiny MCE - Custom Editor Styles
+   - 1.7  WP Admin - Remove Dashboard Widgets
 2. Topbar & Header
-	 - 2.1 Topbar Scripts
-	 - 2.2 Create Topbar
-	 - 2.3 Create Custom Header
-	 - 2.4 Mobile Menu Pretty Load
-	 - 2.5 Mobile Menu Disable Superfish
+	 - 2.1  Topbar Scripts
+	 - 2.2  Create Topbar
+	 - 2.3  Create Custom Header
+	 - 2.4  Mobile Menu Pretty Load
+	 - 2.5  Mobile Menu Disable Superfish
 3. Breadcrumbs
 4. Posts
-	 - 4.1 Posts - Featured Image
-	 - 4.2 Single Pages
-	 - 4.3 Entry Footer - haSeph Disclaimer
-	 - 4.4 Excerpt Ellipsis
-	 - 4.5 Next & Previous Posts Link
-	 - 4.6 Jetpack - Reated Posts
-	 - 4.7 Author Bios
-	 - 4.8 Add Link Text on User Copy
-	 - 4.9 Add wpDevArt Facebook Comments
+	 - 4.1  Posts - Featured Image
+	 - 4.2  Single Pages
+	 - 4.3  Entry Footer - haSeph Disclaimer
+	 - 4.4  Excerpt Ellipsis
+	 - 4.5  Next & Previous Posts Link
+	 - 4.6  Jetpack - Reated Posts
+	 - 4.7  Author Bios
+	 - 4.8  Add Link Text on User Copy
+	 - 4.9  Add wpDevArt Facebook Comments
+	 - 4.10 Author and Category Headers
+	 - 4.11 Collapsible Footnotes 
 5. Footer
-	 - 5.1 Back to Top Button
-	 - 5.2 Custom Footer Credits
+	 - 5.1  Back to Top Button
+	 - 5.2  Custom Footer Credits
 6. Widgets
-	 - 6.1 Author Avatars (Voices)
-	 - 6.2 Mailchimp Subscribe
+	 - 6.1  Author Avatars (Voices)
+	 - 6.2  Mailchimp Subscribe
 7. Custom User Meta
-		- 7.1 Social Media
+	 - 7.1 Social Media
 8. Social Media Sharing Buttons
 9. Maintenance
 
@@ -465,7 +467,7 @@ function display_fb_comments() {
 	}
 }
 
-/* 4.9 Author and Category Headers
+/* 4.10 Author and Category Headers
 ============================*/
 
 function haSepharadi_cat_header() {
@@ -478,6 +480,15 @@ function haSepharadi_cat_header() {
 
 	$close = '</span></h1></div>';
 	echo( $open . $title . $close );
+}
+
+/* 4.11 Collapsible Footnotes
+============================*/
+
+// add_filter( 'efn_footnote_label', 'efn_change_label_markup', 10, 2 );
+function efn_change_label_markup( $output, $label ) {
+	// echo($output, $label);
+	return '<div class="easy-footnote-title"><h4>' . $label . '</h4></div><i class="fa-arrow-right"></i>';
 }
 
 

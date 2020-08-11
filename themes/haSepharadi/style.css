@@ -2238,6 +2238,14 @@ readers do not read off random characters that represent icons */
   content: "";
 }
 
+.fa-angle-down:before {
+  content: "";
+}
+
+.fa-angle-right:before {
+  content: "";
+}
+
 .fa-arrow-right:before {
   content: "";
 }
