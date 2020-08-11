@@ -493,7 +493,7 @@ function haSepharadi_cat_header() {
 
 add_action( 'wp_enqueue_scripts', 'enqueue_collapsible_footnotes' );
 function enqueue_collapsible_footnotes() {
-	wp_enqueue_script('collapsible-footnotes.js', CHILD_URL . 'js/collapsible-footnotes.js', array(), CHILD_THEME_VERSION, true);
+	wp_enqueue_script('collapsible-footnotes.js', CHILD_URL . '/js/collapsible-footnotes.js', array(), CHILD_THEME_VERSION, true);
 }
 
 
