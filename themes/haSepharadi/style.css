@@ -2902,11 +2902,13 @@ span.category {
 }
 
 .easy-footnote-title h4 {
+  color: #c93;
   display: inline-block;
   margin: 0 0 1.5rem;
 }
 
 .footnotes-arrow {
+  color: #c93;
   font-weight: 700;
   margin: 0 0 0 8px;
 }
