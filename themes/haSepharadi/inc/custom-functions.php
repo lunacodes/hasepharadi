@@ -5,12 +5,11 @@
 
 1. Setup & Assets
 	 - 1.1  Custom Image Sizes
-	 - 1.2  Genesis Thumbnail Cache Fix
+	 - 1.2  Genesis Thumbnail Cache Fix (Temporarily commented out)
 	 - 1.3  Custom Login Logo
 	 - 1.4  WP Admin - Get Widget ID
 	 - 1.5  Widget Titles - Allow HTML
-   - 1.6  Tiny MCE - Custom Editor Styles
-   - 1.7  WP Admin - Remove Dashboard Widgets
+	 - 1.6  WP Admin - Remove Dashboard Widgets
 2. Topbar & Header
 	 - 2.1  Topbar Scripts
 	 - 2.2  Create Topbar
@@ -24,12 +23,11 @@
 	 - 4.3  Entry Footer - haSeph Disclaimer
 	 - 4.4  Excerpt Ellipsis
 	 - 4.5  Next & Previous Posts Link
-	 - 4.6  Jetpack - Reated Posts
 	 - 4.7  Author Bios
 	 - 4.8  Add Link Text on User Copy
 	 - 4.9  Add wpDevArt Facebook Comments
 	 - 4.10 Author and Category Headers
-	 - 4.11 Collapsible Footnotes 
+	 - 4.11 Collapsible Footnotes
 5. Footer
 	 - 5.1  Back to Top Button
 	 - 5.2  Custom Footer Credits
@@ -39,7 +37,7 @@
 7. Custom User Meta
 	 - 7.1 Social Media
 8. Social Media Sharing Buttons
-9. Maintenance
+9. Genesis Content Attributes (Add Class)
 
 ------------------------------------------------------*/
 
@@ -52,10 +50,10 @@
 
 add_action( 'after_setup_theme', 'add_custom_image_sizes' );
 function add_custom_image_sizes() {
-		add_image_size( 'recent-posts-thumb', 100, 100, array('left', 'top') );
+		add_image_size( 'recent-posts-thumb', 100, 100, array( 'left', 'top' ) );
 }
 
-/* 1.2 - Genesis Thumbnail Cache Fix
+/* 1.2 - Genesis Thumbnail Cache Fix (Temporarily commented out)
 ============================*/
 
 function blazersix_prime_post_thumbnails_cache( $posts, $wp_query ) {
@@ -77,7 +75,7 @@ add_action( 'login_enqueue_scripts', 'haSeph_custom_login_logo' );
 function haSeph_custom_login_logo() { ?>
 	<style type="text/css">
 		#login h1 a, .login h1 a {
-			background-image: url(https://hasepharadi.com/wp-content/themes/haSepharadi/images/logo.png);
+			/* background-image: url(https://hasepharadi.com/wp-content/themes/haSepharadi/images/logo.png); */
 			background-image: none, url(https://hasepharadi.com/wp-content/themes/haSepharadi/images/logo.png);
 			background-position: left top;
 			background-repeat: no-repeat;
@@ -116,10 +114,10 @@ function haSeph_login_url_title() {
 
 add_action( 'in_widget_form', 'luna_get_widget_id' );
 function luna_get_widget_id( $widget_instance ) {
-	if ( $widget_instance->number=="__i__" ) {
-		echo( "<p><strong>Widget ID:</strong> Please save the widget first!</p>");
+	if ( $widget_instance->number === "__i__" ) {
+		echo( '<p><strong>Widget ID:</strong> Please save the widget first!</p>');
 	} else {
-		echo( "<p><strong>Widget ID: </strong>" . $widget_instance->id . "</p>");
+		echo( '<p><strong>Widget ID: </strong>' . $widget_instance->id . '</p>' );
 	}
 }
 
@@ -127,31 +125,20 @@ function luna_get_widget_id( $widget_instance ) {
 ============================*/
 
 /**
- * Replaces widget title: [link href=/contact/]Contact Us[/link]
- * with <a href="/contact/">Contact Us</a>
+ * Replaces e.g. widget title: [link href=/contact/]Voices[/link]
+ * with <a href="/contact/">Voices</a>
  */
 add_filter( 'widget_title', 'accept_html_widget_title' );
 function accept_html_widget_title( $mytitle ) {
-  // The sequence of String Replacement is important!!
+	// The sequence of String Replacement is important!!
 	$mytitle = str_replace( '[link', '<a', $mytitle );
 	$mytitle = str_replace( '[/link]', '</a>', $mytitle );
-  $mytitle = str_replace( ']', '>', $mytitle );
+	$mytitle = str_replace( ']', '>', $mytitle );
 
 	return $mytitle;
 }
 
-/* 1.6 - Tiny MCE - Custom Editor Styles
-============================*/
-
-/**
- * Registers an editor stylesheet for the theme.
- */
-add_action( 'admin_init', 'wpdocs_theme_add_editor_styles' );
-function wpdocs_theme_add_editor_styles() {
-  add_editor_style( 'editor-style.css' );
-}
-
-/* 1.7 - WP Admin - Remove Dashboard Widgets
+/* 1.6 - WP Admin - Remove Dashboard Widgets
 ============================*/
 
 add_action('wp_dashboard_setup', 'wpdocs_remove_dashboard_widgets');
@@ -159,15 +146,15 @@ add_action('wp_dashboard_setup', 'wpdocs_remove_dashboard_widgets');
  * Remove default dashboard widgets
  */
 function wpdocs_remove_dashboard_widgets(){
-    // remove_meta_box('dashboard_right_now', 'dashboard', 'normal');   // Right Now
-    // remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); // Recent Comments
-    // remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal');  // Incoming Links
-    remove_meta_box('dashboard_plugins', 'dashboard', 'normal');   // Plugins
-    remove_meta_box('dashboard_quick_press', 'dashboard', 'side');  // Quick Press
-    remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side');  // Recent Drafts
-    remove_meta_box('dashboard_primary', 'dashboard', 'side');   // WordPress blog
-    remove_meta_box('dashboard_secondary', 'dashboard', 'side');   // Other WordPress News
-    // use 'dashboard-network' as the second parameter to remove widgets from a network dashboard.
+  // remove_meta_box('dashboard_right_now', 'dashboard', 'normal');   // Right Now
+  // remove_meta_box('dashboard_recent_comments', 'dashboard', 'normal'); // Recent Comments
+  // remove_meta_box('dashboard_incoming_links', 'dashboard', 'normal');  // Incoming Links
+  remove_meta_box('dashboard_plugins', 'dashboard', 'normal');   // Plugins
+  remove_meta_box('dashboard_quick_press', 'dashboard', 'side');  // Quick Press
+  remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side');  // Recent Drafts
+  remove_meta_box('dashboard_primary', 'dashboard', 'side');   // WordPress blog
+  remove_meta_box('dashboard_secondary', 'dashboard', 'side');   // Other WordPress News
+  // use 'dashboard-network' as the second parameter to remove widgets from a network dashboard.
 }
 
 add_action('wp_dashboard_setup', 'remove_tribe_dashboard_widget' );
@@ -175,7 +162,7 @@ add_action('wp_dashboard_setup', 'remove_tribe_dashboard_widget' );
  * Remove Modern Events Calendar Dashboard Widget
  */
 function remove_tribe_dashboard_widget() {
-    remove_meta_box( 'tribe_dashboard_widget', 'dashboard', 'normal' );
+  remove_meta_box( 'tribe_dashboard_widget', 'dashboard', 'normal' );
 }
 
 /* 2. Top Bar & Header
@@ -187,9 +174,9 @@ function remove_tribe_dashboard_widget() {
 remove_action( 'genesis_header', 'genesis_do_header' );
 
 //* Enqueue Topbar scripts
-add_action('wp_enqueue_scripts', 'enqueue_topbar_scripts');
+add_action( 'wp_enqueue_scripts', 'enqueue_topbar_scripts' );
 function enqueue_topbar_scripts() {
-	wp_enqueue_script( 'topbar-js', CHILD_URL . '/js/topbar.js', array( 'jquery' ), CHILD_THEME_VERSION );
+	wp_enqueue_script( 'topbar-js', CHILD_URL . '/js/topbar.js', array( 'jquery' ), CHILD_THEME_VERSION, false );
 }
 
 /* 2.2 - Create Topbar
@@ -197,7 +184,7 @@ function enqueue_topbar_scripts() {
 
 add_action( 'genesis_before_header', 'add_topbar' );
 function add_topbar() {
-		$topbar = <<<EOL
+	$topbar = <<<EOL
 <div id="topbar" class="topbar">
 	<div class="social-icons">
 	<div class="clearfix"> <a href="http://www.facebook.com/HaSepharadi-164068007554007" title="Facebook" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a> <a href="http://twitter.com/HaSepharadi" title="Twitter" class="twitter" target="_blank"><i class="fab fa-twitter"></i></a><a href="http://instagram.com/HaSepharadi" title="Instagram" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a></div>
@@ -212,7 +199,7 @@ function add_topbar() {
 </div>
 EOL;
 
-		echo($topbar);
+	echo( $topbar );
 }
 
 /* 2.3 Create Custom Header
@@ -228,57 +215,50 @@ add_action( 'genesis_header', 'haSepharadi_custom_header_markup_close', 15 );
 
 function haSepharadi_custom_header_markup_open() {
 		$open = '<header id="top" class="site-header">';
-		echo($open);
+		echo( $open );
 }
 
 function haSepharadi_custom_header() {
-
-	$site_url = get_site_url();
+	$site_url    = get_site_url();
 	$todays_date = date_i18n( 'l F j, Y' );
-	// the_date();
-	// echo($todays_date);
 	$custom_header = <<<EOL
 	<div class="logo"> <a href="$site_url" title="haSepharadi"> <span><img src="$site_url/wp-content/uploads/2018/08/cropped-logo-1.png" scale="0"></span> </a>
 	<div id="header-date" class="local-info"> <span class="local-date">$todays_date</span></div>
 	</div>
 EOL;
 
-// 	$custom_header = <<<EOL
-// <div class="logo" href="https://hasepharadi.com"><a href="https://hasepharadi.com" title="haSepharadi"> <span><img href="https://hasepharadi.com" src="https://hasepharadi.com/wp-content/themes/haSepharadi/images/logo.svg" width="216" height="80" style="width: 100%; height: 80px; visibility: visible;"  type="image"></span></a><div id="header-date" class="local-info"> <span class="local-date">$todays_date</span></div></div>
-// EOL;
-
-	echo($custom_header);
-
+	echo( $custom_header );
 }
 
 function haSepharadi_custom_header_markup_close() {
-		$close = '</header>';
-		echo($close);
+	$close = '</header>';
+	echo( $close );
 }
+
 remove_action( 'genesis_after_header', 'genesis_do_nav' );
 add_action( 'genesis_header', 'genesis_do_nav', 11 );
-
 
 /* 2.4 - Mobile Menu Pretty Load
 ============================*/
 
 add_filter( 'body_class', function ( $classes ) {
-		$classes[] = 'no-js';
-		return $classes;
-} );
+	$classes[] = 'no-js';
+	return $classes;
+});
+
 add_action( 'genesis_before', 'mobile_menu_pretty_load', 1 );
-function mobile_menu_pretty_load(){
-		?>
-		<script>
-				//<![CDATA[
-				(function () {
-						var c = document.body.classList;
-						c.remove('no-js');
-						c.add('js');
-				})();
-				//]]>
-		</script>
-		<?php
+function mobile_menu_pretty_load() {
+	?>
+	<script>
+			//<![CDATA[
+			(function () {
+					var c = document.body.classList;
+					c.remove('no-js');
+					c.add('js');
+			})();
+			//]]>
+	</script>
+	<?php
 }
 
 /* 2.5 - Mobile Menu Disable Superfish
@@ -287,8 +267,8 @@ function mobile_menu_pretty_load(){
 //* Disable the superfish script
 add_action( 'wp_enqueue_scripts', 'sp_disable_superfish' );
 function sp_disable_superfish() {
-		wp_deregister_script( 'superfish' );
-		wp_deregister_script( 'superfish-args' );
+	wp_deregister_script( 'superfish' );
+	wp_deregister_script( 'superfish-args' );
 }
 
 
@@ -297,7 +277,8 @@ function sp_disable_superfish() {
 
 add_action( 'genesis_before_content', 'custom_breadcrumbs', 8 );
 function custom_breadcrumbs() {
-	if ( ! is_singular( 'page' ) && (! is_home() ) && (! is_404() ) ) { ?>
+	if ( ! is_singular( 'page' ) && ( ! is_home() ) && ( ! is_404() ) ) {
+		?>
 		<div class="bc-container">
 			<div class="breadcrumbs">
 				<div class="navi">
@@ -312,8 +293,8 @@ function custom_breadcrumbs() {
 		luna_social_sharing_buttons()
 		?>
 	</div>
-	<?php }
-
+		<?php
+	}
 }
 
 
@@ -327,13 +308,13 @@ function custom_breadcrumbs() {
 add_theme_support( 'post-thumbnails' );
 add_action( 'genesis_before_entry', 'display_featured_post_image', 8 );
 function display_featured_post_image() {
-		if ( is_singular( 'page' ) && ( ! is_category() ) ) {
-
-		} elseif ( is_category() ) {
-				// echo("We're a category");
-		} else {
-				the_post_thumbnail('post-image');
-		}
+	if ( is_singular( 'page' ) && ( ! is_category() ) ) {
+		return;
+	} elseif ( is_category() ) {
+			return;
+	} else {
+			the_post_thumbnail( 'post-image' );
+	}
 }
 
 /* 4.2 - Single Pages
@@ -341,10 +322,10 @@ function display_featured_post_image() {
 
 add_action( 'genesis_pre_get_option_site_layout', 'luna_remove_sidebar' );
 function luna_remove_sidebar() {
-		if ( is_singular( 'page' ) || is_category() ) {
-				$opt = 'full-width-content';
-				return $opt;
-		}
+	if ( is_singular( 'page' ) || is_category() ) {
+		$opt = 'full-width-content';
+		return $opt;
+	}
 }
 
 /* 4.3 - Entry Footer - haSeph Disclaimer
@@ -352,31 +333,31 @@ function luna_remove_sidebar() {
 
 // add_action( 'genesis_entry_content', 'haSepharadi_disclaimer' );
 function haSepharadi_disclaimer() {
-		echo("Due to the variable nature of our posts and the wide spectrum of ideas exchanged, we feel it is important to clarify that the thoughts and opinions shared in posts and articles reflect the opinions of the author and are not representative of our contributors as a whole.");
+	echo( "Due to the variable nature of our posts and the wide spectrum of ideas exchanged, we feel it is important to clarify that the thoughts and opinions shared in posts and articles reflect the opinions of the author and are not representative of our contributors as a whole." );
 }
 
 /* 4.4 Excerpt Ellipsis */
-function new_excerpt_more($more) {
-		return '...';
+add_filter( 'excerpt_more', 'new_excerpt_more' );
+function new_excerpt_more( $more ) {
+	return '...';
 }
-add_filter('excerpt_more', 'new_excerpt_more');
 
 /* 4.5 Next & Previous Posts Link
 ============================*/
 
 add_action( 'genesis_after_loop', 'add_next_and_prev_post_links', 12 );
 function add_next_and_prev_post_links() {
-		if ( ! is_singular( 'post' ) ) {
-				return;
-		}
+	if ( ! is_singular( 'post' ) ) {
+			return;
+	}
 
-		echo '<div class="pagination-previous alignleft">';
-		previous_post_link();
-		echo '</div>';
+	echo '<div class="pagination-previous alignleft">';
+	previous_post_link();
+	echo '</div>';
 
-		echo '<div class="pagination-next alignright">';
-		next_post_link();
-		echo '</div>';
+	echo '<div class="pagination-next alignright">';
+	next_post_link();
+	echo '</div>';
 }
 
 add_action( 'genesis_after_loop', 'add_next_and_prev_post_archive_links', 10 );
@@ -385,73 +366,37 @@ function add_next_and_prev_post_archive_links() {
 		genesis_numeric_posts_nav();
 	} else {
 		genesis_prev_next_posts_nav();
-	} }
-
-/* 4.6 Jetpack - Reated Posts
-============================*/
-
-// add_filter( 'wp', 'jetpack_remove_rp' );
-function jetpack_remove_rp() {
-	if ( class_exists( 'Jetpack_RelatedPosts' ) ) {
-		$jprp = Jetpack_RelatedPosts::init();
-		$callback = array( $jprp, 'filter_add_target_to_dom' );
-		remove_filter( 'the_content', $callback, 40 );
 	}
 }
-
-// add_action( 'genesis_after_entry', 'jetpack_footer' );
-function jetpack_footer() {
-	if ( is_singular( array('tribe_events', 'event') ) ) {
-		echo do_shortcode( '[jetpack-related-posts]' );
-	}
-}
-
-function jetpackme_related_posts_past_halfyear_only( $date_range ) {
-	if (is_singular( 'tribe_events' ) ) {
-		$date_range = array(
-		'from' => time(),
-		'to' => strtotime('2020'),
-		);
-		return $date_range;
-	} else {
-		return;
-	}
-}
-add_filter( 'jetpack_relatedposts_filter_date_range', 'jetpackme_related_posts_past_halfyear_only' );
-
 
 /* 4.7 Author Bios
 ============================*/
 
 add_action( 'genesis_after_loop', 'display_author_bio' );
 function display_author_bio() {
-	// most of the if statements below are pointless.
 	if ( ! is_singular( 'post' ) && ! is_author() ) {
-		// echo "Neither singular nor author";
 		return;
 	} else {
-
-	?>
+		?>
 		<div class="author-box">
 			<h2 class="author-box-title">About Author</h2>
 			<div class="author-img">
-				<a href="<?php echo( esc_url( get_author_posts_url( get_the_author_meta( 'ID') ) ) ); ?>" title="<?php esc_attr( get_the_author() ); ?>"><?php echo get_avatar( get_the_author_meta( 'user_email' ), '80' ); // Display the author gravatar image with the size of 80 ?></a></div>
+				<a href="<?php echo( esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) ); ?>" title="<?php esc_attr( get_the_author() ); ?>"><?php echo get_avatar( get_the_author_meta( 'user_email' ), '80' ); // Display the author gravatar image with the size of 80 ?></a></div>
 			<h3 class="author-name"><?php esc_html( the_author_meta( 'display_name' ) ); // Displays the author name of the posts ?></h3>
 			<p class="author-description"><?php esc_textarea( the_author_meta( 'description' ) ); // Displays the author description added in Biographical Info ?></p>
 		</div>
-	<?php
+		<?php
 	}
 }
-
 
 /* 4.8 Add Link Text on User Copy
 ============================*/
 
 // Append the Site Url to any copied text.
 // add_action('wp_enqueue_scripts', 'add_copy_link' );
-function add_copy_link() {
-	wp_enqueue_script('add-copy-link', CHILD_URL . '/js/copy-link-text.js' );
-}
+// function add_copy_link() {
+// 	wp_enqueue_script('add-copy-link', CHILD_URL . '/js/copy-link-text.js', true );
+// }
 
 /* 4.9 Add wpDevArt Facebook Comments
 ============================*/
@@ -460,7 +405,6 @@ add_action( 'genesis_after_loop', 'display_fb_comments', 10 );
 function display_fb_comments() {
 	if ( is_single() && (! is_single( 'tribe_events' ) ) ) {
 		$url = get_the_permalink();
-		// echo($url);
 		$shortcode_str = '[wpdevart_facebook_comment curent_url="' . $url . '" order_type="social" title_text="Facebook Comment" title_text_color="#000000" title_text_font_size="22" title_text_font_famely="monospace" title_text_position="left" width="100%" bg_color="#d4d4d4" animation_effect="random" ]';
 
 		echo do_shortcode( $shortcode_str );
@@ -485,12 +429,6 @@ function haSepharadi_cat_header() {
 /* 4.11 Collapsible Footnotes
 ============================*/
 
-// add_filter( 'efn_footnote_label', 'efn_change_label_markup', 10, 2 );
-// function efn_change_label_markup( $output, $label ) {
-	// echo($output, $label);
-	// return '<div class="easy-footnote-title"><h4>' . $label . '</h4></div><i class="fa-arrow-right"></i>';
-// }
-
 add_action( 'wp_enqueue_scripts', 'enqueue_collapsible_footnotes' );
 function enqueue_collapsible_footnotes() {
 	wp_enqueue_script('collapsible-footnotes.js', CHILD_URL . '/js/collapsible-footnotes.js', array(), CHILD_THEME_VERSION, true);
@@ -505,9 +443,9 @@ function enqueue_collapsible_footnotes() {
 
 add_action( 'genesis_after_footer', 'add_back_to_top_btn' );
 function add_back_to_top_btn() {
-		?>
-		<a href="javascript:void(0);" class="up_btn" id="backToTop"><i class="fa fa-arrow-up"></i></a>
-		<?php
+	?>
+	<a href="javascript:void(0);" class="up_btn" id="backToTop"><i class="fa fa-arrow-up"></i></a>
+	<?php
 }
 
 /* 5.2 Custom Footer Credits
@@ -515,8 +453,8 @@ function add_back_to_top_btn() {
 
 add_filter('genesis_footer_creds_text', 'sp_footer_creds_filter');
 function sp_footer_creds_filter( $creds ) {
-		$creds = 'Copyright [footer_copyright] <a href="https://hasepharadi.com">haSepharadi</a>. All rights reserved.';
-		return $creds;
+	$creds = 'Copyright [footer_copyright] <a href="https://hasepharadi.com">haSepharadi</a>. All rights reserved.';
+	return $creds;
 }
 
 
@@ -526,59 +464,63 @@ function sp_footer_creds_filter( $creds ) {
 /* 6.1 Author Avatars (Voices)
 ============================*/
 
+add_filter( 'pre_user_query', 'wp_user_query_random_enable' );
+function wp_user_query_random_enable( $query ) {
+	if ( $query->query_vars["orderby"] == 'rand' ) {
+		$query->query_orderby = 'ORDER by RAND()';
+	}
+}
+
 add_shortcode( 'author_avatars', 'display_author_avatars' );
 function display_author_avatars() {
 	remove_filter( 'widget_text_content', 'wpautop' );
 
 	$args = array(
-		'number' => 6,
-		// 'orderby' => 'rand',
-		'role' => 'author',
+		'number'  => 6,
+		'orderby' => 'rand',
+		'role'    => 'author',
 	);
 
 	$author_query = new WP_User_Query( $args );
-	// var_dump($author_query);
 	$authors = $author_query->get_results();
 
 	if ( $authors ) {
-			ob_start();
+		ob_start();
 		?>
-			<div class="author-avatars">
-			<?php
+		<div class="author-avatars">
+		<?php
 
-			foreach ( $authors as $author ) {
-				if ( count_user_posts( $author->ID ) >= 1 ) {
-					$name = $author->display_name;
-					$author_id = $author->ID;
-					$avatar_url = get_avatar_url( $author_id );
-					// $voices_thumb =
-					// $author_posts = $author->url;
-					$author_posts = get_author_posts_url( $author->ID );
-					$args = array(
-						'size' => 100,
-					);
-					$alt_txt = "$name - Author Picture";
-					?>
+		foreach ( $authors as $author ) {
+			if ( count_user_posts( $author->ID ) >= 1 ) {
+				$name = $author->display_name;
+				$author_id = $author->ID;
+				$avatar_url = get_avatar_url( $author_id );
+				$author_posts_url = get_author_posts_url( $author->ID );
+				$args = array(
+					'size' => 100,
+				);
+				$alt_txt = "$name - Author Picture";
+				?>
 
-				<div class="authors-wrap">
-					<div class="author-box">
-						<a href="<?php echo($author_posts); ?>">
-							<div class="avatar-box">
-								<?php echo get_avatar( $author_id, 96, '', '', null ); ?>
-							</div>
-							<span class="author-name"><?php echo( $name ); ?>
-							</span>
-						</a>
-					</div>
+			<div class="authors-wrap">
+				<div class="author-box">
+					<a href="<?php echo( $author_posts_url ); ?>">
+						<div class="avatar-box">
+							<?php echo get_avatar( $author_id, 96, '', '', null ); ?>
+						</div>
+						<span class="author-name"><?php echo( $name ); ?>
+						</span>
+					</a>
 				</div>
+			</div>
 				<?php
 			}
 		}
 	} else {
-			// echo "no users found";
+		return;
 	}
 	?>
-				</div>
+			</div>
 	<?php
 
 	$output_string = ob_get_contents();
@@ -592,7 +534,7 @@ function display_author_avatars() {
 
 add_action( 'wp_enqueue_scripts', 'enqueue_mailchimp_styles' );
 function enqueue_mailchimp_styles() {
-		wp_enqueue_style( 'mc-subscribe', CHILD_URL . '/css/mc-subscribe.css' );
+	wp_enqueue_style( 'mc-subscribe', CHILD_URL . '/css/mc-subscribe.css' );
 }
 
 /* 7. Custom User Meta
@@ -609,13 +551,12 @@ add_action( 'genesis_after_loop', 'genesis_do_author_box_archive' );
 
 add_filter( 'user_contactmethods', 'luna_add_user_social_media' );
 function luna_add_user_social_media( $fields ) {
-		$fields['academia'] = 'Academia';
-		$fields['facebook'] = 'Facebook';
-		$fields['twitter'] = 'Twitter';
-		$fields['instagram'] = 'Instagram';
-		$fields['fake'] = 'Fake';
+	$fields['academia'] = 'Academia';
+	$fields['facebook'] = 'Facebook';
+	$fields['twitter'] = 'Twitter';
+	$fields['instagram'] = 'Instagram';
 
-		return $fields;
+	return $fields;
 }
 
 // I don't know if this is even achieving anything
@@ -627,7 +568,6 @@ if ( is_singular( 'event' ) ) {
 remove_action( 'genesis_before_loop', 'genesis_do_taxonomy_title_description', 15 );
 
 add_action( 'genesis_after_loop', 'genesis_do_taxonomy_title_description' );
-
 
 
 /* 8. Social Media Sharing Buttons
@@ -661,26 +601,8 @@ function luna_social_sharing_buttons() {
 }
 
 
-/* 9. Maintenance
+/* 9. Genesis Content Attributes (Add Class)
 =================================================*/
-
-$cron_args = array( false );
-if ( ! wp_next_scheduled( 'luna_debug_hook', $cron_args ) ) {
-	wp_schedule_event( time(), 'daily', 'luna_debug_hook' );
-}
-add_action( 'luna_debug_hook', 'luna_cleanup_debug_log' );
-
-/**
- * GZip and Delete wp-content/debug.log anytime file size is greater than 100MB.
- * Email Admin debug file
- *
- */
-add_action( 'genesis_loop', 'luna_cleanup_debug_log' );
-function luna_cleanup_debug_log() {
-	if ( file_exists('/public_html/wp-content/debug.log' ) ) {
-		echo( 'debug log exists' );
-	}
-}
 
 add_filter( 'genesis_attr_content', 'genesis_main_content_class' );
 function genesis_main_content_class( $attributes ) {

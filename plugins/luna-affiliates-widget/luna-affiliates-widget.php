@@ -52,6 +52,8 @@ class Luna_AFL_Widget extends WP_Widget {
         ?>
         <div class="luna-afl affiliates-container">
         <?php
+        if ( is_single() ) :
+
         if ( have_rows( 'affiliate_links', $user_id_prefixed ) ) :
              while ( have_rows( 'affiliate_links', $user_id_prefixed ) ) : the_row();
 
@@ -79,6 +81,7 @@ class Luna_AFL_Widget extends WP_Widget {
                 <?php
 
             endwhile;
+        endif;
         endif;
         ?>
     </div>
